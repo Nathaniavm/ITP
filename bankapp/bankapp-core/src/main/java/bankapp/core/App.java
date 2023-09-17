@@ -1,4 +1,4 @@
-package core.bankapp;
+package bankapp.core;
 
 /**
  * Hello world!
