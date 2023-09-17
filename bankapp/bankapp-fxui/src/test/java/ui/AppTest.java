@@ -1,4 +1,4 @@
-package fxui.bankapp;
+package ui;
 
 import static org.junit.Assert.assertTrue;
 
