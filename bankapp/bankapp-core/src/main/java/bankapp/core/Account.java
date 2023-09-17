@@ -35,6 +35,6 @@ public class Account {
         balance.decrease(amount);
     }
     public void setAccNr(int accNr) {
-        st
+        
     }
 }
