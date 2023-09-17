@@ -1,4 +1,4 @@
-package core.bankapp;
+package bankapp.ui;
 
 import static org.junit.Assert.assertTrue;
 

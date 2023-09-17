@@ -1,4 +1,4 @@
-package fxui.bankapp;
+package bankapp.ui;
 
 /**
  * Hello world!
