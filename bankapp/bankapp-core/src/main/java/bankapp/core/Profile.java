@@ -27,7 +27,7 @@ public class Profile {
         if (password.length() < 8) {
             throw new IllegalArgumentException("Password must contain at least 8 characters");
         }
-        if (tlf.length() < 8 || !isNumeric(tlf)) {
+        if (tlf.length() != 8 || !isNumeric(tlf)) {
             System.out.println(isNumeric(tlf));
             throw new IllegalArgumentException("Invalid phonenumber");
         }
@@ -80,6 +80,6 @@ public class Profile {
     }
 
     public static void main(String[] args) {
-        Profile profile = new Profile("Klein  C", null, "12345678", "asdf1234567@¨+0");
+        Profile profile = new Profile("Klein  C", null, "j2345678", "asdf1234567@¨+0");
     }
 }
