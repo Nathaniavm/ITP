@@ -6,11 +6,27 @@ import java.util.List;
 public class Profile {
     private String name;
     private String email;
-    private int tlf;
+    private String tlf;
     private String password;
     private List<Account> accounts = new ArrayList<>();
 
-    public void createAccount(String name){
+    public Profile(String name, String email, String tlf, String password) {
+        if(!(name.contains(" "))){
+            
+        }
+        if(password.length() < 8){
+            throw new IllegalArgumentException("Password must contain at least 8 characters");
+        }
+        if(){
+
+        }
+        this.name = name;
+        this.email = email;
+        this.tlf = tlf;
+        this.password = password;
+    }
+
+    public void createAccount(String name) {
         accounts.add(new Account(name));
     }
 
@@ -18,15 +34,11 @@ public class Profile {
         this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setTlf(int tlf) {
+    public void setTlf(String tlf) {
         this.tlf = tlf;
     }
 
@@ -38,7 +50,7 @@ public class Profile {
         return name;
     }
 
-    public int getTlf() {
+    public String getTlf() {
         return tlf;
     }
 
