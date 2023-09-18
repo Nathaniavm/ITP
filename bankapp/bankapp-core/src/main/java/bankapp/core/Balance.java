@@ -9,13 +9,15 @@ public class Balance {
         }
         balance += amount;
     }
-    public int getBalance() {
-        return balance;
-    }
+    
     public void decrease(int amount){
         if (balance - amount < 0 || amount <= 0){
             throw new IllegalArgumentException("Cannot remove amount");
         }
         balance -= amount;
+    }
+    
+    public int getBalance() {
+        return balance;
     }
 }
