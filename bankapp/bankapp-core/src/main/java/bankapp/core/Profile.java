@@ -11,19 +11,40 @@ public class Profile {
     private List<Account> accounts = new ArrayList<>();
 
     public Profile(String name, String email, String tlf, String password) {
-        if(!(name.contains(" "))){
-            
+        if ((name.contains(" "))) {
+            String[] splits = name.split(" ");
+            System.out.println(splits);
+            for (int i = 0; i < splits.length; i++) {
+                for (int j = 0; j < splits[i].length(); j++) {
+                    if (!Character.isLetter(splits[i].strip().charAt(j))) {
+                        throw new IllegalArgumentException("Name can only contain letters");
+                    }
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Name must contain both surname and last name");
         }
-        if(password.length() < 8){
+        if (password.length() < 8) {
             throw new IllegalArgumentException("Password must contain at least 8 characters");
         }
-        if(){
-
+        if (tlf.length() < 8 || !isNumeric(tlf)) {
+            System.out.println(isNumeric(tlf));
+            throw new IllegalArgumentException("Invalid phonenumber");
         }
         this.name = name;
         this.email = email;
         this.tlf = tlf;
         this.password = password;
+        System.out.println("Your profile is made!");
+    }
+
+    public static boolean isNumeric(String test) {
+        try {
+            Double.parseDouble(test);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public void createAccount(String name) {
@@ -56,5 +77,9 @@ public class Profile {
 
     public String getPassword() {
         return password;
+    }
+
+    public static void main(String[] args) {
+        Profile profile = new Profile("Klein  C", null, "12345678", "asdf1234567@¨+0");
     }
 }

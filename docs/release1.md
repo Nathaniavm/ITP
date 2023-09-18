@@ -1,1 +1,1 @@
-fejkwobgfibr
+This project requires Java version 17.0.8 and maven versjon 3.9.4
