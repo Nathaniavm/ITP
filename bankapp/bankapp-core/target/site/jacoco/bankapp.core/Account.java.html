@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="no"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package bankapp.core;
+
+public class Account {
+    private String name;
+    private Balance balance;
+    private int accNr;
+    private BankCard bankCard;
+
+
+<span class="nc" id="L10">    public Account(String name){</span>
+<span class="nc" id="L11">        this.name = name;</span>
+<span class="nc" id="L12">    }</span>
+
+    public String getName() {
+<span class="nc" id="L15">        return name;</span>
+    }
+    
+    public void add(int amount) {
+<span class="nc" id="L19">        balance.increase(amount);</span>
+<span class="nc" id="L20">    }</span>
+
+    public void transferTo(Account account, int amount) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (account.getBalance() &lt; amount){</span>
+<span class="nc" id="L24">            throw new IllegalArgumentException(&quot;Account does not have enough money&quot;);</span>
+        }
+<span class="nc" id="L26">        account.remove(amount);</span>
+<span class="nc" id="L27">        this.add(amount);</span>
+<span class="nc" id="L28">    }</span>
+
+    public int getBalance() {
+<span class="nc" id="L31">        return balance.getBalance();</span>
+    }
+
+    public void remove(int amount) {
+<span class="nc" id="L35">        balance.decrease(amount);</span>
+<span class="nc" id="L36">    }</span>
+    public void setAccNr(int accNr) {
+        
+<span class="nc" id="L39">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
