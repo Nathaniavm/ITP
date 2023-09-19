@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class that makes a profile
+ */
+
 public class Profile {
     private String name;
     private String email;
     private String tlf;
     private String password;
     private List<Account> accounts = new ArrayList<>();
-    private ArrayList<String> landskoder = new ArrayList<>(Arrays.asList("ad", "ae", "af", "ag", "ai", "al", "am", "ao",
+    private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList("ad", "ae", "af", "ag", "ai", "al", "am", "ao",
             "aq", "ar", "as", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl",
             "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cc", "cd", "cf", "cg", "ch", "ci",
             "ck", "cl", "cm", "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz", "de", "dj", "dk", "dm", "do", "dz",
@@ -26,6 +30,16 @@ public class Profile {
             "tr", "tt", "tv", "tw", "tz", "ua", "ug", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu",
             "wf", "ws", "ye", "yt", "za", "zm", "zw"));
 
+    /**
+     * Creates a new profile
+     *
+     * @param name     The profile name
+     * @param email    The email connected to this profile
+     * @param tlf      The telephone number connected to this profile
+     * @param password The password to the profile
+     * @throws IllegalArgumentException If the name, email, telephone number or
+     *                                  password are not valid
+     */
     public Profile(String name, String email, String tlf, String password) {
         if ((name.contains(" "))) {
             String[] splits = name.split(" ");
@@ -53,6 +67,12 @@ public class Profile {
         System.out.println("Your profile was made successfully!");
     }
 
+    /**
+     * Checks if the text is numeric
+     * 
+     * @param test The text that's gonne be checked
+     * @return The boolean value true if the text is numeric, and false if not
+     */
     private static boolean isNumeric(String test) {
         try {
             Double.parseDouble(test);
@@ -64,38 +84,65 @@ public class Profile {
         }
     }
 
+    /**
+     * Creates an account
+     * 
+     * @param name The name to the account
+     */
     public void createAccount(String name) {
         accounts.add(new Account(name));
     }
 
-    /*
-     * public void changeEmail(String email) {
-     * if (validEmail(email)) {
-     * this.email = email;
-     * }
-     * }
+    /**
+     * Changes the password
+     * 
+     * @param password The new password
      */
-
     public void changePassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Changes the telephone number
+     * 
+     * @param tlf The new telephone number
+     */
     public void changeTlf(String tlf) {
         this.tlf = tlf;
     }
 
+    /**
+     * Returns the email connected to this profile
+     * 
+     * @return The email connected to this profile
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Returns the name connected to this account
+     * 
+     * @return The name connected to this account
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns the phone number connected to this account
+     * 
+     * @return The phone number connected to this account
+     */
     public String getTlf() {
         return tlf;
     }
 
+    /**
+     * Returns the account password
+     * 
+     * @return The account password 
+     */
     public String getPassword() {
         return password;
     }
