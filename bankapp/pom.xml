@@ -32,14 +32,25 @@
 
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<<<<<<< HEAD
 
 
-    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.source>1.8</maven.compiler.source>
 
 
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.target>1.8</maven.compiler.target>
 
 
+=======
+            
+    
+    <maven.compiler.source>1.8</maven.compiler.source>
+            
+    
+    <maven.compiler.target>1.8</maven.compiler.target>
+          
+  
+>>>>>>> 17f9038ebf3eb0fe8a587258cc7345c832b93757
   </properties>
 
 
@@ -53,11 +64,19 @@
 
 
       <artifactId>junit</artifactId>
+<<<<<<< HEAD
 
 
       <version>4.11</version>
 
 
+=======
+                  
+      
+      <version>4.13</version>
+                  
+      
+>>>>>>> 17f9038ebf3eb0fe8a587258cc7345c832b93757
       <scope>test</scope>
 
 

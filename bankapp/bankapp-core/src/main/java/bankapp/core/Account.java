@@ -17,6 +17,7 @@ public class Account {
             setAccNr();
         }
         accNrs.add(accNr);
+        balance = new Balance();
     }
 
     public String getName() {
