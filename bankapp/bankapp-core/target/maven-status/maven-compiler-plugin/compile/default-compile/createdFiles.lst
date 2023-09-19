@@ -1,0 +1,4 @@
+bankapp\core\Account.class
+bankapp\core\Profile.class
+bankapp\core\Balance.class
+bankapp\core\BankCard.class

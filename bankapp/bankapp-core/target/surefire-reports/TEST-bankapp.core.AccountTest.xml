@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.AccountTest" time="0.058" tests="4" errors="0" skipped="0" failures="0">
+=======
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.AccountTest" time="0.074" tests="3" errors="0" skipped="0" failures="0">
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -13,9 +17,15 @@
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
+<<<<<<< HEAD
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot\bin"/>
     <property name="sun.java.command" value="C:\Users\natha\AppData\Local\Temp\surefire8282632400383884322\surefirebooter18123585110570592325.jar C:\Users\natha\AppData\Local\Temp\surefire8282632400383884322 2023-09-19T11-58-59_122-jvmRun1 surefire2291772603093400504tmp surefire_03461131418721805172tmp"/>
+=======
+    <property name="user.country" value="NO"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire6589448279248469040\surefirebooter12546466978535769046.jar C:\Users\alice\AppData\Local\Temp\surefire6589448279248469040 2023-09-19T13-36-41_234-jvmRun1 surefire15659663629820920387tmp surefire_010575385186561242012tmp"/>
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Natha Uni\gr2315\bankapp\bankapp-core\target\test-classes;C:\Natha Uni\gr2315\bankapp\bankapp-core\target\classes;C:\Users\natha\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\natha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +40,11 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+<<<<<<< HEAD
     <property name="surefire.real.class.path" value="C:\Users\natha\AppData\Local\Temp\surefire8282632400383884322\surefirebooter18123585110570592325.jar"/>
+=======
+    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire6589448279248469040\surefirebooter12546466978535769046.jar"/>
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.8+7"/>
@@ -57,8 +71,13 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
+<<<<<<< HEAD
   <testcase name="testAccountNr" classname="bankapp.core.AccountTest" time="0.008"/>
   <testcase name="testBalance" classname="bankapp.core.AccountTest" time="0"/>
   <testcase name="testTransfer" classname="bankapp.core.AccountTest" time="0"/>
+=======
+  <testcase name="testBalance" classname="bankapp.core.AccountTest" time="0.004"/>
+  <testcase name="testTransfer" classname="bankapp.core.AccountTest" time="0.008"/>
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
   <testcase name="testConstructor" classname="bankapp.core.AccountTest" time="0"/>
 </testsuite>

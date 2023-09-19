@@ -1,4 +1,5 @@
 package bankapp.core;
+<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -30,4 +31,9 @@ public class ProfileTest {
 
 
 
+=======
+
+public class ProfileTest {
+    // checking
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
 }

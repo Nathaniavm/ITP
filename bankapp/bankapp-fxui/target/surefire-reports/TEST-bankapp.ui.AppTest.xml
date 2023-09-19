@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.05" tests="1" errors="0" skipped="0" failures="0">
+=======
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.044" tests="1" errors="0" skipped="0" failures="0">
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
+<<<<<<< HEAD
     <property name="java.class.path" value="C:\Natha Uni\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Natha Uni\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\natha\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\natha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+=======
+    <property name="java.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -13,11 +21,19 @@
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
+<<<<<<< HEAD
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot\bin"/>
     <property name="sun.java.command" value="C:\Users\natha\AppData\Local\Temp\surefire2779324365053255337\surefirebooter10268002422299370.jar C:\Users\natha\AppData\Local\Temp\surefire2779324365053255337 2023-09-19T11-58-59_122-jvmRun1 surefire7031994821736301551tmp surefire_17425947415797588568tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Natha Uni\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Natha Uni\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\natha\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\natha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+=======
+    <property name="user.country" value="NO"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire760665420822436935\surefirebooter10487530384469918509.jar C:\Users\alice\AppData\Local\Temp\surefire760665420822436935 2023-09-19T13-36-41_234-jvmRun1 surefire15378213098292957745tmp surefire_113740689996216542097tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\natha"/>
     <property name="user.language" value="en"/>
@@ -30,7 +46,11 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+<<<<<<< HEAD
     <property name="surefire.real.class.path" value="C:\Users\natha\AppData\Local\Temp\surefire2779324365053255337\surefirebooter10268002422299370.jar"/>
+=======
+    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire760665420822436935\surefirebooter10487530384469918509.jar"/>
+>>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.8+7"/>
