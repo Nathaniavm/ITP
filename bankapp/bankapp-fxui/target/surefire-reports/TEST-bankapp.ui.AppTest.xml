@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.18" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.074" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire17978006164463491477\surefirebooter15566810697833404281.jar C:\Users\alice\AppData\Local\Temp\surefire17978006164463491477 2023-09-19T11-09-08_703-jvmRun1 surefire2113031273924510897tmp surefire_14918485791322465829tmp"/>
+    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire5184263850761064365\surefirebooter9719098721516925800.jar C:\Users\alice\AppData\Local\Temp\surefire5184263850761064365 2023-09-19T11-20-15_226-jvmRun1 surefire9784401902674838755tmp surefire_114000644860591785171tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire17978006164463491477\surefirebooter15566810697833404281.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire5184263850761064365\surefirebooter9719098721516925800.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.5+8"/>
@@ -57,5 +57,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="bankapp.ui.AppTest" time="0"/>
+  <testcase name="shouldAnswerWithTrue" classname="bankapp.ui.AppTest" time="0.001"/>
 </testsuite>
