@@ -1,6 +1,6 @@
 
 ## Bankapp 
-Jeg ønsker å ha en oversikt over pengene sine, samtidig som jeg vil se hvor mye penger sitter igjen med etter betalte regninger, slik at jeg vet hvor mye jeg kan bruke. Jeg ønsker også å opprette flere kontoer enkelt.
+Jeg ønsker å ha en oversikt over pengene mine, samtidig som jeg kan se hvor mye penger jeg sitter igjen med etter betalte regninger, slik at jeg vet hvor mye jeg kan bruke. Jeg ønsker også å opprette flere kontoer enkelt.
 
 #### Viktig å kunne se:
 - Forskjellige kontoer og pengene på de
