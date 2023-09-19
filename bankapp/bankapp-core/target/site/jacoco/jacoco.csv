@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 bankapp-core,bankapp.core,Balance,10,32,3,3,2,9,3,4,0,4
-bankapp-core,bankapp.core,Account,12,101,2,6,5,23,3,10,1,8
+bankapp-core,bankapp.core,Account,13,98,2,6,5,23,3,10,1,8
 bankapp-core,bankapp.core,Profile,139,0,14,0,38,0,18,0,11,0
 bankapp-core,bankapp.core,BankCard,9,0,0,0,4,0,2,0,2,0

@@ -28,7 +28,31 @@ public class AccountTest {
         acc1.add(100); 
         
         assertThrows(IllegalArgumentException.class, () -> acc2.transferTo(acc1, 150));
+        assertTrue(acc1.getBalance() == 100);
+
+        acc2.transferTo(acc1, 50);
+        assertTrue(acc1.getBalance() == acc2.getBalance());
     }
+
+    @Test
+    public void testAccountNr(){
+        Account acc1 = new Account("acc1");
+        Account acc2 = new Account("acc2");
+        Account acc3 = new Account("acc3");
+        Account acc4 = new Account("acc4");
+
+        assertFalse(acc1.getAccNr() == acc2.getAccNr());
+        assertFalse(acc1.getAccNr() == acc3.getAccNr());
+        assertFalse(acc1.getAccNr() == acc4.getAccNr());
+
+        assertFalse(acc2.getAccNr() == acc3.getAccNr());
+        assertFalse(acc2.getAccNr() == acc4.getAccNr());
+
+        assertFalse(acc3.getAccNr() == acc4.getAccNr());
+
+    }
+
+    
 
 
 
