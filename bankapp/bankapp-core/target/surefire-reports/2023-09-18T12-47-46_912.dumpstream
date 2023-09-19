@@ -1,6 +1,0 @@
-# Created at 2023-09-18T12:47:47.792
-Error: Could not find or load main class ..
-
-# Created at 2023-09-18T12:47:47.799
-Caused by: java.lang.ClassNotFoundException: //
-
