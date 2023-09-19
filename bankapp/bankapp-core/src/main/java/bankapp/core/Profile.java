@@ -27,22 +27,17 @@ public class Profile {
             "wf", "ws", "ye", "yt", "za", "zm", "zw"));
 
     public Profile(String name, String email, String tlf, String password) {
-        if ((name.contains(" "))) {
-            String[] splits = name.split(" ");
-            // System.out.println(splits);
-            for (int i = 0; i < splits.length; i++) {
-                for (int j = 0; j < splits[i].length(); j++) {
-                    if (!Character.isLetter(splits[i].strip().charAt(j))) {
-                        throw new IllegalArgumentException("Name can only contain letters");
-                    }
-                }
-            }
-        }
-
-        else {
-            throw new IllegalArgumentException("Name must contain both surname and last name");
-        }
-
+        // if ((name.contains(" "))) {
+        // String[] splits = name.split(" ");
+        // // System.out.println(splits);
+        // for (int i = 0; i < splits.length; i++) {
+        // for (int j = 0; j < splits[i].length(); j++) {
+        // if (!Character.isLetter(splits[i].strip().charAt(j))) {
+        // throw new IllegalArgumentException("Name can only contain letters");
+        // }
+        // }
+        // }
+        // }
         if (password.length() < 8) {
             throw new IllegalArgumentException("Password must contain at least 8 characters");
         }
@@ -51,14 +46,18 @@ public class Profile {
             throw new IllegalArgumentException("Invalid phonenumber");
         }
 
-        this.name = name;
-        this.email = email;
-        this.tlf = tlf;
-        this.password = password;
-        System.out.println("Your profile was made successfully!");
+        if (validName(name)) {
+            if (validEmail(email)) {
+                this.name = name;
+                this.email = email;
+                this.tlf = tlf;
+                this.password = password;
+                System.out.println("Your profile was made successfully!");
+            }
+        }
     }
 
-    public static boolean isNumeric(String test) {
+    private static boolean isNumeric(String test) {
         try {
             Double.parseDouble(test);
             return true;
@@ -69,7 +68,32 @@ public class Profile {
         }
     }
 
-    public boolean validEmail(String email) {
+    private boolean validName(String name) {
+        String[] splitName = name.split(" ", 3);
+        for (int i = 0; i < name.length(); i++) {
+            char c = name.charAt(i);
+            if (i < splitName[0].length() || i > splitName[0].length()) {
+                if (!Character.isAlphabetic(c))
+                    throw new IllegalArgumentException("Dette er en ugyldig verdi");
+            }
+        }
+
+        if (splitName.length != 2) {
+            throw new IllegalArgumentException("Dette er en ugyldig verdi");
+        } else if (splitName[0].length() < 2 || splitName[1].length() < 2) {
+            throw new IllegalArgumentException("Dette er en ugyldig verdi");
+        }
+        return true;
+    }
+
+    /**
+     * Returns true is the email is valid
+     * 
+     * @param email The email that is suppossed to be checked
+     * @return The boolean value true if email is valid
+     * @throws IllegalArgumentException If the email is not valid
+     */
+    private boolean validEmail(String email) {
         String[] splitEmail = email.split("\\.", 5);
         if (splitEmail.length != 3) {
             throw new IllegalArgumentException("Dette er en ugyldig verdi");
@@ -96,7 +120,9 @@ public class Profile {
     }
 
     public void changeEmail(String email) {
-        this.email = email;
+        if (validEmail(email)) {
+            this.email = email;
+        }
     }
 
     public void changePassword(String password) {
