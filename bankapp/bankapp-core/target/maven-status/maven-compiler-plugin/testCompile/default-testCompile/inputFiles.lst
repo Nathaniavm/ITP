@@ -1,5 +1,21 @@
+<<<<<<< HEAD
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\ProfileTest.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\AppTest.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\BankCardTest.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\BalanceTest.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\AccountTest.java
+=======
+<<<<<<< HEAD
+C:\Natha Uni\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\AppTest.java
+C:\Natha Uni\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\BankCardTest.java
+C:\Natha Uni\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\ProfileTest.java
+C:\Natha Uni\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\BalanceTest.java
+C:\Natha Uni\gr2315\bankapp\bankapp-core\src\test\java\bankapp\core\AccountTest.java
+=======
+/Users/kleincornolis/gr2315/bankapp/bankapp-core/src/test/java/bankapp/core/BankCardTest.java
+/Users/kleincornolis/gr2315/bankapp/bankapp-core/src/test/java/bankapp/core/AppTest.java
+/Users/kleincornolis/gr2315/bankapp/bankapp-core/src/test/java/bankapp/core/AccountTest.java
+/Users/kleincornolis/gr2315/bankapp/bankapp-core/src/test/java/bankapp/core/BalanceTest.java
+/Users/kleincornolis/gr2315/bankapp/bankapp-core/src/test/java/bankapp/core/ProfileTest.java
+>>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
+>>>>>>> cfd0458b3134743754ba93e2b5bfb0705b721978
