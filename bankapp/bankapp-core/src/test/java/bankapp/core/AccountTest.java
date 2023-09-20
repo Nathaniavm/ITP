@@ -6,6 +6,9 @@ import org.junit.Test;
 
 public class AccountTest {
 
+    /**
+     * Tests if the constructor makes an account with name equal to the input
+     */
     @Test
     public void testConstructor(){
         Account newAcc = new Account("Acc1");
@@ -13,6 +16,9 @@ public class AccountTest {
         assertEquals("Acc1", name);
     }
 
+    /**
+     * tests if the transaction instruction works 
+     */
     @Test 
     public void testBalance(){
         Account newAcc = new Account("Acc2");
@@ -21,6 +27,9 @@ public class AccountTest {
         assertEquals(1000, newAcc.getBalance());
     }
 
+    /**
+     * tests transaction between two accounts, and if there will be an IllegalArgumentException when we try to tranfer more money than the balance in the account
+     */
     @Test 
     public void testTransfer(){
         Account acc1 = new Account("acc1");
