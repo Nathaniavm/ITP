@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.05" tests="1" errors="0" skipped="0" failures="0">
 =======
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.044" tests="1" errors="0" skipped="0" failures="0">
@@ -13,12 +14,17 @@
 =======
     <property name="java.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
 >>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
+=======
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.017" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/test-classes:/Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/classes:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-fxml/19/javafx-fxml-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-fxml/19/javafx-fxml-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-controls/19/javafx-controls-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-controls/19/javafx-controls-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-graphics/19/javafx-graphics-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-graphics/19/javafx-graphics-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-base/19/javafx-base-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-base/19/javafx-base-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/kleincornolis/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+>>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://adoptium.net/"/>
-    <property name="user.timezone" value="Europe/Oslo"/>
-    <property name="os.name" value="Windows 11"/>
+    <property name="os.name" value="Mac OS X"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
 <<<<<<< HEAD
@@ -29,9 +35,11 @@
     <property name="surefire.test.class.path" value="C:\Natha Uni\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Natha Uni\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\natha\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\natha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
 =======
     <property name="user.country" value="NO"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire760665420822436935\surefirebooter10487530384469918509.jar C:\Users\alice\AppData\Local\Temp\surefire760665420822436935 2023-09-19T13-36-41_234-jvmRun1 surefire15378213098292957745tmp surefire_113740689996216542097tmp"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/surefire/surefirebooter11333133682564487856.jar /Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/surefire 2023-09-20T12-37-19_485-jvmRun1 surefire6843264920736986175tmp surefire_1383524978517562410tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
+<<<<<<< HEAD
     <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
 >>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
     <property name="sun.cpu.endian" value="little"/>
@@ -42,10 +50,21 @@
     <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot"/>
     <property name="file.separator" value="\"/>
     <property name="basedir" value="C:\Natha Uni\gr2315\bankapp\bankapp-fxui"/>
+=======
+    <property name="surefire.test.class.path" value="/Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/test-classes:/Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/classes:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-fxml/19/javafx-fxml-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-fxml/19/javafx-fxml-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-controls/19/javafx-controls-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-controls/19/javafx-controls-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-graphics/19/javafx-graphics-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-graphics/19/javafx-graphics-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-base/19/javafx-base-19.jar:/Users/kleincornolis/.m2/repository/org/openjfx/javafx-base/19/javafx-base-19-mac-aarch64.jar:/Users/kleincornolis/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/kleincornolis/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/kleincornolis"/>
+    <property name="user.language" value="nb"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-08-24"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/kleincornolis/gr2315/bankapp/bankapp-fxui"/>
+>>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <property name="surefire.real.class.path" value="C:\Users\natha\AppData\Local\Temp\surefire2779324365053255337\surefirebooter10268002422299370.jar"/>
 =======
@@ -57,9 +76,20 @@
     <property name="user.name" value="natha"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
+=======
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/Users/kleincornolis/gr2315/bankapp/bankapp-fxui/target/surefire/surefirebooter11333133682564487856.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="17.0.8.1+1"/>
+    <property name="user.name" value="kleincornolis"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="13.5.2"/>
+>>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="file.encoding" value="Cp1252"/>
+    <property name="file.encoding" value="US-ASCII"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+<<<<<<< HEAD
     <property name="java.vendor.version" value="Temurin-17.0.8+7"/>
     <property name="localRepository" value="C:\Users\natha\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
@@ -75,6 +105,23 @@
     <property name="java.vendor" value="Eclipse Adoptium"/>
     <property name="java.vm.version" value="17.0.8+7"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+=======
+    <property name="java.vendor.version" value="Temurin-17.0.8.1+1"/>
+    <property name="localRepository" value="/Users/kleincornolis/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/67/yvwt1nc97wsf69kr5gzb27f80000gn/T/"/>
+    <property name="java.version" value="17.0.8.1"/>
+    <property name="user.dir" value="/Users/kleincornolis/gr2315/bankapp/bankapp-fxui"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="US-ASCII"/>
+    <property name="java.library.path" value="/Users/kleincornolis/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.8.1+1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+>>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
     <property name="java.class.version" value="61.0"/>
   </properties>
   <testcase name="shouldAnswerWithTrue" classname="bankapp.ui.AppTest" time="0"/>

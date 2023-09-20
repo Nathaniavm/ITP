@@ -2,7 +2,11 @@
 Test set: bankapp.ui.AppTest
 -------------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.05 s - in bankapp.ui.AppTest
 =======
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s - in bankapp.ui.AppTest
 >>>>>>> 6e98feb19ab156bc871344e06c23816f5004ef63
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s - in bankapp.ui.AppTest
+>>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
