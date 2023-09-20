@@ -11,7 +11,7 @@ public class AccountTest {
      */
     @Test
     public void testConstructor(){
-        Account newAcc = new Account("Acc1");
+        Account newAcc = new Account("Acc1", "Ola Nordmann");
         String name = newAcc.getName(); 
         assertEquals("Acc1", name);
     }
@@ -21,7 +21,7 @@ public class AccountTest {
      */
     @Test 
     public void testBalance(){
-        Account newAcc = new Account("Acc2");
+        Account newAcc = new Account("Acc2", "Ola Nordmann");
         newAcc.add(1500);
         newAcc.remove(500);
         assertEquals(1000, newAcc.getBalance());
@@ -32,8 +32,8 @@ public class AccountTest {
      */
     @Test 
     public void testTransfer(){
-        Account acc1 = new Account("acc1");
-        Account acc2 = new Account("acc2");
+        Account acc1 = new Account("acc1", "Ola Nordmann");
+        Account acc2 = new Account("acc2", "Ola Nordmann");
         acc1.add(100); 
         
         assertThrows(IllegalArgumentException.class, () -> acc2.transferTo(acc1, 150));
@@ -45,10 +45,10 @@ public class AccountTest {
 
     @Test
     public void testAccountNr(){
-        Account acc1 = new Account("acc1");
-        Account acc2 = new Account("acc2");
-        Account acc3 = new Account("acc3");
-        Account acc4 = new Account("acc4");
+        Account acc1 = new Account("acc1", "Ola Nordmann");
+        Account acc2 = new Account("acc2", "Ola Nordmann");
+        Account acc3 = new Account("acc3", "Ola Nordmann");
+        Account acc4 = new Account("acc4", "Ola Nordmann");
 
         assertFalse(acc1.getAccNr() == acc2.getAccNr());
         assertFalse(acc1.getAccNr() == acc3.getAccNr());

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package bankapp.core;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="no"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package bankapp.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +29,12 @@ public class Account {
 <span class="fc" id="L29">    }</span>
 
     public void transferTo(Account account, int amount) {
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (account.getBalance() &lt; amount) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (account.getBalance() &lt; amount) {</span>
 <span class="fc" id="L33">            throw new IllegalArgumentException(&quot;Account does not have enough money&quot;);</span>
         }
-<span class="nc" id="L35">        account.remove(amount);</span>
-<span class="nc" id="L36">        this.add(amount);</span>
-<span class="nc" id="L37">    }</span>
+<span class="fc" id="L35">        account.remove(amount);</span>
+<span class="fc" id="L36">        this.add(amount);</span>
+<span class="fc" id="L37">    }</span>
 
     public int getBalance() {
 <span class="fc" id="L40">        return balance.getBalance();</span>
@@ -56,7 +56,7 @@ public class Account {
 <span class="fc" id="L56">    }</span>
 
     public String getAccNr() {
-<span class="nc" id="L59">        return accNr;</span>
+<span class="fc" id="L59">        return accNr;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
