@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.AppTest" time="0.018" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.AppTest" time="0.019" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/kleincornolis/gr2315/bankapp/bankapp-core/target/surefire/surefirebooter7224088526297904737.jar /Users/kleincornolis/gr2315/bankapp/bankapp-core/target/surefire 2023-09-19T14-29-12_358-jvmRun1 surefire7627521274348656334tmp surefire_02380526365070156715tmp"/>
+    <property name="sun.java.command" value="/Users/kleincornolis/gr2315/bankapp/bankapp-core/target/surefire/surefirebooter17559019933070092393.jar /Users/kleincornolis/gr2315/bankapp/bankapp-core/target/surefire 2023-09-20T12-37-19_485-jvmRun1 surefire9774716034966236498tmp surefire_07795071170783760608tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/kleincornolis/gr2315/bankapp/bankapp-core/target/test-classes:/Users/kleincornolis/gr2315/bankapp/bankapp-core/target/classes:/Users/kleincornolis/.m2/repository/junit/junit/4.13/junit-4.13.jar:/Users/kleincornolis/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/kleincornolis/gr2315/bankapp/bankapp-core/target/surefire/surefirebooter7224088526297904737.jar"/>
+    <property name="surefire.real.class.path" value="/Users/kleincornolis/gr2315/bankapp/bankapp-core/target/surefire/surefirebooter17559019933070092393.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="17.0.8.1+1"/>
@@ -55,5 +55,5 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="bankapp.core.AppTest" time="0.002"/>
+  <testcase name="shouldAnswerWithTrue" classname="bankapp.core.AppTest" time="0.001"/>
 </testsuite>
