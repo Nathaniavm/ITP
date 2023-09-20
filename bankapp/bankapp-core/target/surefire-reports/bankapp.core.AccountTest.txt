@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: bankapp.core.AccountTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.077 s - in bankapp.core.AccountTest
-=======
-<<<<<<< HEAD
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s - in bankapp.core.AccountTest
-=======
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in bankapp.core.AccountTest
->>>>>>> 9ed985843ee0e22a309d7173f1f048212045bf33
->>>>>>> cfd0458b3134743754ba93e2b5bfb0705b721978
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.115 s - in bankapp.core.AccountTest
