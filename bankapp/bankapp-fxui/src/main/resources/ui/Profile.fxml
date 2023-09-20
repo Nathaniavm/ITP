@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AppController">
    <children>
       <GridPane layoutX="3.0" layoutY="3.0" prefHeight="650.0" prefWidth="419.0">
          <columnConstraints>
@@ -67,7 +67,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentsTab" onMouseClicked="#getOnActionPayments" prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="1">
+                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="1">
                            <children>
                               <Label layoutX="10.0" layoutY="43.0" text="Payments">
                                  <font>
