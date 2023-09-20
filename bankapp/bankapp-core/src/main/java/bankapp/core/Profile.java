@@ -90,7 +90,7 @@ public class Profile {
      * @param name The name to the account
      */
     public void createAccount(String name) {
-        accounts.add(new Account(name));
+        accounts.add(new Account(name, this.name));
     }
 
     /**
