@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: bankapp.ui.AppTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.18 s <<< FAILURE! - in bankapp.ui.AppTest
-testButtonClick(bankapp.ui.AppTest)  Time elapsed: 0.048 s  <<< ERROR!
-org.testfx.api.FxRobotException: the matcher "Labeled has text "HJELP"" returned no nodes.
-	at bankapp.ui.AppTest.testButtonClick(AppTest.java:61)
-
