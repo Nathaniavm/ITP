@@ -104,9 +104,18 @@ public class Account {
         return accNr;
     }
 
+    /**
+     * 
+     * @param name to change the account name to
+     */
     public void renameAccount(String name){
         this.name = name;
     }
+
+    /**
+     * 
+     * @return corresponding bankcard object
+     */
     public BankCard getBankCard() {
         return bankCard;
     }
