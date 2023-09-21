@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="no"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-fxui</a> &gt; <a href="index.source.html" class="el_package">ui</a> &gt; <span class="el_source">AppController.java</span></div><h1>AppController.java</h1><pre class="source lang-java linenums">package ui;
 
+import java.io.IOException;
+
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Labeled;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-<span class="nc" id="L11">public class AppController {</span>
+<span class="fc" id="L19">public class AppController {</span>
 
     @FXML
     private AnchorPane header;
@@ -50,14 +58,36 @@ import javafx.scene.layout.GridPane;
     private AnchorPane profileTab;
 
     @FXML
-    private void initializePayments() {
-<span class="nc" id="L54">        paymentsTab.setOnMouseClicked(this::getOnActionPayments);</span>
-<span class="nc" id="L55">    }</span>
+    private Button button;
 
     @FXML
-    private void getOnActionPayments(MouseEvent event) {
+    private void initializeProfile() {
+<span class="nc" id="L65">        profileTab.setOnMouseClicked(event -&gt; {</span>
+            try {
+<span class="nc" id="L67">                getOnActionProfile(event);</span>
+<span class="nc" id="L68">            } catch (IOException e) {</span>
+                // TODO Auto-generated catch block
+<span class="nc" id="L70">                e.printStackTrace();</span>
+<span class="nc" id="L71">            }</span>
+<span class="nc" id="L72">        });</span>
+<span class="nc" id="L73">    }</span>
 
-<span class="nc" id="L60">    }</span>
+    @FXML
+    private void getOnActionProfile(MouseEvent event) throws IOException {
+<span class="fc" id="L77">        Stage primaryStage = (Stage) profileTab.getScene().getWindow();</span>
+        // String tab = ((Label) profileTab.getChildren().get(0)).getText(); Hente ut
+        // text verdi til tabben man trykker på
+
+<span class="fc" id="L81">        primaryStage.setTitle(&quot;Bankapp - Profile&quot;);</span>
+
+<span class="fc" id="L83">        FXMLLoader tabLoader = new FXMLLoader(getClass().getResource(&quot;Profile.fxml&quot;));</span>
+<span class="fc" id="L84">        Parent tabPane = tabLoader.load();</span>
+<span class="fc" id="L85">        Scene tabScene = new Scene(tabPane);</span>
+
+<span class="fc" id="L87">        primaryStage.setScene(tabScene);</span>
+<span class="fc" id="L88">        primaryStage.show();</span>
+
+<span class="fc" id="L90">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
