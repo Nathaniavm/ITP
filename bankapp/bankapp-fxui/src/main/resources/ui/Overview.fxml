@@ -120,7 +120,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="button" layoutX="165.0" layoutY="214.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="152.0" text="HJELP" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
