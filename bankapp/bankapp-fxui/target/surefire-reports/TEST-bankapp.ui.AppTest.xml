@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.074" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.ui.AppTest" time="0.18" tests="1" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\org\testfx\testfx-core\4.0.16-alpha\testfx-core-4.0.16-alpha.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\alice\.m2\repository\org\assertj\assertj-core\3.13.2\assertj-core-3.13.2.jar;C:\Users\alice\.m2\repository\org\testfx\testfx-junit5\4.0.16-alpha\testfx-junit5-4.0.16-alpha.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire17511919278366695802\surefirebooter13858378829840802082.jar C:\Users\alice\AppData\Local\Temp\surefire17511919278366695802 2023-09-20T16-45-20_949-jvmRun1 surefire6907722357446480201tmp surefire_113318542323396258609tmp"/>
+    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire14639139575490944211\surefirebooter8676628925732688974.jar C:\Users\alice\AppData\Local\Temp\surefire14639139575490944211 2023-09-21T13-25-44_295-jvmRun1 surefire3408788983145614933tmp surefire_08660024889523615963tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-fxui\target\classes;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-fxml\19\javafx-fxml-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-controls\19\javafx-controls-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-graphics\19\javafx-graphics-19-win.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19.jar;C:\Users\alice\.m2\repository\org\openjfx\javafx-base\19\javafx-base-19-win.jar;C:\Users\alice\.m2\repository\org\testfx\testfx-core\4.0.16-alpha\testfx-core-4.0.16-alpha.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\alice\.m2\repository\org\assertj\assertj-core\3.13.2\assertj-core-3.13.2.jar;C:\Users\alice\.m2\repository\org\testfx\testfx-junit5\4.0.16-alpha\testfx-junit5-4.0.16-alpha.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\alice\.m2\repository\junit\junit\4.11\junit-4.11.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\alice"/>
     <property name="user.language" value="no"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire17511919278366695802\surefirebooter13858378829840802082.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire14639139575490944211\surefirebooter8676628925732688974.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.5+8"/>
@@ -57,5 +57,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="bankapp.ui.AppTest" time="0.001"/>
+  <testcase name="testButtonClick" classname="bankapp.ui.AppTest" time="0.048">
+    <error message="the matcher &quot;Labeled has text &quot;HJELP&quot;&quot; returned no nodes." type="org.testfx.api.FxRobotException">org.testfx.api.FxRobotException: the matcher "Labeled has text "HJELP"" returned no nodes.
+	at bankapp.ui.AppTest.testButtonClick(AppTest.java:61)
+</error>
+  </testcase>
 </testsuite>

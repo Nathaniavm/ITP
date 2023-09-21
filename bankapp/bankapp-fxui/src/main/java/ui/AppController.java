@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,6 +58,9 @@ public class AppController {
     private AnchorPane profileTab;
 
     @FXML
+    private Button button;
+
+    @FXML
     private void initializeProfile() {
         profileTab.setOnMouseClicked(event -> {
             try {
@@ -71,8 +75,8 @@ public class AppController {
     @FXML
     private void getOnActionProfile(MouseEvent event) throws IOException {
         Stage primaryStage = (Stage) profileTab.getScene().getWindow();
-         // String tab = ((Label) profileTab.getChildren().get(0)).getText(); Hente ut text verdi til tabben man trykker på
-
+        // String tab = ((Label) profileTab.getChildren().get(0)).getText(); Hente ut
+        // text verdi til tabben man trykker på
 
         primaryStage.setTitle("Bankapp - Profile");
 
