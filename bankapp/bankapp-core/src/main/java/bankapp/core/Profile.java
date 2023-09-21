@@ -147,9 +147,11 @@ public class Profile {
         return password;
     }
 
-    // Legg til get-er for account-listen
-
-    public static void main(String[] args) {
-        Profile profile = new Profile("Klein  C", "klein.cornolis@gmail.com", "12345678", "asdf1234567@¨+0");
+    /**
+     * 
+     * @return list of all accounts
+     */
+    public List<Account> getAccounts() {
+        return new ArrayList<>(accounts);
     }
 }

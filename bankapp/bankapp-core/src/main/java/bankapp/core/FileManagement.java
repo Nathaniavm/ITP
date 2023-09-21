@@ -13,6 +13,12 @@ import java.io.OutputStream;
 
 public class FileManagement {
 
+    /**
+     * Writes information about profile to given file.
+     * @param profile - Profile to write about
+     * @param fileName - filepath of file to write to
+     * @throws IOException
+     */
     public static void writeToFile(Profile profile, String fileName) throws IOException {
         String name = profile.getName();
         String email = profile.getEmail();
@@ -25,6 +31,11 @@ public class FileManagement {
         bw.close();
     }
 
+    /**
+     *  Reads information from file
+     * @param inputStream - file to read from
+     * @throws IOException
+     */
     public static void readFromFile(InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
@@ -35,6 +46,12 @@ public class FileManagement {
         inputStream.close();
     }
 
+    /**
+     * Read from a file looking for a specific name
+     * @param wantedName - name to look for
+     * @param inputStream - file to read from
+     * @throws IOException
+     */
     public static void readFromFileBasedName(String wantedName, InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
@@ -53,6 +70,7 @@ public class FileManagement {
         inputStream.close();
     }
 
+    //temporary testing
     public static void main(String[] args) throws FileNotFoundException {
         Profile prof1 = new Profile("Nam Namu", "NamNamu@gmail.com", "41174086", "tshodkdjsh");
         Profile prof2 = new Profile("Philip Lam", "PhilipLam@gmail.com", "78901234", "tshodkdjsh");
