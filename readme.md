@@ -1,6 +1,6 @@
 # Group gr2315 repository: Bankapp-prosjektet
 
-Dette prosjektet krever Java version 17.0.8 og maven versjon 3.9.4. 
+Dette prosjektet krever Java version 17.0.8, maven versjon 4.0.0 og javafx version 17. 
 Dette prosjektte er et utviklingsprosjekt tilsvarende det en skal gjennom i IT1901. 
 
 Prosjektet bruker maven til bygging og kjøring. For å bygge, kjør mvn install fra rot-prosjektet (Bankapp -mappa). Dette vil kjøre alle tester og kvalitetssjekker. 
