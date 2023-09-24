@@ -23,7 +23,7 @@ public class ProfileTest {
         profile.changeTlf("40278408");
         String s = profile.getTlf();
         assertTrue(s.equals("40278408"));
-        //assertThrows(IllegalArgumentException.class, () -> profile.changeTlf("20a02h0f"));
+        assertThrows(IllegalArgumentException.class, () -> profile.changeTlf("20a02h0f"));
     }
 
     
