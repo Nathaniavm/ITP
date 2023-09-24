@@ -217,26 +217,6 @@
             </execution>
           </executions>
         </plugin>
-        <!-- <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <argLine>
-              @{jaCoCoArgLine}
-              // eventuelle andre argumenter
-            </argLine>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>2.22.1</version>
-          <configuration>
-            <propertyName>jaCoCoArgLine</propertyName>
-          </configuration>
-        </plugin> -->
-
-
       </plugins>
 
 
