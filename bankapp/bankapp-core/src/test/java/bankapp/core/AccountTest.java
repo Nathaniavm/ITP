@@ -3,6 +3,7 @@ package bankapp.core;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 public class AccountTest {
 
@@ -10,17 +11,19 @@ public class AccountTest {
      * Tests if the constructor makes an account with name equal to the input
      */
     @Test
-    public void testConstructor(){
+    @DisplayName("Tests if the constructor makes an account with name equal to the input")
+    public void testConstructor() {
         Account newAcc = new Account("Acc1", "Ola Nordmann");
-        String name = newAcc.getName(); 
+        String name = newAcc.getName();
         assertEquals("Acc1", name);
     }
 
     /**
-     * tests if the transaction instruction works 
+     * tests if the transaction instruction works
      */
-    @Test 
-    public void testBalance(){
+    @Test
+    @DisplayName("tests if the transaction instruction works ")
+    public void testBalance() {
         Account newAcc = new Account("Acc2", "Ola Nordmann");
         newAcc.add(1500);
         newAcc.remove(500);
@@ -28,14 +31,17 @@ public class AccountTest {
     }
 
     /**
-     * tests transaction between two accounts, and if there will be an IllegalArgumentException when we try to tranfer more money than the balance in the account
+     * tests transaction between two accounts, and if there will be an
+     * IllegalArgumentException when we try to tranfer more money than the balance
+     * in the account
      */
-    @Test 
-    public void testTransfer(){
+    @Test
+    @DisplayName("tests transaction between two accounts, and if there will be an IllegalArgumentException when we try to tranfer more money than the balance in the account")
+    public void testTransfer() {
         Account acc1 = new Account("acc1", "Ola Nordmann");
         Account acc2 = new Account("acc2", "Ola Nordmann");
-        acc1.add(100); 
-        
+        acc1.add(100);
+
         assertThrows(IllegalArgumentException.class, () -> acc2.transferTo(acc1, 150));
         assertTrue(acc1.getBalance() == 100);
 
@@ -44,7 +50,8 @@ public class AccountTest {
     }
 
     @Test
-    public void testAccountNr(){
+    @DisplayName("")
+    public void testAccountNr() {
         Account acc1 = new Account("acc1", "Ola Nordmann");
         Account acc2 = new Account("acc2", "Ola Nordmann");
         Account acc3 = new Account("acc3", "Ola Nordmann");
@@ -61,10 +68,4 @@ public class AccountTest {
 
     }
 
-    
-
-
-
-
-    
 }
