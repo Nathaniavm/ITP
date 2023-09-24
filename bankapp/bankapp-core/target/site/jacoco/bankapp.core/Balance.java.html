@@ -2,23 +2,39 @@
 
 <span class="fc" id="L3">public class Balance {</span>
 <span class="fc" id="L4">    private int balance = 0;</span>
-    
-    public void increase(int amount){
-<span class="pc bpc" id="L7" title="1 of 2 branches missed.">        if (amount &lt;= 0){</span>
-<span class="nc" id="L8">            throw new IllegalArgumentException(&quot;Cannot increase by less than 1&quot;);</span>
+
+    /**
+     * 
+     * @param amount - to increase balance by
+     * @throws IllegalArgumentException - if amount less than 1
+     */
+    public void increase(int amount) {
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (amount &lt;= 0) {</span>
+<span class="fc" id="L13">            throw new IllegalArgumentException(&quot;Cannot increase by less than 1&quot;);</span>
         }
-<span class="fc" id="L10">        balance += amount;</span>
-<span class="fc" id="L11">    }</span>
-    
-    public void decrease(int amount){
-<span class="pc bpc" id="L14" title="2 of 4 branches missed.">        if (balance - amount &lt; 0 || amount &lt;= 0){</span>
-<span class="nc" id="L15">            throw new IllegalArgumentException(&quot;Cannot remove amount&quot;);</span>
+<span class="fc" id="L15">        balance += amount;</span>
+<span class="fc" id="L16">    }</span>
+
+    /**
+     * 
+     * @param amount - to decrease balance by
+     * @throws IllegalArgumentException - if balance drops below 0 or amount is less
+     *                                  than 1
+     */
+    public void decrease(int amount) {
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (balance - amount &lt; 0 || amount &lt;= 0) {</span>
+<span class="fc" id="L26">            throw new IllegalArgumentException(&quot;Cannot remove amount&quot;);</span>
         }
-<span class="fc" id="L17">        balance -= amount;</span>
-<span class="fc" id="L18">    }</span>
-    
+<span class="fc" id="L28">        balance -= amount;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * 
+     * @return balance
+     */
     public int getBalance() {
-<span class="fc" id="L21">        return balance;</span>
+<span class="fc" id="L36">        return balance;</span>
     }
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
