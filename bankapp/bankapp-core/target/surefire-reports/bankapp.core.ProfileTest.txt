@@ -1,8 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: bankapp.core.ProfileTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s - in bankapp.core.ProfileTest
-=======
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s - in bankapp.core.ProfileTest
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! - in bankapp.core.ProfileTest
+checkTlfNumber(bankapp.core.ProfileTest)  Time elapsed: 0.004 s  <<< ERROR!
+java.lang.IllegalArgumentException: Invalid email
+	at bankapp.core.ProfileTest.checkTlfNumber(ProfileTest.java:24)
+
+checkConstructor(bankapp.core.ProfileTest)  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.checkConstructor(ProfileTest.java:13)
+
