@@ -2,6 +2,7 @@
 Test set: ui.AppTest
 -------------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.865 s - in ui.AppTest
 =======
 <<<<<<< Updated upstream
@@ -10,3 +11,6 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.519 s - in ui.
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.124 s - in ui.AppTest
 >>>>>>> Stashed changes
 >>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.415 s - in ui.AppTest
+>>>>>>> 27913f1905522d9be7688804716c16c1276a4afb

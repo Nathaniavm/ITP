@@ -7,8 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 public class BalanceTest {
     private Balance balance = new Balance();
 
-    @DisplayName("")
     @Test
+    @DisplayName("Checks if balance increases according to desired usage")
     public void checkIncrease() {
         assertThrows(IllegalArgumentException.class, () -> balance.increase(0));
         assertThrows(IllegalArgumentException.class, () -> balance.increase(-100));
@@ -18,6 +18,7 @@ public class BalanceTest {
     }
 
     @Test
+    @DisplayName("Checks if balance decreases according to desired usage")
     public void checkDecrease() {
         balance.increase(200);
         assertThrows(IllegalArgumentException.class, () -> balance.decrease(300));
