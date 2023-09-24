@@ -95,6 +95,11 @@ public class Profile {
         return(password.length() > 8 && (num>0));
     }
 
+    /**
+     * @param tlf
+     * valid tlf contains 8 numbers
+     * @return
+     */
     private boolean validTlf(String tlf){
         return (tlf.length() == 8 && isNumeric(tlf));
     }
@@ -149,7 +154,7 @@ public class Profile {
     }
 
     /**
-     * Changes the password
+     * Changes the password if the new password is valid
      * 
      * @param password The new password
      */
@@ -159,7 +164,7 @@ public class Profile {
     }
 
     /**
-     * Changes the telephone number
+     * Changes the telephone number if number is valid
      * 
      * @param tlf The new telephone number
      */
@@ -170,7 +175,7 @@ public class Profile {
     }
 
     /**
-     * Returns the email connected to this profile
+     * Returns the email connected to this profile 
      * 
      * @return The email connected to this profile
      */
