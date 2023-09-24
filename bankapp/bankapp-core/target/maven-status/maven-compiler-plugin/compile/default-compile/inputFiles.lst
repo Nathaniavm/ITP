@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\Account.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\Profile.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\Balance.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\FileManagement.java
 C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\BankCard.java
+=======
+C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\Account.java
+C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\Profile.java
+C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\BankCard.java
+C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\FileManagement.java
+C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\src\main\java\bankapp\core\Balance.java
+>>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
