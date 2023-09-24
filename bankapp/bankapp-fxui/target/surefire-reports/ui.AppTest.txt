@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ui.AppTest
 -------------------------------------------------------------------------------
-<<<<<<< Updated upstream
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.519 s - in ui.AppTest
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.124 s - in ui.AppTest
->>>>>>> Stashed changes
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.415 s - in ui.AppTest
