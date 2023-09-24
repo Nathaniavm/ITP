@@ -21,23 +21,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <javafx.version>19</javafx.version>
+    <javafx.version>17</javafx.version>
     <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
   </properties>
 
   <dependencies>
 
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>17</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>17</version>
-    </dependency>
-
+  <dependency>
+    <groupId>core.bankapp</groupId>
+    <artifactId>bankapp-core</artifactId>
+    <version>1.0</version>
+  </dependency>
     <!-- javafx -->
     <dependency>
       <groupId>org.openjfx</groupId>
