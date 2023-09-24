@@ -7,10 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="profile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-   minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AppController">
+<AnchorPane fx:id="profile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AppController">
    <children>
       <GridPane layoutX="3.0" layoutY="3.0" prefHeight="650.0" prefWidth="419.0">
          <columnConstraints>
@@ -18,14 +15,11 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="421.5008544921875"
-               vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625"
-               prefHeight="75.4991455078125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="421.5008544921875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625" prefHeight="75.4991455078125" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <AnchorPane fx:id="header" prefHeight="150.0" prefWidth="419.0"
-               style="-fx-background-color: #EE7811;">
+            <AnchorPane fx:id="header" prefHeight="150.0" prefWidth="419.0" style="-fx-background-color: #EE7811;">
                <children>
                   <GridPane layoutX="21.0" layoutY="27.0" prefHeight="100.0" prefWidth="336.0">
                      <columnConstraints>
@@ -38,8 +32,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="profileName" layoutX="37.0" layoutY="6.0"
-                                 text="Ola Nordmann's profile">
+                              <Label fx:id="profileName" layoutX="37.0" layoutY="6.0" text="Ola Nordmann's profile">
                                  <font>
                                     <Font size="31.0" />
                                  </font>
@@ -52,19 +45,13 @@
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
                <children>
-                  <GridPane gridLinesVisible="true" layoutX="-3.0" layoutY="1.0" prefHeight="74.0"
-                     prefWidth="426.0">
+                  <GridPane gridLinesVisible="true" layoutX="-3.0" layoutY="1.0" prefHeight="74.0" prefWidth="426.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.33303833007812"
-                           minWidth="10.0" prefWidth="87.33303833007812" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0"
-                           prefWidth="91.16696166992188" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0"
-                           prefWidth="80.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0"
-                           prefWidth="79.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0"
-                           prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.33303833007812" minWidth="10.0" prefWidth="87.33303833007812" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="91.16696166992188" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0" prefWidth="79.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="80.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -79,8 +66,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0"
-                           GridPane.columnIndex="1">
+                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="1">
                            <children>
                               <Label layoutX="10.0" layoutY="43.0" text="Payments">
                                  <font>
@@ -89,8 +75,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeTab" prefHeight="62.0" prefWidth="83.0"
-                           GridPane.columnIndex="2">
+                        <AnchorPane fx:id="homeTab" prefHeight="62.0" prefWidth="83.0" GridPane.columnIndex="2">
                            <children>
                               <Label layoutX="18.0" layoutY="42.0" text="Home">
                                  <font>
@@ -99,8 +84,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="savingsTab" prefHeight="62.0" prefWidth="84.0"
-                           GridPane.columnIndex="3">
+                        <AnchorPane fx:id="savingsTab" prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="3">
                            <children>
                               <Label layoutX="10.0" layoutY="42.0" text="Savings">
                                  <font>
@@ -109,8 +93,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileTab" prefHeight="62.0" prefWidth="75.0"
-                           GridPane.columnIndex="4">
+                        <AnchorPane fx:id="profileTab" prefHeight="62.0" prefWidth="75.0" style="-fx-background-color: #EE7811;" GridPane.columnIndex="4">
                            <children>
                               <Label layoutX="14.0" layoutY="43.0" text="Profile">
                                  <font>
@@ -125,10 +108,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <GridPane gridLinesVisible="true" layoutX="100.0" layoutY="111.0"
-                     prefHeight="137.0" prefWidth="224.0" AnchorPane.bottomAnchor="200.0"
-                     AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0"
-                     AnchorPane.topAnchor="60.0">
+                  <GridPane gridLinesVisible="true" layoutX="100.0" layoutY="111.0" prefHeight="137.0" prefWidth="224.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="60.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -140,8 +120,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="57.0" layoutY="4.0" text="Settings"
-                                 textAlignment="CENTER">
+                              <Label layoutX="57.0" layoutY="4.0" text="Settings" textAlignment="CENTER">
                                  <font>
                                     <Font size="32.0" />
                                  </font>
@@ -150,8 +129,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <Label layoutX="48.0" layoutY="4.0" text="Accounts"
-                                 textAlignment="CENTER">
+                              <Label layoutX="48.0" layoutY="4.0" text="Accounts" textAlignment="CENTER">
                                  <font>
                                     <Font size="32.0" />
                                  </font>
@@ -171,9 +149,7 @@
                   </GridPane>
                   <AnchorPane layoutX="108.0" layoutY="222.0" prefHeight="200.0" prefWidth="208.0">
                      <children>
-                        <GridPane gridLinesVisible="true" layoutX="-8.0" layoutY="46.0"
-                           prefHeight="50.0" prefWidth="213.0" AnchorPane.leftAnchor="-8.0"
-                           AnchorPane.rightAnchor="-5.0">
+                        <GridPane gridLinesVisible="true" layoutX="-8.0" layoutY="46.0" prefHeight="50.0" prefWidth="213.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="-5.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
