@@ -90,7 +90,7 @@ public class Profile {
      * @param name The name to the account
      */
     public void createAccount(String name) {
-<span class="nc" id="L93">        accounts.add(new Account(name));</span>
+<span class="nc" id="L93">        accounts.add(new Account(name, this.name));</span>
 <span class="nc" id="L94">    }</span>
 
     /**
@@ -147,10 +147,12 @@ public class Profile {
 <span class="fc" id="L147">        return password;</span>
     }
 
-    // Legg til get-er for account-listen
-
-    public static void main(String[] args) {
-<span class="nc" id="L153">        Profile profile = new Profile(&quot;Klein  C&quot;, &quot;klein.cornolis@gmail.com&quot;, &quot;12345678&quot;, &quot;asdf1234567@¨+0&quot;);</span>
-<span class="nc" id="L154">    }</span>
+    /**
+     * 
+     * @return list of all accounts
+     */
+    public List&lt;Account&gt; getAccounts() {
+<span class="nc" id="L155">        return new ArrayList&lt;&gt;(accounts);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
