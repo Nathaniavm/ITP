@@ -44,7 +44,7 @@ public class Profile {
         if(!validName(name)) throw new IllegalArgumentException("Invalid name");
         this.name = name;
         if(!validEmail(email)) throw new IllegalArgumentException("Invalid email");
-        if(!validPassword(password)) throw new IllegalArgumentException("Password must contain at least 8 characters");
+        if(!validPassword(password)) throw new IllegalArgumentException("Invalid password");
         if(!validTlf(tlf)) throw new IllegalArgumentException("Invalid phonenumber");
         
         
@@ -56,26 +56,23 @@ public class Profile {
 
     /**
      * @param email
-     * Valid email is with format surnameLastname@mail.landcode
-     * @return
+     * Valid email is with format mailname@mail.landcode
+     * and the landcode must be a valid landcode (from the arraylist called landcodes)
+     * @return whether an email is valid or not
      */
     private boolean validEmail(String email){
         if(!email.contains("@")) {
-            System.out.println("must have @");
-            //throw new IllegalArgumentException("Email must comtain '@'");
+            System.out.println("Your email must contain a @");
+            return false;
+        }
+        if(!email.contains(".")){ 
+            System.out.println("Your email must contain a .");
+            return false;
         }
         String[] splitAt = email.split("@");
-        if(!email.contains(".")){ 
-            System.out.println("must have .");
-            //throw new IllegalArgumentException("Email must contain a dot");
-
-        }
         String[] splitDot = splitAt[1].split("\\.");
 
-        String surname = this.getName().split(" ")[0].toLowerCase();
-        String lastName = this.getName().split(" ")[1].toLowerCase();
-        System.out.println(splitDot[0] + "," + splitDot[1]);
-        if(splitAt[0].toLowerCase().contains(surname) && splitAt[0].toLowerCase().contains(lastName) && landcodes.contains(splitDot[1])) {return true;}
+        if(landcodes.contains(splitDot[1])) {return true;}
 
         return false;
     }
@@ -83,22 +80,27 @@ public class Profile {
 
     /**
      * @param password
-     * A password is valid if it contains less than 8 characters, where at least 1 of the characters are a number
-     * @return a boolean
+     * A password is valid if it contains at least 8 characters, where at least 1 of the characters are a number 
+     * and at least 1 of the characters are a letter
+     * @return whether a password is valid or not
      */
     private boolean validPassword(String password){
         int num = 0;
+        int letter = 0;
         for (int i = 0; i < password.length(); i++) {
             if(isNumeric(String.valueOf(password.charAt(i)))) num++;
+            if(Character.isLetter(password.charAt(i))) letter ++;
         }
 
-        return(password.length() > 8 && (num>0));
+        if(num == 0) System.out.println("The password must contain a number");
+        if(letter == 0) System.out.println("The password must contain a letter");
+        return(password.length() >= 8 && (num>0) && (letter > 0));
     }
 
     /**
      * @param tlf
      * valid tlf contains 8 numbers
-     * @return
+     * @return whether a telephone number is valid or not
      */
     private boolean validTlf(String tlf){
         return (tlf.length() == 8 && isNumeric(tlf));
@@ -107,24 +109,23 @@ public class Profile {
     /**
      * @param name
      * A name is valid if it contains of a surname and a lastname, and all of the characters are letters
-     * @return
+     * @return whether a name is valid or not
      */
     private boolean validName(String name){
-        boolean bool = false;
-        if ((name.contains(" "))) {
-            String[] splits = name.split(" ");
-            System.out.println(splits);
+        if(!name.contains(" ")) {
+            System.out.println("Your name must contain your surname and lastname");
+            return false;
+        }
+        String[] splits = name.split(" ");
             for (int i = 0; i < splits.length; i++) {
                 for (int j = 0; j < splits[i].length(); j++) {
                     if (!Character.isLetter(splits[i].strip().charAt(j))) {
-                        //throw new IllegalArgumentException("Name can only contain letters");
-                        //return false;
+                        System.out.println("Your name should only contain letters");
+                        return false;
                     }
                 }
             }
-        bool = true; 
-        }
-        return bool;
+        return true;
     }
 
     /**
@@ -218,4 +219,8 @@ public class Profile {
         return new ArrayList<>(accounts);
     }
 
+    public static void main(String[] args) {
+        Profile profile1 = new Profile("Nathania Muliawan1", "duegyfg@.com", "41184086", "mulinuuuu0");
+
+    }
 }
