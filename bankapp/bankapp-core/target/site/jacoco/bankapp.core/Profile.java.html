@@ -44,15 +44,15 @@ public class Profile {
 <span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if(!validName(name)) throw new IllegalArgumentException(&quot;Invalid name&quot;);</span>
 <span class="fc" id="L45">        this.name = name;</span>
 <span class="fc bfc" id="L46" title="All 2 branches covered.">        if(!validEmail(email)) throw new IllegalArgumentException(&quot;Invalid email&quot;);</span>
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if(!validPassword(password)) throw new IllegalArgumentException(&quot;Password must contain at least 8 characters&quot;);</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        if(!validTlf(tlf)) throw new IllegalArgumentException(&quot;Invalid phonenumber&quot;);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if(!validPassword(password)) throw new IllegalArgumentException(&quot;Password must contain at least 8 characters&quot;);</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if(!validTlf(tlf)) throw new IllegalArgumentException(&quot;Invalid phonenumber&quot;);</span>
         
         
-<span class="nc" id="L51">        this.email = email;</span>
-<span class="nc" id="L52">        this.tlf = tlf;</span>
-<span class="nc" id="L53">        this.password = password;</span>
-<span class="nc" id="L54">        System.out.println(&quot;Your profile was made successfully!&quot;);</span>
-<span class="nc" id="L55">    }</span>
+<span class="fc" id="L51">        this.email = email;</span>
+<span class="fc" id="L52">        this.tlf = tlf;</span>
+<span class="fc" id="L53">        this.password = password;</span>
+<span class="fc" id="L54">        System.out.println(&quot;Your profile was made successfully!&quot;);</span>
+<span class="fc" id="L55">    }</span>
 
     /**
      * @param email
@@ -89,10 +89,10 @@ public class Profile {
     private boolean validPassword(String password){
 <span class="fc" id="L90">        int num = 0;</span>
 <span class="fc bfc" id="L91" title="All 2 branches covered.">        for (int i = 0; i &lt; password.length(); i++) {</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if(isNumeric(String.valueOf(password.charAt(i)))) num++;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if(isNumeric(String.valueOf(password.charAt(i)))) num++;</span>
         }
 
-<span class="pc bpc" id="L95" title="3 of 4 branches missed.">        return(password.length() &gt; 8 &amp;&amp; (num&gt;0));</span>
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">        return(password.length() &gt; 8 &amp;&amp; (num&gt;0));</span>
     }
 
     /**
@@ -101,7 +101,7 @@ public class Profile {
      * @return
      */
     private boolean validTlf(String tlf){
-<span class="nc bnc" id="L104" title="All 4 branches missed.">        return (tlf.length() == 8 &amp;&amp; isNumeric(tlf));</span>
+<span class="pc bpc" id="L104" title="2 of 4 branches missed.">        return (tlf.length() == 8 &amp;&amp; isNumeric(tlf));</span>
     }
 
     /**
@@ -135,8 +135,8 @@ public class Profile {
      */
     private static boolean isNumeric(String test) {
         try {
-<span class="nc" id="L138">            Double.parseDouble(test);</span>
-<span class="nc" id="L139">            return true;</span>
+<span class="fc" id="L138">            Double.parseDouble(test);</span>
+<span class="fc" id="L139">            return true;</span>
         }
 
 <span class="fc" id="L142">        catch (NumberFormatException e) {</span>
@@ -219,4 +219,4 @@ public class Profile {
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
