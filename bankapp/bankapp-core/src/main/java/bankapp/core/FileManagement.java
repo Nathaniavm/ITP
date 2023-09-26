@@ -4,18 +4,19 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
+
+import org.json.simple.JSONObject;
 
 public class FileManagement {
 
     /**
      * Writes information about profile to given file.
-     * @param profile - Profile to write about
+     * 
+     * @param profile  - Profile to write about
      * @param fileName - filepath of file to write to
      * @throws IOException
      */
@@ -32,7 +33,8 @@ public class FileManagement {
     }
 
     /**
-     *  Reads information from file
+     * Reads information from file
+     * 
      * @param inputStream - file to read from
      * @throws IOException
      */
@@ -48,7 +50,8 @@ public class FileManagement {
 
     /**
      * Read from a file looking for a specific name
-     * @param wantedName - name to look for
+     * 
+     * @param wantedName  - name to look for
      * @param inputStream - file to read from
      * @throws IOException
      */
@@ -70,13 +73,15 @@ public class FileManagement {
         inputStream.close();
     }
 
-    //temporary testing
+    // temporary testing
     public static void main(String[] args) throws FileNotFoundException {
         Profile prof1 = new Profile("Nam Namu", "NamNamu@gmail.com", "41174086", "tshodkdjsh");
         Profile prof2 = new Profile("Philip Lam", "PhilipLam@gmail.com", "78901234", "tshodkdjsh");
         String os = ("bankapp/bankapp-core/src/main/java/bankapp/Files/PersonalInformations.txt");
-        InputStream is = new FileInputStream("bankapp/bankapp-core/src/main/java/bankapp/Files/PersonalInformations.txt");
-        InputStream is1 = new FileInputStream("bankapp/bankapp-core/src/main/java/bankapp/Files/PersonalInformations.txt");
+        InputStream is = new FileInputStream(
+                "bankapp/bankapp-core/src/main/java/bankapp/Files/PersonalInformations.txt");
+        InputStream is1 = new FileInputStream(
+                "bankapp/bankapp-core/src/main/java/bankapp/Files/PersonalInformations.txt");
         try {
             writeToFile(prof1, os);
         } catch (IOException e) {
