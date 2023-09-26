@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class BankApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
