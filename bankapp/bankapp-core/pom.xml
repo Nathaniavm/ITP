@@ -25,15 +25,13 @@
         <version>5.7.0</version>
         <scope>test</scope>
     </dependency>
+<dependency>
+    <groupId>com.googlecode.json-simple</groupId>  
+    <artifactId>json-simple</artifactId>  
+    <version>1.1</version>  
+ </dependency>
 </dependencies>
-  <!--
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13</version>
-      <scope>test</scope>
-    </dependency>
-    -->
+
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to
