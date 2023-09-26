@@ -112,4 +112,31 @@ public class ProfileTest {
         assertEquals(1, profile1.getAccounts().size());
         assertEquals("Savings", profile1.getAccounts().get(0).getName());
     }
+
+    @Test
+    @DisplayName("Test adding of bills to profile")
+    public void testAddBill(){
+        profile1.createAccount("Spending");
+        //profile1.getAccounts().get(0).add(1000);
+        profile2.createAccount("NTNU");
+        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
+        profile1.addBill(bill);
+        assertTrue(profile1.getBills().contains(bill));
+        assertThrows(IllegalArgumentException.class, () -> profile1.addBill(bill));
+    }
+
+    @Test
+    @DisplayName("Test removal of bills from profile")
+    public void testRemoveBill(){
+        profile1.createAccount("Spending");
+        profile1.getAccounts().get(0).add(1000);
+        profile2.createAccount("NTNU");
+        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
+        profile1.addBill(bill);
+        assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
+        bill.pay();
+        profile1.removeBill(bill);
+        assertFalse(profile1.getBills().contains(bill));
+        assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
+    }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    private String profileName;
+    private Profile profile;
     private String name;
     private Balance balance;
     private static List<String> accNrs = new ArrayList<>();
@@ -16,9 +16,9 @@ public class Account {
      * 
      * @param name takes inn the name of the account
      */
-    public Account(String name, String profileName) {
+    public Account(String name, Profile profile) {
         balance = new Balance();
-        this.profileName = profileName;
+        this.profile = profile;
         this.name = name;
         setAccNr();
         while (accNrs.contains(accNr)) {
@@ -93,7 +93,7 @@ public class Account {
      * Creates bankcard for the account
      */
     public void createBankCard() {
-        bankCard = new BankCard(profileName);
+        bankCard = new BankCard(profile.getName());
     }
 
     /**
