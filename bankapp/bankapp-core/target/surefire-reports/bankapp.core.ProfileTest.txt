@@ -1,8 +1,28 @@
 -------------------------------------------------------------------------------
 Test set: bankapp.core.ProfileTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s - in bankapp.core.ProfileTest
-=======
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s - in bankapp.core.ProfileTest
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.049 s <<< FAILURE! - in bankapp.core.ProfileTest
+testSetPassword(bankapp.core.ProfileTest)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+
+testCreateAccount(bankapp.core.ProfileTest)  Time elapsed: 0.012 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+
+testSetName(bankapp.core.ProfileTest)  Time elapsed: 0.004 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+
+testSetTlf(bankapp.core.ProfileTest)  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+
+testConstructor(bankapp.core.ProfileTest)  Time elapsed: 0.015 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+
+testSetEmail(bankapp.core.ProfileTest)  Time elapsed: 0.011 s  <<< ERROR!
+java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+

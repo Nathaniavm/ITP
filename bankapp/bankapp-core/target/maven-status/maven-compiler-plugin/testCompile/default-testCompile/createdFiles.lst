@@ -1,5 +1,4 @@
 bankapp\core\BalanceTest.class
 bankapp\core\AppTest.class
-bankapp\core\ProfileTest.class
 bankapp\core\BankCardTest.class
 bankapp\core\AccountTest.class

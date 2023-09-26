@@ -1,87 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.008" tests="2" errors="0" skipped="0" failures="0">
-=======
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.019" tests="2" errors="0" skipped="0" failures="0">
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.049" tests="6" errors="6" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-<<<<<<< HEAD
     <property name="java.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\classes;C:\Users\alice\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\alice\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\alice\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\alice\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\alice\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
-=======
-    <property name="java.class.path" value="C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\target\classes;C:\Users\phivu\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\phivu\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="user.timezone" value="Europe/Oslo"/>
-    <property name="os.name" value="Windows 10"/>
+    <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-<<<<<<< HEAD
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire6090851394542791817\surefirebooter11636504443845939544.jar C:\Users\alice\AppData\Local\Temp\surefire6090851394542791817 2023-09-24T14-59-59_706-jvmRun1 surefire12435500136128969196tmp surefire_014465524399672922241tmp"/>
+    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire8643896744251910915\surefirebooter17015071010560201752.jar C:\Users\alice\AppData\Local\Temp\surefire8643896744251910915 2023-09-26T10-34-31_327-jvmRun1 surefire4350261844934104853tmp surefire_02566847883142168tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\classes;C:\Users\alice\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\alice\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\alice\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\alice\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\alice\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
-=======
-    <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
-    <property name="sun.java.command" value="C:\Users\phivu\AppData\Local\Temp\surefire13435761194625627883\surefirebooter1306980114133443939.jar C:\Users\phivu\AppData\Local\Temp\surefire13435761194625627883 2023-09-24T14-06-10_162-jvmRun1 surefire5314045842160987204tmp surefire_09044218039145705140tmp"/>
-    <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core\target\classes;C:\Users\phivu\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\phivu\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\phivu"/>
-    <property name="user.language" value="en"/>
+    <property name="user.home" value="C:\Users\alice"/>
+    <property name="user.language" value="no"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2023-07-18"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
+    <property name="java.version.date" value="2022-10-18"/>
+    <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core"/>
+    <property name="basedir" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-<<<<<<< HEAD
-    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire6090851394542791817\surefirebooter11636504443845939544.jar"/>
-=======
-    <property name="surefire.real.class.path" value="C:\Users\phivu\AppData\Local\Temp\surefire13435761194625627883\surefirebooter1306980114133443939.jar"/>
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
+    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire8643896744251910915\surefirebooter17015071010560201752.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.8+9-LTS-211"/>
-    <property name="user.name" value="phivu"/>
+    <property name="java.runtime.version" value="17.0.5+8"/>
+    <property name="user.name" value="alice"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\phivu\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\phivu\AppData\Local\Temp\"/>
-    <property name="java.version" value="17.0.8"/>
-    <property name="user.dir" value="C:\Users\phivu\Documents\gr2315\bankapp\bankapp-core"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-17.0.5+8"/>
+    <property name="localRepository" value="C:\Users\alice\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\alice\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.5"/>
+    <property name="user.dir" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Java\jdk-17\\bin;C:\apache-maven-3.9.4\bin;C:\Users\phivu\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.8.7-hotspot\bin;C:\Users\phivu\AppData\Local\Microsoft\WindowsApps;;C:\Users\phivu\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Users\alice\OneDrive\Skrivebord\apache-maven-3.9.4\bin;C:\Program Files\7-Zip;C:\Users\alice\AppData\Local\Microsoft\WindowsApps;C:\Users\alice\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\alice\AppData\Local\Microsoft\WindowsApps;C:\Users\alice\AppData\Roaming\npm;C:\Users\alice\AppData\Local\JetBrains\Toolbox\scripts;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="17.0.8+9-LTS-211"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.5+8"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-<<<<<<< HEAD
-  <testcase name="checkTlfNumber" classname="bankapp.core.ProfileTest" time="0.008"/>
-  <testcase name="checkConstructor" classname="bankapp.core.ProfileTest" time="0"/>
-=======
-  <testcase name="checkTlfNumber" classname="bankapp.core.ProfileTest" time="0.012"/>
-  <testcase name="checkConstructor" classname="bankapp.core.ProfileTest" time="0.004"/>
->>>>>>> 65a6514f761857a40dafd87883eea6fdb734bc16
+  <testcase name="testSetPassword" classname="bankapp.core.ProfileTest" time="0.005">
+    <error message="Password must contain at least 8 characters" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+</error>
+    <system-out><![CDATA[[Ljava.lang.String;@40a4337a
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@5b12b668
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@1165b38
+ntnu,no
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateAccount" classname="bankapp.core.ProfileTest" time="0.012">
+    <error message="Password must contain at least 8 characters" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+</error>
+    <system-out><![CDATA[[Ljava.lang.String;@1a677343
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@15de0b3c
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@489115ef
+ntnu,no
+]]></system-out>
+  </testcase>
+  <testcase name="testSetName" classname="bankapp.core.ProfileTest" time="0.004">
+    <error message="Password must contain at least 8 characters" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+</error>
+    <system-out><![CDATA[[Ljava.lang.String;@3857f613
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@198b6731
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@7c6908d7
+ntnu,no
+]]></system-out>
+  </testcase>
+  <testcase name="testSetTlf" classname="bankapp.core.ProfileTest" time="0.002">
+    <error message="Password must contain at least 8 characters" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+</error>
+    <system-out><![CDATA[[Ljava.lang.String;@3c9754d8
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@3bf7ca37
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@79079097
+ntnu,no
+]]></system-out>
+  </testcase>
+  <testcase name="testConstructor" classname="bankapp.core.ProfileTest" time="0.015">
+    <error message="Password must contain at least 8 characters" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+</error>
+    <system-out><![CDATA[[Ljava.lang.String;@4d1c00d0
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@4b2bac3f
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@4e08711f
+ntnu,no
+]]></system-out>
+  </testcase>
+  <testcase name="testSetEmail" classname="bankapp.core.ProfileTest" time="0.011">
+    <error message="Password must contain at least 8 characters" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Password must contain at least 8 characters
+	at bankapp.core.ProfileTest.setUp(ProfileTest.java:19)
+</error>
+    <system-out><![CDATA[[Ljava.lang.String;@bcec361
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@26794848
+ntnu,no
+Your profile was made successfully!
+[Ljava.lang.String;@302552ec
+ntnu,no
+]]></system-out>
+  </testcase>
 </testsuite>
