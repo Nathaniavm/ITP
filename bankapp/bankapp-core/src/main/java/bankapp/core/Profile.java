@@ -220,7 +220,7 @@ public class Profile {
     }
 
     public static void main(String[] args) {
-        Profile profile1 = new Profile("Nathania Muliawan1", "duegyfg@.com", "41184086", "mulinuuuu0");
-
+        Profile profile1 = new Profile("Nathania Muliawan", "duegyfg@.com", "41184086", "mulinuuuu0");
+        System.out.println(isNumeric("f"));
     }
 }
