@@ -27,11 +27,11 @@
 
   <dependencies>
 
-  <dependency>
-    <groupId>core.bankapp</groupId>
-    <artifactId>bankapp-core</artifactId>
-    <version>1.0</version>
-  </dependency>
+    <dependency>
+      <groupId>core.bankapp</groupId>
+      <artifactId>bankapp-core</artifactId>
+      <version>1.0</version>
+    </dependency>
     <!-- javafx -->
     <dependency>
       <groupId>org.openjfx</groupId>
@@ -83,7 +83,7 @@
       <version>2.2</version>
       <scope>test</scope>
     </dependency>
-  
+
   </dependencies>
 
   <build>
@@ -92,11 +92,24 @@
 
       <plugins>
         <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.7.2.1</version>
+          <dependencies>
+            <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+            <dependency>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs</artifactId>
+              <version>4.7.3</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
           <groupId>org.openjfx</groupId>
           <artifactId>javafx-maven-plugin</artifactId>
           <version>${javafx.maven.plugin.version}</version>
           <configuration>
-            <mainClass>ui.App</mainClass>
+            <mainClass>ui.BankApp</mainClass>
           </configuration>
         </plugin>
         <!-- clean lifecycle, see
@@ -144,4 +157,20 @@
       </plugins>
     </pluginManagement>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.3.0</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>

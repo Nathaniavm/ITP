@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class AppController {
+public class BankAppController {
 
     @FXML
     private AnchorPane header;

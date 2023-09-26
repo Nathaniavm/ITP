@@ -28,7 +28,7 @@ public class Profile {
             "ro", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so",
             "sr", "ss", "st", "sv", "sx", "sy", "sz", "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to",
             "tr", "tt", "tv", "tw", "tz", "ua", "ug", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu",
-            "wf", "ws", "ye", "yt", "za", "zm", "zw"));
+            "wf", "ws", "ye", "yt", "za", "zm", "zw", "com"));
 
     /**
      * Creates a new profile
@@ -41,30 +41,91 @@ public class Profile {
      *                                  password are not valid
      */
     public Profile(String name, String email, String tlf, String password) {
-        if ((name.contains(" "))) {
-            String[] splits = name.split(" ");
-            System.out.println(splits);
-            for (int i = 0; i < splits.length; i++) {
-                for (int j = 0; j < splits[i].length(); j++) {
-                    if (!Character.isLetter(splits[i].strip().charAt(j))) {
-                        throw new IllegalArgumentException("Name can only contain letters");
-                    }
-                }
-            }
-        }
-        if (password.length() < 8) {
-            throw new IllegalArgumentException("Password must contain at least 8 characters");
-        }
-
-        if (tlf.length() != 8 || !isNumeric(tlf)) {
-            throw new IllegalArgumentException("Invalid phonenumber");
-        }
-
+        if(!validName(name)) throw new IllegalArgumentException("Invalid name");
         this.name = name;
+        if(!validEmail(email)) throw new IllegalArgumentException("Invalid email");
+        if(!validPassword(password)) throw new IllegalArgumentException("Invalid password");
+        if(!validTlf(tlf)) throw new IllegalArgumentException("Invalid phonenumber");
+        
+        
         this.email = email;
         this.tlf = tlf;
         this.password = password;
         System.out.println("Your profile was made successfully!");
+    }
+
+    /**
+     * @param email
+     * Valid email is with format mailname@mail.landcode
+     * and the landcode must be a valid landcode (from the arraylist called landcodes)
+     * @return whether an email is valid or not
+     */
+    private boolean validEmail(String email){
+        if(!email.contains("@")) {
+            System.out.println("Your email must contain a @");
+            return false;
+        }
+        if(!email.contains(".")){ 
+            System.out.println("Your email must contain a .");
+            return false;
+        }
+        String[] splitAt = email.split("@");
+        String[] splitDot = splitAt[1].split("\\.");
+
+        if(landcodes.contains(splitDot[1])) {return true;}
+
+        return false;
+    }
+
+
+    /**
+     * @param password
+     * A password is valid if it contains at least 8 characters, where at least 1 of the characters are a number 
+     * and at least 1 of the characters are a letter
+     * @return whether a password is valid or not
+     */
+    private boolean validPassword(String password){
+        int num = 0;
+        int letter = 0;
+        for (int i = 0; i < password.length(); i++) {
+            if(isNumeric(String.valueOf(password.charAt(i)))) num++;
+            if(Character.isLetter(password.charAt(i))) letter ++;
+        }
+
+        if(num == 0) System.out.println("The password must contain a number");
+        if(letter == 0) System.out.println("The password must contain a letter");
+        return(password.length() >= 8 && (num>0) && (letter > 0));
+    }
+
+    /**
+     * @param tlf
+     * valid tlf contains 8 numbers
+     * @return whether a telephone number is valid or not
+     */
+    private boolean validTlf(String tlf){
+        return (tlf.length() == 8 && isNumeric(tlf));
+    }
+
+    /**
+     * @param name
+     * A name is valid if it contains of a surname and a lastname, and all of the characters are letters
+     * @return whether a name is valid or not
+     */
+    private boolean validName(String name){
+        if(!name.contains(" ")) {
+            System.out.println("Your name must contain your surname and lastname");
+            return false;
+        }
+        String[] splits = name.split(" ");
+            for (int i = 0; i < splits.length; i++) {
+                for (int j = 0; j < splits[i].length(); j++) {
+                    if (!Character.isLetter(splits[i].strip().charAt(j))) {
+                        System.out.println("Your name should only contain letters");
+                        return false;
+                    }
+                }
+            }
+        return true;
     }
 
     /**
@@ -94,25 +155,28 @@ public class Profile {
     }
 
     /**
-     * Changes the password
+     * Changes the password if the new password is valid
      * 
      * @param password The new password
      */
     public void changePassword(String password) {
+        if(!validPassword(password)) throw new IllegalArgumentException("Not valid password");
         this.password = password;
     }
 
     /**
-     * Changes the telephone number
+     * Changes the telephone number if number is valid
      * 
      * @param tlf The new telephone number
      */
     public void changeTlf(String tlf) {
+        if(!validTlf(tlf)) throw new IllegalArgumentException("Not valid telephone number");
         this.tlf = tlf;
+        
     }
 
     /**
-     * Returns the email connected to this profile
+     * Returns the email connected to this profile 
      * 
      * @return The email connected to this profile
      */
@@ -153,5 +217,10 @@ public class Profile {
      */
     public List<Account> getAccounts() {
         return new ArrayList<>(accounts);
+    }
+
+    public static void main(String[] args) {
+        Profile profile1 = new Profile("Nathania Muliawan", "duegyfg@.com", "41184086", "mulinuuuu0");
+        System.out.println(isNumeric("f"));
     }
 }

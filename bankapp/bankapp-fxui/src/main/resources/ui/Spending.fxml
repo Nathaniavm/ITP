@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19"
+<AnchorPane fx:id="profile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+   minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19"
    xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
       <GridPane layoutX="3.0" layoutY="3.0" prefHeight="650.0" prefWidth="419.0">
@@ -38,104 +38,16 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="profileName" layoutX="8.0" layoutY="8.0"
-                                 text="Ola Nordmann's profile">
+                              <Label fx:id="profileName" layoutX="106.0" layoutY="6.0"
+                                 text="Spending">
                                  <font>
                                     <Font size="31.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <Label layoutX="33.0" layoutY="11.0" text="Money left: ">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="moneyLeft" layoutX="156.0" layoutY="11.0"
-                                 prefHeight="30.0" prefWidth="122.0" text="XXXXXX kr">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
                      </children>
                   </GridPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="body" prefHeight="408.0" prefWidth="419.0" GridPane.rowIndex="1">
-               <children>
-                  <GridPane fx:id="accountsTable" gridLinesVisible="true" layoutX="55.0"
-                     layoutY="99.0" prefHeight="108.0" prefWidth="301.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0"
-                           prefWidth="150.59786987304688" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0"
-                           prefWidth="150.40213012695312" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="29.0"
-                           vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="31.0"
-                           vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label layoutX="6.0" layoutY="9.0" text="Spending Account">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <Label layoutX="6.0" layoutY="8.0" text="Saving Account">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <children>
-                              <Label layoutX="6.0" layoutY="6.0" text="BSU">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <Label fx:id="spendingAccount" layoutX="11.0" layoutY="11.0"
-                                 text="xxxx kr" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="38.0" prefWidth="189.0" GridPane.columnIndex="1"
-                           GridPane.rowIndex="1">
-                           <children>
-                              <Label fx:id="savingAccount" layoutX="11.0" layoutY="11.0"
-                                 text="xxxx kr" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
-                           GridPane.rowIndex="2">
-                           <children>
-                              <Label fx:id="bsu" layoutX="11.0" layoutY="9.0" text="xxxx kr" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </GridPane>
-                  <Label layoutX="40.0" layoutY="48.0" text="Accounts" underline="true">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
@@ -158,7 +70,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <AnchorPane fx:id="spendingTab" prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="spendingTab" prefHeight="200.0" prefWidth="200.0"
+                           style="-fx-background-color: #EE7811;">
                            <children>
                               <Label layoutX="8.0" layoutY="42.0" text="Spending">
                                  <font>
@@ -197,8 +110,8 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileTab" onMouseClicked="#getOnActionProfile"
-                           prefHeight="62.0" prefWidth="75.0" GridPane.columnIndex="4">
+                        <AnchorPane fx:id="profileTab" prefHeight="62.0" prefWidth="75.0"
+                           GridPane.columnIndex="4">
                            <children>
                               <Label layoutX="14.0" layoutY="43.0" text="Profile">
                                  <font>
@@ -207,6 +120,94 @@
                               </Label>
                            </children>
                         </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <AnchorPane prefHeight="38.0" prefWidth="419.0">
+                     <children>
+                        <RadioButton fx:id="yearButton" layoutX="106.0" layoutY="12.0"
+                           mnemonicParsing="false" text="Year">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="monthButton" layoutX="242.0" layoutY="12.0"
+                           mnemonicParsing="false" text="Month">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </AnchorPane>
+                  <GridPane layoutX="54.0" layoutY="121.0" prefHeight="205.0" prefWidth="320.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="160.0" text="Total spending"
+                           textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="23.0" prefWidth="157.0" text="Groceries"
+                           GridPane.rowIndex="1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Transport and travel" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="23.0" prefWidth="159.0" text="Home and garden"
+                           GridPane.rowIndex="3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Sparetime" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Health" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Other" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalSpending" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="groceries" text="Label" GridPane.columnIndex="1"
+                           GridPane.rowIndex="1" />
+                        <Label fx:id="transportAndTravel" text="Label" GridPane.columnIndex="1"
+                           GridPane.rowIndex="2" />
+                        <Label fx:id="homeAndGarden" text="Label" GridPane.columnIndex="1"
+                           GridPane.rowIndex="3" />
+                        <Label fx:id="sparetime" text="Label" GridPane.columnIndex="1"
+                           GridPane.rowIndex="4" />
+                        <Label fx:id="health" text="Label" GridPane.columnIndex="1"
+                           GridPane.rowIndex="5" />
+                        <Label fx:id="other" text="Label" GridPane.columnIndex="1"
+                           GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children>

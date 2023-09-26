@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.025" tests="2" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.017" tests="6" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\classes;C:\Users\alice\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="C:\Natha Uni\gr2315\bankapp\bankapp-core\target\test-classes;C:\Natha Uni\gr2315\bankapp\bankapp-core\target\classes;C:\Users\natha\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\natha\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\natha\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\natha\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\natha\.m2\repository\com\googlecode\json-simple\json-simple\1.1\json-simple-1.1.jar;C:\Users\natha\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\natha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -13,57 +13,62 @@
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="NO"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire376297810475569519\surefirebooter13569495297163010241.jar C:\Users\alice\AppData\Local\Temp\surefire376297810475569519 2023-09-21T13-49-14_202-jvmRun1 surefire4293493966048203188tmp surefire_011283070906678594635tmp"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\natha\AppData\Local\Temp\surefire8442362146171296508\surefirebooter3604255347300857773.jar C:\Users\natha\AppData\Local\Temp\surefire8442362146171296508 2023-09-26T12-01-46_901-jvmRun1 surefire12419529906586987766tmp surefire_07502955118907427965tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\classes;C:\Users\alice\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Natha Uni\gr2315\bankapp\bankapp-core\target\test-classes;C:\Natha Uni\gr2315\bankapp\bankapp-core\target\classes;C:\Users\natha\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\natha\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\natha\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\natha\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\natha\.m2\repository\com\googlecode\json-simple\json-simple\1.1\json-simple-1.1.jar;C:\Users\natha\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\natha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\alice"/>
-    <property name="user.language" value="no"/>
+    <property name="user.home" value="C:\Users\natha"/>
+    <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2022-10-18"/>
-    <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot"/>
+    <property name="java.version.date" value="2023-07-18"/>
+    <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core"/>
+    <property name="basedir" value="C:\Natha Uni\gr2315\bankapp\bankapp-core"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire376297810475569519\surefirebooter13569495297163010241.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\natha\AppData\Local\Temp\surefire8442362146171296508\surefirebooter3604255347300857773.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.5+8"/>
-    <property name="user.name" value="alice"/>
+    <property name="java.runtime.version" value="17.0.8+7"/>
+    <property name="user.name" value="natha"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="Temurin-17.0.5+8"/>
-    <property name="localRepository" value="C:\Users\alice\.m2\repository"/>
+    <property name="java.vendor.version" value="Temurin-17.0.8+7"/>
+    <property name="localRepository" value="C:\Users\natha\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
-    <property name="java.io.tmpdir" value="C:\Users\alice\AppData\Local\Temp\"/>
-    <property name="java.version" value="17.0.5"/>
-    <property name="user.dir" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core"/>
+    <property name="java.io.tmpdir" value="C:\Users\natha\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.8"/>
+    <property name="user.dir" value="C:\Natha Uni\gr2315\bankapp\bankapp-core"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Users\alice\OneDrive\Skrivebord\apache-maven-3.9.4\bin;C:\Program Files\7-Zip;C:\Users\alice\AppData\Local\Microsoft\WindowsApps;C:\Users\alice\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\alice\AppData\Local\Microsoft\WindowsApps;C:\Users\alice\AppData\Roaming\npm;C:\Users\alice\AppData\Local\JetBrains\Toolbox\scripts;;."/>
+    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Eclipse Adoptium\jdk-17.0.8.7-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Users\natha\AppData\Local\Microsoft\WindowsApps;C:\Users\natha\AppData\Local\Programs\Microsoft VS Code\bin;C:\Devtools\apache-maven-3.9.4\bin;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Eclipse Adoptium"/>
-    <property name="java.vm.version" value="17.0.5+8"/>
+    <property name="java.vm.version" value="17.0.8+7"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="checkTlfNumber" classname="bankapp.core.ProfileTest" time="0.007">
+  <testcase name="testSetPassword" classname="bankapp.core.ProfileTest" time="0.008"/>
+  <testcase name="testCreateAccount" classname="bankapp.core.ProfileTest" time="0"/>
+  <testcase name="testSetName" classname="bankapp.core.ProfileTest" time="0"/>
+  <testcase name="testSetTlf" classname="bankapp.core.ProfileTest" time="0">
     <failure message="expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown" type="java.lang.AssertionError">java.lang.AssertionError: expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown
-	at bankapp.core.ProfileTest.checkTlfNumber(ProfileTest.java:26)
+	at bankapp.core.ProfileTest.testSetTlf(ProfileTest.java:82)
 </failure>
-    <system-out><![CDATA[[Ljava.lang.String;@73ad2d6
+    <system-out><![CDATA[Your profile was made successfully!
+Your profile was made successfully!
 Your profile was made successfully!
 ]]></system-out>
   </testcase>
-  <testcase name="checkConstructor" classname="bankapp.core.ProfileTest" time="0.001"/>
+  <testcase name="testConstructor" classname="bankapp.core.ProfileTest" time="0"/>
+  <testcase name="testSetEmail" classname="bankapp.core.ProfileTest" time="0.009"/>
 </testsuite>
