@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.json.simple.JSONObject;
-
 public class FileManagement {
 
     /**
