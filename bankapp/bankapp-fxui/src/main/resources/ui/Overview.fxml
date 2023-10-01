@@ -158,7 +158,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <AnchorPane fx:id="spendingTab" prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="spendingTab" onMouseClicked="#initializeTab" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Label layoutX="8.0" layoutY="42.0" text="Spending">
                                  <font>
@@ -167,7 +167,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0"
+                        <AnchorPane fx:id="paymentsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0"
                            GridPane.columnIndex="1">
                            <children>
                               <Label layoutX="10.0" layoutY="43.0" text="Payments">
@@ -177,7 +177,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeTab" prefHeight="62.0" prefWidth="83.0"
+                        <AnchorPane fx:id="homeTab" onMouseClicked="#initializeTab" style="-fx-background-color: #EE7811;" prefHeight="62.0" prefWidth="83.0"
                            GridPane.columnIndex="2">
                            <children>
                               <Label layoutX="18.0" layoutY="42.0" text="Home">
@@ -187,7 +187,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="savingsTab" prefHeight="62.0" prefWidth="84.0"
+                        <AnchorPane fx:id="savingsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0"
                            GridPane.columnIndex="3">
                            <children>
                               <Label layoutX="10.0" layoutY="42.0" text="Savings">
@@ -197,7 +197,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileTab" onMouseClicked="#getOnActionProfile"
+                        <AnchorPane fx:id="profileTab" onMouseClicked="#initializeTab"
                            prefHeight="62.0" prefWidth="75.0" GridPane.columnIndex="4">
                            <children>
                               <Label layoutX="14.0" layoutY="43.0" text="Profile">
