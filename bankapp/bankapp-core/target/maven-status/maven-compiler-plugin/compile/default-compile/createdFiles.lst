@@ -1,7 +1,7 @@
-bankapp/core/Account.class
-bankapp/core/Bill.class
-bankapp/core/Json.class
-bankapp/core/FileManagement.class
-bankapp/core/BankCard.class
-bankapp/core/Profile.class
-bankapp/core/Balance.class
+bankapp\core\Account.class
+bankapp\core\FileManagement.class
+bankapp\core\BankCard.class
+bankapp\core\Bill.class
+bankapp\core\Profile.class
+bankapp\core\Balance.class
+bankapp\core\Json.class
