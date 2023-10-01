@@ -84,7 +84,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="savingsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0" style="-fx-background-color: #EE7811;" GridPane.columnIndex="3">
+                        <AnchorPane fx:id="savingsTab" prefHeight="62.0" prefWidth="84.0" style="-fx-background-color: #EE7811;" GridPane.columnIndex="3">
                            <children>
                               <Label layoutX="10.0" layoutY="42.0" text="Savings">
                                  <font>
