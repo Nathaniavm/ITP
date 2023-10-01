@@ -63,14 +63,17 @@ public class BankAppController {
     private Button button;
     private Profile profile;
 
-    public void initialize() {
-        // flytte til en create profile metode etterhvert
-        profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678", "passord12");
-        profile.createAccount("Spending account");
-        profile.createAccount("Savings account");
-        profile.createAccount("BSU");
-        updateAccounts();
-    }
+    /*
+     * public void initialize() {
+     * // flytte til en create profile metode etterhvert
+     * profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678",
+     * "passord12");
+     * profile.createAccount("Spending account");
+     * profile.createAccount("Savings account");
+     * profile.createAccount("BSU");
+     * updateAccounts();
+     * }
+     */
 
     @FXML
     public void initializeTab(MouseEvent event) throws IOException {
@@ -115,4 +118,5 @@ public class BankAppController {
             count += 1;
         }
     }
+
 }
