@@ -10,6 +10,7 @@ public class Account {
     private static List<String> accNrs = new ArrayList<>();
     private String accNr;
     private BankCard bankCard;
+    private boolean showInPreview = false;
 
     /**
      * Makes an account with given name and generates account number
@@ -108,7 +109,7 @@ public class Account {
      * 
      * @param name to change the account name to
      */
-    public void renameAccount(String name){
+    public void renameAccount(String name) {
         this.name = name;
     }
 
@@ -119,5 +120,20 @@ public class Account {
     public BankCard getBankCard() {
         return bankCard;
     }
-    
+
+    /**
+     * change whether you want this account to be counted when previewing remaining
+     * balance
+     */
+    public void changePreview() {
+        showInPreview = !showInPreview;
+    }
+
+    /**
+     * return whether showInPreview is true or false
+     */
+    public boolean showInPreview() {
+        return showInPreview;
+    }
+
 }

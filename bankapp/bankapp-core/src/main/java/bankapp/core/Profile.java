@@ -192,6 +192,26 @@ public class Profile {
     }
 
     /**
+     * Show preview of total balance after paid bills
+     * 
+     */
+
+    public int previewBalance() {
+        int balance = 0;
+        int billAmount = 0;
+        for (Bill bill : bills) {
+            billAmount += bill.getAmount();
+        }
+        for (Account account : accounts) {
+            if (account.showInPreview()) {
+                balance += account.getBalance();
+            }
+
+        }
+        return balance - billAmount;
+    }
+
+    /**
      * Changes the password if the new password is valid
      * 
      * @param password The new password
