@@ -70,7 +70,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <AnchorPane fx:id="spendingTab" onMouseClicked="#initializeTab" prefHeight="200.0" prefWidth="200.0"
+                        <AnchorPane fx:id="spendingTab" prefHeight="200.0" prefWidth="200.0"
                            style="-fx-background-color: #EE7811;">
                            <children>
                               <Label layoutX="8.0" layoutY="42.0" text="Spending">

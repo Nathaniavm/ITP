@@ -107,7 +107,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="83.0" style="-fx-background-color: #EE7811;" GridPane.columnIndex="2">
+                        <AnchorPane fx:id="homeTab" prefHeight="62.0" prefWidth="83.0" style="-fx-background-color: #EE7811;" GridPane.columnIndex="2">
                            <children>
                               <Label layoutX="18.0" layoutY="42.0" text="Home">
                                  <font>

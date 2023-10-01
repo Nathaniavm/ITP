@@ -122,7 +122,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0"
+                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0"
                            style="-fx-background-color: #EE7811;" GridPane.columnIndex="1">
                            <children>
                               <Label layoutX="10.0" layoutY="43.0" text="Payments">

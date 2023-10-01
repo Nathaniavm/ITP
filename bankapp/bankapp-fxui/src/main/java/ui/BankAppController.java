@@ -61,19 +61,22 @@ public class BankAppController {
 
     @FXML
     private Button button;
-    private Profile profile;
+    private static Profile profile;
 
-    /*
-     * public void initialize() {
-     * // flytte til en create profile metode etterhvert
-     * profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678",
-     * "passord12");
-     * profile.createAccount("Spending account");
-     * profile.createAccount("Savings account");
-     * profile.createAccount("BSU");
-     * updateAccounts();
-     * }
-     */
+    public void initialize() {
+        if (accountsTable != null && profile == null) {
+            profile = new Profile("james", "james@gmail.com", "12345678", "passord12");
+            profile.createAccount("Spendings account");
+            profile.createAccount("Savings account");
+            profile.createAccount("BSU");
+            updateAccounts();
+        } else if (accountsTable != null) {
+            updateAccounts();
+        }
+        if (profileName != null) {
+            profileName.setText(profile.getName()+"'s Profile");
+        }
+    }
 
     @FXML
     public void initializeTab(MouseEvent event) throws IOException {
@@ -97,7 +100,6 @@ public class BankAppController {
 
         primaryStage.setScene(tabScene);
         primaryStage.show();
-
     }
 
     @FXML
