@@ -74,7 +74,7 @@ public class BankAppController {
             updateAccounts();
         }
         if (profileName != null) {
-            profileName.setText(profile.getName()+"'s Profile");
+            profileName.setText(profile.getName() + "'s Profile");
         }
     }
 

@@ -10,7 +10,8 @@ public class Bill {
     private Account payerAccount;
     private boolean paid = false;
 
-    public Bill(int amount, String billName, String sellerName, Account sellerAccount, Account payerAccount, Profile payer) {
+    public Bill(int amount, String billName, String sellerName, Account sellerAccount, Account payerAccount,
+            Profile payer) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount can not be less than 1");
         }
@@ -22,11 +23,12 @@ public class Bill {
         this.payer = payer;
     }
 
-    public void pay(){
+    public void pay() {
         sellerAccount.transferTo(payerAccount, amount);
         paid = true;
     }
-    public boolean isPaid(){
+
+    public boolean isPaid() {
         return paid;
     }
 
@@ -41,14 +43,16 @@ public class Bill {
     public String getSellerName() {
         return sellerName;
     }
+
     public Account getSellerAccount() {
         return sellerAccount;
     }
+
     public Account getPayerAccount() {
         return payerAccount;
     }
 
-    public String getProfileName(){
+    public String getProfileName() {
         return payer.getName();
     }
 }
