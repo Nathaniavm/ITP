@@ -63,12 +63,13 @@ public class BankAppController {
     private Button button;
     private Profile profile;
 
-    public void initialize(){
-        //flytte til en create profile metode etterhvert
+    public void initialize() {
+        // flytte til en create profile metode etterhvert
         profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678", "passord12");
         profile.createAccount("Spending account");
         profile.createAccount("Savings account");
         profile.createAccount("BSU");
+        updateAccounts();
     }
 
     @FXML
@@ -97,8 +98,21 @@ public class BankAppController {
     }
 
     @FXML
-    public void updateAccounts(){
-        
-    }
+    public void updateAccounts() {
+        int count = 0;
+        for (Account account : profile.getAccounts()) {
+            Label accountName = new Label(account.getName());
+            Label accountBalance = new Label(String.valueOf(account.getBalance()));
+            if (count == 0) {
+                accountsTable.add(accountName, 0, count);
+                accountsTable.add(accountBalance, 1, count);
 
+            } else {
+                accountsTable.addRow(count);
+                accountsTable.add(accountName, 0, count);
+                accountsTable.add(accountBalance, 1, count);
+            }
+            count += 1;
+        }
+    }
 }
