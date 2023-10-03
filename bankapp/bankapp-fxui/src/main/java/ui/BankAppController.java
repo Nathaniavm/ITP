@@ -65,7 +65,7 @@ public class BankAppController {
 
     public void initialize() {
         if (accountsTable != null && profile == null) {
-            profile = new Profile("james", "james@gmail.com", "12345678", "passord12");
+            profile = new Profile("james heui", "james@gmail.com", "12345678", "passord12");
             profile.createAccount("Spendings account");
             profile.createAccount("Savings account");
             profile.createAccount("BSU");
