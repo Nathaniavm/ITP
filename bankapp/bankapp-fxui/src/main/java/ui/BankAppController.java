@@ -2,6 +2,8 @@ package ui;
 
 import java.io.IOException;
 
+import bankapp.core.Account;
+import bankapp.core.Profile;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
@@ -59,34 +61,64 @@ public class BankAppController {
 
     @FXML
     private Button button;
+    private static Profile profile;
 
-    @FXML
-    private void initializeProfile() {
-        profileTab.setOnMouseClicked(event -> {
-            try {
-                getOnActionProfile(event);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        });
+    public void initialize() {
+        if (accountsTable != null && profile == null) {
+            profile = new Profile("james heui", "james@gmail.com", "12345678", "passord12");
+            profile.createAccount("Spendings account");
+            profile.createAccount("Savings account");
+            profile.createAccount("BSU");
+            updateAccounts();
+        } else if (accountsTable != null) {
+            updateAccounts();
+        }
+        if (profileName != null) {
+            profileName.setText(profile.getName() + "'s Profile");
+        }
     }
 
     @FXML
-    private void getOnActionProfile(MouseEvent event) throws IOException {
+    public void initializeTab(MouseEvent event) throws IOException {
+        String tab = ((Label) ((AnchorPane) event.getSource()).getChildren().get(0)).getText();
+        if (tab.equals("Home")) {
+            tab = "Overview";
+        }
+        switchTab(tab);
+
+    }
+
+    @FXML
+    private void switchTab(String tab) throws IOException {
         Stage primaryStage = (Stage) profileTab.getScene().getWindow();
-        // String tab = ((Label) profileTab.getChildren().get(0)).getText(); Hente ut
-        // text verdi til tabben man trykker på
 
-        primaryStage.setTitle("Bankapp - Profile");
+        primaryStage.setTitle("Bankapp - " + tab);
 
-        FXMLLoader tabLoader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+        FXMLLoader tabLoader = new FXMLLoader(getClass().getResource(tab + ".fxml"));
         Parent tabPane = tabLoader.load();
         Scene tabScene = new Scene(tabPane);
 
         primaryStage.setScene(tabScene);
         primaryStage.show();
+    }
 
+    @FXML
+    public void updateAccounts() {
+        int count = 0;
+        for (Account account : profile.getAccounts()) {
+            Label accountName = new Label(account.getName());
+            Label accountBalance = new Label(String.valueOf(account.getBalance()));
+            if (count == 0) {
+                accountsTable.add(accountName, 0, count);
+                accountsTable.add(accountBalance, 1, count);
+
+            } else {
+                accountsTable.addRow(count);
+                accountsTable.add(accountName, 0, count);
+                accountsTable.add(accountBalance, 1, count);
+            }
+            count += 1;
+        }
     }
 
 }

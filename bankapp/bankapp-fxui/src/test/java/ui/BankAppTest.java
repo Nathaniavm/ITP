@@ -1,6 +1,7 @@
 package ui;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
@@ -40,6 +41,7 @@ public class BankAppTest extends ApplicationTest {
     @Test
     private void testStage_initial() {
         assertNotNull(this.stage);
+        assertEquals(this.stage.getScene().getRoot().getId(), "overview");
     }
 
     @Test

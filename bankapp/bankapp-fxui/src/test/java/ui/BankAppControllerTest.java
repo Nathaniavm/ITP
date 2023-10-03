@@ -33,6 +33,29 @@ public class BankAppControllerTest extends ApplicationTest {
     @Test
     public void testProfileButton() throws IOException {
         clickOn("#profileTab");
+        System.out.println(this.stage.getScene().getRoot().getId());
         assertEquals(this.stage.getScene().getRoot().getId(), "profile");
     }
+
+    @Test
+    public void testSavingsButton() throws IOException {
+        clickOn("#savingsTab");
+        System.out.println(this.stage.getScene().getRoot().getId());
+        assertEquals(this.stage.getScene().getRoot().getId(), "savings");
+    }
+
+    @Test
+    public void testPaymentButton() throws IOException {
+        clickOn("#paymentsTab");
+        System.out.println(this.stage.getScene().getRoot().getId());
+        assertEquals(this.stage.getScene().getRoot().getId(), "payments");
+    }
+
+    @Test
+    public void testSpendingButton() throws IOException {
+        clickOn("#spendingTab");
+        System.out.println(this.stage.getScene().getRoot().getId());
+        assertEquals(this.stage.getScene().getRoot().getId(), "spending");
+    }
+
 }
