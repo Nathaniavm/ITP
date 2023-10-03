@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package bankapp.core;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="no"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package bankapp.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    private String profileName;
+    private Profile profile;
     private String name;
     private Balance balance;
 <span class="fc" id="L10">    private static List&lt;String&gt; accNrs = new ArrayList&lt;&gt;();</span>
@@ -16,9 +16,9 @@ public class Account {
      * 
      * @param name takes inn the name of the account
      */
-<span class="fc" id="L19">    public Account(String name, String profileName) {</span>
+<span class="fc" id="L19">    public Account(String name, Profile profile) {</span>
 <span class="fc" id="L20">        balance = new Balance();</span>
-<span class="fc" id="L21">        this.profileName = profileName;</span>
+<span class="fc" id="L21">        this.profile = profile;</span>
 <span class="fc" id="L22">        this.name = name;</span>
 <span class="fc" id="L23">        setAccNr();</span>
 <span class="pc bpc" id="L24" title="1 of 2 branches missed.">        while (accNrs.contains(accNr)) {</span>
@@ -93,8 +93,8 @@ public class Account {
      * Creates bankcard for the account
      */
     public void createBankCard() {
-<span class="nc" id="L96">        bankCard = new BankCard(profileName);</span>
-<span class="nc" id="L97">    }</span>
+<span class="fc" id="L96">        bankCard = new BankCard(profile.getName());</span>
+<span class="fc" id="L97">    }</span>
 
     /**
      * 
@@ -109,15 +109,15 @@ public class Account {
      * @param name to change the account name to
      */
     public void renameAccount(String name){
-<span class="nc" id="L112">        this.name = name;</span>
-<span class="nc" id="L113">    }</span>
+<span class="fc" id="L112">        this.name = name;</span>
+<span class="fc" id="L113">    }</span>
 
     /**
      * 
      * @return corresponding bankcard object
      */
     public BankCard getBankCard() {
-<span class="nc" id="L120">        return bankCard;</span>
+<span class="fc" id="L120">        return bankCard;</span>
     }
     
 }

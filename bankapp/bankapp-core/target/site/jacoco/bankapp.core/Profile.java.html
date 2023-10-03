@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Profile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Profile.java</span></div><h1>Profile.java</h1><pre class="source lang-java linenums">package bankapp.core;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="no"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Profile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bankapp-core</a> &gt; <a href="index.source.html" class="el_package">bankapp.core</a> &gt; <span class="el_source">Profile.java</span></div><h1>Profile.java</h1><pre class="source lang-java linenums">package bankapp.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,8 @@ public class Profile {
     private String tlf;
     private String password;
 <span class="fc" id="L16">    private List&lt;Account&gt; accounts = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L17">    private ArrayList&lt;String&gt; landcodes = new ArrayList&lt;&gt;(Arrays.asList(&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;ag&quot;, &quot;ai&quot;, &quot;al&quot;, &quot;am&quot;, &quot;ao&quot;,</span>
+<span class="fc" id="L17">    private List&lt;Bill&gt; bills = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L18">    private ArrayList&lt;String&gt; landcodes = new ArrayList&lt;&gt;(Arrays.asList(&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;ag&quot;, &quot;ai&quot;, &quot;al&quot;, &quot;am&quot;, &quot;ao&quot;,</span>
             &quot;aq&quot;, &quot;ar&quot;, &quot;as&quot;, &quot;at&quot;, &quot;au&quot;, &quot;aw&quot;, &quot;ax&quot;, &quot;az&quot;, &quot;ba&quot;, &quot;bb&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;bg&quot;, &quot;bh&quot;, &quot;bi&quot;, &quot;bj&quot;, &quot;bl&quot;,
             &quot;bm&quot;, &quot;bn&quot;, &quot;bo&quot;, &quot;bq&quot;, &quot;br&quot;, &quot;bs&quot;, &quot;bt&quot;, &quot;bv&quot;, &quot;bw&quot;, &quot;by&quot;, &quot;bz&quot;, &quot;ca&quot;, &quot;cc&quot;, &quot;cd&quot;, &quot;cf&quot;, &quot;cg&quot;, &quot;ch&quot;, &quot;ci&quot;,
             &quot;ck&quot;, &quot;cl&quot;, &quot;cm&quot;, &quot;cn&quot;, &quot;co&quot;, &quot;cr&quot;, &quot;cu&quot;, &quot;cv&quot;, &quot;cw&quot;, &quot;cx&quot;, &quot;cy&quot;, &quot;cz&quot;, &quot;de&quot;, &quot;dj&quot;, &quot;dk&quot;, &quot;dm&quot;, &quot;do&quot;, &quot;dz&quot;,
@@ -40,91 +41,103 @@ public class Profile {
      * @throws IllegalArgumentException If the name, email, telephone number or
      *                                  password are not valid
      */
-<span class="fc" id="L43">    public Profile(String name, String email, String tlf, String password) {</span>
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if(!validName(name)) throw new IllegalArgumentException(&quot;Invalid name&quot;);</span>
-<span class="fc" id="L45">        this.name = name;</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">        if(!validEmail(email)) throw new IllegalArgumentException(&quot;Invalid email&quot;);</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        if(!validPassword(password)) throw new IllegalArgumentException(&quot;Password must contain at least 8 characters&quot;);</span>
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if(!validTlf(tlf)) throw new IllegalArgumentException(&quot;Invalid phonenumber&quot;);</span>
-        
-        
-<span class="fc" id="L51">        this.email = email;</span>
-<span class="fc" id="L52">        this.tlf = tlf;</span>
-<span class="fc" id="L53">        this.password = password;</span>
-<span class="fc" id="L54">        System.out.println(&quot;Your profile was made successfully!&quot;);</span>
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L44">    public Profile(String name, String email, String tlf, String password) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (!validName(name))</span>
+<span class="fc" id="L46">            throw new IllegalArgumentException(&quot;Invalid name&quot;);</span>
+<span class="fc" id="L47">        this.name = name;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (!validEmail(email))</span>
+<span class="fc" id="L49">            throw new IllegalArgumentException(&quot;Invalid email&quot;);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (!validPassword(password))</span>
+<span class="fc" id="L51">            throw new IllegalArgumentException(&quot;Invalid password&quot;);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (!validTlf(tlf))</span>
+<span class="fc" id="L53">            throw new IllegalArgumentException(&quot;Invalid phonenumber&quot;);</span>
+
+<span class="fc" id="L55">        this.email = email;</span>
+<span class="fc" id="L56">        this.tlf = tlf;</span>
+<span class="fc" id="L57">        this.password = password;</span>
+<span class="fc" id="L58">        System.out.println(&quot;Your profile was made successfully!&quot;);</span>
+<span class="fc" id="L59">    }</span>
 
     /**
      * @param email
-     * Valid email is with format surnameLastname@mail.landcode
-     * @return
+     *              Valid email is with format mailname@mail.landcode
+     *              and the landcode must be a valid landcode (from the arraylist
+     *              called landcodes)
+     * @return whether an email is valid or not
      */
-    private boolean validEmail(String email){
-<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        if(!email.contains(&quot;@&quot;)) {</span>
-<span class="nc" id="L64">            System.out.println(&quot;must have @&quot;);</span>
-            //throw new IllegalArgumentException(&quot;Email must comtain '@'&quot;);
+    private boolean validEmail(String email) {
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (!email.contains(&quot;@&quot;)) {</span>
+<span class="fc" id="L70">            System.out.println(&quot;Your email must contain a @&quot;);</span>
+<span class="fc" id="L71">            return false;</span>
         }
-<span class="fc" id="L67">        String[] splitAt = email.split(&quot;@&quot;);</span>
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if(!email.contains(&quot;.&quot;)){ </span>
-<span class="nc" id="L69">            System.out.println(&quot;must have .&quot;);</span>
-            //throw new IllegalArgumentException(&quot;Email must contain a dot&quot;);
-
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (!email.contains(&quot;.&quot;)) {</span>
+<span class="fc" id="L74">            System.out.println(&quot;Your email must contain a .&quot;);</span>
+<span class="fc" id="L75">            return false;</span>
         }
-<span class="fc" id="L73">        String[] splitDot = splitAt[1].split(&quot;\\.&quot;);</span>
+<span class="fc" id="L77">        String[] splitAt = email.split(&quot;@&quot;);</span>
+<span class="fc" id="L78">        String[] splitDot = splitAt[1].split(&quot;\\.&quot;);</span>
 
-<span class="fc" id="L75">        String surname = this.getName().split(&quot; &quot;)[0].toLowerCase();</span>
-<span class="fc" id="L76">        String lastName = this.getName().split(&quot; &quot;)[1].toLowerCase();</span>
-<span class="fc" id="L77">        System.out.println(splitDot[0] + &quot;,&quot; + splitDot[1]);</span>
-<span class="pc bpc" id="L78" title="2 of 6 branches missed.">        if(splitAt[0].toLowerCase().contains(surname) &amp;&amp; splitAt[0].toLowerCase().contains(lastName) &amp;&amp; landcodes.contains(splitDot[1])) {return true;}</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (landcodes.contains(splitDot[1])) {</span>
+<span class="fc" id="L81">            return true;</span>
+        }
 
-<span class="fc" id="L80">        return false;</span>
+<span class="nc" id="L84">        return false;</span>
     }
-
 
     /**
      * @param password
-     * A password is valid if it contains less than 8 characters, where at least 1 of the characters are a number
-     * @return a boolean
+     *                 A password is valid if it contains at least 8 characters,
+     *                 where at least 1 of the characters are a number
+     *                 and at least 1 of the characters are a letter
+     * @return whether a password is valid or not
      */
-    private boolean validPassword(String password){
-<span class="fc" id="L90">        int num = 0;</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (int i = 0; i &lt; password.length(); i++) {</span>
-<span class="fc bfc" id="L92" title="All 2 branches covered.">            if(isNumeric(String.valueOf(password.charAt(i)))) num++;</span>
+    private boolean validPassword(String password) {
+<span class="fc" id="L95">        int num = 0;</span>
+<span class="fc" id="L96">        int letter = 0;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        for (int i = 0; i &lt; password.length(); i++) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            if (isNumeric(String.valueOf(password.charAt(i))))</span>
+<span class="fc" id="L99">                num++;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            if (Character.isLetter(password.charAt(i)))</span>
+<span class="fc" id="L101">                letter++;</span>
         }
 
-<span class="pc bpc" id="L95" title="1 of 4 branches missed.">        return(password.length() &gt; 8 &amp;&amp; (num&gt;0));</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (num == 0)</span>
+<span class="fc" id="L105">            System.out.println(&quot;The password must contain a number&quot;);</span>
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">        if (letter == 0)</span>
+<span class="nc" id="L107">            System.out.println(&quot;The password must contain a letter&quot;);</span>
+<span class="pc bpc" id="L108" title="1 of 6 branches missed.">        return (password.length() &gt;= 8 &amp;&amp; (num &gt; 0) &amp;&amp; (letter &gt; 0));</span>
     }
 
     /**
      * @param tlf
-     * valid tlf contains 8 numbers
-     * @return
+     *            valid tlf contains 8 numbers
+     * @return whether a telephone number is valid or not
      */
-    private boolean validTlf(String tlf){
-<span class="pc bpc" id="L104" title="2 of 4 branches missed.">        return (tlf.length() == 8 &amp;&amp; isNumeric(tlf));</span>
+    private boolean validTlf(String tlf) {
+<span class="fc bfc" id="L117" title="All 4 branches covered.">        return (tlf.length() == 8 &amp;&amp; tlf.matches(&quot;[0-9]+&quot;));</span>
     }
 
     /**
      * @param name
-     * A name is valid if it contains of a surname and a lastname, and all of the characters are letters
-     * @return
+     *             A name is valid if it contains of a surname and a lastname, and
+     *             all of the characters are letters
+     * @return whether a name is valid or not
      */
-    private boolean validName(String name){
-<span class="fc" id="L113">        boolean bool = false;</span>
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if ((name.contains(&quot; &quot;))) {</span>
-<span class="fc" id="L115">            String[] splits = name.split(&quot; &quot;);</span>
-<span class="fc" id="L116">            System.out.println(splits);</span>
-<span class="fc bfc" id="L117" title="All 2 branches covered.">            for (int i = 0; i &lt; splits.length; i++) {</span>
-<span class="fc bfc" id="L118" title="All 2 branches covered.">                for (int j = 0; j &lt; splits[i].length(); j++) {</span>
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">                    if (!Character.isLetter(splits[i].strip().charAt(j))) {</span>
-                        //throw new IllegalArgumentException(&quot;Name can only contain letters&quot;);
-                        //return false;
-                    }
+    private boolean validName(String name) {
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (!name.contains(&quot; &quot;)) {</span>
+<span class="fc" id="L128">            System.out.println(&quot;Your name must contain your surname and lastname&quot;);</span>
+<span class="fc" id="L129">            return false;</span>
+        }
+<span class="fc" id="L131">        String[] splits = name.split(&quot; &quot;);</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        for (int i = 0; i &lt; splits.length; i++) {</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            for (int j = 0; j &lt; splits[i].length(); j++) {</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                if (!Character.isLetter(splits[i].strip().charAt(j))) {</span>
+<span class="fc" id="L135">                    System.out.println(&quot;Your name should only contain letters&quot;);</span>
+<span class="fc" id="L136">                    return false;</span>
                 }
             }
-<span class="fc" id="L125">        bool = true; </span>
         }
-<span class="fc" id="L127">        return bool;</span>
+<span class="fc" id="L140">        return true;</span>
     }
 
     /**
@@ -135,12 +148,12 @@ public class Profile {
      */
     private static boolean isNumeric(String test) {
         try {
-<span class="fc" id="L138">            Double.parseDouble(test);</span>
-<span class="fc" id="L139">            return true;</span>
+<span class="fc" id="L151">            Double.parseDouble(test);</span>
+<span class="fc" id="L152">            return true;</span>
         }
 
-<span class="fc" id="L142">        catch (NumberFormatException e) {</span>
-<span class="fc" id="L143">            return false;</span>
+<span class="fc" id="L155">        catch (NumberFormatException e) {</span>
+<span class="fc" id="L156">            return false;</span>
         }
     }
 
@@ -150,8 +163,33 @@ public class Profile {
      * @param name The name to the account
      */
     public void createAccount(String name) {
-<span class="nc" id="L153">        accounts.add(new Account(name, this.name));</span>
-<span class="nc" id="L154">    }</span>
+<span class="fc" id="L166">        accounts.add(new Account(name, this));</span>
+<span class="fc" id="L167">    }</span>
+
+    /**
+     * Add a specific bill to this profiles list of bills
+     * 
+     * @param bill - bill to be paid
+     */
+    public void addBill(Bill bill) {
+<span class="fc bfc" id="L175" title="All 2 branches covered.">        if (bills.contains(bill)) {</span>
+<span class="fc" id="L176">            throw new IllegalArgumentException(&quot;Bill already exists&quot;);</span>
+        }
+<span class="fc" id="L178">        bills.add(bill);</span>
+<span class="fc" id="L179">    }</span>
+
+    /**
+     * Remove given bill from list if it has been paid
+     * 
+     * @param bill - bill to be removed
+     */
+    public void removeBill(Bill bill) {
+<span class="fc bfc" id="L187" title="All 4 branches covered.">        if (bill.isPaid() &amp;&amp; bills.contains(bill)) {</span>
+<span class="fc" id="L188">            bills.remove(bill);</span>
+        } else {
+<span class="fc" id="L190">            throw new IllegalArgumentException(&quot;cannot remove bill&quot;);</span>
+        }
+<span class="fc" id="L192">    }</span>
 
     /**
      * Changes the password if the new password is valid
@@ -159,9 +197,10 @@ public class Profile {
      * @param password The new password
      */
     public void changePassword(String password) {
-<span class="nc bnc" id="L162" title="All 2 branches missed.">        if(!validPassword(password)) throw new IllegalArgumentException(&quot;Not valid password&quot;);</span>
-<span class="nc" id="L163">        this.password = password;</span>
-<span class="nc" id="L164">    }</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">        if (!validPassword(password))</span>
+<span class="fc" id="L201">            throw new IllegalArgumentException(&quot;Not valid password&quot;);</span>
+<span class="fc" id="L202">        this.password = password;</span>
+<span class="fc" id="L203">    }</span>
 
     /**
      * Changes the telephone number if number is valid
@@ -169,18 +208,19 @@ public class Profile {
      * @param tlf The new telephone number
      */
     public void changeTlf(String tlf) {
-<span class="nc bnc" id="L172" title="All 2 branches missed.">        if(!validTlf(tlf)) throw new IllegalArgumentException(&quot;Not valid telephone number&quot;);</span>
-<span class="nc" id="L173">        this.tlf = tlf;</span>
-        
-<span class="nc" id="L175">    }</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">        if (!validTlf(tlf))</span>
+<span class="fc" id="L212">            throw new IllegalArgumentException(&quot;Not valid telephone number&quot;);</span>
+<span class="fc" id="L213">        this.tlf = tlf;</span>
+
+<span class="fc" id="L215">    }</span>
 
     /**
-     * Returns the email connected to this profile 
+     * Returns the email connected to this profile
      * 
      * @return The email connected to this profile
      */
     public String getEmail() {
-<span class="nc" id="L183">        return email;</span>
+<span class="fc" id="L223">        return email;</span>
     }
 
     /**
@@ -189,7 +229,7 @@ public class Profile {
      * @return The name connected to this account
      */
     public String getName() {
-<span class="fc" id="L192">        return name;</span>
+<span class="fc" id="L232">        return name;</span>
     }
 
     /**
@@ -198,25 +238,39 @@ public class Profile {
      * @return The phone number connected to this account
      */
     public String getTlf() {
-<span class="nc" id="L201">        return tlf;</span>
+<span class="fc" id="L241">        return tlf;</span>
     }
 
     /**
      * Returns the account password
      * 
-     * @return The account password 
+     * @return The account password
      */
     public String getPassword() {
-<span class="nc" id="L210">        return password;</span>
+<span class="fc" id="L250">        return password;</span>
     }
 
     /**
+     * Returns list of all accounts
      * 
      * @return list of all accounts
      */
     public List&lt;Account&gt; getAccounts() {
-<span class="nc" id="L218">        return new ArrayList&lt;&gt;(accounts);</span>
+<span class="fc" id="L259">        return new ArrayList&lt;&gt;(accounts);</span>
     }
 
+    /**
+     * Returns list of all bills
+     * 
+     * @return list of all bills
+     */
+    public List&lt;Bill&gt; getBills() {
+<span class="fc" id="L268">        return new ArrayList&lt;&gt;(bills);</span>
+    }
+
+    public static void main(String[] args) {
+<span class="nc" id="L272">        Profile profile1 = new Profile(&quot;Nathania Muliawan&quot;, &quot;duegyfg@.com&quot;, &quot;41184086&quot;, &quot;mulinuuuu0&quot;);</span>
+<span class="nc" id="L273">        System.out.println(isNumeric(&quot;f&quot;));</span>
+<span class="nc" id="L274">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
