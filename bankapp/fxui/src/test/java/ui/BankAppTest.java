@@ -5,10 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
+import javax.swing.JPanel;
+
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
+import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,6 +31,24 @@ public class BankAppTest extends ApplicationTest {
     private Parent root;
     private Stage stage;
 
+    @Before
+    public void initJ() {
+        new JPanel();
+    }
+
+    @Test
+    public void testStartMethod() {
+        Platform.runLater(() -> {
+            try {
+                BankApp app = new BankApp();
+                Stage stage = new Stage();
+                app.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
@@ -34,12 +60,12 @@ public class BankAppTest extends ApplicationTest {
     }
 
     @Test
-    private void testController_initial() {
+    public void testController_initial() {
         assertNotNull(this.controller);
     }
 
     @Test
-    private void testStage_initial() {
+    public void testStage_initial() {
         assertNotNull(this.stage);
         assertEquals(this.stage.getScene().getRoot().getId(), "overview");
     }
