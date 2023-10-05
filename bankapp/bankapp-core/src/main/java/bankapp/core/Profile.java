@@ -1,16 +1,20 @@
 package bankapp.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * Class that makes a profile
  */
 
-public class Profile {
+ @JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
+public class Profile implements Serializable{
     private String name;
     private String email;
     private String tlf;
@@ -172,6 +176,19 @@ public class Profile {
      */
     public void createAccount(String name) {
         accounts.add(new Account(name, this));
+    }
+
+    /**
+     * Add premade account to profile
+     * 
+     * @param account - The account to be added
+     * @throws IllegalArgumentException - Throw exception if account already exists
+     */
+    public void addAccount(Account account){
+        if (accounts.contains(account)){
+            throw new IllegalArgumentException("Account already exists");
+        }
+        accounts.add(account);
     }
 
     /**

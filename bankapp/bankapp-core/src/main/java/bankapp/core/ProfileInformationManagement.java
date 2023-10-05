@@ -39,8 +39,10 @@ public class ProfileInformationManagement {
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
                 });
+                System.out.println(profiles.get(0));
                 System.out.println(profiles.get(0).getName());
                 System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
+                System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
                 System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
                 return profiles;
         }
@@ -59,12 +61,12 @@ public class ProfileInformationManagement {
                 profile1.createAccount("Savings");
                 profile2.createAccount("Hei");
                 profile2.createAccount("Philips savings account");
+                profile1.getAccounts().get(0).createBankCard();
+                profile1.getAccounts().get(0).add(472189);
 
                 Account sellerAccount = new Account("NTNU", NTNU);
-                // Bill bill = new Bill(100, "NTNU", "NTNU Gløshaugen", sellerAccount,
-                // profile1.getAccounts().get(0), profile1);
-
-                // profile1.addBill(bill);
+                Bill bill = new Bill(100, "NTNU", "NTNU Gløshaugen", sellerAccount,
+                profile1.getAccounts().get(0), profile1);
 
                 management.writeInformationToFile(profile1,
                                 "bankapp/bankapp-core/src/main/java/bankapp/Files/ProfileInformation.json");
