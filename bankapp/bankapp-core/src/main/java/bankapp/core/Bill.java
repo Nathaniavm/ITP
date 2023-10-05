@@ -1,8 +1,13 @@
 package bankapp.core;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 
-public class Bill {
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+ @JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
+public class Bill implements Serializable {
 
     private int amount;
     private String billName;
@@ -12,12 +17,13 @@ public class Bill {
     private Account payerAccount;
     private boolean paid = false;
 
+    
     public Bill(@JsonProperty("amount") int amount,
             @JsonProperty("billName") String billName,
             @JsonProperty("sellerName") String sellerName,
             @JsonProperty("sellerAccount") Account sellerAccount,
             @JsonProperty("payerAccount") Account payerAccount,
-            @JsonProperty("profileName") Profile payer) {
+            @JsonProperty("profile") Profile payer) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount can not be less than 1");
         }
@@ -27,6 +33,7 @@ public class Bill {
         this.sellerAccount = sellerAccount;
         this.payerAccount = payerAccount;
         this.payer = payer;
+        payer.addBill(this);
     }
 
     public void pay() {
@@ -58,7 +65,7 @@ public class Bill {
         return payerAccount;
     }
 
-    public String getProfileName() {
-        return payer.getName();
+    public Profile getProfile() {
+        return payer;
     }
 }

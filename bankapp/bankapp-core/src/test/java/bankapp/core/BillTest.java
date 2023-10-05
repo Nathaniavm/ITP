@@ -28,7 +28,7 @@ public class BillTest {
         assertEquals(bill.getBillName(), "Leie");
         assertEquals(bill.getSellerName(), "Sit");
         assertEquals(bill.getAmount(), 100);
-        assertEquals(bill.getProfileName(), profile1.getName());
+        assertEquals(bill.getProfile(), profile1);
         assertEquals(bill.getSellerAccount(), profile2.getAccounts().get(0));
         assertEquals(bill.getPayerAccount(), profile1.getAccounts().get(0));
         assertFalse(bill.isPaid());
