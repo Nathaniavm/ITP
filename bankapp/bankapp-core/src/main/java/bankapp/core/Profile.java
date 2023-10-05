@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Class that makes a profile
  */
@@ -32,6 +34,11 @@ public class Profile {
             "wf", "ws", "ye", "yt", "za", "zm", "zw", "com"));
 
     /**
+     * Empty constructor used by the ProfileInformationManagement-class in order to
+     * read from file
+     */
+
+    /**
      * Creates a new profile
      *
      * @param name     The profile name
@@ -41,7 +48,8 @@ public class Profile {
      * @throws IllegalArgumentException If the name, email, telephone number or
      *                                  password are not valid
      */
-    public Profile(String name, String email, String tlf, String password) {
+    public Profile(@JsonProperty("name") String name, @JsonProperty("email") String email,
+            @JsonProperty("tlf") String tlf, @JsonProperty("password") String password) {
         if (!validName(name))
             throw new IllegalArgumentException("Invalid name");
         this.name = name;

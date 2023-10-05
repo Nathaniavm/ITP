@@ -1,5 +1,7 @@
 package bankapp.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Bill {
 
     private int amount;
@@ -10,8 +12,12 @@ public class Bill {
     private Account payerAccount;
     private boolean paid = false;
 
-    public Bill(int amount, String billName, String sellerName, Account sellerAccount, Account payerAccount,
-            Profile payer) {
+    public Bill(@JsonProperty("amount") int amount,
+            @JsonProperty("billName") String billName,
+            @JsonProperty("sellerName") String sellerName,
+            @JsonProperty("sellerAccount") Account sellerAccount,
+            @JsonProperty("payerAccount") Account payerAccount,
+            @JsonProperty("profileName") Profile payer) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount can not be less than 1");
         }

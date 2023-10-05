@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 public class BalanceTest {
-    private Balance balance = new Balance();
+    private Balance balance = new Balance(0);
 
     @Test
     @DisplayName("Checks if balance increases according to desired usage")
