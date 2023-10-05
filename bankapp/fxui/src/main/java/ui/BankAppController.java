@@ -2,8 +2,8 @@ package ui;
 
 import java.io.IOException;
 
-import bankapp.core.Account;
-import bankapp.core.Profile;
+import core.Account;
+import core.Profile;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
