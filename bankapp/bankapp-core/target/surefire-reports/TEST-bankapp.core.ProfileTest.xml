@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.012" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="bankapp.core.ProfileTest" time="0.034" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire15512676229413013032\surefirebooter6777743870214190469.jar C:\Users\alice\AppData\Local\Temp\surefire15512676229413013032 2023-10-03T12-47-48_299-jvmRun1 surefire17770799442577928721tmp surefire_02206950892040507526tmp"/>
+    <property name="sun.java.command" value="C:\Users\alice\AppData\Local\Temp\surefire17880963743744477596\surefirebooter17029539166400986582.jar C:\Users\alice\AppData\Local\Temp\surefire17880963743744477596 2023-10-03T12-52-02_636-jvmRun1 surefire17236893726182557419tmp surefire_07868820511416145677tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\test-classes;C:\Users\alice\OneDrive - NTNU\Studier\Programmering\ITP\gr2315\bankapp\bankapp-core\target\classes;C:\Users\alice\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\alice\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\alice\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\alice\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\alice\.m2\repository\com\googlecode\json-simple\json-simple\1.1\json-simple-1.1.jar;C:\Users\alice\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\alice\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire15512676229413013032\surefirebooter6777743870214190469.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\alice\AppData\Local\Temp\surefire17880963743744477596\surefirebooter17029539166400986582.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.5+8"/>
@@ -57,12 +57,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testSetPassword" classname="bankapp.core.ProfileTest" time="0.002"/>
-  <testcase name="testAddBill" classname="bankapp.core.ProfileTest" time="0.002"/>
-  <testcase name="testCreateAccount" classname="bankapp.core.ProfileTest" time="0"/>
+  <testcase name="testSetPassword" classname="bankapp.core.ProfileTest" time="0.004"/>
+  <testcase name="testAddBill" classname="bankapp.core.ProfileTest" time="0.001"/>
+  <testcase name="testCreateAccount" classname="bankapp.core.ProfileTest" time="0.001"/>
   <testcase name="testRemoveBill" classname="bankapp.core.ProfileTest" time="0.002"/>
-  <testcase name="testSetName" classname="bankapp.core.ProfileTest" time="0.002"/>
-  <testcase name="testSetTlf" classname="bankapp.core.ProfileTest" time="0.001"/>
-  <testcase name="testConstructor" classname="bankapp.core.ProfileTest" time="0"/>
-  <testcase name="testSetEmail" classname="bankapp.core.ProfileTest" time="0.001"/>
+  <testcase name="testSetName" classname="bankapp.core.ProfileTest" time="0.008"/>
+  <testcase name="testSetTlf" classname="bankapp.core.ProfileTest" time="0.003"/>
+  <testcase name="testConstructor" classname="bankapp.core.ProfileTest" time="0.002"/>
+  <testcase name="testSetEmail" classname="bankapp.core.ProfileTest" time="0.006"/>
 </testsuite>
