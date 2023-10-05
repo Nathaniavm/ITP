@@ -1,0 +1,27 @@
+@startuml
+
+component core {
+    package bankapp.core
+    package bankapp.Files
+}
+bankapp.core ..> bankapp.Files
+
+
+component fxui {
+    package java.ui
+    package resources.ui
+}
+
+java.ui ..> bankapp.core
+java.ui ..> resources.ui
+java.ui ..> bankapp.Files
+
+component javafx {
+    component fxml
+}
+
+fxui ..> javafx
+fxui ..> fxml
+
+
+@enduml

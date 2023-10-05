@@ -1,0 +1,161 @@
+[
+    {
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "JegHeterAliceOgErRasist123",
+        "accounts": [
+            {
+                "name": "Savings",
+                "balance": 0,
+                "accNr": "1234 91 56174",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "JegHeterAliceOgErRasist123",
+        "accounts": [
+            {
+                "name": "Savings",
+                "balance": 0,
+                "accNr": "1234 38 93504",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "JegHeterAliceOgErRasist246",
+        "accounts": [
+            {
+                "name": "Hei",
+                "balance": 0,
+                "accNr": "1234 66 45268",
+                "bankCard": null
+            },
+            {
+                "name": "Philips savings account",
+                "balance": 0,
+                "accNr": "1234 13 05039",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "JegHeterAliceOgErRasist123",
+        "accounts": [
+            {
+                "name": "Savings",
+                "balance": 0,
+                "accNr": "1234 86 71072",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "JegHeterAliceOgErRasist246",
+        "accounts": [
+            {
+                "name": "Hei",
+                "balance": 0,
+                "accNr": "1234 39 42702",
+                "bankCard": null
+            },
+            {
+                "name": "Philips savings account",
+                "balance": 0,
+                "accNr": "1234 37 47020",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "JegHeterAliceOgErRasist123",
+        "accounts": [
+            {
+                "name": "Savings",
+                "balance": 0,
+                "accNr": "1234 70 08245",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "JegHeterAliceOgErRasist246",
+        "accounts": [
+            {
+                "name": "Hei",
+                "balance": 0,
+                "accNr": "1234 38 17250",
+                "bankCard": null
+            },
+            {
+                "name": "Philips savings account",
+                "balance": 0,
+                "accNr": "1234 23 61002",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "JegHeterAliceOgErRasist123",
+        "accounts": [
+            {
+                "name": "Savings",
+                "balance": 0,
+                "accNr": "1234 48 63951",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "JegHeterAliceOgErRasist246",
+        "accounts": [
+            {
+                "name": "Hei",
+                "balance": 0,
+                "accNr": "1234 13 57827",
+                "bankCard": null
+            },
+            {
+                "name": "Philips savings account",
+                "balance": 0,
+                "accNr": "1234 76 80888",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    }
+]
