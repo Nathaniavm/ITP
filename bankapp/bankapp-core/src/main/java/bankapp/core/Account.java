@@ -3,6 +3,9 @@ package bankapp.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Account {
     private Profile profile;
     private String name;
@@ -12,13 +15,17 @@ public class Account {
     private BankCard bankCard;
     private boolean showInPreview = false;
 
+    public Account() {
+
+    }
+
     /**
      * Makes an account with given name and generates account number
      * 
      * @param name takes inn the name of the account
      */
     public Account(String name, Profile profile) {
-        balance = new Balance();
+        balance = new Balance(0);
         this.profile = profile;
         this.name = name;
         setAccNr();
@@ -119,6 +126,16 @@ public class Account {
      */
     public BankCard getBankCard() {
         return bankCard;
+    }
+
+    /**
+     * 
+     * @return corresponding profile object
+     */
+
+    @JsonIgnore
+    public Profile getProfile() {
+        return profile;
     }
 
     /**

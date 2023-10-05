@@ -1,7 +1,11 @@
 package bankapp.core;
 
 public class Balance {
-    private int balance = 0;
+    private int balance;
+
+    public Balance(int amount) {
+        this.balance = amount;
+    }
 
     /**
      * 
@@ -35,5 +39,5 @@ public class Balance {
     public int getBalance() {
         return balance;
     }
-    
+
 }
