@@ -1,12 +1,15 @@
 package bankapp.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-public class Account {
+@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
+public class Account implements Serializable{
     private Profile profile;
     private String name;
     private Balance balance;
@@ -15,18 +18,17 @@ public class Account {
     private BankCard bankCard;
     private boolean showInPreview = false;
 
-    public Account() {
-
-    }
-
     /**
      * Makes an account with given name and generates account number
      * 
      * @param name takes inn the name of the account
      */
-    public Account(String name, Profile profile) {
+    public Account(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
         balance = new Balance(0);
         this.profile = profile;
+        if (!profile.getAccounts().contains(this)){
+            profile.addAccount(this);
+        }
         this.name = name;
         setAccNr();
         while (accNrs.contains(accNr)) {
@@ -101,7 +103,7 @@ public class Account {
      * Creates bankcard for the account
      */
     public void createBankCard() {
-        bankCard = new BankCard(profile.getName());
+        bankCard = new BankCard(profile.getName(), this);
     }
 
     /**
@@ -133,7 +135,6 @@ public class Account {
      * @return corresponding profile object
      */
 
-    @JsonIgnore
     public Profile getProfile() {
         return profile;
     }

@@ -1,24 +1,32 @@
 package bankapp.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankCard {
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
+public class BankCard implements Serializable{
     private String cardholder;
     private static List<String> cardNrs = new ArrayList<>();
     private String cardNr;
+    private Account account;
 
     /**
      * Sets the owner of the card and generates a cardNr
      * 
      * @param cardholder - name of the owner of the card
      */
-    public BankCard(String cardholder) {
+    public BankCard(@JsonProperty("cardholder") String cardholder, @JsonProperty("account") Account account) {
         this.cardholder = cardholder;
         setCardNr();
         while (cardNrs.contains(cardNr)) {
             setCardNr();
         }
+        this.account = account;
         cardNrs.add(cardNr);
     }
 
@@ -42,6 +50,14 @@ public class BankCard {
      */
     public String getCardholder() {
         return cardholder;
+    }
+
+    /**
+     * 
+     * @return this bankcards corresponding account
+     */
+    public Account getAccount() {
+        return account;
     }
 
     /**
