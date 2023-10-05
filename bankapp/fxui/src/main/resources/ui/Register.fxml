@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="63.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create       your profile" wrappingWidth="271.55621337890625">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text layoutX="63.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
+      <Text layoutX="63.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+      <Text layoutX="63.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" />
+      <Text layoutX="62.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password" />
+      <Text layoutX="62.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password" />
+      <TextField layoutX="189.0" layoutY="315.0" />
+      <TextField layoutX="189.0" layoutY="355.0" />
+      <TextField layoutX="189.0" layoutY="395.0" />
+      <TextField layoutX="189.0" layoutY="435.0" />
+      <TextField layoutX="189.0" layoutY="475.0" />
+      <Button layoutX="279.0" layoutY="542.0" mnemonicParsing="false" text="Register" />
+   </children>
+</AnchorPane>

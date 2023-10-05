@@ -175,7 +175,7 @@ public class Profile implements Serializable{
      * @param name The name to the account
      */
     public void createAccount(String name) {
-        accounts.add(new Account(name, this));
+        Account account = new Account(name, this);
     }
 
     /**
