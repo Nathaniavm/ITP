@@ -1,4 +1,4 @@
-package bankapp.core;
+package core;
 
 public class Balance {
     private int balance;

@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
-import javax.swing.JPanel;
-
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -30,11 +28,6 @@ public class BankAppTest extends ApplicationTest {
     private BankAppController controller;
     private Parent root;
     private Stage stage;
-
-    @Before
-    public void initJ() {
-        new JPanel();
-    }
 
     @Test
     public void testStartMethod() {

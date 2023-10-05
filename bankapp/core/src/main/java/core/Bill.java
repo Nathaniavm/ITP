@@ -1,4 +1,4 @@
-package bankapp.core;
+package core;
 
 import java.io.Serializable;
 
