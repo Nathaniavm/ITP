@@ -27,7 +27,14 @@ public class ProfileInformationManagement {
                 catch (Exception e) {
                         profiles = new ArrayList<>();
                 }
-                profiles.add(profile);
+                // sjekk om profil allerede er lagret
+                if (!profiles.stream().anyMatch(ob -> ob.getEmail().equals(profile.getEmail()))) {
+                        profiles.add(profile);
+                } else {
+                        Profile oldProfile = profiles.stream().filter(ob -> ob.getEmail().equals(profile.getEmail()))
+                                        .findFirst().orElse(null);
+                        profiles.set(profiles.indexOf(oldProfile), profile);
+                }
 
                 objectMapper.writeValue(file, profiles);
 
@@ -39,11 +46,11 @@ public class ProfileInformationManagement {
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
                 });
-                System.out.println(profiles.get(0));
-                System.out.println(profiles.get(0).getName());
-                System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
-                System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
-                System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
+                // System.out.println(profiles.get(0));
+                // System.out.println(profiles.get(0).getName());
+                // System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
+                // System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
+                // System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
                 return profiles;
         }
 
@@ -51,10 +58,10 @@ public class ProfileInformationManagement {
 
                 ProfileInformationManagement management = new ProfileInformationManagement();
                 Profile profile1 = new Profile("Klein Cornolis", "Klein@gmail.com", "12345678",
-                                "JegHeterAliceOgErRasist123");
+                                "passord13214212");
                 Profile profile2 = new Profile("Philip Vu Lam", "Philip@gmail.com",
                                 "87654321",
-                                "JegHeterAliceOgErRasist246");
+                                "passord123");
                 Profile NTNU = new Profile("NTNU Gløshaugen", "NTNU@ntnu.no", "12345678",
                                 "Administrator59");
 
@@ -66,14 +73,14 @@ public class ProfileInformationManagement {
 
                 Account sellerAccount = new Account("NTNU", NTNU);
                 Bill bill = new Bill(100, "NTNU", "NTNU Gløshaugen", sellerAccount,
-                profile1.getAccounts().get(0), profile1);
+                                profile1.getAccounts().get(0), profile1);
 
                 management.writeInformationToFile(profile1,
-                                "bankapp/bankapp-core/src/main/java/bankapp/Files/ProfileInformation.json");
+                                "bankapp/core/src/main/java/Files/ProfileInformation.json");
                 management.writeInformationToFile(profile2,
-                                "bankapp/bankapp-core/src/main/java/bankapp/Files/ProfileInformation.json");
+                                "bankapp/core/src/main/java/Files/ProfileInformation.json");
 
-                management.readFromFile("bankapp/bankapp-core/src/main/java/bankapp/Files/ProfileInformation.json");
+                management.readFromFile("bankapp/core/src/main/java/Files/ProfileInformation.json");
 
         }
 

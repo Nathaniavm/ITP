@@ -41,7 +41,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="profileName" layoutX="37.0" layoutY="6.0"
+                              <Label  layoutX="37.0" layoutY="6.0"
                                  text="Payments">
                                  <font>
                                     <Font size="31.0" />
