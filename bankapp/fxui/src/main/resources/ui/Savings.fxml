@@ -32,7 +32,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="profileName" layoutX="136.0" layoutY="6.0" text="Savings">
+                              <Label layoutX="136.0" layoutY="6.0" text="Savings">
                                  <font>
                                     <Font size="31.0" />
                                  </font>

@@ -6,4 +6,5 @@ module bankapp.core {
     requires junit;
 
     exports core;
+    opens core to com.fasterxml.jackson.databind;
 }
