@@ -114,7 +114,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="logOutButton" layoutX="120.0" layoutY="270.0" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;" onMouseClicked = "#handleBackArrow">
+                  <AnchorPane fx:id="logOutButton" layoutX="120.0" layoutY="270.0" onMouseClicked="#handleBackArrow" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="47.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out">
                            <font>
