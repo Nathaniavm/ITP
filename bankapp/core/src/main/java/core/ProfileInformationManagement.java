@@ -11,8 +11,24 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Class that provides methods for mamaging profile information including
+ * writing profiles to file, updating profiles and reading profiles from a file
+ */
 public class ProfileInformationManagement {
 
+        /**
+         * Writes the new information of a profile to a file
+         * 
+         * @param profile  The profile to be written to the file
+         * @param filename The name of the file where the profile information will be
+         *                 stored
+         * @throws StreamWriteException If an error occurs while writing to the file
+         * @throws DatabindException    If there is an issue with data binding during
+         *                              the serialization
+         * @throws IOException          If there are genereal I/= errors during file
+         *                              handling
+         */
         public void writeInformationToFile(Profile profile, String filename)
                         throws StreamWriteException, DatabindException, IOException {
 
@@ -40,6 +56,20 @@ public class ProfileInformationManagement {
 
         }
 
+        /**
+         * Reads and returns a list of profiles from a file
+         * 
+         * @param filename The name of the file containing profiles informations that
+         *                 one wants to read from
+         * @return A list of profiles that is read from the file
+         * @throws StreamReadException If an error occurs while writing to the file
+         * @throws DatabindException   If there is an issue with data binding during the
+         *                             serialization
+         * @throws IOException         If there are genereal I/= errors during file
+         *                             handling
+         * 
+         * 
+         */
         public List<Profile> readFromFile(String filename) throws StreamReadException, DatabindException, IOException {
                 File file = new File(filename);
                 ObjectMapper objectMapper = new ObjectMapper();
