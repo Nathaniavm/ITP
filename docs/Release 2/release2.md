@@ -1,5 +1,5 @@
 # Release 2
-<em>Dette prosjektet krever Java version **16**, maven versjon **4.0.0**, maven compiler.source **16** og javafx version **17.0.2**. 
+<em>Dette prosjektet krever Java version **16**, maven versjon **4.0.0**, maven compiler.source **16** og javafx version **17.0.2**. </em>
 
 ## Gruppesamarbeid og arbeidsvaner 
 Gruppesamarbeidet fortsetter å fungere svært godt. Siden release 1 har gruppen endret litt på hvordan det arbeides, hovedsakelig ved å følge standarden der man jobber to og to sammen. Ved noen tilfeller har vi likevel jobbet hjemmefra, der man heller har valgt å jobbe for seg selv, da dette har vært enklere.Når gruppen jobbet sammen satt vi ingen faste gruppemedlemmer til å alltid jobbe med hverandre, slik at man ikke låste seg til å være avhengig av denne personen "til enhver tid". Dermed ble det bedre flyt i arbeidet.
@@ -65,7 +65,9 @@ Ser man videre på det tekniske har vi fått satt opp både checkstyle og spotsb
 Videre har prosjektet blitt gjort eclipse che klart. 
 
 ### Mappestruktur 
-Mappestrukturen har gått gjennom en stor endring. Ved release 1 hadde ikke prosjektet noen <em>module-info</em>. Dette er nå på plass, men som følge av dette ble mappestrukturen endret ganske mye. Ved release 2 ser mappestrukturen slik ut:
+Mappestrukturen har gått gjennom en stor endring. Ved release 1 hadde ikke prosjektet noen <em>module-info</em>. Dette er nå på plass, men som følge av dette ble mappestrukturen endret ganske mye. 
+
+Ved release 2 ser mappestrukturen slik ut:
 
 
 ## Videre arbeid
