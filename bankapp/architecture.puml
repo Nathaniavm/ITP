@@ -2,10 +2,10 @@
 
 component core {
     package bankapp.core
-    package bankapp.Files
+    package bankapp.json
 }
 
-bankapp.core ..> bankapp.Files
+bankapp.core ..> bankapp.json
 component jackson {
 }
 
@@ -15,8 +15,8 @@ component fxui {
 }
 
 java.ui ..> bankapp.core
-java.ui ..> bankapp.Files
-bankapp.Files ..> jackson
+java.ui ..> bankapp.json
+bankapp.json ..> jackson
 
 component javafx {
     component fxml
