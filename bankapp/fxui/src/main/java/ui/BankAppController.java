@@ -105,6 +105,7 @@ public class BankAppController {
     @FXML
     public void updateAccounts() {
         int count = 0;
+        System.out.println(profile.getAccounts());
         for (Account account : profile.getAccounts()) {
             Label accountName = new Label(account.getName());
             Label accountBalance = new Label(String.valueOf(account.getBalance()));
@@ -113,6 +114,7 @@ public class BankAppController {
                 accountsTable.add(accountBalance, 1, count);
 
             } else {
+                System.out.println(count);
                 accountsTable.addRow(count);
                 accountsTable.add(accountName, 0, count);
                 accountsTable.add(accountBalance, 1, count);
