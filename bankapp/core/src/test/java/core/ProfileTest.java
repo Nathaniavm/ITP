@@ -15,7 +15,7 @@ public class ProfileTest {
     @DisplayName("setting up the different profiles")
     public void setUp() {
         profile1 = new Profile("jayan tayan", "jayantayan@ntnu.no", "98765432", "passord111");
-        profile2 = new Profile("klein ken", "kleinken@ntnu.no", "99997722", "idioteple6");
+        profile2 = new Profile("klein ken", "kleinken@ntnu.no", "99997722", "JegElskerITP123");
         profile3 = new Profile("philipa muhammed", "philipamuhammed@ntnu.no", "92457233", "loneyku9");
     }
 
@@ -48,8 +48,8 @@ public class ProfileTest {
     @Test
     @DisplayName("Testing if the email is set correct")
     public void testSetEmail() {
-        //assertEquals("jayantayan@ntnu.no", profile1.getEmail());
-        //assertEquals("philipamuhammed@ntu.no", profile3.getEmail());
+        // assertEquals("jayantayan@ntnu.no", profile1.getEmail());
+        // assertEquals("philipamuhammed@ntu.no", profile3.getEmail());
         assertFalse(profile2.getEmail().equals(profile3.getEmail()));
         assertTrue(profile1.getEmail().equals("jayantayan@ntnu.no"));
 
@@ -86,7 +86,7 @@ public class ProfileTest {
     @DisplayName("Tesning if the password is set correct")
     public void testSetPassword() {
         assertEquals("passord111", profile1.getPassword());
-        assertEquals("idioteple6", profile2.getPassword());
+        assertEquals("JegElskerITP123", profile2.getPassword());
         assertEquals("loneyku9", profile3.getPassword());
 
         profile2.changePassword("orangutang4");
@@ -115,24 +115,25 @@ public class ProfileTest {
 
     @Test
     @DisplayName("Test adding of bills to profile")
-    public void testAddBill(){
+    public void testAddBill() {
         profile1.createAccount("Spending");
-        //profile1.getAccounts().get(0).add(1000);
+        // profile1.getAccounts().get(0).add(1000);
         profile2.createAccount("NTNU");
-        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
-        profile1.addBill(bill);
+        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0),
+                profile1);
         assertTrue(profile1.getBills().contains(bill));
         assertThrows(IllegalArgumentException.class, () -> profile1.addBill(bill));
     }
 
     @Test
     @DisplayName("Test removal of bills from profile")
-    public void testRemoveBill(){
+    public void testRemoveBill() {
         profile1.createAccount("Spending");
         profile1.getAccounts().get(0).add(1000);
         profile2.createAccount("NTNU");
-        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
-        profile1.addBill(bill);
+        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0),
+                profile1);
+        // profile1.addBill(bill);
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
         bill.pay();
         profile1.removeBill(bill);
