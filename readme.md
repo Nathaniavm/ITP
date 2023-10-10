@@ -5,7 +5,7 @@
 Merk (kjent problem med nyeste Mac programvare): Dersom du har en mac med MacOs Sonoma 14.0 kan det hende at applikasjonen kjører i bakgrunnen. Derfor er det viktig å gå ut av VSCode når man tester, slik at testene fungerer. 
 </em>
 
-
+git
 
 Dette prosjektet er et utviklingsprosjekt tilsvarende det man skal gjennom i IT1901. 
 
