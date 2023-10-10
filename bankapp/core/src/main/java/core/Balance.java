@@ -1,6 +1,8 @@
 package core;
 
-public class Balance {
+import java.io.Serializable;
+
+public class Balance implements Serializable{
     private int balance;
 
     public Balance(int amount) {

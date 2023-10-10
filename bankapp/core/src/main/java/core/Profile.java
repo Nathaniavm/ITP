@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * Class that makes a profile
  */
 
- @JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
-public class Profile implements Serializable{
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
+public class Profile implements Serializable {
     private String name;
     private String email;
     private String tlf;
@@ -184,8 +184,8 @@ public class Profile implements Serializable{
      * @param account - The account to be added
      * @throws IllegalArgumentException - Throw exception if account already exists
      */
-    public void addAccount(Account account){
-        if (accounts.contains(account)){
+    public void addAccount(Account account) {
+        if (accounts.contains(account)) {
             throw new IllegalArgumentException("Account already exists");
         }
         accounts.add(account);
@@ -311,10 +311,5 @@ public class Profile implements Serializable{
      */
     public List<Bill> getBills() {
         return new ArrayList<>(bills);
-    }
-
-    public static void main(String[] args) {
-        Profile profile1 = new Profile("Nathania Muliawan", "duegyfg@.com", "41184086", "mulinuuuu0");
-        System.out.println(isNumeric("f"));
     }
 }

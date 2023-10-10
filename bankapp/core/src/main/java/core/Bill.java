@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
- @JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class Bill implements Serializable {
 
     private int amount;
@@ -17,7 +17,6 @@ public class Bill implements Serializable {
     private Account payerAccount;
     private boolean paid = false;
 
-    
     public Bill(@JsonProperty("amount") int amount,
             @JsonProperty("billName") String billName,
             @JsonProperty("sellerName") String sellerName,
