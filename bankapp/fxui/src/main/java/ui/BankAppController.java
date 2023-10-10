@@ -167,19 +167,11 @@ public class BankAppController {
 
     @FXML
     private void handleBackArrow(MouseEvent event){
-        // Handle the click event here
-        // Load the "Register.fxml" file and navigate to it
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
             Parent root = loader.load();
-
-            // Create a new scene
             Scene scene = new Scene(root);
-
-            // Get the stage from the event source (the Text element)
             Stage stage = (Stage) backArrow.getScene().getWindow();
-
-            // Set the new scene on the stage
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
@@ -189,19 +181,11 @@ public class BankAppController {
 
     @FXML
     private void handleLoginButton(MouseEvent event){
-         // Handle the click event here
-        // Load the "Register.fxml" file and navigate to it
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
             Parent root = loader.load();
-
-            // Create a new scene
             Scene scene = new Scene(root);
-
-            // Get the stage from the event source (the Text element)
             Stage stage = (Stage) loginButton.getScene().getWindow();
-
-            // Set the new scene on the stage
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
