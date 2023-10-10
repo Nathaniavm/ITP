@@ -9,6 +9,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+/**
+ * Class that creates a bankcard and connects the bankcard with a certain
+ * account
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class BankCard implements Serializable {
     private String cardholder;

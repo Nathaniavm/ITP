@@ -9,6 +9,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+/*
+ * Class that makes an account
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class Account implements Serializable {
     private Profile profile;
@@ -28,7 +31,7 @@ public class Account implements Serializable {
     public Account(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
         balance = new Balance(0);
         this.profile = profile;
-        if (!profile.getAccounts().contains(this)) {
+        if (!profile.getAccounts().contains(this)){
             profile.addAccount(this);
         }
         this.name = name;
@@ -51,6 +54,7 @@ public class Account implements Serializable {
      * increase balance by given amount
      * 
      * @param amount
+     * 
      */
     public void add(int amount) {
         balance.increase(amount);
