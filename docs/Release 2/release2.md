@@ -77,7 +77,9 @@ Siden vi begynte har vi jobbet i "egne" branch, der nye implementeringer gjøres
 En annen ting gruppen skal sørge for at er helt på plass er å huske å ha med <em>Co-Author</em>. Det har vært tilfeller der man har glemt å ha det med på slutten av <em>commit</em>-meldinger, selv om man har jobbet sammen med en annen. 
 
 ### Applikasjonen
-Videre i utviklingen skal vi få på plass en oversikt over transaksjoner i applikasjonen. Dette skal gjøres ved å sikre persistens til fil med <em>JSON</em>, der JSON-fila inneholder oversikt over transaksjoner. Dette skal applikasjonen så lese, og så vise fram for brukeren.
+Videre i utviklingen skal vi få på plass en oversikt over transaksjoner i applikasjonen. Dette skal gjøres ved å sikre persistens til fil med <em>JSON</em>, der JSON-fila inneholder oversikt over transaksjoner. Dette skal applikasjonen så lese, og så vise fram for brukeren. 
+
+I tilegg til dette skal vi i løpet av neste release implementere logg inn, logg ut og lage ny bruker funksjon. Vi kobler logikken i core med ui slik at det skal være mulig å lage nye brukere, og logge inn med en bestemt bruker som er allerede er lagret i filen. 
 
 Det skal også lages flere tester som tester både logikk og FXML mens applikasjonen videreutvikles og ny funksjonalitet settes inn. 
 
