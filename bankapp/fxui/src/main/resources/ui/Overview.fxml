@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="overview" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
+<AnchorPane fx:id="overview" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
       <GridPane layoutX="3.0" layoutY="3.0" prefHeight="650.0" prefWidth="419.0">
          <columnConstraints>
@@ -19,47 +22,9 @@
             <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625" prefHeight="75.4991455078125" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <AnchorPane fx:id="header" prefHeight="150.0" prefWidth="419.0" style="-fx-background-color: #EE7811;">
-               <children>
-                  <GridPane layoutX="21.0" layoutY="27.0" prefHeight="100.0" prefWidth="336.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="profileName" layoutX="8.0" layoutY="8.0" text="Ola Nordmann's profile">
-                                 <font>
-                                    <Font size="31.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <Label layoutX="33.0" layoutY="11.0" text="Money left: ">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="moneyLeft" layoutX="156.0" layoutY="11.0" prefHeight="30.0" prefWidth="122.0" text="XXXXXX kr">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="body" prefHeight="408.0" prefWidth="419.0" GridPane.rowIndex="1">
                <children>
-                  <GridPane fx:id="accountsTable" gridLinesVisible="true" layoutX="55.0" layoutY="99.0" prefHeight="55.0" prefWidth="301.0">
+                  <GridPane fx:id="accountsTable" gridLinesVisible="true" layoutX="59.0" layoutY="202.0" prefHeight="55.0" prefWidth="301.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0" prefWidth="150.59786987304688" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="150.40213012695312" />
@@ -68,11 +33,29 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <Label layoutX="40.0" layoutY="48.0" text="Accounts" underline="true">
+                  <Label layoutX="30.0" layoutY="155.0" text="Accounts" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <AnchorPane layoutX="92.0" layoutY="20.0" prefHeight="112.0" prefWidth="236.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                     <children>
+                        <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="97.0" prefWidth="222.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                           <children>
+                              <Text layoutX="67.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="moneyLeft" layoutX="48.0" layoutY="42.0" text="XXXX kr">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
@@ -107,9 +90,9 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeTab" prefHeight="62.0" prefWidth="83.0" style="-fx-background-color: #EE7811;" GridPane.columnIndex="2">
+                        <AnchorPane fx:id="homeTab" prefHeight="62.0" prefWidth="83.0" style="-fx-background-color: #214C69;" GridPane.columnIndex="2">
                            <children>
-                              <Label layoutX="18.0" layoutY="42.0" text="Home">
+                              <Label layoutX="18.0" layoutY="42.0" text="Home" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -136,6 +119,30 @@
                         </AnchorPane>
                      </children>
                   </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">
+               <children>
+                  <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="282.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#handleBackArrow" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@BackArrow.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="profileName" layoutX="21.0" layoutY="112.0" text="Welcome, Name!" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="50.0" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

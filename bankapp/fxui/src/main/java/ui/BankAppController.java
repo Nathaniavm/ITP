@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import core.Account;
 import core.Profile;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
@@ -13,10 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
 
 public class BankAppController {
 
@@ -61,6 +65,22 @@ public class BankAppController {
 
     @FXML
     private Button button;
+
+    @FXML 
+    private Button loginButton;
+
+    @FXML 
+    private TextField emailInput;
+
+    @FXML 
+    private TextField passwordInput;
+
+    @FXML 
+    private Text signUpButton;
+
+    @FXML 
+    private ImageView backArrow;
+
     private static Profile profile;
 
     public void initialize() {
@@ -122,5 +142,73 @@ public class BankAppController {
             count += 1;
         }
     }
+
+    @FXML
+    private void handleSignUpClick(MouseEvent event) {
+        // Handle the click event here
+        // Load the "Register.fxml" file and navigate to it
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the stage from the event source (the Text element)
+            Stage stage = (Stage) signUpButton.getScene().getWindow();
+
+            // Set the new scene on the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleBackArrow(MouseEvent event){
+        // Handle the click event here
+        // Load the "Register.fxml" file and navigate to it
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the stage from the event source (the Text element)
+            Stage stage = (Stage) backArrow.getScene().getWindow();
+
+            // Set the new scene on the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLoginButton(MouseEvent event){
+         // Handle the click event here
+        // Load the "Register.fxml" file and navigate to it
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the stage from the event source (the Text element)
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+
+            // Set the new scene on the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }
