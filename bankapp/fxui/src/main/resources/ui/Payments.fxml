@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="payments" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-   minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/17"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
+<AnchorPane fx:id="payments" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
       <GridPane layoutX="3.0" layoutY="3.0" prefHeight="650.0" prefWidth="419.0">
          <columnConstraints>
@@ -19,95 +18,19 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="421.5008544921875"
-               vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625"
-               prefHeight="75.4991455078125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="421.5008544921875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625" prefHeight="75.4991455078125" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <AnchorPane fx:id="header" prefHeight="150.0" prefWidth="419.0"
-               style="-fx-background-color: #EE7811;">
-               <children>
-                  <GridPane layoutX="-1.0" layoutY="27.0" prefHeight="125.0" prefWidth="419.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="85.0"
-                           vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="40.0"
-                           vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label  layoutX="37.0" layoutY="6.0"
-                                 text="Payments">
-                                 <font>
-                                    <Font size="31.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <GridPane layoutX="1.0" prefHeight="40.0" prefWidth="419.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                       prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                       prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                       vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <Label layoutX="63.0" layoutY="6.0" text="Transfer">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0"
-                                       GridPane.columnIndex="1">
-                                       <children>
-                                          <Label layoutX="86.0" layoutY="6.0" text="Pay">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </GridPane>
-               </children>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
                <children>
-                  <GridPane gridLinesVisible="true" layoutX="-3.0" layoutY="1.0" prefHeight="74.0"
-                     prefWidth="426.0">
+                  <GridPane gridLinesVisible="true" layoutX="-3.0" layoutY="1.0" prefHeight="74.0" prefWidth="426.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.33303833007812"
-                           minWidth="10.0" prefWidth="87.33303833007812" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0"
-                           prefWidth="91.16696166992188" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0"
-                           prefWidth="80.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0"
-                           prefWidth="79.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0"
-                           prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.33303833007812" minWidth="10.0" prefWidth="87.33303833007812" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="91.16696166992188" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0" prefWidth="79.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="80.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -122,18 +45,16 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0"
-                           style="-fx-background-color: #EE7811;" GridPane.columnIndex="1">
+                        <AnchorPane fx:id="paymentsTab" prefHeight="62.0" prefWidth="84.0" style="-fx-background-color: #214C69;" GridPane.columnIndex="1">
                            <children>
-                              <Label layoutX="10.0" layoutY="43.0" text="Payments">
+                              <Label layoutX="10.0" layoutY="43.0" text="Payments" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="83.0"
-                           GridPane.columnIndex="2">
+                        <AnchorPane fx:id="homeTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="83.0" GridPane.columnIndex="2">
                            <children>
                               <Label layoutX="18.0" layoutY="42.0" text="Home">
                                  <font>
@@ -142,8 +63,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="savingsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0"
-                           GridPane.columnIndex="3">
+                        <AnchorPane fx:id="savingsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="3">
                            <children>
                               <Label layoutX="10.0" layoutY="42.0" text="Savings">
                                  <font>
@@ -152,8 +72,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="75.0"
-                           GridPane.columnIndex="4">
+                        <AnchorPane fx:id="profileTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="75.0" GridPane.columnIndex="4">
                            <children>
                               <Label layoutX="14.0" layoutY="43.0" text="Profile">
                                  <font>
@@ -168,20 +87,63 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="64.0" layoutY="41.0" text="Incoming Bill">
+                  <AnchorPane layoutX="37.0" layoutY="155.0" prefHeight="160.0" prefWidth="321.0" style="-fx-background-color: #DDDDDD;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="61.0" />
+                  <AnchorPane fx:id="transferButton" layoutX="31.0" layoutY="30.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                     <children>
+                        <Text fill="WHITE" layoutX="34.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transfer">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="payButton" layoutX="227.0" layoutY="30.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                     <children>
+                        <Text fill="WHITE" layoutX="60.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="37.0" layoutY="104.0" text="Incoming Bills" underline="true">
                      <font>
-                        <Font size="36.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="65.0" layoutY="168.0" prefHeight="186.0" prefWidth="289.0"
-                     style="-fx-background-color: #DDDDDD;" AnchorPane.leftAnchor="65.0"
-                     AnchorPane.rightAnchor="65.0" />
-                  <Button fx:id="newBillButton" layoutX="65.0" layoutY="105.0"
-                     mnemonicParsing="false" prefHeight="8.0" prefWidth="191.0" text="New bill">
+                  <AnchorPane fx:id="newBillButton" layoutX="37.0" layoutY="338.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                     <children>
+                        <Text fill="WHITE" layoutX="33.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Bill" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">
+               <children>
+                  <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="282.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#handleBackArrow" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@BackArrow.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="profileName" layoutX="21.0" layoutY="112.0" text="Welcome, Name!" textFill="WHITE">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Button>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="50.0" text="Payments" textFill="WHITE">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
