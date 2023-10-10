@@ -10,10 +10,10 @@ Før release 1 har selve arbeidet foregått parallellt, hvor hvert medlem har jo
 Ved release 1 implementerte gruppen logikk for grunnklassene Account, Balance, BankCard og Profile. Balance-klassen,  BankCard-klassen og Account-klassen er ferdig implementert, mens de to andre ikke er det. Profile-klassen mangler implementasjon for å håndtere e-poster, samt en "get-metode" for å finne Account-objekter. Dette skal være klart innen neste innlevering. Gruppen har satt en "milestone" om å implementere ferdig grunnklassene innen 28.09.2023
 
 Profile-klassen ser slik ut ved release 1: 
-![](../images/ProfileClass_ReleaseEn(1).png)
-![](../images/ProfileClass_ReleaseEn(2).png)
-![](../images/ProfileClass_ReleaseEn(3).png)
-![](../images/ProfileClass_ReleaseEn(4).png)
+![](../../images/ProfileClass_ReleaseEn(1).png)
+![](../../images/ProfileClass_ReleaseEn(2).png)
+![](../../images/ProfileClass_ReleaseEn(3).png)
+![](../../images/ProfileClass_ReleaseEn(4).png)
 
 
 Vi har også laget en klasse som leser fra og skriver til fil. Det som skrives inn til filen er den personlige informasjonen knyttet til hver konto. Navn, e-post, telefonnummer og passord for brukeren lagres inni filen "PersonalInformation". Videre i prosjektet skal vi implementere logikk for å lagre kontoer og for å lagre fakturaer (sepapert)
@@ -24,9 +24,8 @@ Appen vår kjører med Maven, og vi har lagd tester som også kjører med Maven.
 
 
 Skjermbildene under viser den nåværende mappestrukturen i henholdsvis bankapp-core og bankapp-fxui i prosjektet (altså før release 1):
-![](../images/Mappestruktur_bankcore_releaseEn.png)
-![](../images/Mappestruktur_bankapp-fxui_releaseEn.png)
-
+![](../../images/Release1/Mappestruktur_bankcore_releaseEn.png)
+![](../../images/Release1/Mappestruktur_bankapp-fxui_releaseEn.png)
 
 
 Utviklingen videre skal også få på plass logikk tilsvarende brukerhistoriene. 

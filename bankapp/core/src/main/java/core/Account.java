@@ -3,13 +3,17 @@ package core;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
-public class Account implements Serializable{
+/*
+ * Class that makes an account
+ */
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
+public class Account implements Serializable {
     private Profile profile;
     private String name;
     private Balance balance;
@@ -17,6 +21,7 @@ public class Account implements Serializable{
     private String accNr;
     private BankCard bankCard;
     private boolean showInPreview = false;
+    private static final Random RANDOM = new Random();
 
     /**
      * Makes an account with given name and generates account number
@@ -49,6 +54,7 @@ public class Account implements Serializable{
      * increase balance by given amount
      * 
      * @param amount
+     * 
      */
     public void add(int amount) {
         balance.increase(amount);
@@ -94,8 +100,7 @@ public class Account implements Serializable{
             if (accNr.length() == 7) {
                 accNr += " ";
             }
-            Integer rand = (int) (Math.random() * 10);
-            accNr += rand;
+            accNr += RANDOM.nextInt(10);
         }
     }
 

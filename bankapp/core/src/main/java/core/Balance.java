@@ -1,6 +1,11 @@
 package core;
 
-public class Balance {
+import java.io.Serializable;
+
+/**
+ * Class that represents a balance that can be increased or decreased
+ */
+public class Balance implements Serializable {
     private int balance;
 
     public Balance(int amount) {

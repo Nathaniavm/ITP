@@ -3,17 +3,23 @@ package core;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
-public class BankCard implements Serializable{
+/**
+ * Class that creates a bankcard and connects the bankcard with a certain
+ * account
+ */
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
+public class BankCard implements Serializable {
     private String cardholder;
     private static List<String> cardNrs = new ArrayList<>();
     private String cardNr;
     private Account account;
+    private static final Random RANDOM = new Random();
 
     /**
      * Sets the owner of the card and generates a cardNr
@@ -39,8 +45,7 @@ public class BankCard implements Serializable{
             if (cardNr.length() == 14) {
                 cardNr += " ";
             }
-            Integer rand = (int) (Math.random() * 10);
-            cardNr += rand;
+            cardNr += RANDOM.nextInt(10);
         }
     }
 
