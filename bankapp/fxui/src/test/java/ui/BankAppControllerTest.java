@@ -23,7 +23,7 @@ public class BankAppControllerTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Overview.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Login.fxml"));
         root = fxmlLoader.load();
         this.controller = fxmlLoader.getController();
         stage.setScene(new Scene(root));

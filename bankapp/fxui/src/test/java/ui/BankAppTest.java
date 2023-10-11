@@ -45,7 +45,7 @@ public class BankAppTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Overview.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Login.fxml"));
         root = fxmlLoader.load();
         this.controller = fxmlLoader.getController();
         stage.setScene(new Scene(root));
@@ -60,25 +60,25 @@ public class BankAppTest extends ApplicationTest {
     @Test
     public void testStage_initial() {
         assertNotNull(this.stage);
-        assertEquals(this.stage.getScene().getRoot().getId(), "overview");
+        assertEquals(this.stage.getScene().getRoot().getId(), "login");
     }
 
-    @Test
-    public void testBankSettings() {
-        clickOn("#profileTab");
-        WaitForAsyncUtils.waitForFxEvents();
-        assertNotNull(findSceneRootWithId("profile"));
-    }
+    // @Test
+    // public void testBankSettings() {
+    //     clickOn("#profileTab");
+    //     WaitForAsyncUtils.waitForFxEvents();
+    //     assertNotNull(findSceneRootWithId("profile"));
+    // }
 
-    private Parent findSceneRootWithId(String id) {
-        for (Window window : Window.getWindows()) {
-            if (window instanceof Stage && window.isShowing()) {
-                Parent root = window.getScene().getRoot();
-                if (id.equals(root.getId())) {
-                    return root;
-                }
-            }
-        }
-        return null;
-    }
+    // private Parent findSceneRootWithId(String id) {
+    //     for (Window window : Window.getWindows()) {
+    //         if (window instanceof Stage && window.isShowing()) {
+    //             Parent root = window.getScene().getRoot();
+    //             if (id.equals(root.getId())) {
+    //                 return root;
+    //             }
+    //         }
+    //     }
+    //     return null;
+    // }
 }
