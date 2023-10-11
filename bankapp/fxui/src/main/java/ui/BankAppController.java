@@ -2,6 +2,7 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import core.Account;
 import core.Profile;
@@ -76,7 +77,10 @@ public class BankAppController {
     private TextField emailInput;
 
     @FXML
-    private TextField passwordInput;
+    private PasswordField passwordInput;
+
+    @FXML
+    private Label loginError;
 
     @FXML
     private Text signUpButton;
@@ -106,7 +110,20 @@ public class BankAppController {
     private Label registerError;
 
     private static Profile profile;
-    private static final String path = "./bankapp/core/src/main/java/json/ProfileInformation.json";
+    private static String currentDir = System.getProperty("user.dir");
+    private static final String path = currentDir.substring(0, currentDir.length() - 5)
+            + "/core/src/main/java/json/ProfileInformation.json";
+
+    public void initialize() {
+        if (accountsTable != null && profile == null) {
+            updateAccounts();
+        } else if (accountsTable != null) {
+            updateAccounts();
+        }
+        if (profileName != null) {
+            profileName.setText(profile.getName() + "'s Profile");
+        }
+    }
 
     @FXML
     public void initializeTab(MouseEvent event) throws IOException {
@@ -192,6 +209,13 @@ public class BankAppController {
     private void handleLoginButton(MouseEvent event) {
 
         try {
+            String email = emailInput.getText();
+            String password = passwordInput.getText();
+            List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
+            profile = profiles.stream()
+                    .filter(profile -> profile.getPassword().equals(password) && profile.getEmail().equals(email))
+                    .findFirst().orElseThrow(() -> new Exception("Invalid email or password"));
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -199,7 +223,7 @@ public class BankAppController {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            loginError.setText(e.getMessage());
         }
 
     }
@@ -208,15 +232,19 @@ public class BankAppController {
     private void register() {
         if (password.getText().equals(passwordConfirm.getText())) {
             try {
-                System.out.println("Current Working Directory: " + System.getProperty("user.dir"));
+                List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
+                for (Profile profile : profiles) {
+                    if (profile.getEmail().equals(email.getText())){
+                        throw new IllegalArgumentException("Email already registered");
+                    }
+                    if (profile.getTlf().equals(phoneNr.getText())){
+                        throw new IllegalArgumentException("Phone number already registered");
+                    }
+                }
                 profile = new Profile(fullName.getText(), email.getText(), phoneNr.getText(), password.getText());
                 Account account = new Account("Spendings account", profile);
-                File file = new File(".");
-                for (String fileNames : file.list()) {
-                    System.out.println(fileNames);
-                }
-                //ProfileInformationManagement.writeInformationToFile(profile,path);
-                
+                ProfileInformationManagement.writeInformationToFile(profile, path);
+
                 Stage primaryStage = (Stage) registerButton.getScene().getWindow();
 
                 primaryStage.setTitle("Bankapp - Overview");
