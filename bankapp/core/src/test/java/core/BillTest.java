@@ -9,14 +9,17 @@ import org.junit.jupiter.api.DisplayName;
 public class BillTest {
     private Profile profile1;
     private Profile profile2;
+    private Account acc1;
+    private Account acc2;
 
     @Before
     @DisplayName("setting up the different profiles")
     public void setUp() {
         profile1 = new Profile("jayan tayan", "jayantayan@ntnu.no", "98765432", "passord111");
         profile2 = new Profile("klein ken", "kleinken@ntnu.no", "99997722", "idioteple6");
-        profile1.createAccount("Payer");
-        profile2.createAccount("Seller");
+        acc1 = new Account("Payer", profile1);
+        acc2 = new Account("Seller", profile2);
+        
     }
 
     @Test
@@ -29,8 +32,8 @@ public class BillTest {
         assertEquals(bill.getSellerName(), "Sit");
         assertEquals(bill.getAmount(), 100);
         assertEquals(bill.getProfile(), profile1);
-        assertEquals(bill.getSellerAccount(), profile2.getAccounts().get(0));
-        assertEquals(bill.getPayerAccount(), profile1.getAccounts().get(0));
+        assertEquals(bill.getSellerAccount(), acc2);
+        assertEquals(bill.getPayerAccount(), acc1);
         assertFalse(bill.isPaid());
     }
 

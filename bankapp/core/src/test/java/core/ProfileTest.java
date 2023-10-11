@@ -107,19 +107,18 @@ public class ProfileTest {
     @DisplayName("Testing if an account gets created correctly")
     public void testCreateAccount() {
         assertEquals(0, profile1.getAccounts().size());
-
-        profile1.createAccount("Savings");
+        Account acc = new Account("Savings", profile1);
         assertEquals(1, profile1.getAccounts().size());
-        assertEquals("Savings", profile1.getAccounts().get(0).getName());
+        assertEquals("Savings", acc.getName());
     }
 
     @Test
     @DisplayName("Test adding of bills to profile")
     public void testAddBill() {
-        profile1.createAccount("Spending");
+        Account acc1 = new Account("Spending", profile1);
         // profile1.getAccounts().get(0).add(1000);
-        profile2.createAccount("NTNU");
-        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0),
+        Account acc2 = new Account("NTNU", profile2);
+        Bill bill = new Bill(100, "billName", "NTNU", acc2,acc1,
                 profile1);
         assertTrue(profile1.getBills().contains(bill));
         assertThrows(IllegalArgumentException.class, () -> profile1.addBill(bill));
@@ -128,10 +127,10 @@ public class ProfileTest {
     @Test
     @DisplayName("Test removal of bills from profile")
     public void testRemoveBill() {
-        profile1.createAccount("Spending");
+        Account acc1 = new Account("Spending", profile1);
         profile1.getAccounts().get(0).add(1000);
-        profile2.createAccount("NTNU");
-        Bill bill = new Bill(100, "billName", "NTNU", profile2.getAccounts().get(0), profile1.getAccounts().get(0),
+        Account acc2 = new Account("NTNU", profile2);
+        Bill bill = new Bill(100, "billName", "NTNU",acc2, acc1,
                 profile1);
         // profile1.addBill(bill);
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
