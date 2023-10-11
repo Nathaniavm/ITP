@@ -1,4 +1,4 @@
-package core;
+package json;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,10 @@ import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import core.Account;
+import core.Bill;
+import core.Profile;
 
 /**
  * Class that provides methods for mamaging profile information including
@@ -29,7 +33,7 @@ public class ProfileInformationManagement {
          * @throws IOException          If there are genereal I/= errors during file
          *                              handling
          */
-        public void writeInformationToFile(Profile profile, String filename)
+        public static void writeInformationToFile(Profile profile, String filename)
                         throws StreamWriteException, DatabindException, IOException {
 
                 File file = new File(filename);
@@ -70,7 +74,8 @@ public class ProfileInformationManagement {
          * 
          * 
          */
-        public List<Profile> readFromFile(String filename) throws StreamReadException, DatabindException, IOException {
+        public static List<Profile> readFromFile(String filename)
+                        throws StreamReadException, DatabindException, IOException {
                 File file = new File(filename);
                 ObjectMapper objectMapper = new ObjectMapper();
                 // Profile profile = objectMapper.readValue(file, Profile.class);
@@ -85,8 +90,6 @@ public class ProfileInformationManagement {
         }
 
         public static void main(String[] args) throws IOException {
-
-                ProfileInformationManagement management = new ProfileInformationManagement();
                 Profile profile1 = new Profile("Klein Cornolis", "Klein@gmail.com", "12345678",
                                 "passord13214212");
                 Profile profile2 = new Profile("Philip Vu Lam", "Philip@gmail.com",
@@ -95,9 +98,9 @@ public class ProfileInformationManagement {
                 Profile NTNU = new Profile("NTNU Gløshaugen", "NTNU@ntnu.no", "12345678",
                                 "Administrator59");
 
-                profile1.createAccount("Savings");
-                profile2.createAccount("Hei");
-                profile2.createAccount("Philips savings account");
+                Account acc1 = new Account("Savings", profile1);
+                Account acc2 = new Account("Hei", profile1);
+                Account acc3 = new Account("Philips savings account", profile2);
                 profile1.getAccounts().get(0).createBankCard();
                 profile1.getAccounts().get(0).add(472189);
 
@@ -105,12 +108,12 @@ public class ProfileInformationManagement {
                 Bill bill = new Bill(100, "NTNU", "NTNU Gløshaugen", sellerAccount,
                                 profile1.getAccounts().get(0), profile1);
 
-                management.writeInformationToFile(profile1,
-                                "bankapp/core/src/main/java/Files/ProfileInformation.json");
-                management.writeInformationToFile(profile2,
-                                "bankapp/core/src/main/java/Files/ProfileInformation.json");
+                writeInformationToFile(profile1,
+                                "./bankapp/core/src/main/java/json/ProfileInformation.json");
+                writeInformationToFile(profile2,
+                                "./bankapp/core/src/main/java/json/ProfileInformation.json");
 
-                management.readFromFile("bankapp/core/src/main/java/Files/ProfileInformation.json");
+                readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
 
         }
 

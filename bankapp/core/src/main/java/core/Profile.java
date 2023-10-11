@@ -169,14 +169,6 @@ public class Profile implements Serializable {
         }
     }
 
-    /**
-     * Creates an account
-     * 
-     * @param name The name to the account
-     */
-    public void createAccount(String name) {
-        Account account = new Account(name, this);
-    }
 
     /**
      * Add premade account to profile
