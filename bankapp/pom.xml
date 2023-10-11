@@ -73,7 +73,6 @@
           <configuration>
             <forkCount>1</forkCount>
             <argLine>--add-modules=jdk.incubator.vector</argLine>
-            <skipTests>true</skipTests>
           </configuration>
         </plugin>
         <plugin>
@@ -101,7 +100,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.6</version>
+          <version>0.8.7</version>
           <executions>
             <!--first
             execution : for preparing JaCoCo runtime agent-->

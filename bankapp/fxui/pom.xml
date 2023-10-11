@@ -145,7 +145,6 @@
               <include>**/*ControllerTest.java</include>
               <!-- Include your test classes -->
             </includes>
-            <skipTests>false</skipTests>
             <argLine>
               --add-opens bankapp.fxui/ui=ALL-UNNAMED
               --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED

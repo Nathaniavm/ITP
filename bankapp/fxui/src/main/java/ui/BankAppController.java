@@ -170,7 +170,7 @@ public class BankAppController {
     }
 
     @FXML
-    private void handleSignUpClick(MouseEvent event) {
+    public void handleSignUpClick(MouseEvent event) {
         // Handle the click event here
         // Load the "Register.fxml" file and navigate to it
         try {
@@ -192,7 +192,7 @@ public class BankAppController {
     }
 
     @FXML
-    private void handleBackArrow(MouseEvent event) {
+    public void handleBackArrow(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
             Parent root = loader.load();
@@ -206,7 +206,7 @@ public class BankAppController {
     }
 
     @FXML
-    private void handleLoginButton(MouseEvent event) {
+    public void handleLoginButton(MouseEvent event) {
 
         try {
             String email = emailInput.getText();
@@ -229,7 +229,7 @@ public class BankAppController {
     }
 
     @FXML
-    private void register() {
+    public void register() {
         if (password.getText().equals(passwordConfirm.getText())) {
             try {
                 List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
