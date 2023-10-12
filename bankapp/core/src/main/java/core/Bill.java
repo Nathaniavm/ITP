@@ -55,6 +55,7 @@ public class Bill implements Serializable {
     public void pay() {
         sellerAccount.transferTo(payerAccount, amount);
         paid = true;
+        payer.removeBill(this);
     }
 
     /**
