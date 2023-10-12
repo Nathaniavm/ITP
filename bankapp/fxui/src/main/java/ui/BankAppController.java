@@ -35,7 +35,7 @@ public class BankAppController {
     private Label profileName;
 
     @FXML
-    private Label moneyLeft;
+    private Label totalBalance;
 
     @FXML
     private AnchorPane body;
@@ -109,6 +109,9 @@ public class BankAppController {
     @FXML
     private Label registerError;
 
+    @FXML
+    private Label spendingAccountBalance;
+
     private static Profile profile;
     private static String currentDir = System.getProperty("user.dir");
     private static final String path = currentDir.substring(0, currentDir.length() - 5)
@@ -122,6 +125,12 @@ public class BankAppController {
         }
         if (profileName != null) {
             profileName.setText(profile.getName() + "'s Profile");
+        }
+        if (totalBalance != null) {
+            totalBalance.setText(String.valueOf(profile.getTotalBalance()));
+        }
+        if (spendingAccountBalance != null){
+            spendingAccountBalance.setText(String.valueOf(profile.getAccounts().get(0).getBalance()));
         }
     }
 
@@ -215,7 +224,6 @@ public class BankAppController {
             profile = profiles.stream()
                     .filter(profile -> profile.getPassword().equals(password) && profile.getEmail().equals(email))
                     .findFirst().orElseThrow(() -> new Exception("Invalid email or password"));
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -232,17 +240,13 @@ public class BankAppController {
     public void register() {
         if (password.getText().equals(passwordConfirm.getText())) {
             try {
-                List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
-                for (Profile profile : profiles) {
-                    if (profile.getEmail().equals(email.getText())){
-                        throw new IllegalArgumentException("Email already registered");
-                    }
-                    if (profile.getTlf().equals(phoneNr.getText())){
-                        throw new IllegalArgumentException("Phone number already registered");
-                    }
+                if (alreadyRegistered()){
+                    throw new IllegalArgumentException("Account already registered");
                 }
                 profile = new Profile(fullName.getText(), email.getText(), phoneNr.getText(), password.getText());
                 Account account = new Account("Spendings account", profile);
+                account.add(100);
+                profile.addAccount(account);
                 ProfileInformationManagement.writeInformationToFile(profile, path);
 
                 Stage primaryStage = (Stage) registerButton.getScene().getWindow();
@@ -261,6 +265,21 @@ public class BankAppController {
         } else {
             registerError.setText("Passwords do not match");
         }
+    }
 
+    private boolean alreadyRegistered() {
+        try {
+            List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
+            for (Profile profile : profiles) {
+                if (profile.getEmail().equals(email.getText()) || profile.getTlf().equals(phoneNr.getText())) {
+                    return true;
+                }
+            }
+            return false;
+            
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+           return false;
+        }
     }
 }

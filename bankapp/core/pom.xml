@@ -72,7 +72,6 @@
           <configuration>
             <forkCount>1</forkCount>
             <argLine>
-              @{argLine}
               --add-modules=jdk.incubator.vector
             </argLine>
           </configuration>

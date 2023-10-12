@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -179,6 +180,8 @@ public class Profile implements Serializable {
     public void addAccount(Account account) {
         if (accounts.contains(account)) {
             throw new IllegalArgumentException("Account already exists");
+        }else if (account.getProfile() != this){
+            throw new IllegalArgumentException("Account is connected to different profile");
         }
         accounts.add(account);
     }
@@ -191,6 +194,9 @@ public class Profile implements Serializable {
     public void addBill(Bill bill) {
         if (bills.contains(bill)) {
             throw new IllegalArgumentException("Bill already exists");
+        }
+        if (bill.getProfile() != this){
+            throw new IllegalArgumentException("Bill does not belong to this profile");
         }
         bills.add(bill);
     }
@@ -208,11 +214,15 @@ public class Profile implements Serializable {
         }
     }
 
+    @JsonIgnore
+    public int getTotalBalance(){
+        return accounts.stream().mapToInt(account -> account.getBalance()).sum();
+    }
+
     /**
      * Show preview of total balance after paid bills
      * 
      */
-
     public int previewBalance() {
         int balance = 0;
         int billAmount = 0;

@@ -46,7 +46,6 @@ public class Bill implements Serializable {
         this.sellerAccount = sellerAccount;
         this.payerAccount = payerAccount;
         this.payer = payer;
-        payer.addBill(this);
     }
 
     /**
