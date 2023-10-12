@@ -1,45 +1,98 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>bankapp</artifactId>
+    <groupId>group15.bank</groupId>
+    <version>1.0</version>
+  </parent>
+
   <groupId>group15.bank</groupId>
-  <artifactId>bankapp</artifactId>
+  <artifactId>fxui</artifactId>
   <version>1.0</version>
-  <packaging>pom</packaging>
-  <name>bankapp</name>
 
-
+  <name>fxui</name>
   <!-- FIXME change it to the project's website -->
-
-
   <url>https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2315/gr2315</url>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>16</maven.compiler.source>
     <maven.compiler.target>16</maven.compiler.target>
+    <javafx.version>17.0.2</javafx.version>
+    <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
   </properties>
 
-
   <dependencies>
+
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13</version>
+      <groupId>group15.bank</groupId>
+      <artifactId>core</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <!-- javafx -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>17.0.2</version>
     </dependency>
     <dependency>
-      <groupId>com.googlecode.json-simple</groupId>
-      <artifactId>json-simple</artifactId>
-      <version>1.1</version>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>17.0.2</version>
     </dependency>
+
+
+    <!-- junit testing with jupiter -->
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- test javafx with TextFX -->
+    <dependency>
+      <groupId>org.testfx</groupId>
+      <artifactId>testfx-core</artifactId>
+      <version>4.0.16-alpha</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testfx</groupId>
+      <artifactId>testfx-junit5</artifactId>
+      <version>4.0.16-alpha</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>2.2</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to
+      parent pom) -->
+
       <plugins>
-        <!-- clean lifecycle, see
-        https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
@@ -54,6 +107,17 @@
           </dependencies>
         </plugin>
         <plugin>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-maven-plugin</artifactId>
+          <version>0.0.8</version>
+          <configuration>
+            <mainClass>ui.BankApp</mainClass>
+            <verbose>true</verbose>
+          </configuration>
+        </plugin>
+        <!-- clean lifecycle, see
+        https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
@@ -66,14 +130,25 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+            <compilerArgs>
+              <arg>--add-modules=jdk.incubator.vector</arg>
+            </compilerArgs>
+          </configuration>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M7</version> <!-- pick your own version -->
           <configuration>
-            <forkCount>1</forkCount>
+            <includes>
+              <include>**/*Test.java</include>
+              <include>**/*ControllerTest.java</include>
+              <!-- Include your test classes -->
+            </includes>
             <argLine>
-              @{argLine}
+              --add-opens bankapp.fxui/ui=ALL-UNNAMED
+              --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
             </argLine>
           </configuration>
         </plugin>
@@ -99,28 +174,6 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-         <!-- Configure jacoco code coverage -->
-         <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.8</version>
-          <executions>
-              <execution>
-                  <id>jacoco-prepare-agent</id>
-                  <phase>process-test-classes</phase>
-                  <goals>
-                      <goal>prepare-agent</goal>
-                  </goals>
-              </execution>
-              <execution>
-                  <id>jacoco-report</id>
-                  <phase>verify</phase>
-                  <goals>
-                      <goal>report</goal>
-                  </goals>
-              </execution>
-          </executions>
-      </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -140,9 +193,4 @@
       </plugin>
     </plugins>
   </reporting>
-
-  <modules>
-    <module>core</module>
-    <module>fxui</module>
-  </modules>
 </project>

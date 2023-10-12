@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: bankapp.core.ProfileTest
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.017 s <<< FAILURE! - in bankapp.core.ProfileTest
-testSetTlf(bankapp.core.ProfileTest)  Time elapsed: 0 s  <<< FAILURE!
-java.lang.AssertionError: expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown
-	at bankapp.core.ProfileTest.testSetTlf(ProfileTest.java:82)
-

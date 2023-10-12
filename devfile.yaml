@@ -1,0 +1,40 @@
+schemaVersion: 2.1.0
+metadata:
+  name: bankapp
+components:
+  - name: bankapp
+    container:
+      image: adrianstoica/it1901:latest
+      memoryLimit: 3Gi
+      endpoints:
+        - exposure: public
+          name: 6080-tcp-desktop-ui
+          protocol: http
+          targetPort: 6080
+        - exposure: public
+          name: 3000-tcp
+          protocol: http
+          targetPort: 3000
+        - exposure: public
+          name: 5900-tcp
+          protocol: http
+          targetPort: 5900
+        - exposure: public
+          name: 5901-tcp
+          protocol: http
+          targetPort: 5901
+        - exposure: public
+          name: 8080-tcp
+          protocol: http
+          targetPort: 8080
+        - exposure: public
+          name: 5500-tcp
+          protocol: http
+          targetPort: 5500
+commands:
+  - id: changedir
+    exec:
+      component: bankapp
+      commandLine: cd bankapp
+      label: change directory
+
