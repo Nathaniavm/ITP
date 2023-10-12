@@ -16,12 +16,16 @@ En endring som ble gjort siden release 1 var å ha en <em>Development-branch</em
 ## Implementeringer ved release 2
 ### FXML
 
-Ved release 2 har gruppen lagd alle grunnleggende FXML-filer, og lagt dem inn i prosjektet. Disse filene virke som en form for grunnmur for prosjektet, der funksjonaliteten gruppen ønsker å ha i applikasjonen blir realisert. Alle disse filene har ble koblet opp med kontrolleren, slik at det er mulig å bevege seg mellom alle filene. Ettersom FXML-filene ble lagt inn, har nå flere FXML-tester blitt laget for å teste funksjonaliteten til applikasjonen. 
+Ved release 2 har gruppen lagd alle grunnleggende FXML-filer, og lagt dem inn i prosjektet. Disse filene virker som en form for grunnmur for prosjektet, der funksjonaliteten gruppen ønsker å ha i applikasjonen blir realisert. Alle disse filene har blitt koblet opp med kontrolleren, slik at det er mulig å bevege seg mellom alle filene. Ettersom FXML-filene ble lagt inn, har nå flere FXML-tester blitt laget for å teste funksjonaliteten til applikasjonen.
+
+Ved bruk av filhåndtering som utdypes mer under, har vi også fått på plass registrering av profil, og log-in funkjson. Dette gjør at vi kan lagre lagde profiler, og hente ut informasjon når man logger inn. I tillegg har gruppen begynt å implementere funksjonalitet i applikasjonen som tar bruk av informasjon om brukeren. Det er mulig å se saldo i brukskonto, total saldo, oversikt over kontoer og navnet til proifil vises i hver side. 
 
 For gjøre det enklere å dokumentere FXML-testene, ble en ny JUnit versjon lagt til. Med denne versjonen kan vi legge til <em>@Displayname</em> i test-klassene. 
 
 ### Filhåndtering
-Persistens til fil med <em>JSON</em> er nå på plass. Gruppen valgte å bruke <em>Jackson</em>-biblioteket for å implementere denne logikken. <em>Jackson</em> gjør det mulig å skrive all informasjonen vi ønsker til en JSON-fil. <em>Jackson</em> sørger for å få dette på plass på en strukturert og oversiktlig måte, noe som også var en stor grunn til at gruppen bestemte seg for å benytte seg av akkurat dette biblioteket. 
+Persistens med <em>JSON</em> er nå på plass. Gruppen valgte å bruke <em>Jackson</em>-biblioteket for å implementere denne logikken. <em>Jackson</em> gjør det mulig å skrive all informasjonen vi ønsker til en JSON-fil. <em>Jackson</em> sørger for å få dette på plass på en strukturert og oversiktlig måte, noe som også var en stor grunn til at gruppen bestemte seg for å benytte seg av akkurat dette biblioteket. 
+
+Tester har også blitt skrevet for å teste funksjonaliteten til filbehandler klassen. Dette gjør at vi kan bli tryggere på at fil skriving og lesing ikke går feiler under fremtidig bruk i applikasjonen.
 
 Gruppen bestemte seg for å benytte seg av implisitt lagring. Dette er fordi vi ønsker at applikasjonen skriver informasjonen om en ny bruker med en gang etter at en bruker blir opprettet. Altså, hvis man oppretter en ny bruker vil informasjon tilknyttet denne profilen sendes til fila. Dette har da blitt implementert i prosjektet.
 
@@ -41,7 +45,7 @@ Informasjonen som lagres:
     - Bankkort 
 - Bankkort: 
     - Kortholder 
-    - Kontonummer
+    - Tilknyttet konto
     - Kortnummer
 - Regninger: 
     - Beløp
@@ -49,6 +53,8 @@ Informasjonen som lagres:
     - Navn på den som skal betales til
     - Konto som skal betales til
         - Konto som skal betales til inneholder tilsvarende informasjon som punktene over
+    - Konto som skal betale
+    - Profil som eier konto som skal betale
 
 
 Skjermdump av et eksempel på hvordan <em>JSON</em>-fila kan se ut:
@@ -63,7 +69,7 @@ De ulike klassene har ulike relasjoner med hverandre:
 - Account har en en-til-en-relasjon til BankCard
 
 
-Ved release 1 hadde gruppen implementert filhåndtering slik gruppen hadde blitt lært i emnet objektorientert programmering. Dette var fordi gruppen misforstod hvordan filhåndteringen skulle implementeres, da kravet om å bruke <em>JSON</em> ikke lenger var med i forrige arbeidskrav. Når arbeidskravet for release 2 derimot ble lagt ut, innså gruppen at filhåndteringen ble løst feil. Den gamle filhåndteringsklassen ble derfor tatt helt bort, og en ny klasse ble implementert, der <em>JSON</em> logikken nå er på plass. 
+Ved release 1 hadde gruppen implementert filhåndtering slik gruppen hadde blitt lært i emnet objektorientert programmering. Dette var fordi gruppen misforstod hvordan filhåndteringen skulle implementeres, da kravet om å bruke <em>JSON</em> ikke var med i forrige arbeidskrav. Når arbeidskravet for release 2 derimot ble lagt ut, innså gruppen at filhåndteringen ble løst feil. Den gamle filhåndteringsklassen ble derfor tatt helt bort, og en ny klasse ble implementert, der <em>JSON</em> logikken nå er på plass. 
 
 ### Teknisk
 
@@ -74,6 +80,21 @@ Ser man videre på det tekniske har vi fått satt opp både <em>checkstyle</em> 
 Forbedringene spotsbug foreslo ble rettet på, men den foreslo også å innkapsle de ulike objektene ved å returnere kopier av hvert objekt. Dette er selvfølgelig god innkapsling, men dette førte til problemer med rekursjon, og problemer med <em>JSON</em>-fila. Slik koden vår er implementert nå, vil man havne i loop dersom dette forslaget rettes på. Derfor har vi valgt å ikke returnere kopier av alle objekter som opprettes. 
 
 Videre har prosjektet blitt gjort eclipse che klart (se link øverst). 
+
+### Jacoco stoppet å fungere
+
+Jacoco fungerer ikke lenger ved denne releasen. Vi har brukt jacoco aktivt når vi har lagde testene, og sørget for å ha god testdekningsgrad. Følgende bilder viser dette: 
+![Alt text](Jacoco1.png)
+![Alt text](jacoco2.png)
+![Alt text](jacoco3.png)
+![Alt text](jacoco4.png)
+
+Gruppen har forsøkt å feilsøke og løse problemet. Gruppen har fått hjelp av teknisk læringsasistent og spurt på piazza, men vi kom ikke fram til noen ordentlig løsning. En midlertidig løsning er lagt inn i en egen branch, men vi dytter ikke inn denne versjonen inn til <em>master-branch</em>, da det ikke er en ordentlig løsning. Denne løsningen innebærer at jacoco og <em>mvn test </em> ikke kan kjøres samtidig. De kjører kun hver for seg, ved å manuelt gå inn i pom-filen og endre på <em>forkcount</em>. Skjermdumpen under viser et utklipp av pom-filen inne i denne egne branchen:
+![Alt text](jacoco-branch.png)
+<em>branchname: testingBranch</em>
+
+Versjonen som ligger i <em>master-branch</em> nå innebærer altså at <em>mvn test</em> kjører, men ikke jacoco. Gruppen er bevisste på denne feilen, og vil derfor rette opp i dette ved neste release. Problemet ligger inne på gitlab som en <em>issue</em>
+
 
 ### Mappestruktur 
 Mappestrukturen har gått gjennom en stor endring. Ved release 1 hadde ikke prosjektet noen <em>module-info</em>. Dette er nå på plass, men som følge av dette ble mappestrukturen endret ganske mye. 
@@ -96,7 +117,7 @@ Vi har gått for en arkitektur tilsvarende:
 ### Teknisk
 Siden vi begynte har vi jobbet i "egne" branch, der nye implementeringer gjøres inni disse. Deretter dyttes endringene til <em>development branch</em>, for så å begynne på nye implementeringer i den samme "egne" branchen. Det har likevel vært forskjell i gruppen på hvordan disse branches brukes. Noen lager en ny branch for hver issue eller oppgave, for å gjøre branches mer issue-spesifikke eller oppgavespesifikke. Dette er en praksis som er god og ha, og vi har nå blitt enige om at alle skal følge denne praksisen. Dette er en standard som ofte følges i det virkelige liv, og vi vil derfor også følge denne standarden. 
 
-En annen ting gruppen skal sørge for at er helt på plass er å huske å ha med <em>Co-Author</em>. Det har vært tilfeller der man har glemt å ha det med på slutten av <em>commit</em>-meldinger, selv om man har jobbet sammen med en annen. Videre fant gruppen nylig ut av at man skulle skrive inn gitlab-brukernavnet til den man jobbet med, når <em>co -author</em> i <em>commit</em>-meldinger ble skrevet. Gruppen misforstod dette, og trodde at det holdt med kun navnet til personen. Fra nå av skal vi altså sørge for å skrive inn brukernavnet.
+En annen ting gruppen skal sørge for at er helt på plass er å huske å ha med <em>Co-Author</em>. Det har vært tilfeller der man har glemt å ha det med på slutten av <em>commit</em>-meldinger, selv om man har jobbet sammen med en annen. Videre fant gruppen nylig ut av at man skulle skrive inn gitlab-brukernavnet til den man jobbet med, når <em>co-author</em> i <em>commit</em>-meldinger ble skrevet. Gruppen misforstod dette, og trodde at det holdt med kun navnet til personen. Fra nå av skal vi altså sørge for å skrive inn brukernavnet.
 
 ### Gitlab
 Arbeidet vårt med gitlab har ikke vært helt konsist. Gruppen visste ikke ved release 1 at man skulle ha <em>milestones</em> ved hver release. Dette har blitt fikset på. Vi har valgt å ikke fortsette med andre <em>milestones</em> utover <em>releases</em> (altså <em>milestones</em> som kun heter <em>release[number]</em>). Tidligere kategoriserte vi ulike issues gjennom ulike <em>milestones</em>. Dette innså gruppen at ikke var særlig oversiktlig, og fort kunne se rotete ut på gitlab. Vi begynte derfor å ta i bruk <em>labels</em>, for å enklere kunne kategorisere de ulike <em>issues</em>. <em>Labels</em> er nemlig synligere på <em>issue-board</em>. <em>Issues</em> vil fra nå av kategoriseres med <em>labels</em> for å skille dem, og gå under <em>release-milestones</em>.
@@ -115,3 +136,5 @@ Det skal også lages flere tester som tester både logikk og FXML mens applikasj
 Det skal lages fxml-filer for å overføre penger, og betaling.
 
 I applikasjonen skal det være mulig å bestille nytt kort, sperre kort og slette bruker. Dette skal vi vi få på plass ved neste release. 
+
+Gruppen skal også rette opp i jacoco-problemet (se egen seksjon lenger oppe)
