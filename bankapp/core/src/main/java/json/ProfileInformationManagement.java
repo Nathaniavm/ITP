@@ -1,6 +1,8 @@
 package json;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +32,16 @@ public class ProfileInformationManagement {
          * @throws StreamWriteException If an error occurs while writing to the file
          * @throws DatabindException    If there is an issue with data binding during
          *                              the serialization
-         * @throws IOException          If there are genereal I/= errors during file
+         * @throws IOException          If there are genereal I/O errors during file
          *                              handling
          */
         public static void writeInformationToFile(Profile profile, String filename)
                         throws StreamWriteException, DatabindException, IOException {
 
                 File file = new File(filename);
+                if (!(file.exists())) {
+                        throw new IOException("File does not exists");
+                }
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<Profile> profiles;
 
@@ -81,12 +86,16 @@ public class ProfileInformationManagement {
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
                 });
-                System.out.println(profiles.get(0));
-                System.out.println(profiles.get(0).getName());
-                System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
-                System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
-                System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
                 return profiles;
+        }
+
+        public static void deleteContent(String filename) throws StreamWriteException, DatabindException, IOException {
+                String terminate = "";
+                File file = new File(filename);
+                file.setWritable(true);
+                BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
+                outputStream.write("".getBytes());
+                outputStream.flush();
         }
 
         public static void main(String[] args) throws IOException {
@@ -118,6 +127,14 @@ public class ProfileInformationManagement {
                                 "./bankapp/core/src/main/java/json/ProfileInformation.json");
 
                 readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
+
+                // deleteContent("./bankapp/core/src/main/java/json/ProfileInformation.json");
+
+                // System.out.println(profiles.get(0));
+                // System.out.println(profiles.get(0).getName());
+                // System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
+                // System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
+                // System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
 
         }
 
