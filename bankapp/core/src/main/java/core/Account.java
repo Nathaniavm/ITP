@@ -31,9 +31,6 @@ public class Account implements Serializable {
     public Account(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
         balance = new Balance(0);
         this.profile = profile;
-        if (!profile.getAccounts().contains(this)){
-            profile.addAccount(this);
-        }
         this.name = name;
         setAccNr();
         while (accNrs.contains(accNr)) {

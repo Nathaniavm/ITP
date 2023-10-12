@@ -57,7 +57,7 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Text>
-                              <Label fx:id="moneyLeft" layoutX="48.0" layoutY="42.0" text="XXXX kr">
+                              <Label fx:id="spendingAccountBalance" layoutX="48.0" layoutY="42.0" text="XXXX kr">
                                  <font>
                                     <Font size="36.0" />
                                  </font>

@@ -81,11 +81,11 @@ public class ProfileInformationManagement {
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
                 });
-                // System.out.println(profiles.get(0));
-                // System.out.println(profiles.get(0).getName());
-                // System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
-                // System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
-                // System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
+                System.out.println(profiles.get(0));
+                System.out.println(profiles.get(0).getName());
+                System.out.println(profiles.get(0).getAccounts().get(0).getProfile());
+                System.out.println(profiles.get(0).getAccounts().get(0).getBalance());
+                System.out.println(profiles.get(0).getAccounts().get(0).getAccNr());
                 return profiles;
         }
 
@@ -99,15 +99,19 @@ public class ProfileInformationManagement {
                                 "Administrator59");
 
                 Account acc1 = new Account("Savings", profile1);
+                profile1.addAccount(acc1);
                 Account acc2 = new Account("Hei", profile1);
+                profile1.addAccount(acc2);
                 Account acc3 = new Account("Philips savings account", profile2);
+                profile2.addAccount(acc3);
                 profile1.getAccounts().get(0).createBankCard();
                 profile1.getAccounts().get(0).add(472189);
 
                 Account sellerAccount = new Account("NTNU", NTNU);
+                NTNU.addAccount(sellerAccount);
                 Bill bill = new Bill(100, "NTNU", "NTNU Gløshaugen", sellerAccount,
                                 profile1.getAccounts().get(0), profile1);
-
+                profile1.addBill(bill);
                 writeInformationToFile(profile1,
                                 "./bankapp/core/src/main/java/json/ProfileInformation.json");
                 writeInformationToFile(profile2,

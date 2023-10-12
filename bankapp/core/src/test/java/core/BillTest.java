@@ -19,7 +19,8 @@ public class BillTest {
         profile2 = new Profile("klein ken", "kleinken@ntnu.no", "99997722", "idioteple6");
         acc1 = new Account("Payer", profile1);
         acc2 = new Account("Seller", profile2);
-        
+        profile1.addAccount(acc1);
+        profile2.addAccount(acc2);
     }
 
     @Test
