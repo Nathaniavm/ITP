@@ -139,7 +139,6 @@ public class ProfileTest {
         profile1.addBill(bill);
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
         bill.pay();
-        profile1.removeBill(bill);
         assertFalse(profile1.getBills().contains(bill));
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
     }

@@ -44,6 +44,7 @@ public class BillTest {
         Bill bill = new Bill(100, "Leie", "Sit", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
         Account payer = profile1.getAccounts().get(0);
         Account seller = profile2.getAccounts().get(0);
+        profile1.addBill(bill);
         payer.add(100);
         bill.pay();
         assertTrue(bill.isPaid());
