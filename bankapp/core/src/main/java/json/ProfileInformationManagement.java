@@ -52,7 +52,7 @@ public class ProfileInformationManagement {
                 catch (Exception e) {
                         profiles = new ArrayList<>();
                 }
-                // sjekk om profil allerede er lagret
+
                 if (!profiles.stream().anyMatch(ob -> ob.getEmail().equals(profile.getEmail()))) {
                         profiles.add(profile);
                 } else {
@@ -74,7 +74,7 @@ public class ProfileInformationManagement {
          * @throws StreamReadException If an error occurs while writing to the file
          * @throws DatabindException   If there is an issue with data binding during the
          *                             serialization
-         * @throws IOException         If there are genereal I/= errors during file
+         * @throws IOException         If there are genereal I/O errors during file
          *                             handling
          * 
          * 
@@ -82,6 +82,9 @@ public class ProfileInformationManagement {
         public static List<Profile> readFromFile(String filename)
                         throws StreamReadException, DatabindException, IOException {
                 File file = new File(filename);
+                if (!(file.exists())) {
+                        throw new IOException("File does not exists");
+                }
                 ObjectMapper objectMapper = new ObjectMapper();
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
@@ -89,13 +92,61 @@ public class ProfileInformationManagement {
                 return profiles;
         }
 
+        /**
+         * Deletes a certain profile from the JSON-file
+         * 
+         * @param filename The name of the file where the profile information will be
+         *                 stored
+         * @param profile  The profile to be deleted
+         * @throws StreamReadException If an error occurs while writing to the file
+         * @throws DatabindException   If there is an issue with data binding during the
+         *                             serialization
+         * @throws IOException         If there are genereal I/O errors during file
+         *                             handling
+         */
+
+        public static void deleteProfile(String filename, Profile profile)
+                        throws StreamReadException, DatabindException, IOException {
+                List<Profile> profiles = new ArrayList<>(readFromFile(filename));
+                System.out.println(profiles);
+                String tlf = profile.getTlf();
+                for (Profile profileRemove : profiles) {
+                        if (profileRemove.getTlf().equals(tlf)) {
+                                profiles.remove(profileRemove);
+                                break;
+                        }
+                }
+                System.out.println(profiles);
+
+                File file = new File(filename);
+                if (!(file.exists())) {
+                        throw new IOException("File does not exists");
+                }
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.writeValue(file, profiles);
+
+        }
+
+        /**
+         * Clears the JSON-file
+         * 
+         * @param filename The name of the file where the profile information will be
+         *                 stored
+         * @throws StreamReadException If an error occurs while writing to the file
+         * @throws DatabindException   If there is an issue with data binding during the
+         *                             serialization
+         * @throws IOException         If there are genereal I/O errors during file
+         *                             handling
+         */
+
         public static void deleteContent(String filename) throws StreamWriteException, DatabindException, IOException {
-                String terminate = "";
                 File file = new File(filename);
                 file.setWritable(true);
                 BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
                 outputStream.write("".getBytes());
                 outputStream.flush();
+                outputStream.close();
         }
 
         public static void main(String[] args) throws IOException {
@@ -127,6 +178,9 @@ public class ProfileInformationManagement {
                                 "./bankapp/core/src/main/java/json/ProfileInformation.json");
 
                 readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
+
+                // deleteProfile("./bankapp/core/src/main/java/json/ProfileInformation.json",
+                // profile1);
 
                 // deleteContent("./bankapp/core/src/main/java/json/ProfileInformation.json");
 

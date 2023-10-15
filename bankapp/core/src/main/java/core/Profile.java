@@ -170,7 +170,6 @@ public class Profile implements Serializable {
         }
     }
 
-
     /**
      * Add premade account to profile
      * 
@@ -180,7 +179,7 @@ public class Profile implements Serializable {
     public void addAccount(Account account) {
         if (accounts.contains(account)) {
             throw new IllegalArgumentException("Account already exists");
-        }else if (account.getProfile() != this){
+        } else if (account.getProfile() != this) {
             throw new IllegalArgumentException("Account is connected to different profile");
         }
         accounts.add(account);
@@ -195,7 +194,7 @@ public class Profile implements Serializable {
         if (bills.contains(bill)) {
             throw new IllegalArgumentException("Bill already exists");
         }
-        if (bill.getProfile() != this){
+        if (bill.getProfile() != this) {
             throw new IllegalArgumentException("Bill does not belong to this profile");
         }
         bills.add(bill);
@@ -215,7 +214,7 @@ public class Profile implements Serializable {
     }
 
     @JsonIgnore
-    public int getTotalBalance(){
+    public int getTotalBalance() {
         return accounts.stream().mapToInt(account -> account.getBalance()).sum();
     }
 
