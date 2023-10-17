@@ -1,0 +1,41 @@
+[
+    {
+        "profile": {
+            "@id": "b466f32b-9205-4682-b26e-04e92f8f8ba0",
+            "name": "Alice Zheng",
+            "email": "Alice@gmail.com",
+            "tlf": "15678902",
+            "password": "Passord456",
+            "accounts": [
+                {
+                    "@id": "91ae98d0-bed5-4edd-8841-42a34f36b521",
+                    "name": "Spending",
+                    "profile": "b466f32b-9205-4682-b26e-04e92f8f8ba0",
+                    "balance": 500,
+                    "accNr": "1234 77 94006",
+                    "bankCard": null
+                }
+            ],
+            "bills": []
+        },
+        "transactionTo": {
+            "@id": "9f2f35bf-c833-4fa6-91e8-cbac1b74c415",
+            "name": "Spending",
+            "profile": {
+                "@id": "109e5ba9-15f4-49d7-80a6-58a3d481b3fe",
+                "name": "Philip Lam",
+                "email": "Philip@gmail.com",
+                "tlf": "15678906",
+                "password": "Passord123",
+                "accounts": [
+                    "9f2f35bf-c833-4fa6-91e8-cbac1b74c415"
+                ],
+                "bills": []
+            },
+            "balance": 500,
+            "accNr": "1234 01 75175",
+            "bankCard": null
+        },
+        "amount": 500
+    }
+]

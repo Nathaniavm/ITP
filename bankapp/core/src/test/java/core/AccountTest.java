@@ -2,13 +2,14 @@ package core;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 public class AccountTest {
 
-    
     Profile profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678", "passord123");
 
     @Test
@@ -30,7 +31,7 @@ public class AccountTest {
 
     @Test
     @DisplayName("tests transaction between two accounts, and if there will be an IllegalArgumentException when we try to tranfer more money than the balance in the account")
-    public void testTransfer() {
+    public void testTransfer() throws IOException {
         Account acc1 = new Account("acc1", profile);
         Account acc2 = new Account("acc2", profile);
         acc1.add(100);

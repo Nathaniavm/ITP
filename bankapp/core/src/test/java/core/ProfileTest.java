@@ -2,6 +2,9 @@ package core;
 
 import org.junit.Before;
 import static org.junit.Assert.*;
+
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -128,7 +131,7 @@ public class ProfileTest {
 
     @Test
     @DisplayName("Test removal of bills from profile")
-    public void testRemoveBill() {
+    public void testRemoveBill() throws IOException {
         Account acc1 = new Account("Spending", profile1);
         profile1.addAccount(acc1);
         profile1.getAccounts().get(0).add(1000);

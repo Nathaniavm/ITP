@@ -1,5 +1,6 @@
 package core;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -51,8 +52,10 @@ public class Bill implements Serializable {
     /**
      * Pays the bill by transfering the amount from the seller's account to the
      * payer's account
+     * 
+     * @throws IOException
      */
-    public void pay() {
+    public void pay() throws IOException {
         sellerAccount.transferTo(payerAccount, amount);
         paid = true;
         payer.removeBill(this);
