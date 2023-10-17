@@ -2,6 +2,8 @@ package core;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -25,10 +27,12 @@ public class BillTest {
 
     @Test
     @DisplayName("Testing the constructor")
-    public void testConstructor(){
-        Bill bill = new Bill(100, "Leie", "Sit", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
+    public void testConstructor() {
+        Bill bill = new Bill(100, "Leie", "Sit", profile2.getAccounts().get(0), profile1.getAccounts().get(0),
+                profile1);
         assertNotNull(bill);
-        assertThrows(IllegalArgumentException.class, () -> new Bill(-100, "Leie", "Sit", profile1.getAccounts().get(0), profile2.getAccounts().get(0), profile1));
+        assertThrows(IllegalArgumentException.class, () -> new Bill(-100, "Leie", "Sit", profile1.getAccounts().get(0),
+                profile2.getAccounts().get(0), profile1));
         assertEquals(bill.getBillName(), "Leie");
         assertEquals(bill.getSellerName(), "Sit");
         assertEquals(bill.getAmount(), 100);
@@ -40,15 +44,16 @@ public class BillTest {
 
     @Test
     @DisplayName("Test paying")
-    public void testPay(){
-        Bill bill = new Bill(100, "Leie", "Sit", profile2.getAccounts().get(0), profile1.getAccounts().get(0), profile1);
+    public void testPay() throws IOException {
+        Bill bill = new Bill(100, "Leie", "Sit", profile2.getAccounts().get(0), profile1.getAccounts().get(0),
+                profile1);
         Account payer = profile1.getAccounts().get(0);
         Account seller = profile2.getAccounts().get(0);
         profile1.addBill(bill);
         payer.add(100);
         bill.pay();
         assertTrue(bill.isPaid());
-        assertEquals(payer.getBalance(),0);
-        assertEquals(seller.getBalance(),100);
+        assertEquals(payer.getBalance(), 0);
+        assertEquals(seller.getBalance(), 100);
     }
 }

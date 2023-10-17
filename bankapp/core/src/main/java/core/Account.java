@@ -1,5 +1,6 @@
 package core;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.Random;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import json.Transactions;
 
 /*
  * Class that makes an account
@@ -62,13 +65,20 @@ public class Account implements Serializable {
      * 
      * @param account - the account we are transferring from
      * @param amount  - amount to transfer
+     * @throws IOException
      */
-    public void transferTo(Account account, int amount) {
+    public void transferTo(Account account, int amount) throws IOException {
+        if (amount == 0) {
+            throw new NullPointerException("Can not transfer 0");
+        }
         if (account.getBalance() < amount) {
             throw new IllegalArgumentException("Account does not have enough money");
         }
         account.remove(amount);
         this.add(amount);
+
+        Transactions.writeTransactions(new Transactions(this.getProfile(), account, amount));
+        Transactions.writeTransactions(new Transactions(account.getProfile(), this, amount));
     }
 
     /**
@@ -154,6 +164,19 @@ public class Account implements Serializable {
      */
     public boolean showInPreview() {
         return showInPreview;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Profile profile1 = new Profile("Alice Zheng", "Alice@gmail.com", "15678902", "Passord456");
+        Account account1 = new Account("Spending", profile1);
+        profile1.addAccount(account1);
+
+        Profile profile2 = new Profile("Philip Lam", "Philip@gmail.com", "15678906", "Passord123");
+        Account account2 = new Account("Spending", profile2);
+        profile2.addAccount(account2);
+
+        account1.add(1000);
+        account2.transferTo(account1, 500);
     }
 
 }
