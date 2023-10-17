@@ -19,6 +19,7 @@ public class BankCard implements Serializable {
     private static List<String> cardNrs = new ArrayList<>();
     private String cardNr;
     private Account account;
+    private boolean cardBlocked;
     private static final Random RANDOM = new Random();
 
     /**
@@ -34,6 +35,7 @@ public class BankCard implements Serializable {
         }
         this.account = account;
         cardNrs.add(cardNr);
+        cardBlocked = false;
     }
 
     /**
@@ -71,5 +73,13 @@ public class BankCard implements Serializable {
      */
     public String getCardNr() {
         return cardNr;
+    }
+
+    public void blockCard() {
+        cardBlocked = true;
+    }
+
+    public void unblockCard() {
+        cardBlocked = false;
     }
 }
