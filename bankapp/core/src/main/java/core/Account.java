@@ -26,6 +26,11 @@ public class Account implements Serializable {
     private boolean showInPreview = false;
     private static final Random RANDOM = new Random();
 
+    // private static final String file = currentDir +
+    // "src/main/java/json/TransactionsOverview.json";
+
+    public static final String file = "bankapp/core/src/main/java/json/TransactionsOverview.json";
+
     /**
      * Makes an account with given name and generates account number
      * 
@@ -67,9 +72,12 @@ public class Account implements Serializable {
      * @param amount  - amount to transfer
      * @throws IOException
      */
-    public void transferTo(Account account, int amount) throws IOException {
-        if (amount == 0) {
-            throw new NullPointerException("Can not transfer 0");
+    public void transferTo(Account account, int amount, String file) throws IOException {
+        if (account.equals(this)) {
+            throw new IllegalArgumentException("Cannot transfer to self");
+        }
+        if (account.equals(null)) {
+            throw new NullPointerException("Invalid account");
         }
         if (account.getBalance() < amount) {
             throw new IllegalArgumentException("Account does not have enough money");
@@ -77,8 +85,8 @@ public class Account implements Serializable {
         account.remove(amount);
         this.add(amount);
 
-        Transactions.writeTransactions(new Transactions(this.getProfile(), account, amount));
-        Transactions.writeTransactions(new Transactions(account.getProfile(), this, amount));
+        Transactions.writeTransactions(new Transactions(this.getProfile(), account, amount), file);
+        Transactions.writeTransactions(new Transactions(account.getProfile(), this, amount), file);
     }
 
     /**
@@ -176,7 +184,10 @@ public class Account implements Serializable {
         profile2.addAccount(account2);
 
         account1.add(1000);
-        account2.transferTo(account1, 500);
+        account2.transferTo(account1, 500, file);
+
+        List<Transactions> transactions = Transactions.readTransactions(file);
+        System.out.println(transactions);
     }
 
 }

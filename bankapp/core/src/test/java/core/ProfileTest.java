@@ -13,6 +13,9 @@ public class ProfileTest {
     private Profile profile2;
     private Profile profile3;
 
+    private static final String currentDir = System.getProperty("user.dir");
+    private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
+
     @Before
     @DisplayName("setting up the different profiles")
     public void setUp() {
@@ -30,7 +33,7 @@ public class ProfileTest {
     }
 
     @Test
-    @DisplayName("  Testing if the name is set correctl")
+    @DisplayName("Testing if the name is set correctly")
     public void testSetName() {
         assertEquals("jayan tayan", profile1.getName());
         assertEquals("klein ken", profile2.getName());
@@ -85,7 +88,7 @@ public class ProfileTest {
     }
 
     @Test
-    @DisplayName("Tesning if the password is set correct")
+    @DisplayName("Testing if the password is set correct")
     public void testSetPassword() {
         assertEquals("passord111", profile1.getPassword());
         assertEquals("JegElskerITP123", profile2.getPassword());
@@ -141,7 +144,7 @@ public class ProfileTest {
                 profile1);
         profile1.addBill(bill);
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
-        bill.pay();
+        bill.pay(filename);
         assertFalse(profile1.getBills().contains(bill));
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
     }

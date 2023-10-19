@@ -7,5 +7,7 @@ module bankapp.core {
 
     exports core;
     exports json;
+
     opens core to com.fasterxml.jackson.databind;
+    opens json;
 }

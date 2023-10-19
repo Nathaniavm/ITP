@@ -14,6 +14,9 @@ public class BillTest {
     private Account acc1;
     private Account acc2;
 
+    private static final String currentDir = System.getProperty("user.dir");
+    private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
+
     @Before
     @DisplayName("setting up the different profiles")
     public void setUp() {
@@ -51,7 +54,7 @@ public class BillTest {
         Account seller = profile2.getAccounts().get(0);
         profile1.addBill(bill);
         payer.add(100);
-        bill.pay();
+        bill.pay(filename);
         assertTrue(bill.isPaid());
         assertEquals(payer.getBalance(), 0);
         assertEquals(seller.getBalance(), 100);

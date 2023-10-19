@@ -1,1 +1,79 @@
-[{"@id":"8957f08e-d199-403d-b0d1-6dbb3731c0d5","name":"Philip Vu Lam","email":"Philip@gmail.com","tlf":"87654321","password":"passord123","accounts":[{"@id":"1193d25f-7560-444c-987d-abd4660d87d6","name":"Philips savings account","profile":"8957f08e-d199-403d-b0d1-6dbb3731c0d5","balance":0,"accNr":"1234 41 70251","bankCard":null}],"bills":[]},{"@id":"d6332575-504d-433e-a89d-ce4e893eea19","name":"Klein Cornolis","email":"Klein@gmail.com","tlf":"12345678","password":"passord13214212","accounts":[{"@id":"04977589-2281-4adc-afa0-0bcc9b6784d8","name":"Savings","profile":"d6332575-504d-433e-a89d-ce4e893eea19","balance":472189,"accNr":"1234 34 30609","bankCard":{"@id":"7d1497b4-08f7-4fc1-aae1-d4c2863053a5","cardholder":"Klein Cornolis","account":"04977589-2281-4adc-afa0-0bcc9b6784d8","cardNr":"1248 1632 7698 4973"}},{"@id":"19d4367e-6118-4e4f-9181-ec0b0ef5fbdf","name":"Hei","profile":"d6332575-504d-433e-a89d-ce4e893eea19","balance":0,"accNr":"1234 26 72667","bankCard":null}],"bills":[{"@id":"e18fe555-73bc-4471-a260-0f164f308aaf","amount":100,"billName":"NTNU","sellerName":"NTNU Gløshaugen","sellerAccount":{"@id":"0199ee77-ea5d-4d83-bd35-e874a4613ce5","name":"NTNU","profile":{"@id":"a7f9b277-5335-4f3d-9445-e9d54a92477a","name":"NTNU Gløshaugen","email":"NTNU@ntnu.no","tlf":"12345678","password":"Administrator59","accounts":["0199ee77-ea5d-4d83-bd35-e874a4613ce5"],"bills":[]},"balance":0,"accNr":"1234 33 49021","bankCard":null},"payerAccount":"04977589-2281-4adc-afa0-0bcc9b6784d8","profile":"d6332575-504d-433e-a89d-ce4e893eea19","paid":false}]}]
+[
+    {
+        "@id": "8957f08e-d199-403d-b0d1-6dbb3731c0d5",
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "passord123",
+        "accounts": [
+            {
+                "@id": "1193d25f-7560-444c-987d-abd4660d87d6",
+                "name": "Philips savings account",
+                "profile": "8957f08e-d199-403d-b0d1-6dbb3731c0d5",
+                "balance": 0,
+                "accNr": "1234 41 70251",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "@id": "d6332575-504d-433e-a89d-ce4e893eea19",
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "passord13214212",
+        "accounts": [
+            {
+                "@id": "04977589-2281-4adc-afa0-0bcc9b6784d8",
+                "name": "Savings",
+                "profile": "d6332575-504d-433e-a89d-ce4e893eea19",
+                "balance": 472189,
+                "accNr": "1234 34 30609",
+                "bankCard": {
+                    "@id": "7d1497b4-08f7-4fc1-aae1-d4c2863053a5",
+                    "cardholder": "Klein Cornolis",
+                    "account": "04977589-2281-4adc-afa0-0bcc9b6784d8",
+                    "cardNr": "1248 1632 7698 4973"
+                }
+            },
+            {
+                "@id": "19d4367e-6118-4e4f-9181-ec0b0ef5fbdf",
+                "name": "Hei",
+                "profile": "d6332575-504d-433e-a89d-ce4e893eea19",
+                "balance": 0,
+                "accNr": "1234 26 72667",
+                "bankCard": null
+            }
+        ],
+        "bills": [
+            {
+                "@id": "e18fe555-73bc-4471-a260-0f164f308aaf",
+                "amount": 100,
+                "billName": "NTNU",
+                "sellerName": "NTNU Gløshaugen",
+                "sellerAccount": {
+                    "@id": "0199ee77-ea5d-4d83-bd35-e874a4613ce5",
+                    "name": "NTNU",
+                    "profile": {
+                        "@id": "a7f9b277-5335-4f3d-9445-e9d54a92477a",
+                        "name": "NTNU Gløshaugen",
+                        "email": "NTNU@ntnu.no",
+                        "tlf": "12345678",
+                        "password": "Administrator59",
+                        "accounts": [
+                            "0199ee77-ea5d-4d83-bd35-e874a4613ce5"
+                        ],
+                        "bills": []
+                    },
+                    "balance": 0,
+                    "accNr": "1234 33 49021",
+                    "bankCard": null
+                },
+                "payerAccount": "04977589-2281-4adc-afa0-0bcc9b6784d8",
+                "profile": "d6332575-504d-433e-a89d-ce4e893eea19",
+                "paid": false
+            }
+        ]
+    }
+]
