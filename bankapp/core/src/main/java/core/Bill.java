@@ -21,6 +21,8 @@ public class Bill implements Serializable {
     private Account payerAccount;
     private boolean paid = false;
 
+    public static final String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
+
     /**
      * Makes a new bill object with specified properties
      * 
@@ -55,8 +57,8 @@ public class Bill implements Serializable {
      * 
      * @throws IOException
      */
-    public void pay() throws IOException {
-        sellerAccount.transferTo(payerAccount, amount);
+    public void pay(String filename) throws IOException {
+        sellerAccount.transferTo(payerAccount, amount, filename);
         paid = true;
         payer.removeBill(this);
     }

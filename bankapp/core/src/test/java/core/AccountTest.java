@@ -10,7 +10,9 @@ import org.junit.jupiter.api.DisplayName;
 
 public class AccountTest {
 
-    Profile profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678", "passord123");
+    private Profile profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678", "passord123");
+    private static final String currentDir = System.getProperty("user.dir");
+    private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
 
     @Test
     @DisplayName("Tests if the constructor makes an account with name equal to the input")
@@ -36,10 +38,10 @@ public class AccountTest {
         Account acc2 = new Account("acc2", profile);
         acc1.add(100);
 
-        assertThrows(IllegalArgumentException.class, () -> acc2.transferTo(acc1, 150));
+        assertThrows(IllegalArgumentException.class, () -> acc2.transferTo(acc1, 150, filename));
         assertTrue(acc1.getBalance() == 100);
 
-        acc2.transferTo(acc1, 50);
+        acc2.transferTo(acc1, 50, filename);
         assertTrue(acc1.getBalance() == acc2.getBalance());
     }
 

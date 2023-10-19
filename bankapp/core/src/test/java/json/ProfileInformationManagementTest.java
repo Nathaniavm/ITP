@@ -33,6 +33,8 @@ public class ProfileInformationManagementTest {
     private static final String file = currentDir + "/src/test/java/json/ProfileInformationTest.json";
     private static final String fakeFile = "fakeFile.json";
 
+    private final static String filename2 = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
+
     @Before
     @DisplayName("Setting up the different profiles")
     public void setUp() {
@@ -111,7 +113,7 @@ public class ProfileInformationManagementTest {
     public void testBills() throws StreamWriteException, DatabindException, IOException {
         acc1.add(200); // seller
         acc2.add(150); // payer
-        bill1.pay();
+        bill1.pay(filename2);
 
         ProfileInformationManagement.writeInformationToFile(profile1, file);
         ProfileInformationManagement.writeInformationToFile(profile2, file);
@@ -133,7 +135,7 @@ public class ProfileInformationManagementTest {
         ProfileInformationManagement.writeInformationToFile(profile2, file);
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
 
-        assertThrows(IllegalArgumentException.class, () -> bill1.pay());
+        assertThrows(IllegalArgumentException.class, () -> bill1.pay(filename2));
     }
 
     @Test

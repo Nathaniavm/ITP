@@ -2,18 +2,24 @@ package json;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import core.Account;
 import core.Profile;
 
-public class Transactions {
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
+public class Transactions implements Serializable {
 
-    private final static String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
+    // private final static String filename =
+    // "bankapp/core/src/main/java/json/TransactionsOverview.json";
 
     private Profile profile;
     private Account transactionTo;
@@ -26,7 +32,8 @@ public class Transactions {
      * @param transactionTo The account being paid
      * @param amount        The amount being paid
      */
-    public Transactions(Profile profile, Account transactionTo, int amount) {
+    public Transactions(@JsonProperty("profile") Profile profile, @JsonProperty("transactionTo") Account transactionTo,
+            @JsonProperty("amount") int amount) {
         this.profile = profile;
         this.transactionTo = transactionTo;
         this.amount = amount;
@@ -39,7 +46,7 @@ public class Transactions {
      * @throws IOException If there are genereal I/O errors during file
      *                     handling
      */
-    public static void writeTransactions(Transactions transaction) throws IOException {
+    public static void writeTransactions(Transactions transaction, String filename) throws IOException {
         File file = new File(filename);
         if (!(file.exists())) {
             throw new IOException("File does not exists");
@@ -49,7 +56,7 @@ public class Transactions {
         List<Transactions> transactions;
 
         try {
-            transactions = readTransactions();
+            transactions = readTransactions(filename);
 
         }
 
@@ -76,7 +83,7 @@ public class Transactions {
      * @throws IOException If there are genereal I/O errors during file
      *                     handling
      */
-    public static List<Transactions> readTransactions() throws IOException {
+    public static List<Transactions> readTransactions(String filename) throws IOException {
         File file = new File(filename);
         if (!(file.exists())) {
             throw new IOException("File does not exists");
@@ -110,7 +117,7 @@ public class Transactions {
      * 
      * @return The paying profile
      */
-    public Profile getprofile() {
+    public Profile getProfile() {
         return profile;
     }
 
