@@ -105,12 +105,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <Label fx:id="newAccountButton" layoutX="34.0" layoutY="335.0" text="Create new saving account" textFill="#214c69" underline="true">
+                  <Label fx:id="newSavingAccountButton" layoutX="34.0" layoutY="335.0" onMouseClicked="#goToAccount" text="Create new saving account" textFill="#214c69" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="transferButton" layoutX="34.0" layoutY="372.0" text="Transfer money to savings account" textFill="#214c69" underline="true">
+                  <Label fx:id="transferSavingsButton" layoutX="34.0" layoutY="372.0" onMouseClicked="#goToTransfer2" text="Transfer money to savings account" textFill="#214c69" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -33,7 +33,7 @@
                   <Image url="@Logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#handleBackArrow" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#switchTabToLoginPage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@BackArrow.png" />
                </image>
