@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import core.Accounts.SpendingsAccount;
+
 /*
  * Class that creates a new bill that can be paid by a Profile. It contains informations about the bill amount, bill name, seller name, seller's account, payer's account, adn whether the bill has been paid or not
  */
@@ -16,9 +18,9 @@ public class Bill implements Serializable {
     private int amount;
     private String billName;
     private String sellerName;
-    private Account sellerAccount;
+    private SpendingsAccount sellerAccount;
     private Profile payer;
-    private Account payerAccount;
+    private SpendingsAccount payerAccount;
     private boolean paid = false;
 
     public static final String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
@@ -37,8 +39,8 @@ public class Bill implements Serializable {
     public Bill(@JsonProperty("amount") int amount,
             @JsonProperty("billName") String billName,
             @JsonProperty("sellerName") String sellerName,
-            @JsonProperty("sellerAccount") Account sellerAccount,
-            @JsonProperty("payerAccount") Account payerAccount,
+            @JsonProperty("sellerAccount") SpendingsAccount sellerAccount,
+            @JsonProperty("payerAccount") SpendingsAccount payerAccount,
             @JsonProperty("profile") Profile payer) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount can not be less than 1");
@@ -104,7 +106,7 @@ public class Bill implements Serializable {
      * 
      * @return The seller's account
      */
-    public Account getSellerAccount() {
+    public SpendingsAccount getSellerAccount() {
         return sellerAccount;
     }
 
@@ -113,7 +115,7 @@ public class Bill implements Serializable {
      * 
      * @return The payer's account
      */
-    public Account getPayerAccount() {
+    public SpendingsAccount getPayerAccount() {
         return payerAccount;
     }
 

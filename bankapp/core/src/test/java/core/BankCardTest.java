@@ -11,13 +11,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import core.Accounts.SpendingsAccount;
+
 public class BankCardTest {
     private BankCard bankCard1;
     private BankCard bankCard2;
     private BankCard bankCard3;
-    private Account account1;
-    private Account account2;
-    private Account account3;
+    private SpendingsAccount account1;
+    private SpendingsAccount account2;
+    private SpendingsAccount account3;
     private Profile profile1;
     private Profile profile2;
     private Profile profile3;
@@ -28,9 +30,9 @@ public class BankCardTest {
         profile1 = new Profile("Jane Smith", "jane@gmail.com", "12345678", "passord12");
         profile2 = new Profile("John Doe", "jane@gmail.com", "12345678", "passord12");
         profile3 = new Profile("Jayan Tayana", "jane@gmail.com", "12345678", "passord12");
-        account1 = new Account("test account", profile1);
-        account2 = new Account("test account", profile2); 
-        account3 = new Account("test account", profile3);
+        account1 = new SpendingsAccount("test account", profile1);
+        account2 = new SpendingsAccount("test account", profile2); 
+        account3 = new SpendingsAccount("test account", profile3);
         account1.createBankCard();
         account2.createBankCard();
         account3.createBankCard();

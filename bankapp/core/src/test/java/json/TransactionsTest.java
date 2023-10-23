@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import core.Account;
 import core.Profile;
+import core.Accounts.SpendingsAccount;
 
 public class TransactionsTest {
 
@@ -24,8 +24,8 @@ public class TransactionsTest {
 
     private Profile profile1;
     private Profile profile2;
-    private Account account1;
-    private Account account2;
+    private SpendingsAccount account1;
+    private SpendingsAccount account2;
     private Transactions transaction1;
 
     @Before
@@ -33,9 +33,9 @@ public class TransactionsTest {
     public void setup() {
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
         profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
-        account1 = new Account("Useraccount", profile1);
+        account1 = new SpendingsAccount("Useraccount", profile1);
         profile1.addAccount(account1);
-        account2 = new Account("Useraccount", profile2);
+        account2 = new SpendingsAccount("Useraccount", profile2);
         profile2.addAccount(account2);
         account1.add(500);
         account2.add(1000);
