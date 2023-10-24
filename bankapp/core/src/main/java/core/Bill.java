@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
 
 /*
@@ -18,9 +19,9 @@ public class Bill implements Serializable {
     private int amount;
     private String billName;
     private String sellerName;
-    private SpendingsAccount sellerAccount;
+    private AbstractAccount sellerAccount;
     private Profile payer;
-    private SpendingsAccount payerAccount;
+    private AbstractAccount payerAccount;
     private boolean paid = false;
 
     public static final String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
@@ -39,9 +40,9 @@ public class Bill implements Serializable {
     public Bill(@JsonProperty("amount") int amount,
             @JsonProperty("billName") String billName,
             @JsonProperty("sellerName") String sellerName,
-            @JsonProperty("sellerAccount") SpendingsAccount sellerAccount,
-            @JsonProperty("payerAccount") SpendingsAccount payerAccount,
-            @JsonProperty("profile") Profile payer) {
+            @JsonProperty("sellerAccount") AbstractAccount sellerAccount,
+            @JsonProperty("payerAccount") AbstractAccount payerAccount,
+            @JsonProperty("profile") Profile payer){
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount can not be less than 1");
         }
@@ -106,7 +107,7 @@ public class Bill implements Serializable {
      * 
      * @return The seller's account
      */
-    public SpendingsAccount getSellerAccount() {
+    public AbstractAccount getSellerAccount() {
         return sellerAccount;
     }
 
@@ -115,7 +116,7 @@ public class Bill implements Serializable {
      * 
      * @return The payer's account
      */
-    public SpendingsAccount getPayerAccount() {
+    public AbstractAccount getPayerAccount() {
         return payerAccount;
     }
 

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
 
 /**
@@ -22,7 +23,7 @@ public class Profile implements Serializable {
     private String email;
     private String tlf;
     private String password;
-    private List<SpendingsAccount> accounts = new ArrayList<>();
+    private List<AbstractAccount> accounts = new ArrayList<>();
     private List<Bill> bills = new ArrayList<>();
     private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList("ad", "ae", "af", "ag", "ai", "al", "am", "ao",
             "aq", "ar", "as", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl",
@@ -178,7 +179,7 @@ public class Profile implements Serializable {
      * @param account - The account to be added
      * @throws IllegalArgumentException - Throw exception if account already exists
      */
-    public void addAccount(SpendingsAccount account) {
+    public void addAccount(AbstractAccount account) {
         if (accounts.contains(account)) {
             throw new IllegalArgumentException("Account already exists");
         } else if (account.getProfile() != this) {
@@ -230,7 +231,7 @@ public class Profile implements Serializable {
         for (Bill bill : bills) {
             billAmount += bill.getAmount();
         }
-        for (SpendingsAccount account : accounts) {
+        for (AbstractAccount account : accounts) {
             if (account.showInPreview()) {
                 balance += account.getBalance();
             }
@@ -303,7 +304,7 @@ public class Profile implements Serializable {
      * 
      * @return list of all accounts
      */
-    public List<SpendingsAccount> getAccounts() {
+    public List<AbstractAccount> getAccounts() {
         return new ArrayList<>(accounts);
     }
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import core.Bill;
 import core.Profile;
+import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
 
 import javafx.fxml.FXML;
@@ -294,7 +295,7 @@ public class BankAppController {
     @FXML
     public void updateAccounts() {
         int count = 0;
-        for (SpendingsAccount account : profile.getAccounts()) {
+        for (AbstractAccount account : profile.getAccounts()) {
             Label accountName = new Label(account.getName());
             Label accountBalance = new Label(String.valueOf(account.getBalance()));
             if (count == 0) {
@@ -480,17 +481,21 @@ public class BankAppController {
         }
 
         for (Profile profile : ProfileInformationManagement.readFromFile(file)) {
-            for (SpendingsAccount account : profile.getAccounts()) {
-                if (account.getAccNr().equals(sAccount)) {
-                    sAcc = account;
+            for (AbstractAccount account : profile.getAccounts()) {
+                if (account instanceof SpendingsAccount) {
+                    if (account.getAccNr().equals(sAccount)) {
+                        sAcc = (SpendingsAccount) account;
+                    }
                 }
             }
         }
 
         for (Profile profile : ProfileInformationManagement.readFromFile(file)) {
-            for (SpendingsAccount account : profile.getAccounts()) {
-                if (account.getAccNr().equals(pAccount)) {
-                    pAcc = account;
+            for (AbstractAccount account : profile.getAccounts()) {
+                if (account instanceof SpendingsAccount) {
+                    if (account.getAccNr().equals(pAccount)) {
+                        pAcc = (SpendingsAccount) account;
+                    }
                 }
             }
         }
@@ -527,22 +532,26 @@ public class BankAppController {
         String acc = payFrom.getText();
         String accPersonToPay = payTo.getText();
         int amount = Integer.parseInt(payAmount.getText());
-        SpendingsAccount acc1 = null;
-        SpendingsAccount acc2 = null;
+        AbstractAccount acc1 = null;
+        AbstractAccount acc2 = null;
 
-        for (SpendingsAccount account : profile.getAccounts()) {
-            if (account.getAccNr().equals(accPersonToPay)) {
-                feedbackInPay.setText("Cannot pay to yourself");
+        for (AbstractAccount account : profile.getAccounts()) {
+            if (account instanceof SpendingsAccount) {
+                if (account.getAccNr().equals(accPersonToPay)) {
+                    feedbackInPay.setText("Cannot pay to yourself");
+                }
             }
         }
 
-        acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(acc)).findFirst()
+        acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(acc))
+                .filter(account -> account instanceof SpendingsAccount).findFirst()
                 .orElse(null);
 
         acc2 = ProfileInformationManagement.readFromFile(file)
                 .stream()
                 .flatMap(profile -> profile.getAccounts().stream())
                 .filter(account -> account.getAccNr().equals(accPersonToPay))
+                .filter(account -> account instanceof SpendingsAccount)
                 .findFirst().orElse(null);
 
         try {
@@ -571,15 +580,17 @@ public class BankAppController {
         String toAccount = transferToAccount.getText();
         int amount = Integer.parseInt(payAmount.getText());
 
-        SpendingsAccount acc1 = null;
-        SpendingsAccount acc2 = null;
+        AbstractAccount acc1 = null;
+        AbstractAccount acc2 = null;
 
         if (amount < 1)
 
             try {
                 acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccount))
+                        .filter(account -> account instanceof SpendingsAccount)
                         .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
                 acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccount))
+                        .filter(account -> account instanceof SpendingsAccount)
                         .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
                 acc2.transferTo(acc1, amount, transactionPath);
 

@@ -30,14 +30,7 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
      * @param name takes inn the name of the account
      */
     public SpendingsAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
-        balance = new Balance(0);
-        this.profile = profile;
-        this.name = name;
-        setAccNr();
-        while (accNrs.contains(accNr)) {
-            setAccNr();
-        }
-        accNrs.add(accNr);
+        super(name, profile);
     }
 
     /**
@@ -70,7 +63,7 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
      * Creates bankcard for the account
      */
     public void createBankCard() {
-        bankCard = new BankCard(profile.getName(), this);
+        bankCard = new BankCard(this.getProfile().getName(), this);
     }
 
     /**

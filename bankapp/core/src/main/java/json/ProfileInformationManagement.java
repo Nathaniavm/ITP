@@ -174,10 +174,11 @@ public class ProfileInformationManagement {
                 profile1.addBill(bill);
                 writeInformationToFile(profile1,
                                 "./bankapp/core/src/main/java/json/ProfileInformation.json");
-                writeInformationToFile(profile2,
-                                "./bankapp/core/src/main/java/json/ProfileInformation.json");
+                // writeInformationToFile(profile2,
+                // "./bankapp/core/src/main/java/json/ProfileInformation.json");
 
-                readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
+                List<Profile> profiles = readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
+                System.out.println(profiles.get(0));
 
                 // deleteProfile("./bankapp/core/src/main/java/json/ProfileInformation.json",
                 // profile1);

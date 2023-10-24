@@ -8,13 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
 
 public class BillTest {
     private Profile profile1;
     private Profile profile2;
-    private SpendingsAccount acc1;
-    private SpendingsAccount acc2;
+    private AbstractAccount acc1;
+    private AbstractAccount acc2;
 
     private static final String currentDir = System.getProperty("user.dir");
     private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";

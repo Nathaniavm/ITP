@@ -20,15 +20,26 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
         @JsonSubTypes.Type(value = BSUAccount.class, name = "BSUAccount"),
         @JsonSubTypes.Type(value = SavingsAccount.class, name = "SavingsAccount"),
         @JsonSubTypes.Type(value = SpendingsAccount.class, name = "SpendingsAccount")
-})
+})  
 public abstract class AbstractAccount implements Serializable {
-    protected Profile profile;
-    protected String name;
-    protected Balance balance;
-    protected static List<String> accNrs = new ArrayList<>();
-    protected String accNr;
-    protected boolean showInPreview = false;
-    protected static final Random RANDOM = new Random();
+    private Profile profile;
+    private String name;
+    private Balance balance;
+    private static List<String> accNrs = new ArrayList<>();
+    private String accNr;
+    private boolean showInPreview = false;
+    private static final Random RANDOM = new Random();
+
+    public AbstractAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
+        balance = new Balance(0);
+        this.profile = profile;
+        this.name = name;
+        setAccNr();
+        while (accNrs.contains(accNr)) {
+            setAccNr();
+        }
+        accNrs.add(accNr);
+    }
 
     /**
      * 

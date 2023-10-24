@@ -16,14 +16,7 @@ public class BSUAccount extends AbstractAccount implements Serializable {
     public static final String file = "bankapp/core/src/main/java/json/TransactionsOverview.json";
 
     public BSUAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
-        balance = new Balance(0);
-        this.profile = profile;
-        this.name = name;
-        setAccNr();
-        while (accNrs.contains(accNr)) {
-            setAccNr();
-        }
-        accNrs.add(accNr);
+        super(name, profile);
     }
 
     @Override
