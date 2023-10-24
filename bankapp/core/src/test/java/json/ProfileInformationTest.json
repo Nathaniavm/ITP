@@ -1,1 +1,69 @@
-[{"@id":"d51870c0-59aa-4d92-843d-50765cee7127","name":"Ola Nordmann","email":"Ola@ntnu.no","tlf":"40123456","password":"Passord1","accounts":[{"@id":"fa70dbfd-71f4-4e69-99ad-2e1b446b9961","name":"James","profile":"d51870c0-59aa-4d92-843d-50765cee7127","balance":0,"accNr":"1234 72 23340","bankCard":null}],"bills":[{"@id":"f338b316-c57c-4b12-87c0-6ef88977ca6b","amount":150,"billName":"Groceries","sellerName":"Ola Nordmann","sellerAccount":"fa70dbfd-71f4-4e69-99ad-2e1b446b9961","payerAccount":{"@id":"ad9ba72b-3ce6-410d-94dd-81b1d392ca68","name":"Heui","profile":{"@id":"b2248d1c-2d81-4b18-87df-cbc1f392baee","name":"Kari Nordmann","email":"Kari@ntnu.no","tlf":"40654321","password":"Passord2","accounts":["ad9ba72b-3ce6-410d-94dd-81b1d392ca68"],"bills":[]},"balance":0,"accNr":"1234 80 83609","bankCard":null},"profile":"d51870c0-59aa-4d92-843d-50765cee7127","paid":false}]},{"@id":"47bcbb35-663f-4120-aa01-099b4cca0265","name":"Kari Nordmann","email":"Kari@ntnu.no","tlf":"40654321","password":"Passord2","accounts":[{"@id":"aa519beb-957f-4c36-a58d-6bc87052f583","name":"Heui","profile":"47bcbb35-663f-4120-aa01-099b4cca0265","balance":0,"accNr":"1234 80 83816","bankCard":null}],"bills":[]}]
+[
+    {
+        "@id": "355ce400-1c40-410c-bb59-ebd13e12c951",
+        "name": "Kari Nordmann",
+        "email": "Kari@ntnu.no",
+        "tlf": "40654321",
+        "password": "Passord2",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "ccc27879-7ac9-466e-87f4-40313cb95643",
+                "name": "Heui",
+                "profile": "355ce400-1c40-410c-bb59-ebd13e12c951",
+                "balance": 0,
+                "accNr": "1234 96 46976",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "@id": "5099432b-a54b-4da7-81b5-3fa00aac7634",
+        "name": "Ola Nordmann",
+        "email": "Ola@ntnu.no",
+        "tlf": "40123456",
+        "password": "Passord1",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "47f38efd-5373-4346-9d38-e9ac17440660",
+                "name": "James",
+                "profile": "5099432b-a54b-4da7-81b5-3fa00aac7634",
+                "balance": 0,
+                "accNr": "1234 28 02825",
+                "bankCard": null
+            }
+        ],
+        "bills": [
+            {
+                "@id": "3b31d313-5b26-442c-9408-154d6d5d3d72",
+                "amount": 150,
+                "billName": "Groceries",
+                "sellerName": "Ola Nordmann",
+                "sellerAccount": "47f38efd-5373-4346-9d38-e9ac17440660",
+                "payerAccount": {
+                    "accountType": "SpendingsAccount",
+                    "@id": "a15d7c98-ea2a-47b6-a63a-05f06d910d5f",
+                    "name": "Heui",
+                    "profile": {
+                        "@id": "80396d44-0017-4020-8d40-837d5d9e58da",
+                        "name": "Kari Nordmann",
+                        "email": "Kari@ntnu.no",
+                        "tlf": "40654321",
+                        "password": "Passord2",
+                        "accounts": [
+                            "a15d7c98-ea2a-47b6-a63a-05f06d910d5f"
+                        ],
+                        "bills": []
+                    },
+                    "balance": 0,
+                    "accNr": "1234 27 96949",
+                    "bankCard": null
+                },
+                "profile": "5099432b-a54b-4da7-81b5-3fa00aac7634",
+                "paid": false
+            }
+        ]
+    }
+]

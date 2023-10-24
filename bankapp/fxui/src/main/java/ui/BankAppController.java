@@ -3,9 +3,10 @@ package ui;
 import java.io.IOException;
 import java.util.List;
 
-import core.Account;
 import core.Bill;
 import core.Profile;
+import core.Accounts.AbstractAccount;
+import core.Accounts.SpendingsAccount;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -202,10 +203,10 @@ public class BankAppController {
     @FXML
     private ChoiceBox<String> selectAccountType;
 
-    @FXML 
+    @FXML
     private TextField giveAccountName;
 
-    @FXML 
+    @FXML
     private AnchorPane createAccountButton;
 
     private static Profile profile;
@@ -233,13 +234,15 @@ public class BankAppController {
             totalBalance.setText(String.valueOf(profile.getTotalBalance()));
         }
         if (spendingAccountBalance != null) {
-            spendingAccountBalance.setText(String.valueOf(profile.getAccounts().get(0).getBalance()));
-        }
-        if (selectAccountType != null) {
-            System.out.println(121);
-            selectAccountType.getItems().addAll("Checking account", "Savings account",
-                    "BSU");
-            selectAccountType.setValue("Checking account");
+            if (spendingAccountBalance != null) {
+                spendingAccountBalance.setText(String.valueOf(profile.getAccounts().get(0).getBalance()));
+            }
+            if (selectAccountType != null) {
+                System.out.println(121);
+                selectAccountType.getItems().addAll("Checking account", "Savings account",
+                        "BSU");
+                selectAccountType.setValue("Checking account");
+            }
         }
     }
 
@@ -284,13 +287,15 @@ public class BankAppController {
     /**
      * Updates the account-table with the values of the accounts belonging to the
      * profile
+     * Updates the account-table with the values of the accounts belonging to the
+     * profile
      * 
      */
 
     @FXML
     public void updateAccounts() {
         int count = 0;
-        for (Account account : profile.getAccounts()) {
+        for (AbstractAccount account : profile.getAccounts()) {
             Label accountName = new Label(account.getName());
             Label accountBalance = new Label(String.valueOf(account.getBalance()));
             if (count == 0) {
@@ -350,11 +355,11 @@ public class BankAppController {
     }
 
     /**
-     * handles mouse click of a label 
+     * handles mouse click of a label
      * 
      * @param event
-     * @param source name of the fxml file 
-     * @param label fx-id of the label 
+     * @param source name of the fxml file
+     * @param label  fx-id of the label
      */
     public void labelGoTo(MouseEvent event, String source, Label label) {
         try {
@@ -372,6 +377,7 @@ public class BankAppController {
 
     /**
      * handles mouse click of a label that goes to a fxml that handles transactions
+     * 
      * @param event
      */
     @FXML
@@ -380,7 +386,9 @@ public class BankAppController {
     }
 
     /**
-     * handles mouse click of a label that goes to a fxml that handles creation of new account 
+     * handles mouse click of a label that goes to a fxml that handles creation of
+     * new account
+     * 
      * @param event
      */
     @FXML
@@ -390,6 +398,7 @@ public class BankAppController {
 
     /**
      * handles mouse click that goes to a fxml that handles creation of new account
+     * 
      * @param event
      */
     @FXML
@@ -399,6 +408,7 @@ public class BankAppController {
 
     /**
      * handles Pay button in Payments
+     * 
      * @param event
      */
     @FXML
@@ -408,6 +418,7 @@ public class BankAppController {
 
     /**
      * handles Transfer button in Payments
+     * 
      * @param event
      */
     @FXML
@@ -417,6 +428,7 @@ public class BankAppController {
 
     /**
      * handles New Bill button in Payment
+     * 
      * @param event
      */
     @FXML
@@ -426,6 +438,7 @@ public class BankAppController {
 
     /**
      * Handles mouseclick on new bill, creates a new bill and saves the information
+     * 
      * @param event
      * @throws StreamReadException
      * @throws DatabindException
@@ -437,8 +450,8 @@ public class BankAppController {
         String bAmount = billAmount.getText();
         String sAccount = payerAccount.getText();
         String pAccount = payerAccount.getText();
-        Account sAcc = null;
-        Account pAcc = null;
+        SpendingsAccount sAcc = null;
+        SpendingsAccount pAcc = null;
         Profile payer = profile;
         Profile seller = null;
 
@@ -468,17 +481,21 @@ public class BankAppController {
         }
 
         for (Profile profile : ProfileInformationManagement.readFromFile(file)) {
-            for (Account account : profile.getAccounts()) {
-                if (account.getAccNr().equals(sAccount)) {
-                    sAcc = account;
+            for (AbstractAccount account : profile.getAccounts()) {
+                if (account instanceof SpendingsAccount) {
+                    if (account.getAccNr().equals(sAccount)) {
+                        sAcc = (SpendingsAccount) account;
+                    }
                 }
             }
         }
 
         for (Profile profile : ProfileInformationManagement.readFromFile(file)) {
-            for (Account account : profile.getAccounts()) {
-                if (account.getAccNr().equals(pAccount)) {
-                    pAcc = account;
+            for (AbstractAccount account : profile.getAccounts()) {
+                if (account instanceof SpendingsAccount) {
+                    if (account.getAccNr().equals(pAccount)) {
+                        pAcc = (SpendingsAccount) account;
+                    }
                 }
             }
         }
@@ -500,7 +517,8 @@ public class BankAppController {
     }
 
     /**
-     * Handles the payment process when pay button is clicked, and saves the information 
+     * Handles the payment process when pay button is clicked, and saves the
+     * information
      * 
      * @param event
      * @throws IOException
@@ -514,22 +532,26 @@ public class BankAppController {
         String acc = payFrom.getText();
         String accPersonToPay = payTo.getText();
         int amount = Integer.parseInt(payAmount.getText());
-        Account acc1 = null;
-        Account acc2 = null;
+        AbstractAccount acc1 = null;
+        AbstractAccount acc2 = null;
 
-        for (Account account : profile.getAccounts()) {
-            if (account.getAccNr().equals(accPersonToPay)) {
-                feedbackInPay.setText("Cannot pay to yourself");
+        for (AbstractAccount account : profile.getAccounts()) {
+            if (account instanceof SpendingsAccount) {
+                if (account.getAccNr().equals(accPersonToPay)) {
+                    feedbackInPay.setText("Cannot pay to yourself");
+                }
             }
         }
 
-        acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(acc)).findFirst()
+        acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(acc))
+                .filter(account -> account instanceof SpendingsAccount).findFirst()
                 .orElse(null);
 
         acc2 = ProfileInformationManagement.readFromFile(file)
                 .stream()
                 .flatMap(profile -> profile.getAccounts().stream())
                 .filter(account -> account.getAccNr().equals(accPersonToPay))
+                .filter(account -> account instanceof SpendingsAccount)
                 .findFirst().orElse(null);
 
         try {
@@ -543,7 +565,8 @@ public class BankAppController {
     }
 
     /**
-     * handles the tranfering process when transfer button is clicked, and saves the new information
+     * handles the tranfering process when transfer button is clicked, and saves the
+     * new information
      * 
      * @param event
      * @throws StreamWriteException
@@ -557,17 +580,19 @@ public class BankAppController {
         String toAccount = transferToAccount.getText();
         int amount = Integer.parseInt(payAmount.getText());
 
-        Account acc1 = null;
-        Account acc2 = null;
+        AbstractAccount acc1 = null;
+        AbstractAccount acc2 = null;
 
         if (amount < 1)
 
             try {
                 acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccount))
+                        .filter(account -> account instanceof SpendingsAccount)
                         .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
                 acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccount))
+                        .filter(account -> account instanceof SpendingsAccount)
                         .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
-                acc2.transferTo(acc1, amount,transactionPath);
+                acc2.transferTo(acc1, amount, transactionPath);
 
             } catch (IllegalArgumentException e) {
                 feedbackInTransfer.setText(e.getMessage());
@@ -577,18 +602,19 @@ public class BankAppController {
     }
 
     /**
-     * creates new account when a given mouse event happens 
+     * creates new account when a given mouse event happens
+     * 
      * @param event
      * @throws StreamWriteException
      * @throws DatabindException
      * @throws IOException
      */
-    @FXML 
-    public void createNewAccount(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+    @FXML
+    public void createNewAccount(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
         String type = selectAccountType.getValue();
         String name = giveAccountName.getText();
 
-        //create new Account based on this information 
+        // create new Account based on this information
 
         writeInfo();
         AnchorPaneGoTo(event, "Overview", createAccountButton);
@@ -606,11 +632,11 @@ public class BankAppController {
     }
 
     /**
-     * handles mouse events related to AnchorPane 
+     * handles mouse events related to AnchorPane
      * 
      * @param event
-     * @param source name of the fxml file 
-     * @param anchorPane fx-id of the AnchorPane 
+     * @param source     name of the fxml file
+     * @param anchorPane fx-id of the AnchorPane
      */
     public void AnchorPaneGoTo(MouseEvent event, String source, AnchorPane anchorPane) {
         try {
@@ -662,24 +688,26 @@ public class BankAppController {
         if (password.getText().equals(passwordConfirm.getText())) {
             try {
                 if (alreadyRegistered()) {
-                    throw new IllegalArgumentException("Account already registered");
+                    if (alreadyRegistered()) {
+                        throw new IllegalArgumentException("Account already registered");
+                    }
+                    profile = new Profile(fullName.getText(), email.getText(), phoneNr.getText(), password.getText());
+                    SpendingsAccount account = new SpendingsAccount("Spendings account", profile);
+                    account.add(100);
+                    profile.addAccount(account);
+                    writeInfo();
+
+                    Stage primaryStage = (Stage) registerButton.getScene().getWindow();
+
+                    primaryStage.setTitle("Bankapp - Overview");
+
+                    FXMLLoader tabLoader = new FXMLLoader(getClass().getResource("Overview.fxml"));
+                    Parent tabPane = tabLoader.load();
+                    Scene tabScene = new Scene(tabPane);
+
+                    primaryStage.setScene(tabScene);
+                    primaryStage.show();
                 }
-                profile = new Profile(fullName.getText(), email.getText(), phoneNr.getText(), password.getText());
-                Account account = new Account("Spendings account", profile);
-                account.add(100);
-                profile.addAccount(account);
-                writeInfo();
-
-                Stage primaryStage = (Stage) registerButton.getScene().getWindow();
-
-                primaryStage.setTitle("Bankapp - Overview");
-
-                FXMLLoader tabLoader = new FXMLLoader(getClass().getResource("Overview.fxml"));
-                Parent tabPane = tabLoader.load();
-                Scene tabScene = new Scene(tabPane);
-
-                primaryStage.setScene(tabScene);
-                primaryStage.show();
             } catch (Exception e) {
                 registerError.setText(e.getMessage());
             }
