@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import core.Accounts.SpendingsAccount;
+
 /**
  * Class that creates a bankcard and connects the bankcard with a certain
  * account
@@ -18,7 +20,7 @@ public class BankCard implements Serializable {
     private String cardholder;
     private static List<String> cardNrs = new ArrayList<>();
     private String cardNr;
-    private Account account;
+    private SpendingsAccount account;
     private boolean cardBlocked;
     private static final Random RANDOM = new Random();
 
@@ -27,7 +29,7 @@ public class BankCard implements Serializable {
      * 
      * @param cardholder - name of the owner of the card
      */
-    public BankCard(@JsonProperty("cardholder") String cardholder, @JsonProperty("account") Account account) {
+    public BankCard(@JsonProperty("cardholder") String cardholder, @JsonProperty("account") SpendingsAccount account) {
         this.cardholder = cardholder;
         setCardNr();
         while (cardNrs.contains(cardNr)) {
@@ -63,7 +65,7 @@ public class BankCard implements Serializable {
      * 
      * @return this bankcards corresponding account
      */
-    public Account getAccount() {
+    public SpendingsAccount getAccount() {
         return account;
     }
 

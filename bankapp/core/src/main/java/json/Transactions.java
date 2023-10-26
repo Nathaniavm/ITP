@@ -12,8 +12,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import core.Account;
 import core.Profile;
+import core.Accounts.AbstractAccount;
+import core.Accounts.SpendingsAccount;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class Transactions implements Serializable {
@@ -22,20 +23,21 @@ public class Transactions implements Serializable {
     // "bankapp/core/src/main/java/json/TransactionsOverview.json";
 
     private Profile profile;
-    private Account transactionTo;
+    private AbstractAccount transactionTo;
     private int amount;
 
     /**
      * Saves information as a Transactions object
      * 
-     * @param profile       The paying profile
-     * @param transactionTo The account being paid
-     * @param amount        The amount being paid
+     * @param profile The paying profile
+     * @param account The account being paid
+     * @param amount  The amount being paid
      */
-    public Transactions(@JsonProperty("profile") Profile profile, @JsonProperty("transactionTo") Account transactionTo,
+    public Transactions(@JsonProperty("profile") Profile profile,
+            @JsonProperty("transactionTo") AbstractAccount account,
             @JsonProperty("amount") int amount) {
         this.profile = profile;
-        this.transactionTo = transactionTo;
+        this.transactionTo = account;
         this.amount = amount;
     }
 
@@ -99,7 +101,7 @@ public class Transactions implements Serializable {
      * 
      * @return The account that is getting paid
      */
-    public Account getTransactionTo() {
+    public AbstractAccount getTransactionTo() {
         return transactionTo;
     }
 
