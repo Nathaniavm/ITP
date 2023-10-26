@@ -89,6 +89,7 @@ public class ProfileInformationManagement {
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
                 });
+                System.err.println();
                 return profiles;
         }
 
@@ -174,8 +175,7 @@ public class ProfileInformationManagement {
                 profile1.addBill(bill);
                 writeInformationToFile(profile1,
                                 "./bankapp/core/src/main/java/json/ProfileInformation.json");
-                // writeInformationToFile(profile2,
-                // "./bankapp/core/src/main/java/json/ProfileInformation.json");
+                writeInformationToFile(profile2, "./bankapp/core/src/main/java/json/ProfileInformation.json");
 
                 List<Profile> profiles = readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
                 System.out.println(profiles.get(0));

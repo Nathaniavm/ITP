@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import core.Accounts.AbstractAccount;
-import core.Accounts.SpendingsAccount;
 
 /**
  * Class that makes a profile

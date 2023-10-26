@@ -15,12 +15,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "accountType")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = BSUAccount.class, name = "BSUAccount"),
         @JsonSubTypes.Type(value = SavingsAccount.class, name = "SavingsAccount"),
         @JsonSubTypes.Type(value = SpendingsAccount.class, name = "SpendingsAccount")
-})  
+})
 public abstract class AbstractAccount implements Serializable {
     private Profile profile;
     private String name;

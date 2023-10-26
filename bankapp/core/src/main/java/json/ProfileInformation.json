@@ -1,1 +1,83 @@
-[{"@id":"8ec52a7b-5efe-4255-82d6-6bcc5c793070","name":"Klein Cornolis","email":"Klein@gmail.com","tlf":"12345678","password":"passord13214212","accounts":[{"accountType":"SpendingsAccount","@id":"e7693e64-4c78-4cea-a4ca-9d4477130e6c","name":"Savings","profile":"8ec52a7b-5efe-4255-82d6-6bcc5c793070","balance":472189,"accNr":"1234 78 63042","bankCard":{"@id":"ec74becf-e5de-4bbe-b716-0c1c905384b3","cardholder":"Klein Cornolis","account":"e7693e64-4c78-4cea-a4ca-9d4477130e6c","cardNr":"1248 1632 2129 9581"}},{"accountType":"SpendingsAccount","@id":"10a745fa-3109-472a-9f5c-b50a2310fc86","name":"Hei","profile":"8ec52a7b-5efe-4255-82d6-6bcc5c793070","balance":0,"accNr":"1234 23 01625","bankCard":null}],"bills":[{"amount":100,"billName":"NTNU","sellerName":"NTNU Gløshaugen","sellerAccount":{"accountType":"SpendingsAccount","@id":"f42f834c-ad35-4ec3-bd23-dbdc5c392a95","name":"NTNU","profile":{"@id":"7dd6b12d-875f-4bf9-9775-0cdf98a922cc","name":"NTNU Gløshaugen","email":"NTNU@ntnu.no","tlf":"12345678","password":"Administrator59","accounts":["f42f834c-ad35-4ec3-bd23-dbdc5c392a95"],"bills":[]},"balance":0,"accNr":"1234 71 85427","bankCard":null},"payerAccount":"e7693e64-4c78-4cea-a4ca-9d4477130e6c","profile":"8ec52a7b-5efe-4255-82d6-6bcc5c793070","paid":false}]}]
+[
+    {
+        "@id": "3b2a1eb1-6a8f-4efd-b9b0-62b7203c8ebc",
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12345678",
+        "password": "passord13214212",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "3224662c-e812-4941-ab45-746a8b34529c",
+                "name": "Savings",
+                "profile": "3b2a1eb1-6a8f-4efd-b9b0-62b7203c8ebc",
+                "balance": 472189,
+                "accNr": "1234 99 98651",
+                "bankCard": {
+                    "@id": "9d124b99-6925-4c61-b90b-16abdb4b5123",
+                    "cardholder": "Klein Cornolis",
+                    "account": "3224662c-e812-4941-ab45-746a8b34529c",
+                    "cardNr": "1248 1632 9970 4986"
+                }
+            },
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "bf4e5602-387d-4158-96c1-1021ea0f57d4",
+                "name": "Hei",
+                "profile": "3b2a1eb1-6a8f-4efd-b9b0-62b7203c8ebc",
+                "balance": 0,
+                "accNr": "1234 39 82092",
+                "bankCard": null
+            }
+        ],
+        "bills": [
+            {
+                "@id": "9b0f77b9-b762-4b53-8e5d-fee12e217b8c",
+                "amount": 100,
+                "billName": "NTNU",
+                "sellerName": "NTNU Gløshaugen",
+                "sellerAccount": {
+                    "accountType": "SpendingsAccount",
+                    "@id": "8ac8ccb0-9d68-4697-b463-8e29b4e9e3e9",
+                    "name": "NTNU",
+                    "profile": {
+                        "@id": "ed9a562c-b1ca-456a-b0a0-2ac83ebf4c3a",
+                        "name": "NTNU Gløshaugen",
+                        "email": "NTNU@ntnu.no",
+                        "tlf": "12345678",
+                        "password": "Administrator59",
+                        "accounts": [
+                            "8ac8ccb0-9d68-4697-b463-8e29b4e9e3e9"
+                        ],
+                        "bills": []
+                    },
+                    "balance": 0,
+                    "accNr": "1234 83 28959",
+                    "bankCard": null
+                },
+                "payerAccount": "3224662c-e812-4941-ab45-746a8b34529c",
+                "profile": "3b2a1eb1-6a8f-4efd-b9b0-62b7203c8ebc",
+                "paid": false
+            }
+        ]
+    },
+    {
+        "@id": "2c533d42-611f-4bfe-9e9e-e0a03f87483e",
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "passord123",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "bde20d14-43a3-4c2e-9dd4-9ffc631053b2",
+                "name": "Philips savings account",
+                "profile": "2c533d42-611f-4bfe-9e9e-e0a03f87483e",
+                "balance": 0,
+                "accNr": "1234 94 40019",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    }
+]
