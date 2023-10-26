@@ -14,9 +14,9 @@ import org.junit.jupiter.api.DisplayName;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 
-import core.Account;
 import core.Bill;
 import core.Profile;
+import core.Accounts.SpendingsAccount;
 
 public class ProfileInformationManagementTest {
 
@@ -24,8 +24,8 @@ public class ProfileInformationManagementTest {
     private Profile profile2;
     private List<Profile> profiles;
 
-    private Account acc1;
-    private Account acc2;
+    private SpendingsAccount acc1;
+    private SpendingsAccount acc2;
 
     private Bill bill1;
 
@@ -40,9 +40,9 @@ public class ProfileInformationManagementTest {
     public void setUp() {
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
         profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
-        acc1 = new Account("James", profile1);
+        acc1 = new SpendingsAccount("James", profile1);
         profile1.addAccount(acc1);
-        acc2 = new Account("Heui", profile2);
+        acc2 = new SpendingsAccount("Heui", profile2);
         profile2.addAccount(acc2);
         bill1 = new Bill(150, "Groceries", "Ola Nordmann", acc1, acc2, profile1);
         profile1.addBill(bill1);
@@ -147,7 +147,7 @@ public class ProfileInformationManagementTest {
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
 
         assertEquals(acc1.getBankCard().getCardholder(),
-                profiles.get(0).getAccounts().get(0).getBankCard().getCardholder());
+                ((SpendingsAccount) profiles.get(0).getAccounts().get(0)).getBankCard().getCardholder());
     }
 
 }

@@ -13,9 +13,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import core.Account;
 import core.Bill;
 import core.Profile;
+import core.Accounts.SpendingsAccount;
 
 /**
  * Class that provides methods for mamaging profile information including
@@ -89,6 +89,7 @@ public class ProfileInformationManagement {
                 // Profile profile = objectMapper.readValue(file, Profile.class);
                 List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
                 });
+                System.err.println();
                 return profiles;
         }
 
@@ -158,26 +159,26 @@ public class ProfileInformationManagement {
                 Profile NTNU = new Profile("NTNU Gløshaugen", "NTNU@ntnu.no", "12345678",
                                 "Administrator59");
 
-                Account acc1 = new Account("Savings", profile1);
+                SpendingsAccount acc1 = new SpendingsAccount("Savings", profile1);
                 profile1.addAccount(acc1);
-                Account acc2 = new Account("Hei", profile1);
+                SpendingsAccount acc2 = new SpendingsAccount("Hei", profile1);
                 profile1.addAccount(acc2);
-                Account acc3 = new Account("Philips savings account", profile2);
+                SpendingsAccount acc3 = new SpendingsAccount("Philips savings account", profile2);
                 profile2.addAccount(acc3);
-                profile1.getAccounts().get(0).createBankCard();
+                ((SpendingsAccount) profile1.getAccounts().get(0)).createBankCard();
                 profile1.getAccounts().get(0).add(472189);
 
-                Account sellerAccount = new Account("NTNU", NTNU);
+                SpendingsAccount sellerAccount = new SpendingsAccount("NTNU", NTNU);
                 NTNU.addAccount(sellerAccount);
                 Bill bill = new Bill(100, "NTNU", "NTNU Gløshaugen", sellerAccount,
-                                profile1.getAccounts().get(0), profile1);
+                                (SpendingsAccount) profile1.getAccounts().get(0), profile1);
                 profile1.addBill(bill);
                 writeInformationToFile(profile1,
                                 "./bankapp/core/src/main/java/json/ProfileInformation.json");
-                writeInformationToFile(profile2,
-                                "./bankapp/core/src/main/java/json/ProfileInformation.json");
+                writeInformationToFile(profile2, "./bankapp/core/src/main/java/json/ProfileInformation.json");
 
-                readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
+                List<Profile> profiles = readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
+                System.out.println(profiles.get(0));
 
                 // deleteProfile("./bankapp/core/src/main/java/json/ProfileInformation.json",
                 // profile1);

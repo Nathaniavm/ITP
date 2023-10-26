@@ -8,6 +8,8 @@ import java.io.IOException;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import core.Accounts.SpendingsAccount;
+
 public class ProfileTest {
     private Profile profile1;
     private Profile profile2;
@@ -112,7 +114,7 @@ public class ProfileTest {
     @DisplayName("Testing if an account gets created correctly")
     public void testCreateAccount() {
         assertEquals(0, profile1.getAccounts().size());
-        Account acc = new Account("Savings", profile1);
+        SpendingsAccount acc = new SpendingsAccount("Savings", profile1);
         profile1.addAccount(acc);
         assertEquals(1, profile1.getAccounts().size());
         assertEquals("Savings", acc.getName());
@@ -121,10 +123,10 @@ public class ProfileTest {
     @Test
     @DisplayName("Test adding of bills to profile")
     public void testAddBill() {
-        Account acc1 = new Account("Spending", profile1);
+        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
         profile1.addAccount(acc1);
         profile1.getAccounts().get(0).add(1000);
-        Account acc2 = new Account("NTNU", profile2);
+        SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
         Bill bill = new Bill(100, "billName", "NTNU", acc2, acc1,
                 profile1);
         profile1.addBill(bill);
@@ -135,10 +137,10 @@ public class ProfileTest {
     @Test
     @DisplayName("Test removal of bills from profile")
     public void testRemoveBill() throws IOException {
-        Account acc1 = new Account("Spending", profile1);
+        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
         profile1.addAccount(acc1);
         profile1.getAccounts().get(0).add(1000);
-        Account acc2 = new Account("NTNU", profile2);
+        SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
         profile2.addAccount(acc2);
         Bill bill = new Bill(100, "billName", "NTNU", acc2, acc1,
                 profile1);
@@ -153,8 +155,8 @@ public class ProfileTest {
     @DisplayName("Tests getting of total balance")
     public void testTotalBalance() {
         assertEquals(0, profile1.getTotalBalance());
-        Account acc1 = new Account("Spending", profile1);
-        Account acc2 = new Account("Savings", profile1);
+        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
+        SpendingsAccount acc2 = new SpendingsAccount("Savings", profile1);
         acc1.add(1000);
         acc2.add(1);
         profile1.addAccount(acc1);
