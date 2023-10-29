@@ -263,6 +263,17 @@ public class Profile implements Serializable {
     }
 
     /**
+     * Changes the email if email is valid 
+     * 
+     * @param email The new email
+     */
+    public void changeEmail(String email){
+        if(!validEmail(email))
+            throw new IllegalArgumentException("Not valid email");
+        this.email = email;
+    }
+
+    /**
      * Returns the email connected to this profile
      * 
      * @return The email connected to this profile

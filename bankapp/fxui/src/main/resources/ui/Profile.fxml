@@ -96,7 +96,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="settingsButton" layoutX="120.0" layoutY="60.0" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="settingsButton" layoutX="120.0" layoutY="60.0" onMouseClicked="#goToSettings" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="42.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
                            <font>
@@ -132,7 +132,7 @@
                         <Image url="@Logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" visible="false" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@BackArrow.png" />
                      </image>
