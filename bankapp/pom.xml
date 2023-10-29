@@ -69,22 +69,11 @@
           <artifactId>spotbugs-maven-plugin</artifactId>
                     
           <version>4.7.2.1</version>
-                    
-          <dependencies>
-                        
-            <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-                        
-            <dependency>
-                            
-              <groupId>com.github.spotbugs</groupId>
-                            
-              <artifactId>spotbugs</artifactId>
-                            
-              <version>4.7.3</version>
-                          
-            </dependency>
-                      
-          </dependencies>
+          <configuration>
+            <xmlOutput>false</xmlOutput>
+            <htmlOutput>true</htmlOutput>
+            <excludeFilterFile>config/spotbugs/exclude.xml</excludeFilterFile>
+          </configuration>
                   
         </plugin>
                 
@@ -211,44 +200,40 @@
           </executions>
                 
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.3.0</version>
+            <dependencies>
+                <dependency>
+                    <groupId>com.puppycrawl.tools</groupId>
+                    <artifactId>checkstyle</artifactId>
+                    <version>10.3.4</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+                <configLocation>google_checks.xml</configLocation>
+                <encoding>UTF-8</encoding>
+                <consoleOutput>true</consoleOutput>
+                <failsOnError>true</failsOnError>
+                <linkXRef>false</linkXRef>
+            </configuration>
+            <executions>
+                <execution>
+                <id>checkstyle-check</id>
+                <phase>verify</phase>
+                <goals>
+                    <goal>check</goal>
+                </goals>
+                </execution>
+            </executions>
+        </plugin>
               
       </plugins>
           
     </pluginManagement>
       
   </build>
-    
-  <reporting>
-        
-    <plugins>
-            
-      <plugin>
-                
-        <groupId>org.apache.maven.plugins</groupId>
-                
-        <artifactId>maven-checkstyle-plugin</artifactId>
-                
-        <version>3.3.0</version>
-                
-        <reportSets>
-                    
-          <reportSet>
-                        
-            <reports>
-                            
-              <report>checkstyle</report>
-                          
-            </reports>
-                      
-          </reportSet>
-                  
-        </reportSets>
-              
-      </plugin>
-          
-    </plugins>
-      
-  </reporting>
     
   <modules>
         

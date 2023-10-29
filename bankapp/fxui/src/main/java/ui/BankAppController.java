@@ -16,15 +16,6 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.exc.StreamWriteException;
-import com.fasterxml.jackson.databind.DatabindException;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -637,28 +628,28 @@ public class BankAppController {
     AbstractAccount account = null;
 
     // create new Account based on this information
-    String[] validTypes = {"BSU", "Checking account", "Savings account"};
+    String[] validTypes = { "BSU", "Checking account", "Savings account" };
 
-    if(type.equals(validTypes[0])){
+    if (type.equals(validTypes[0])) {
       account = new BSUAccount(name, profile);
     }
 
-    else if(type.equals(validTypes[1])){
+    else if (type.equals(validTypes[1])) {
       account = new SpendingsAccount(name, profile);
     }
 
-    else if(type.equals(validTypes[2])){
+    else if (type.equals(validTypes[2])) {
       account = new SavingsAccount(name, profile);
     }
     System.out.println(numAccounts);
     profile.addAccount(account);
     System.out.println(numAccounts);
     System.out.println(profile.getAccounts().size());
-    
-    if(numAccounts+1 == profile.getAccounts().size()){
+
+    if (numAccounts + 1 == profile.getAccounts().size()) {
       feedbackInNewAccount.setText("New account created!");
     }
-    
+
     giveAccountName.setText("");
     writeInfo();
   }
