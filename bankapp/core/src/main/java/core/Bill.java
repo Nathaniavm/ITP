@@ -6,9 +6,12 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
 
 import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
+import json.ProfileInformationManagement;
 
 /*
  * Class that creates a new bill that can be paid by a Profile. It contains informations about the bill amount, bill name, seller name, seller's account, payer's account, adn whether the bill has been paid or not
@@ -25,6 +28,9 @@ public class Bill implements Serializable {
     private boolean paid = false;
 
     public static final String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
+    private static String currentDir = System.getProperty("user.dir");
+    private static final String path = currentDir
+            + "/bankapp/core/src/main/java/json/ProfileInformation.json";
 
     /**
      * Makes a new bill object with specified properties
@@ -35,6 +41,9 @@ public class Bill implements Serializable {
      * @param sellerAccount The seller's account
      * @param payerAccount  The payer's account
      * @param payer         The payer's profile
+     * @throws IOException
+     * @throws DatabindException
+     * @throws StreamReadException
      * @throws IllegalArgumentException If the amount is less han er equal to zero
      */
     public Bill(@JsonProperty("amount") int amount,
@@ -42,10 +51,22 @@ public class Bill implements Serializable {
             @JsonProperty("sellerName") String sellerName,
             @JsonProperty("sellerAccount") AbstractAccount sellerAccount,
             @JsonProperty("payerAccount") AbstractAccount payerAccount,
-            @JsonProperty("profile") Profile payer){
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Amount can not be less than 1");
+            @JsonProperty("profile") Profile payer) throws StreamReadException, DatabindException, IOException{
+        
+        if(amount == 0|| billName == null || sellerName == null || sellerAccount == null ||payerAccount == null ||payer == null){
+            throw new IllegalArgumentException("All of the fields should be filled");
         }
+
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount can not be negative");
+        }
+        if(sellerAccount.getAccNr().equals(payerAccount.getAccNr())){
+            throw new IllegalArgumentException("Seller and payer cannot be the same account");
+        }
+        if(payer.ownsAccount(sellerAccount)){
+            throw new IllegalArgumentException("Selleraccount should not be an account of payer");
+        }
+
         this.amount = amount;
         this.billName = billName;
         this.sellerName = sellerName;
@@ -128,4 +149,17 @@ public class Bill implements Serializable {
     public Profile getProfile() {
         return payer;
     }
+
+    public static void main(String[] args) throws StreamReadException, DatabindException, IOException{
+    Profile profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
+    Profile profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
+    SpendingsAccount acc1 = new SpendingsAccount("James", profile1);
+    profile1.addAccount(acc1);
+    SpendingsAccount acc2 = new SpendingsAccount("Heui", profile2);
+    profile2.addAccount(acc2);
+    Bill bill1 = new Bill(150, "Groceries", "Kari Nordmann", acc2, acc1, profile1);
+    profile1.addBill(bill1);
+    
+    }
+    
 }
