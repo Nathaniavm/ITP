@@ -8,6 +8,9 @@ import java.io.IOException;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+
 import core.Accounts.SpendingsAccount;
 
 public class ProfileTest {
@@ -122,7 +125,7 @@ public class ProfileTest {
 
     @Test
     @DisplayName("Test adding of bills to profile")
-    public void testAddBill() {
+    public void testAddBill() throws StreamReadException, DatabindException, IOException {
         SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
         profile1.addAccount(acc1);
         profile1.getAccounts().get(0).add(1000);
