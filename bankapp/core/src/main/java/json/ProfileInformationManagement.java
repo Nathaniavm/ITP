@@ -153,12 +153,12 @@ public class ProfileInformationManagement {
         }
 
         public static void main(String[] args) throws IOException {
-                Profile profile1 = new Profile("Klein Cornolis", "Klein@gmail.com", "12345678",
+                Profile profile1 = new Profile("Klein Cornolis", "Klein@gmail.com", "12121212",
                                 "passord13214212");
                 Profile profile2 = new Profile("Philip Vu Lam", "Philip@gmail.com",
                                 "87654321",
                                 "passord123");
-                Profile NTNU = new Profile("NTNU Gløshaugen", "NTNU@ntnu.no", "12345678",
+                Profile NTNU = new Profile("NTNU Gløshaugen", "NTNU@ntnu.no", "98989898",
                                 "Administrator59");
 
                 SpendingsAccount acc1 = new SpendingsAccount("Savings", profile1);
