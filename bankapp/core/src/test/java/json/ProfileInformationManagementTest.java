@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -37,15 +38,17 @@ public class ProfileInformationManagementTest {
 
     @Before
     @DisplayName("Setting up the different profiles")
-    public void setUp() {
+    public void setUp() throws StreamReadException, DatabindException, IOException {
+        System.out.println(file);
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
         profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
         acc1 = new SpendingsAccount("James", profile1);
         profile1.addAccount(acc1);
         acc2 = new SpendingsAccount("Heui", profile2);
         profile2.addAccount(acc2);
-        bill1 = new Bill(150, "Groceries", "Ola Nordmann", acc1, acc2, profile1);
+        bill1 = new Bill(150, "Groceries", "Kari Nordmann", acc2, acc1, profile1);
         profile1.addBill(bill1);
+        System.out.println(bill1);
 
     }
 
@@ -113,14 +116,14 @@ public class ProfileInformationManagementTest {
     public void testBills() throws StreamWriteException, DatabindException, IOException {
         acc1.add(200); // seller
         acc2.add(150); // payer
-        bill1.pay(filename2);
+        bill1.pay(filename2); //bill1 costs 150
 
         ProfileInformationManagement.writeInformationToFile(profile1, file);
         ProfileInformationManagement.writeInformationToFile(profile2, file);
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
 
-        assertEquals(350, profiles.get(0).getAccounts().get(0).getBalance());
-        assertEquals(0, profiles.get(1).getAccounts().get(0).getBalance());
+        assertEquals(50, profiles.get(0).getAccounts().get(0).getBalance());
+        assertEquals(300, profiles.get(1).getAccounts().get(0).getBalance());
 
         assertEquals(0, profiles.get(0).getBills().size());
     }
@@ -128,9 +131,8 @@ public class ProfileInformationManagementTest {
     @Test
     @DisplayName("Test exception if bill is larger that money in account")
     public void testBillException() throws StreamWriteException, DatabindException, IOException {
-        acc1.add(200); // seller
+        acc1.add(100); // seller
         acc2.add(100); // payer
-
         ProfileInformationManagement.writeInformationToFile(profile1, file);
         ProfileInformationManagement.writeInformationToFile(profile2, file);
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));

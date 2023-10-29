@@ -315,4 +315,14 @@ public class Profile implements Serializable {
     public List<Bill> getBills() {
         return new ArrayList<>(bills);
     }
+
+    public boolean ownsAccount(AbstractAccount account){
+        System.out.println(accounts);
+        System.out.println(account);
+        return accounts.stream().anyMatch(a -> a.getAccNr().equals(account.getAccNr()));
+    }
+
+    public static void main(String[] args) {
+
+    }
 }

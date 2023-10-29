@@ -38,10 +38,12 @@ public class ProfileInformationManagement {
         public static void writeInformationToFile(Profile profile, String filename)
                         throws StreamWriteException, DatabindException, IOException {
 
+                                System.out.println("Klarte meg hit");
                 File file = new File(filename);
                 if (!(file.exists())) {
                         throw new IOException("File does not exists");
                 }
+                System.out.println("I'm here now");
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<Profile> profiles;
 
@@ -179,6 +181,7 @@ public class ProfileInformationManagement {
 
                 List<Profile> profiles = readFromFile("./bankapp/core/src/main/java/json/ProfileInformation.json");
                 System.out.println(profiles.get(0));
+                System.out.println(profiles.get(0).getBills());
 
                 // deleteProfile("./bankapp/core/src/main/java/json/ProfileInformation.json",
                 // profile1);
