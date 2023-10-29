@@ -81,19 +81,14 @@ Forbedringene spotsbug foreslo ble rettet på, men den foreslo også å innkapsl
 
 Videre har prosjektet blitt gjort eclipse che klart (se link øverst). 
 
-### Jacoco stoppet å fungere
+### Jacoco problemer <em>(løst)</em>
 
-Jacoco fungerer ikke lenger ved denne releasen. Vi har brukt jacoco aktivt når vi har lagde testene, og sørget for å ha god testdekningsgrad. Følgende bilder viser dette: 
-![Alt text](Jacoco1.png)
-![Alt text](jacoco2.png)
-![Alt text](jacoco3.png)
-![Alt text](jacoco4.png)
-
-Gruppen har forsøkt å feilsøke og løse problemet. Gruppen har fått hjelp av teknisk læringsasistent og spurt på piazza, men vi kom ikke fram til noen ordentlig løsning. En midlertidig løsning er lagt inn i en egen branch, men vi dytter ikke inn denne versjonen inn til <em>master-branch</em>, da det ikke er en ordentlig løsning. Denne løsningen innebærer at jacoco og <em>mvn test </em> ikke kan kjøres samtidig. De kjører kun hver for seg, ved å manuelt gå inn i pom-filen og endre på <em>forkcount</em>. Skjermdumpen under viser et utklipp av pom-filen inne i denne egne branchen:
+Gruppen hadde problemer med Jacoco. Gruppen forsøkte å feilsøke og løse problemet, men klarte ikke dette. Gruppen fikk også hjelp av teknisk læringsasistent og spurte på piazza, men vi kom ikke fram til noen ordentlig løsning. En midlertidig løsning ble lagt inn i en egen branch, men vi dyttet ikke inn denne versjonen inn til <em>master-branch</em>, da det ikke var en ordentlig løsning. Denne løsningen innebærte at jacoco og <em>mvn test </em> ikke kan kjørte samtidig. De kjørte kun hver for seg, ved å manuelt gå inn i pom-filen og endre på <em>forkcount</em>. Skjermdumpen under viser et utklipp av pom-filen inne i denne egne branchen:
 ![Alt text](jacoco-branch.png)
 <em>branchname: testingBranch</em>
 
-Versjonen som ligger i <em>master-branch</em> nå innebærer altså at <em>mvn test</em> kjører, men ikke jacoco. Gruppen er bevisste på denne feilen, og vil derfor rette opp i dette ved neste release. Problemet ligger inne på gitlab som en <em>issue</em>
+Gruppen var bevisste på denne feilen ved innleveringen, og skulle derfor rette opp i dette ved neste release. 
+Dagen etterpå fikk gruppen derimot en mail fra en annen teknisks læringsassistent som hadde løst opp problemet vårt. Læringsassistanten la ved riktige <em>POM-filer</em>. På den andre siden ba han oss om å høre med noen andre om dette burde dyttes inn til master. Vi sendte derfor mail til undervisningsassistent, som ba oss om å dytte versjonen med kun jacoco-implementeringen inn. Vi fikk også lov til å endre på dokumentasjonen for å få dette med. Dette har gruppen altså gjort nå. Den versjonen som ligger inne på master nå har fungerende <em>jacoco</em> og <em>mvn test</em>.
 
 
 ### Mappestruktur 
