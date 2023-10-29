@@ -1,12 +1,10 @@
 package core;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import core.Accounts.SpendingsAccount;
 

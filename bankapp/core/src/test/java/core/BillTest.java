@@ -1,11 +1,11 @@
 package core;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import core.Accounts.AbstractAccount;
@@ -20,7 +20,7 @@ public class BillTest {
     private static final String currentDir = System.getProperty("user.dir");
     private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
 
-    @Before
+    @BeforeEach
     @DisplayName("setting up the different profiles")
     public void setUp() {
         profile1 = new Profile("jayan tayan", "jayantayan@ntnu.no", "98765432", "passord111");

@@ -1,1 +1,44 @@
-[{"@id":"affa1a6f-9875-4130-89ca-94a8fb62c26f","profile":{"@id":"19ec7459-a90e-434f-b92d-04f186cba817","name":"Alice Zheng","email":"Alice@gmail.com","tlf":"15678902","password":"Passord456","accounts":[{"accountType":"SpendingsAccount","@id":"e0e633a0-af05-4a0a-aedc-1390e4945d3f","name":"Spending","profile":"19ec7459-a90e-434f-b92d-04f186cba817","balance":500,"accNr":"1234 46 30916","bankCard":null}],"bills":[]},"transactionTo":{"accountType":"SpendingsAccount","@id":"e238a23a-f7ef-4c92-b0d0-037213a41d71","name":"Spending","profile":{"@id":"07adbe25-352f-478a-93b4-69c40f8fcec6","name":"Philip Lam","email":"Philip@gmail.com","tlf":"15678906","password":"Passord123","accounts":["e238a23a-f7ef-4c92-b0d0-037213a41d71"],"bills":[]},"balance":500,"accNr":"1234 57 31057","bankCard":null},"amount":500}]
+[
+    {
+        "@id": "affa1a6f-9875-4130-89ca-94a8fb62c26f",
+        "profile": {
+            "@id": "19ec7459-a90e-434f-b92d-04f186cba817",
+            "name": "Alice Zheng",
+            "email": "Alice@gmail.com",
+            "tlf": "15678902",
+            "password": "Passord456",
+            "accounts": [
+                {
+                    "accountType": "SpendingsAccount",
+                    "@id": "e0e633a0-af05-4a0a-aedc-1390e4945d3f",
+                    "name": "Spending",
+                    "profile": "19ec7459-a90e-434f-b92d-04f186cba817",
+                    "balance": 500,
+                    "accNr": "1234 46 30916",
+                    "bankCard": null
+                }
+            ],
+            "bills": []
+        },
+        "transactionTo": {
+            "accountType": "SpendingsAccount",
+            "@id": "e238a23a-f7ef-4c92-b0d0-037213a41d71",
+            "name": "Spending",
+            "profile": {
+                "@id": "07adbe25-352f-478a-93b4-69c40f8fcec6",
+                "name": "Philip Lam",
+                "email": "Philip@gmail.com",
+                "tlf": "15678906",
+                "password": "Passord123",
+                "accounts": [
+                    "e238a23a-f7ef-4c92-b0d0-037213a41d71"
+                ],
+                "bills": []
+            },
+            "balance": 500,
+            "accNr": "1234 57 31057",
+            "bankCard": null
+        },
+        "amount": 500
+    }
+]

@@ -1,6 +1,6 @@
 package json;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -9,8 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import core.Profile;
@@ -28,7 +29,7 @@ public class TransactionsTest {
     private SpendingsAccount account2;
     private Transactions transaction1;
 
-    @Before
+    @BeforeEach
     @DisplayName("Setting up profiles and accounts")
     public void setup() {
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
