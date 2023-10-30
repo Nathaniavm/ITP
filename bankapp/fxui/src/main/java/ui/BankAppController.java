@@ -33,8 +33,6 @@ import javafx.stage.Stage;
 import json.ProfileInformationManagement;
 import javafx.scene.image.ImageView;
 
-//implements Initializable if want choicebox to work 
-
 public class BankAppController {
 
   @FXML
@@ -210,12 +208,86 @@ public class BankAppController {
   @FXML
   private Text feedbackInNewAccount;
 
+  // settings fxml 
+
+  @FXML 
+  private TextField changeNumberTo;
+
+  @FXML 
+  private TextField changeEmailTo;
+
+  @FXML 
+  private TextField changePasswordTo;
+
+  @FXML 
+  private TextField confirmChangePassword;
+
+  @FXML 
+  private AnchorPane updateSettings;
+
+  @FXML 
+  private Text feedbackInSettings;
+
+  @FXML 
+  private Text deleteProfileButton;
+
+  // profile fxml
+
+  @FXML 
+  private AnchorPane settingsButton;
+
+
   private static Profile profile;
   private static String currentDir = System.getProperty("user.dir");
   private static final String path = currentDir.substring(0, currentDir.length() - 5)
       + "/core/src/main/java/json/ProfileInformation.json";
   private static final String transactionPath = currentDir.substring(0, currentDir.length() - 5)
       + "/core/src/main/java/json/TransactionsOverview.json";
+
+
+  @FXML
+  public void handleDeleteProfile(MouseEvent event) throws StreamReadException, DatabindException, IOException{
+    ProfileInformationManagement.deleteProfile(path, profile);
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+      Parent root = loader.load();
+      Scene scene = new Scene(root);
+      Stage stage = (Stage) deleteProfileButton.getScene().getWindow();
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    
+  }
+
+  /**
+   * handles the changes in profile and saves it
+   * 
+   * @param event
+   * @throws StreamWriteException
+   * @throws DatabindException
+   * @throws IOException
+   */
+  @FXML 
+  public void handleUpdateSettings(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+    String newNum = changeNumberTo.getText();
+    String newEmail = changeEmailTo.getText();
+    String newPassword = changePasswordTo.getText();
+    String newPassword2 = confirmChangePassword.getText();
+
+    try {
+      if(!newNum.isEmpty()) profile.changeTlf(newNum);
+      if(!newEmail.isEmpty()) profile.changeEmail(newEmail);
+      if(!(newPassword.isEmpty()) && !(newPassword2.isEmpty()) && newPassword.equals(newPassword2)) profile.changePassword(newPassword2);
+    } catch (IllegalArgumentException e) {
+      feedbackInSettings.setText(e.getMessage());
+    }
+
+    feedbackInSettings.setText("Update successfull!");
+    writeInfo();
+  }
 
   /**
    * Initializes fields based on current page
@@ -333,7 +405,7 @@ public class BankAppController {
   }
 
   /**
-   * Handles mouseclick switching to login page
+   * Handles mouseclick to log out 
    * 
    * @param event
    */
@@ -432,6 +504,15 @@ public class BankAppController {
   @FXML
   public void goToNewBill(MouseEvent event) {
     AnchorPaneGoTo(event, "NewBill", newBillButton);
+  }
+
+  /**
+   * handles Settings button in Profile
+   * @param event
+   */
+  @FXML
+  public void goToSettings(MouseEvent event){
+    AnchorPaneGoTo(event, "Settings", settingsButton);
   }
 
   /**
@@ -552,19 +633,13 @@ public class BankAppController {
             .flatMap(profile -> profile.getAccounts().stream())
             .filter(account -> account.getAccNr().equals(accPersonToPay))
             .findFirst().orElse(null);
-        acc2 = ProfileInformationManagement.readFromFile(file)
-            .stream()
-            .flatMap(profile -> profile.getAccounts().stream())
-            .filter(account -> account.getAccNr().equals(accPersonToPay))
-            .filter(account -> account instanceof SpendingsAccount)
-            .findFirst().orElse(null);
 
         acc2.transferTo(acc1, amount, transactionPath);
       } catch (Exception e) {
         feedbackInPay.setText(e.getMessage());
       }
     }
-    feedbackInPay.setText("Payment succesful!");
+    feedbackInPay.setText("Payment successful!");
     payFrom.clear();
     payTo.clear();
     payAmount.clear();
@@ -662,7 +737,6 @@ public class BankAppController {
    * @throws IOException
    */
   public void writeInfo() throws StreamWriteException, DatabindException, IOException {
-    System.out.println("Kom seg hit");
     ProfileInformationManagement.writeInformationToFile(profile, path);
   }
 
