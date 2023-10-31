@@ -2,15 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
+<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
       <Text layoutX="63.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
@@ -22,8 +22,8 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="emailInput" layoutX="189.0" layoutY="287.0" prefHeight="32.0" prefWidth="184.0" text="phil@gmail.com"/>
-      <PasswordField fx:id="passwordInput" layoutX="189.0" layoutY="344.0" prefHeight="32.0" prefWidth="184.0" text="passord12"/>
+      <TextField fx:id="emailInput" layoutX="189.0" layoutY="287.0" prefHeight="32.0" prefWidth="184.0" />
+      <PasswordField fx:id="passwordInput" layoutX="189.0" layoutY="344.0" prefHeight="32.0" prefWidth="184.0" />
       <ImageView fitHeight="38.0" fitWidth="48.0" layoutX="44.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@mailImage.png" />
@@ -65,6 +65,6 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="loginError" layoutX="49.0" layoutY="410.0" maxWidth="258.0" prefHeight="18.0" prefWidth="258.0" textFill="RED"/>
+      <Label fx:id="loginError" layoutX="49.0" layoutY="410.0" maxWidth="258.0" prefHeight="18.0" prefWidth="258.0" textFill="RED" />
    </children>
 </AnchorPane>

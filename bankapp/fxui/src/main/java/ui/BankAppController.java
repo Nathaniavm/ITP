@@ -208,34 +208,33 @@ public class BankAppController {
   @FXML
   private Text feedbackInNewAccount;
 
-  // settings fxml 
+  // settings fxml
 
-  @FXML 
+  @FXML
   private TextField changeNumberTo;
 
-  @FXML 
+  @FXML
   private TextField changeEmailTo;
 
-  @FXML 
+  @FXML
   private TextField changePasswordTo;
 
-  @FXML 
+  @FXML
   private TextField confirmChangePassword;
 
-  @FXML 
+  @FXML
   private AnchorPane updateSettings;
 
-  @FXML 
+  @FXML
   private Text feedbackInSettings;
 
-  @FXML 
+  @FXML
   private Text deleteProfileButton;
 
   // profile fxml
 
-  @FXML 
+  @FXML
   private AnchorPane settingsButton;
-
 
   private static Profile profile;
   private static String currentDir = System.getProperty("user.dir");
@@ -244,9 +243,8 @@ public class BankAppController {
   private static final String transactionPath = currentDir.substring(0, currentDir.length() - 5)
       + "/core/src/main/java/json/TransactionsOverview.json";
 
-
   @FXML
-  public void handleDeleteProfile(MouseEvent event) throws StreamReadException, DatabindException, IOException{
+  public void handleDeleteProfile(MouseEvent event) throws StreamReadException, DatabindException, IOException {
     ProfileInformationManagement.deleteProfile(path, profile);
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
@@ -259,7 +257,10 @@ public class BankAppController {
       e.printStackTrace();
     }
 
-    
+  }
+
+  public Profile getProfile() {
+    return profile;
   }
 
   /**
@@ -270,17 +271,20 @@ public class BankAppController {
    * @throws DatabindException
    * @throws IOException
    */
-  @FXML 
-  public void handleUpdateSettings(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+  @FXML
+  public void handleUpdateSettings(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
     String newNum = changeNumberTo.getText();
     String newEmail = changeEmailTo.getText();
     String newPassword = changePasswordTo.getText();
     String newPassword2 = confirmChangePassword.getText();
 
     try {
-      if(!newNum.isEmpty()) profile.changeTlf(newNum);
-      if(!newEmail.isEmpty()) profile.changeEmail(newEmail);
-      if(!(newPassword.isEmpty()) && !(newPassword2.isEmpty()) && newPassword.equals(newPassword2)) profile.changePassword(newPassword2);
+      if (!newNum.isEmpty())
+        profile.changeTlf(newNum);
+      if (!newEmail.isEmpty())
+        profile.changeEmail(newEmail);
+      if (!(newPassword.isEmpty()) && !(newPassword2.isEmpty()) && newPassword.equals(newPassword2))
+        profile.changePassword(newPassword2);
     } catch (IllegalArgumentException e) {
       feedbackInSettings.setText(e.getMessage());
     }
@@ -405,7 +409,7 @@ public class BankAppController {
   }
 
   /**
-   * Handles mouseclick to log out 
+   * Handles mouseclick to log out
    * 
    * @param event
    */
@@ -508,10 +512,11 @@ public class BankAppController {
 
   /**
    * handles Settings button in Profile
+   * 
    * @param event
    */
   @FXML
-  public void goToSettings(MouseEvent event){
+  public void goToSettings(MouseEvent event) {
     AnchorPaneGoTo(event, "Settings", settingsButton);
   }
 
