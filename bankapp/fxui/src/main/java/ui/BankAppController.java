@@ -634,7 +634,6 @@ public class BankAppController {
    */
   @FXML
   public void handleTransfer(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
-    // AnchorPaneGoTo(event, "Payments", transferButton);
     String fromAccount = transferFromAccount.getText();
     String toAccount = transferToAccount.getText();
     int amount = Integer.parseInt(transferAmount.getText());
@@ -642,25 +641,38 @@ public class BankAppController {
     AbstractAccount acc1 = null;
     AbstractAccount acc2 = null;
 
-    if (amount > 1)
-
-      try {
-        acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccount))
-            .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
-        acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccount))
-            .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
-        acc2.transferTo(acc1, amount, transactionPath);
-        acc2.transferTo(acc1, amount, transactionPath);
-
-      } catch (IllegalArgumentException e) {
-        feedbackInTransfer.setText(e.getMessage());
+    boolean acc1InProfile = false;
+    boolean acc2InProfile = false;
+    if (amount > 1) {
+      for (AbstractAccount absAcc : profile.getAccounts()) {
+        if (absAcc.getAccNr().equals(fromAccount))
+          acc1InProfile = true;
+        if (absAcc.getAccNr().equals(toAccount))
+          acc2InProfile = true;
       }
-    writeInfo();
-    transferAmount.setText("");
-    transferFromAccount.setText("");
-    transferToAccount.setText("");
-    feedbackInTransfer.setText("Transfer completed!");
 
+      if (acc1InProfile == false || acc2InProfile == false) {
+        feedbackInTransfer.setText("You can only transfer between your accounts");
+        feedbackInTransfer.setFill(Color.RED);
+      } else {
+
+        try {
+          acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccount))
+              .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
+          acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccount))
+              .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
+          acc2.transferTo(acc1, amount, transactionPath);
+
+        } catch (IllegalArgumentException e) {
+          feedbackInTransfer.setText(e.getMessage());
+        }
+        writeInfo();
+        transferAmount.setText("");
+        transferFromAccount.setText("");
+        transferToAccount.setText("");
+        feedbackInTransfer.setText("Transfer completed!");
+      }
+    }
   }
 
   /**

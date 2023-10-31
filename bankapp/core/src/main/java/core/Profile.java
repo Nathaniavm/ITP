@@ -25,6 +25,7 @@ public class Profile implements Serializable {
     private String password;
     private List<AbstractAccount> accounts = new ArrayList<>();
     private List<Bill> bills = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
     private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList("ad", "ae", "af", "ag", "ai", "al", "am", "ao",
             "aq", "ar", "as", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl",
             "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cc", "cd", "cf", "cg", "ch", "ci",
@@ -272,12 +273,12 @@ public class Profile implements Serializable {
     }
 
     /**
-     * Changes the email if email is valid 
+     * Changes the email if email is valid
      * 
      * @param email The new email
      */
-    public void changeEmail(String email){
-        if(!validEmail(email))
+    public void changeEmail(String email) {
+        if (!validEmail(email))
             throw new IllegalArgumentException("Not valid email");
         this.email = email;
     }
@@ -336,10 +337,19 @@ public class Profile implements Serializable {
         return new ArrayList<>(bills);
     }
 
-    public boolean ownsAccount(AbstractAccount account){
+    public boolean ownsAccount(AbstractAccount account) {
         System.out.println(accounts);
         System.out.println(account);
         return accounts.stream().anyMatch(a -> a.getAccNr().equals(account.getAccNr()));
+    }
+
+    public void setTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
+    @JsonIgnore
+    public List<Transaction> getTransactions() {
+        return new ArrayList<>(transactions);
     }
 
     public static void main(String[] args) {

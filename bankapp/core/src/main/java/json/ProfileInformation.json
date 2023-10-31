@@ -1,1 +1,111 @@
-[{"@id":"f295e15f-9c78-429a-88f6-60ae55a43700","name":"Klein Cornolis","email":"Klein@gmail.com","tlf":"12121212","password":"passord13214212","accounts":[{"accountType":"SpendingsAccount","@id":"36f092ef-7351-4a76-9d4f-5e0952f4d467","name":"Savings","profile":"f295e15f-9c78-429a-88f6-60ae55a43700","balance":472189,"accNr":"1234 21 42504","bankCard":{"@id":"028ecb00-9511-4d4c-92ea-aba7532cfdae","cardholder":"Klein Cornolis","account":"36f092ef-7351-4a76-9d4f-5e0952f4d467","cardNr":"1248 1632 6749 1261"}},{"accountType":"SpendingsAccount","@id":"f48082ab-994d-42e3-86c1-a7ead66e415d","name":"Hei","profile":"f295e15f-9c78-429a-88f6-60ae55a43700","balance":0,"accNr":"1234 78 59332","bankCard":null}],"bills":[{"@id":"6b41a474-5039-4546-bbfe-72cb2a56ad31","amount":100,"billName":"NTNU","sellerName":"NTNU Gløshaugen","sellerAccount":{"accountType":"SpendingsAccount","@id":"759d6bd4-bebb-4ae6-b6d3-2f667e0ec77d","name":"NTNU","profile":{"@id":"63fbf930-8efd-437f-8e14-8a1683b48a20","name":"NTNU Gløshaugen","email":"NTNU@ntnu.no","tlf":"98989898","password":"Administrator59","accounts":["759d6bd4-bebb-4ae6-b6d3-2f667e0ec77d"],"bills":[]},"balance":0,"accNr":"1234 52 23628","bankCard":null},"payerAccount":"36f092ef-7351-4a76-9d4f-5e0952f4d467","profile":"f295e15f-9c78-429a-88f6-60ae55a43700","paid":false}]},{"@id":"11d437a5-e496-4671-8070-15e7a75d0dfe","name":"Philip Vu Lam","email":"Philip@gmail.com","tlf":"87654321","password":"passord123","accounts":[{"accountType":"SpendingsAccount","@id":"6a59bd2a-2293-436d-a901-ae74a6480cc7","name":"Philips savings account","profile":"11d437a5-e496-4671-8070-15e7a75d0dfe","balance":0,"accNr":"1234 11 85060","bankCard":null}],"bills":[]},{"@id":"7f84a1ca-4e4d-4b8b-9d58-a6ee80b00502","name":"philip lam","email":"phil@gmail.com","tlf":"67128934","password":"passord12","accounts":[{"accountType":"SpendingsAccount","@id":"b18f45f7-3943-4715-9e02-1220bfee1633","name":"Spendings account","profile":"7f84a1ca-4e4d-4b8b-9d58-a6ee80b00502","balance":100,"accNr":"1234 80 99694","bankCard":null}],"bills":[]}]
+[
+    {
+        "@id": "a81ff0b5-7fbe-4b26-a409-553741b8343f",
+        "name": "Klein Cornolis",
+        "email": "Klein@gmail.com",
+        "tlf": "12121212",
+        "password": "passord13214212",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "b9101ce4-e8da-4321-b7bc-bc153c4dcffc",
+                "name": "Savings",
+                "profile": "a81ff0b5-7fbe-4b26-a409-553741b8343f",
+                "balance": 472189,
+                "accNr": "1234 21 42504",
+                "bankCard": {
+                    "@id": "9c75d00d-6e75-4254-b789-8d9948d08a10",
+                    "cardholder": "Klein Cornolis",
+                    "account": "b9101ce4-e8da-4321-b7bc-bc153c4dcffc",
+                    "cardNr": "1248 1632 6749 1261"
+                }
+            },
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "ee575541-251f-4923-a7b9-3a4c332d6099",
+                "name": "Hei",
+                "profile": "a81ff0b5-7fbe-4b26-a409-553741b8343f",
+                "balance": 0,
+                "accNr": "1234 78 59332",
+                "bankCard": null
+            }
+        ],
+        "bills": [
+            {
+                "@id": "d2aa55c9-ced0-4d02-aa7d-7c7989be904b",
+                "amount": 100,
+                "billName": "NTNU",
+                "sellerName": "NTNU Gløshaugen",
+                "sellerAccount": {
+                    "accountType": "SpendingsAccount",
+                    "@id": "55f29603-42f0-4f58-8091-52f5ea2340a7",
+                    "name": "NTNU",
+                    "profile": {
+                        "@id": "0875652f-ba9b-470a-832e-4e3de71306d2",
+                        "name": "NTNU Gløshaugen",
+                        "email": "NTNU@ntnu.no",
+                        "tlf": "98989898",
+                        "password": "Administrator59",
+                        "accounts": [
+                            "55f29603-42f0-4f58-8091-52f5ea2340a7"
+                        ],
+                        "bills": []
+                    },
+                    "balance": 0,
+                    "accNr": "1234 52 23628",
+                    "bankCard": null
+                },
+                "payerAccount": "b9101ce4-e8da-4321-b7bc-bc153c4dcffc",
+                "profile": "a81ff0b5-7fbe-4b26-a409-553741b8343f",
+                "paid": false
+            }
+        ]
+    },
+    {
+        "@id": "4396272a-e35a-436f-ab60-edf0ecde89e9",
+        "name": "Philip Vu Lam",
+        "email": "Philip@gmail.com",
+        "tlf": "87654321",
+        "password": "passord123",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "f7a6ffcb-201a-4152-9331-97320583a9a4",
+                "name": "Philips savings account",
+                "profile": "4396272a-e35a-436f-ab60-edf0ecde89e9",
+                "balance": 0,
+                "accNr": "1234 11 85060",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    },
+    {
+        "@id": "eb5f24c2-a3ad-436d-b48e-a1f7eee834a5",
+        "name": "philip lam",
+        "email": "phil@gmail.com",
+        "tlf": "67128934",
+        "password": "passord12",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "3f6ebf2f-bf41-4697-9708-2b750506b96a",
+                "name": "Spendings account",
+                "profile": "eb5f24c2-a3ad-436d-b48e-a1f7eee834a5",
+                "balance": 35,
+                "accNr": "1234 80 99694",
+                "bankCard": null
+            },
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "09f9111e-df07-4c38-8dc5-1910ca232bb0",
+                "name": "acc",
+                "profile": "eb5f24c2-a3ad-436d-b48e-a1f7eee834a5",
+                "balance": 25,
+                "accNr": "1234 50 60898",
+                "bankCard": null
+            }
+        ],
+        "bills": []
+    }
+]

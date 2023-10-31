@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import core.BankCard;
 import core.Profile;
-import json.Transactions;
+import core.Transaction;
+import json.TransactionsPersistence;
 
 /*
  * Class that makes an account
@@ -52,8 +53,14 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     account.remove(amount);
     this.add(amount);
 
-    Transactions.writeTransactions(new Transactions(this.getProfile(), account, amount), file);
-    Transactions.writeTransactions(new Transactions(account.getProfile(), this, amount), file);
+    TransactionsPersistence.writeTransactions(
+        new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
+            this.getAccNr(), -amount),
+        file);
+    TransactionsPersistence.writeTransactions(
+        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
+            this.getAccNr(), amount),
+        file);
     ;
   }
 
@@ -84,7 +91,7 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     account1.add(1000);
     account2.transferTo(account1, 500, file);
 
-    List<Transactions> transactions = Transactions.readTransactions(file);
+    List<Transaction> transactions = TransactionsPersistence.readTransactions(file);
     System.out.println(transactions);
   }
 
