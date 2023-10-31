@@ -1,11 +1,9 @@
 package ui;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-
-import org.junit.Before;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
@@ -65,20 +63,20 @@ public class BankAppTest extends ApplicationTest {
 
     // @Test
     // public void testBankSettings() {
-    //     clickOn("#profileTab");
-    //     WaitForAsyncUtils.waitForFxEvents();
-    //     assertNotNull(findSceneRootWithId("profile"));
+    // clickOn("#profileTab");
+    // WaitForAsyncUtils.waitForFxEvents();
+    // assertNotNull(findSceneRootWithId("profile"));
     // }
 
     // private Parent findSceneRootWithId(String id) {
-    //     for (Window window : Window.getWindows()) {
-    //         if (window instanceof Stage && window.isShowing()) {
-    //             Parent root = window.getScene().getRoot();
-    //             if (id.equals(root.getId())) {
-    //                 return root;
-    //             }
-    //         }
-    //     }
-    //     return null;
+    // for (Window window : Window.getWindows()) {
+    // if (window instanceof Stage && window.isShowing()) {
+    // Parent root = window.getScene().getRoot();
+    // if (id.equals(root.getId())) {
+    // return root;
+    // }
+    // }
+    // }
+    // return null;
     // }
 }

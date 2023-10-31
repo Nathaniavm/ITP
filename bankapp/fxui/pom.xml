@@ -50,14 +50,10 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.0</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.10.0</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -96,7 +92,42 @@
         <version>0.0.8</version>
         <configuration>
           <mainClass>ui.BankApp</mainClass>
-          <verbose>true</verbose>
+          <version>0.0.8</version>
+          <!-- rest of options are for jlink -->
+          <compress>2</compress>
+          <noHeaderFiles>true</noHeaderFiles>
+          <stripDebug>true</stripDebug>
+          <noManPages>true</noManPages>
+          <launcher>bankappfx</launcher>
+          <jlinkImageName>bankappfx</jlinkImageName>
+          <jlinkZipName>bankappfx</jlinkZipName>
+        </configuration>
+      </plugin>
+
+      <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+      <plugin>
+        <groupId>org.panteleyev</groupId>
+        <artifactId>jpackage-maven-plugin</artifactId>
+        <version>1.4.0</version>
+        <configuration>
+          <name>BankAppFX</name>
+          <appVersion>1.0.0</appVersion>
+          <vendor>gr2315</vendor>
+          <destination>target/dist</destination>
+          <module>bankapp.fxui/ui.BankApp</module>
+          <runtimeImage>target/bankappfx</runtimeImage>
+          <javaOptions>
+            <option>-Dfile.encoding=UTF-8</option>
+          </javaOptions>
+          <!-- linux options -->
+          <linuxShortcut>true</linuxShortcut>
+          <linuxMenuGroup>BankAppFX</linuxMenuGroup>
+
+          <!-- windows options -->
+          <winDirChooser>true</winDirChooser>
+          <winShortcut>true</winShortcut>
+          <winMenu>true</winMenu>
+          <winMenuGroup>BankAppFX</winMenuGroup>
         </configuration>
       </plugin>
       <!-- clean lifecycle, see
@@ -163,7 +194,7 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <configuration>
-            <propertyName>jaCoCoArgLine</propertyName>
+          <propertyName>jaCoCoArgLine</propertyName>
         </configuration>
       </plugin>
     </plugins>

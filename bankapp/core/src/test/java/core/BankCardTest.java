@@ -1,14 +1,12 @@
 package core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import core.Accounts.SpendingsAccount;
@@ -24,7 +22,7 @@ public class BankCardTest {
     private Profile profile2;
     private Profile profile3;
 
-    @Before
+    @BeforeEach
     @DisplayName("setting up the different bankcards")
     public void setUp() {
         profile1 = new Profile("Jane Smith", "jane@gmail.com", "12345678", "passord12");

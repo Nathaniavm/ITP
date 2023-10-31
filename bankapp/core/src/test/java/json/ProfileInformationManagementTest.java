@@ -1,14 +1,13 @@
 package json;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -36,7 +35,7 @@ public class ProfileInformationManagementTest {
 
     private final static String filename2 = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
 
-    @Before
+    @BeforeEach
     @DisplayName("Setting up the different profiles")
     public void setUp() throws StreamReadException, DatabindException, IOException {
         System.out.println(file);
