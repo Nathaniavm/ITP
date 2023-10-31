@@ -9,12 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
-
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import core.Profile;
+import core.Transaction;
 import core.Accounts.SpendingsAccount;
 
 public class TransactionsTest {
@@ -27,11 +31,13 @@ public class TransactionsTest {
     private Profile profile2;
     private SpendingsAccount account1;
     private SpendingsAccount account2;
-    private Transactions transaction1;
+    private Transaction transaction1;
 
     @BeforeEach
     @DisplayName("Setting up profiles and accounts")
-    public void setup() {
+    public void setup() throws StreamWriteException, DatabindException, IOException {
+        TransactionsPersistence.clearFile(filename);
+
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
         profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
         account1 = new SpendingsAccount("Useraccount", profile1);
@@ -40,33 +46,36 @@ public class TransactionsTest {
         profile2.addAccount(account2);
         account1.add(500);
         account2.add(1000);
-        transaction1 = new Transactions(profile1, account2, 100);
+        transaction1 = new Transaction(profile1.getEmail(), account2.getAccNr(), account2.getProfile().getName(),
+                account1.getAccNr(), 100);
 
     }
 
     @Test
     @DisplayName("Tests if constructor constructs object correct")
     public void testConstructor() {
-        Transactions transaction2 = new Transactions(profile2, account1, 300);
-        assertEquals(transaction2.getProfile(), profile2);
-        assertEquals(transaction2.getTransactionTo(), account1);
+        Transaction transaction2 = new Transaction(profile2.getEmail(), account1.getAccNr(),
+                account1.getProfile().getName(), account2.getAccNr(), 300);
+        assertEquals(transaction2.getEmail(), profile2.getEmail());
+        assertEquals(transaction2.getTransactionTo(), account1.getAccNr());
         assertTrue(transaction2.getAmount() == 300);
     }
 
     @Test
     @DisplayName("Testing if application throws IOException if path does not exist")
     public void testFakeFile() {
-        assertThrows(IOException.class, () -> Transactions.writeTransactions(transaction1, fakefile));
-        assertThrows(IOException.class, () -> Transactions.readTransactions(fakefile));
+        assertThrows(IOException.class, () -> TransactionsPersistence.writeTransactions(transaction1, fakefile));
+        assertThrows(IOException.class, () -> TransactionsPersistence.readTransactions(fakefile));
     }
 
     @Test
     @DisplayName("Tests if written to file")
     public void testWriteTransactions() throws IOException {
         System.out.println(transaction1);
-        Transactions.writeTransactions(transaction1, filename);
-        List<Transactions> transactionsList = Transactions.readTransactions(filename);
-        assertEquals(profile1.getName(), transactionsList.get(0).getProfile().getName());
+        TransactionsPersistence.writeTransactions(transaction1, filename);
+        List<Transaction> transactionsList = TransactionsPersistence.readTransactions(filename);
+        System.out.println(transactionsList);
+        assertEquals(profile1.getEmail(), transactionsList.get(0).getEmail());
     }
 
     @Test
@@ -77,15 +86,15 @@ public class TransactionsTest {
     @Test
     @DisplayName("Test getter for the account paid to")
     public void testGetTransferTo() {
-        assertEquals(transaction1.getTransactionTo(), account2);
-        assertNotEquals(transaction1.getTransactionTo(), account1);
+        assertEquals(transaction1.getTransactionTo(), account2.getAccNr());
+        assertNotEquals(transaction1.getTransactionTo(), account1.getAccNr());
     }
 
     @Test
     @DisplayName("Test getter for the payer")
     public void testGetProfile() {
-        assertEquals(transaction1.getProfile(), profile1);
-        assertNotEquals(transaction1.getProfile(), profile2);
+        assertEquals(transaction1.getEmail(), profile1.getEmail());
+        assertNotEquals(transaction1.getEmail(), profile2.getEmail());
     }
 
     @Test

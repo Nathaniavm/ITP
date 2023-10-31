@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import core.Profile;
-import json.Transactions;
+import core.Transaction;
+import json.TransactionsPersistence;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class SavingsAccount extends AbstractAccount implements Serializable {
@@ -31,8 +32,14 @@ public class SavingsAccount extends AbstractAccount implements Serializable {
     }
     account.remove(amount);
     this.add(amount);
-    Transactions.writeTransactions(new Transactions(this.getProfile(), account, amount), file);
-    Transactions.writeTransactions(new Transactions(account.getProfile(), this, amount), file);
+    TransactionsPersistence.writeTransactions(
+        new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
+            this.getAccNr(), -amount),
+        file);
+    TransactionsPersistence.writeTransactions(
+        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
+            this.getAccNr(), amount),
+        file);
     ;
   }
 
