@@ -56,7 +56,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <Label fx:id="newAccountButton" layoutX="34.0" layoutY="372.0" onMouseClicked="#goToAccount2" text="Create new account " textFill="#214c69" underline="true">
+                  <Label fx:id="newAccountButton" layoutX="34.0" layoutY="345.0" onMouseClicked="#goToAccount2" text="Create new account " textFill="#214c69" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="deleteAccountButton" layoutX="34.0" layoutY="372.0" onMouseClicked="#handleDeleteAccountStage1" text="Delete an account " textFill="#214c69" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>

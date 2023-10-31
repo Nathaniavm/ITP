@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import core.Accounts.AbstractAccount;
+import core.Accounts.SpendingsAccount;
 
 /**
  * Class that makes a profile
@@ -187,6 +188,14 @@ public class Profile implements Serializable {
         accounts.add(account);
     }
 
+    public void removeAccount(AbstractAccount account){
+        for(AbstractAccount absAcc : getAccounts()){
+            if(absAcc.getName().equals(account.getName())){
+                accounts.remove(absAcc);
+            }
+        }
+    }
+
     /**
      * Add a specific bill to this profiles list of bills
      * 
@@ -334,6 +343,13 @@ public class Profile implements Serializable {
     }
 
     public static void main(String[] args) {
-
+        Profile pro = new Profile("Nath Mul", "nath@gmail.com", "40897346", "yeyeyeyeye1");
+        SpendingsAccount acc = new SpendingsAccount("nameAcc", pro);
+        pro.addAccount(acc);
+        SpendingsAccount acc2 = new SpendingsAccount("nameAcc2", pro);
+        pro.addAccount(acc2);
+        System.out.println(pro.getAccounts());
+        pro.removeAccount(acc2);
+        System.out.println(pro.getAccounts());
     }
 }

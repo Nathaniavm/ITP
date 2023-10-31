@@ -28,7 +28,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import json.ProfileInformationManagement;
 import javafx.scene.image.ImageView;
@@ -172,6 +174,9 @@ public class BankAppController {
   @FXML
   private Label newAccountButton;
 
+  @FXML
+  private AnchorPane overview;
+
   // new bill fxml
   @FXML
   private TextField billName;
@@ -208,34 +213,50 @@ public class BankAppController {
   @FXML
   private Text feedbackInNewAccount;
 
-  // settings fxml 
+  // settings fxml
 
-  @FXML 
+  @FXML
   private TextField changeNumberTo;
 
-  @FXML 
+  @FXML
   private TextField changeEmailTo;
 
-  @FXML 
+  @FXML
   private TextField changePasswordTo;
 
-  @FXML 
+  @FXML
   private TextField confirmChangePassword;
 
-  @FXML 
+  @FXML
   private AnchorPane updateSettings;
 
-  @FXML 
+  @FXML
   private Text feedbackInSettings;
 
-  @FXML 
+  @FXML
   private Text deleteProfileButton;
 
   // profile fxml
 
-  @FXML 
+  @FXML
   private AnchorPane settingsButton;
 
+  // deleteAccount fxml
+
+  @FXML
+  private TextField deleteAccountName;
+
+  @FXML
+  private Button deleteAccountNow;
+
+  @FXML
+  private Button cancelDeleteAccount;
+
+  @FXML
+  private AnchorPane deleteAccount;
+
+  @FXML
+  private Text feedbackInDeleteAccount;
 
   private static Profile profile;
   private static String currentDir = System.getProperty("user.dir");
@@ -243,51 +264,6 @@ public class BankAppController {
       + "/core/src/main/java/json/ProfileInformation.json";
   private static final String transactionPath = currentDir.substring(0, currentDir.length() - 5)
       + "/core/src/main/java/json/TransactionsOverview.json";
-
-
-  @FXML
-  public void handleDeleteProfile(MouseEvent event) throws StreamReadException, DatabindException, IOException{
-    ProfileInformationManagement.deleteProfile(path, profile);
-    try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-      Parent root = loader.load();
-      Scene scene = new Scene(root);
-      Stage stage = (Stage) deleteProfileButton.getScene().getWindow();
-      stage.setScene(scene);
-      stage.show();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    
-  }
-
-  /**
-   * handles the changes in profile and saves it
-   * 
-   * @param event
-   * @throws StreamWriteException
-   * @throws DatabindException
-   * @throws IOException
-   */
-  @FXML 
-  public void handleUpdateSettings(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
-    String newNum = changeNumberTo.getText();
-    String newEmail = changeEmailTo.getText();
-    String newPassword = changePasswordTo.getText();
-    String newPassword2 = confirmChangePassword.getText();
-
-    try {
-      if(!newNum.isEmpty()) profile.changeTlf(newNum);
-      if(!newEmail.isEmpty()) profile.changeEmail(newEmail);
-      if(!(newPassword.isEmpty()) && !(newPassword2.isEmpty()) && newPassword.equals(newPassword2)) profile.changePassword(newPassword2);
-    } catch (IllegalArgumentException e) {
-      feedbackInSettings.setText(e.getMessage());
-    }
-
-    feedbackInSettings.setText("Update successfull!");
-    writeInfo();
-  }
 
   /**
    * Initializes fields based on current page
@@ -361,7 +337,6 @@ public class BankAppController {
    * profile
    * 
    */
-
   @FXML
   public void updateAccounts() {
     int count = 0;
@@ -405,7 +380,7 @@ public class BankAppController {
   }
 
   /**
-   * Handles mouseclick to log out 
+   * Handles mouseclick to log out
    * 
    * @param event
    */
@@ -508,10 +483,11 @@ public class BankAppController {
 
   /**
    * handles Settings button in Profile
+   * 
    * @param event
    */
   @FXML
-  public void goToSettings(MouseEvent event){
+  public void goToSettings(MouseEvent event) {
     AnchorPaneGoTo(event, "Settings", settingsButton);
   }
 
@@ -702,31 +678,101 @@ public class BankAppController {
     int numAccounts = profile.getAccounts().size();
     AbstractAccount account = null;
 
-    // create new Account based on this information
-    String[] validTypes = { "BSU", "Checking account", "Savings account" };
-
-    if (type.equals(validTypes[0])) {
-      account = new BSUAccount(name, profile);
+    if (name.isEmpty()) {
+      feedbackInNewAccount.setText("Fill the field");
+      feedbackInNewAccount.setFill(Color.RED);
     }
 
-    else if (type.equals(validTypes[1])) {
-      account = new SpendingsAccount(name, profile);
+    else {
+      boolean duplicateName = false;
+      for (AbstractAccount absAcc : profile.getAccounts()) {
+        if (absAcc.getName().equals(name)) {
+          duplicateName = true;
+          feedbackInNewAccount.setText("Account name is already taken");
+          feedbackInNewAccount.setFill(Color.RED);
+          giveAccountName.setText("");
+        }
+      }
+      if (!duplicateName) {
+        String[] validTypes = { "BSU", "Checking account", "Savings account" };
+
+        if (type.equals(validTypes[0])) {
+          account = new BSUAccount(name, profile);
+        }
+
+        else if (type.equals(validTypes[1])) {
+          account = new SpendingsAccount(name, profile);
+        }
+
+        else if (type.equals(validTypes[2])) {
+          account = new SavingsAccount(name, profile);
+        }
+        profile.addAccount(account);
+
+        for (AbstractAccount absAcc : profile.getAccounts()) {
+          if (absAcc.getName().equals(name))
+            feedbackInNewAccount.setText("Another account has this name");
+        }
+
+        if (numAccounts + 1 == profile.getAccounts().size()) {
+          feedbackInNewAccount.setText("New account created!");
+        }
+
+        giveAccountName.setText("");
+        writeInfo();
+      }
+    }
+  }
+
+  /**
+   * opens a fxml where you can delete an account
+   * 
+   * @param event
+   * @throws IOException
+   */
+  @FXML
+  public void handleDeleteAccountStage1(MouseEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteAccount.fxml"));
+    AnchorPane deleteAccount = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(deleteAccount));
+    stage.setTitle("Delete Account");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+
+  }
+
+  /**
+   * deletes the account with the written name in the text field
+   *
+   * @param event
+   * @throws StreamWriteException
+   * @throws DatabindException
+   * @throws IOException          If it can't find the account written in the text
+   *                              field
+   */
+  @FXML
+  public void handleDeleteAccountStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
+    if (profile != null) {
+      String accountToBeDeleted = deleteAccountName.getText();
+      AbstractAccount acc = null;
+      acc = profile.getAccounts().stream().filter(account -> account.getName().equals(accountToBeDeleted))
+          .findFirst()
+          .orElse(null);
+
+      if (acc == null) {
+        feedbackInDeleteAccount.setText("Cannot find account");
+        feedbackInDeleteAccount.setFill(Color.RED);
+      } else {
+        profile.removeAccount(acc);
+        writeInfo();
+        Stage stage = (Stage) deleteAccount.getScene().getWindow();
+        stage.close();
+      }
+    } else {
+      feedbackInDeleteAccount.setText("Profile not found");
     }
 
-    else if (type.equals(validTypes[2])) {
-      account = new SavingsAccount(name, profile);
-    }
-    System.out.println(numAccounts);
-    profile.addAccount(account);
-    System.out.println(numAccounts);
-    System.out.println(profile.getAccounts().size());
-
-    if (numAccounts + 1 == profile.getAccounts().size()) {
-      feedbackInNewAccount.setText("New account created!");
-    }
-
-    giveAccountName.setText("");
-    writeInfo();
   }
 
   /**
@@ -760,6 +806,19 @@ public class BankAppController {
     }
   }
 
+  public void buttonGoTo(MouseEvent event, String source, Button button) {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource(source + ".fxml"));
+      Parent root = loader.load();
+      Scene scene = new Scene(root);
+      Stage stage = (Stage) button.getScene().getWindow();
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      loginError.setText(e.getMessage());
+    }
+  }
+
   /**
    * Handles mouseclick on the login-button
    * 
@@ -769,7 +828,6 @@ public class BankAppController {
 
   @FXML
   public void handleLoginButton(MouseEvent event) {
-
     try {
       String email = emailInput.getText();
       String password = passwordInput.getText();
@@ -777,22 +835,73 @@ public class BankAppController {
       profile = profiles.stream()
           .filter(profile -> profile.getPassword().equals(password) && profile.getEmail().equals(email))
           .findFirst().orElseThrow(() -> new Exception("Invalid email or password"));
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
+    } catch (Exception e) {
+      loginError.setText(e.getMessage());
+      e.printStackTrace();
+    }
+
+    buttonGoTo(event, "Overview", loginButton);
+
+  }
+
+  /**
+   * Deletes this profile
+   * 
+   * @param event
+   * @throws StreamReadException
+   * @throws DatabindException
+   * @throws IOException
+   */
+  @FXML
+  public void handleDeleteProfile(MouseEvent event) throws StreamReadException, DatabindException, IOException {
+    ProfileInformationManagement.deleteProfile(path, profile);
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
       Parent root = loader.load();
       Scene scene = new Scene(root);
-      Stage stage = (Stage) loginButton.getScene().getWindow();
+      Stage stage = (Stage) deleteProfileButton.getScene().getWindow();
       stage.setScene(scene);
       stage.show();
     } catch (Exception e) {
-      loginError.setText(e.getMessage());
+      e.printStackTrace();
     }
+
+  }
+
+  /**
+   * handles the changes in profile and saves it
+   * 
+   * @param event
+   * @throws StreamWriteException
+   * @throws DatabindException
+   * @throws IOException
+   */
+  @FXML
+  public void handleUpdateSettings(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
+    String newNum = changeNumberTo.getText();
+    String newEmail = changeEmailTo.getText();
+    String newPassword = changePasswordTo.getText();
+    String newPassword2 = confirmChangePassword.getText();
+
+    try {
+      if (!newNum.isEmpty())
+        profile.changeTlf(newNum);
+      if (!newEmail.isEmpty())
+        profile.changeEmail(newEmail);
+      if (!(newPassword.isEmpty()) && !(newPassword2.isEmpty()) && newPassword.equals(newPassword2))
+        profile.changePassword(newPassword2);
+    } catch (IllegalArgumentException e) {
+      feedbackInSettings.setText(e.getMessage());
+    }
+
+    feedbackInSettings.setText("Update successfull!");
+    writeInfo();
   }
 
   /**
    * Handles logic for registering new profile
    * 
    */
-
   @FXML
   public void register() {
     if (password.getText().equals(passwordConfirm.getText())) {
