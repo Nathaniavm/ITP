@@ -263,6 +263,17 @@ public class Profile implements Serializable {
     }
 
     /**
+     * Changes the email if email is valid 
+     * 
+     * @param email The new email
+     */
+    public void changeEmail(String email){
+        if(!validEmail(email))
+            throw new IllegalArgumentException("Not valid email");
+        this.email = email;
+    }
+
+    /**
      * Returns the email connected to this profile
      * 
      * @return The email connected to this profile
@@ -314,5 +325,15 @@ public class Profile implements Serializable {
      */
     public List<Bill> getBills() {
         return new ArrayList<>(bills);
+    }
+
+    public boolean ownsAccount(AbstractAccount account){
+        System.out.println(accounts);
+        System.out.println(account);
+        return accounts.stream().anyMatch(a -> a.getAccNr().equals(account.getAccNr()));
+    }
+
+    public static void main(String[] args) {
+
     }
 }

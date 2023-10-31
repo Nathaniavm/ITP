@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+
 import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
 
@@ -33,7 +36,7 @@ public class BillTest {
 
     @Test
     @DisplayName("Testing the constructor")
-    public void testConstructor() {
+    public void testConstructor() throws StreamReadException, DatabindException, IOException {
         Bill bill = new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0), (SpendingsAccount) profile1.getAccounts().get(0),
                 profile1);
         assertNotNull(bill);
