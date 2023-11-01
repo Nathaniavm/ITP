@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import core.Accounts.SpendingsAccount;
 
-public class AccountTest {
+public class SpendingsAccountTest {
 
     private Profile profile = new Profile("Ola Nordmann", "ola@gmail.com", "12345678", "passord123");
     private static final String currentDir = System.getProperty("user.dir");
