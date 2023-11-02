@@ -352,6 +352,10 @@ public class Profile implements Serializable {
         return new ArrayList<>(transactions);
     }
 
+    public String toString(){//overriding the toString() method  
+        return name;
+       }  
+
     public static void main(String[] args) {
         Profile pro = new Profile("Nath Mul", "nath@gmail.com", "40897346", "yeyeyeyeye1");
         SpendingsAccount acc = new SpendingsAccount("nameAcc", pro);

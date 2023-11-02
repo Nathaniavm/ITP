@@ -16,8 +16,8 @@ public class ProfilesService {
 
   public List<Profile> getProfiles() {
     try {
-      List<Profile> testing = ProfileInformationManagement.readFromFile(file);
-      return testing;
+      List<Profile> profiles = ProfileInformationManagement.readFromFile(file);
+      return profiles;
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -25,10 +25,10 @@ public class ProfilesService {
   }
 
   public Profile getProfile(String email) {
-    return getProfiles().stream().filter(profile -> profile.getEmail().equals(email)).findFirst().get();
+    return getProfiles().stream().filter(profile -> profile.getEmail().equals(email)).findFirst().orElse(null);
   }
 
-  public void addProfile(Profile profile) {
+  public void updateProfile(Profile profile) {
     try {
       ProfileInformationManagement.writeInformationToFile(profile, file);
     } catch (Exception e) {
