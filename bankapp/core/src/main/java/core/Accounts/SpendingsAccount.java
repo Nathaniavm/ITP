@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import core.BankCard;
 import core.Profile;
 import core.Transaction;
-import json.TransactionsPersistence;
 
 /*
  * Class that makes an account
@@ -20,8 +19,6 @@ import json.TransactionsPersistence;
 public class SpendingsAccount extends AbstractAccount implements Serializable {
   private BankCard bankCard;
 
-  public static final String file = "bankapp/core/src/main/java/json/TransactionsOverview.json";
-
   /**
    * Makes an account with given name and generates account number
    * 
@@ -29,39 +26,6 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
    */
   public SpendingsAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
     super(name, profile);
-  }
-
-  /**
-   * Transfer money from given account to this account
-   * 
-   * @param account - the account we are transferring from
-   * @param amount  - amount to transfer
-   * @throws IOException
-   */
-  @Override
-  public void transferTo(AbstractAccount account, int amount, String file) throws IOException {
-    if (account == null) {
-      throw new NullPointerException("Invalid account");
-    }
-    if (account.equals(this)) {
-      throw new IllegalArgumentException("Cannot transfer to self");
-    }
-
-    if (account.getBalance() < amount) {
-      throw new IllegalArgumentException("Account does not have enough money");
-    }
-    account.remove(amount);
-    this.add(amount);
-
-    TransactionsPersistence.writeTransactions(
-        new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
-            this.getAccNr(), -amount),
-        file);
-    TransactionsPersistence.writeTransactions(
-        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
-            this.getAccNr(), amount),
-        file);
-    ;
   }
 
   /**
@@ -79,20 +43,21 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     return bankCard;
   }
 
-  public static void main(String[] args) throws IOException {
-    Profile profile1 = new Profile("Alice Zheng", "Alice@gmail.com", "15678902", "Passord456");
-    SpendingsAccount account1 = new SpendingsAccount("Spending", profile1);
-    profile1.addAccount(account1);
+  public void pay(SpendingsAccount account, int amount) {
+    if ((account.getProfile().equals(this.getProfile()))) {
+      throw new IllegalArgumentException("Can not pay yourself");
+    }
+    if (this.getBalance() < amount) {
+      throw new IllegalArgumentException("Account does not have enough money");
+    }
+    this.remove(amount);
+    account.add(amount);
+    addTransaction(new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
+        this.getAccNr(), -amount));
+    account.addTransaction(
+        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
+            this.getAccNr(), amount));
 
-    Profile profile2 = new Profile("Philip Lam", "Philip@gmail.com", "15678906", "Passord123");
-    SpendingsAccount account2 = new SpendingsAccount("Spending", profile2);
-    profile2.addAccount(account2);
-
-    account1.add(1000);
-    account2.transferTo(account1, 500, file);
-
-    List<Transaction> transactions = TransactionsPersistence.readTransactions(file);
-    System.out.println(transactions);
   }
 
 }

@@ -1,6 +1,5 @@
 package core.Accounts;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -15,11 +14,6 @@ public class BSUAccount extends AbstractAccount implements Serializable {
 
   public BSUAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
     super(name, profile);
-  }
-
-  @Override
-  public void transferTo(AbstractAccount account, int amount, String file) throws IOException {
-    throw new IllegalArgumentException("You can't take money out of a BSU account");
   }
 
 }

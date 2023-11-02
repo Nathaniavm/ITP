@@ -8,6 +8,7 @@ import java.util.Random;
 
 import core.Balance;
 import core.Profile;
+import core.Transaction;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +28,7 @@ public abstract class AbstractAccount implements Serializable {
   private String name;
   private Balance balance;
   private static List<String> accNrs = new ArrayList<>();
+  private List<Transaction> transactions = new ArrayList<>();
   private String accNr;
   private boolean showInPreview = false;
   private static final Random RANDOM = new Random();
@@ -130,5 +132,54 @@ public abstract class AbstractAccount implements Serializable {
     return showInPreview;
   }
 
-  public abstract void transferTo(AbstractAccount account, int amount, String file) throws IOException;
+  /**
+   * Add a transaction to the account's transaction-list
+   * 
+   * @param transaction The transaction to be added
+   */
+  public void addTransaction(Transaction transaction) {
+    if (!(transaction.getTransactionFrom().equals(getAccNr()))
+        && !(transaction.getTransactionTo().equals(getAccNr()))) {
+      throw new IllegalArgumentException(
+          "Can not make a transaction between accounts that is not owned by this profile");
+    }
+    transactions.add(transaction);
+  }
+
+  public List<Transaction> getTransaction() {
+    return new ArrayList<>(transactions);
+  }
+
+  /**
+   * Transfer money from given account to this account
+   * 
+   * @param account - the account we are transferring from
+   * @param amount  - amount to transfer
+   * @throws IOException
+   */
+  public void transferFrom(AbstractAccount account, int amount) {
+    if (account == null) {
+      throw new NullPointerException("Invalid account");
+    }
+    if (!(account.getProfile().equals(this.getProfile()))) {
+      throw new IllegalArgumentException("Can not transfer between account you don't own");
+    }
+    if (account instanceof BSUAccount) {
+      throw new IllegalArgumentException("You can't take money out of a BSU account");
+    }
+    if (account.equals(this)) {
+      throw new IllegalArgumentException("Cannot transfer to self");
+    }
+    if (account.getBalance() < amount) {
+      throw new IllegalArgumentException("Account does not have enough money");
+    }
+    account.remove(amount);
+    this.add(amount);
+    addTransaction(new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
+        this.getAccNr(), amount));
+    account.addTransaction(
+        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
+            this.getAccNr(), -amount));
+  }
+
 }

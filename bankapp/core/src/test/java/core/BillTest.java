@@ -20,9 +20,6 @@ public class BillTest {
     private AbstractAccount acc1;
     private AbstractAccount acc2;
 
-    private static final String currentDir = System.getProperty("user.dir");
-    private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
-
     @BeforeEach
     @DisplayName("setting up the different profiles")
     public void setUp() {
@@ -37,11 +34,13 @@ public class BillTest {
     @Test
     @DisplayName("Testing the constructor")
     public void testConstructor() throws StreamReadException, DatabindException, IOException {
-        Bill bill = new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0), (SpendingsAccount) profile1.getAccounts().get(0),
+        Bill bill = new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0),
+                (SpendingsAccount) profile1.getAccounts().get(0),
                 profile1);
         assertNotNull(bill);
-        assertThrows(IllegalArgumentException.class, () -> new Bill(-100, "Leie", "Sit", (SpendingsAccount) profile1.getAccounts().get(0),
-                (SpendingsAccount) profile2.getAccounts().get(0), profile1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(-100, "Leie", "Sit", (SpendingsAccount) profile1.getAccounts().get(0),
+                        (SpendingsAccount) profile2.getAccounts().get(0), profile1));
         assertEquals(bill.getBillName(), "Leie");
         assertEquals(bill.getSellerName(), "Sit");
         assertEquals(bill.getAmount(), 100);
@@ -54,13 +53,14 @@ public class BillTest {
     @Test
     @DisplayName("Test paying")
     public void testPay() throws IOException {
-        Bill bill = new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0), (SpendingsAccount) profile1.getAccounts().get(0),
+        Bill bill = new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0),
+                (SpendingsAccount) profile1.getAccounts().get(0),
                 profile1);
         SpendingsAccount payer = (SpendingsAccount) profile1.getAccounts().get(0);
         SpendingsAccount seller = (SpendingsAccount) profile2.getAccounts().get(0);
         profile1.addBill(bill);
         payer.add(100);
-        bill.pay(filename);
+        bill.pay();
         assertTrue(bill.isPaid());
         assertEquals(payer.getBalance(), 0);
         assertEquals(seller.getBalance(), 100);

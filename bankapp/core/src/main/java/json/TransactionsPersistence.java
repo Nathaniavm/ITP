@@ -90,14 +90,7 @@ public class TransactionsPersistence implements Serializable {
    */
   public static List<Transaction> getProfilesTransaction(Profile profile, String filename) throws IOException {
     List<Transaction> profileTransaction;
-    File file = new File(filename);
-    if (!(file.exists())) {
-      throw new IOException("File does not exists");
-    }
-    ObjectMapper objectMapper = new ObjectMapper();
-    List<Transaction> transactions = objectMapper.readValue(file,
-        new TypeReference<List<Transaction>>() {
-        });
+    List<Transaction> transactions = readTransactions(filename);
     profileTransaction = transactions.stream().filter(t -> t.getEmail().equals(profile.getEmail()))
         .collect(Collectors.toList());
     return profileTransaction;
@@ -137,8 +130,8 @@ public class TransactionsPersistence implements Serializable {
     ((SpendingsAccount) profile1.getAccounts().get(0)).createBankCard();
     profile1.getAccounts().get(0).add(472189);
 
-    acc3.transferTo(acc1, 100, "bankapp/core/src/main/java/json/TransactionsOverview.json");
-    acc3.transferTo(acc1, 200, "bankapp/core/src/main/java/json/TransactionsOverview.json");
+    acc3.transferFrom(acc1, 100);
+    acc3.transferFrom(acc1, 200);
 
     List<Transaction> trans = TransactionsPersistence.getProfilesTransaction(profile2,
         "bankapp/core/src/main/java/json/TransactionsOverview.json");
