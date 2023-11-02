@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +15,6 @@ public class SavingsAccountTest {
 
   private Profile profile;
   private SavingsAccount sAccount;
-  private static final String currentDir = System.getProperty("user.dir");
-  private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
 
   @BeforeEach
   @DisplayName("Setting up the profile and account")
@@ -45,15 +41,15 @@ public class SavingsAccountTest {
 
   @Test
   @DisplayName("Tests transaction between two accounts, and if there will be an IllegalArgumentException when we try to tranfer more money than the balance in the account")
-  public void testTransfer() throws IOException {
+  public void testTransfer() {
     SavingsAccount newAcc = new SavingsAccount("Acc1", profile);
     newAcc.add(100);
 
-    assertThrows(IllegalArgumentException.class, () -> newAcc.transferTo(sAccount, 150, filename));
+    assertThrows(IllegalArgumentException.class, () -> newAcc.transferFrom(sAccount, 150));
     assertTrue(sAccount.getBalance() == 0);
 
     sAccount.add(200);
-    newAcc.transferTo(sAccount, 50, filename);
+    newAcc.transferFrom(sAccount, 50);
     assertTrue(sAccount.getBalance() == newAcc.getBalance());
   }
 
@@ -62,14 +58,14 @@ public class SavingsAccountTest {
   public void testNull() {
     SavingsAccount nullAccount = null;
     sAccount.add(500);
-    assertThrows(NullPointerException.class, () -> sAccount.transferTo(nullAccount, 100, filename));
+    assertThrows(NullPointerException.class, () -> sAccount.transferFrom(nullAccount, 100));
   }
 
   @Test
   @DisplayName("Tests if there will be an IllegalArgumentException if account tries to transfer to itself")
   public void testTranserToSelf() {
     sAccount.add(500);
-    assertThrows(IllegalArgumentException.class, () -> sAccount.transferTo(sAccount, 100, filename));
+    assertThrows(IllegalArgumentException.class, () -> sAccount.transferFrom(sAccount, 100));
   }
 
   @Test

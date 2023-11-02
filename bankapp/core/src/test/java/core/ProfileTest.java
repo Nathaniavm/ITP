@@ -18,9 +18,6 @@ public class ProfileTest {
     private Profile profile2;
     private Profile profile3;
 
-    private static final String currentDir = System.getProperty("user.dir");
-    private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
-
     @BeforeEach
     @DisplayName("setting up the different profiles")
     public void setUp() {
@@ -149,7 +146,7 @@ public class ProfileTest {
                 profile1);
         profile1.addBill(bill);
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
-        bill.pay(filename);
+        bill.pay();
         assertFalse(profile1.getBills().contains(bill));
         assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
     }

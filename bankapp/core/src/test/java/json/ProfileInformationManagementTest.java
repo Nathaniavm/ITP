@@ -117,7 +117,7 @@ public class ProfileInformationManagementTest {
     public void testBills() throws StreamWriteException, DatabindException, IOException {
         acc1.add(200); // seller
         acc2.add(150); // payer
-        bill1.pay(filename2); // bill1 costs 150
+        bill1.pay(); // bill1 costs 150
 
         ProfileInformationManagement.writeInformationToFile(profile1, file);
         ProfileInformationManagement.writeInformationToFile(profile2, file);
@@ -138,7 +138,7 @@ public class ProfileInformationManagementTest {
         ProfileInformationManagement.writeInformationToFile(profile2, file);
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
 
-        assertThrows(IllegalArgumentException.class, () -> bill1.pay(filename2));
+        assertThrows(IllegalArgumentException.class, () -> bill1.pay());
     }
 
     @Test
