@@ -187,7 +187,7 @@ public class BankAppController {
   // profile fxml
   
   @FXML
-  private AnchorPane settingsButton, accountsButton, cardsButton, logOutButton;
+  private AnchorPane settingsButton, cardsButton, logOutButton;
   
   // deleteAccount fxml
   
