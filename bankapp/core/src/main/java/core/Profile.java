@@ -186,6 +186,12 @@ public class Profile implements Serializable {
         } else if (account.getProfile() != this) {
             throw new IllegalArgumentException("Account is connected to different profile");
         }
+
+        for (AbstractAccount absAcc : this.accounts){
+            if(account.getName().equals(absAcc.getName())){
+                throw new IllegalArgumentException("Another account has this name");
+            }
+        }
         accounts.add(account);
     }
 
