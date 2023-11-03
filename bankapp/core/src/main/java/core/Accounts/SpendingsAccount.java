@@ -1,8 +1,6 @@
 package core.Accounts;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,17 +10,18 @@ import core.BankCard;
 import core.Profile;
 import core.Transaction;
 
-/*
- * Class that makes an account
+/**
+ * Creates a new spendingsaccount to the given profile, with a given name
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class SpendingsAccount extends AbstractAccount implements Serializable {
   private BankCard bankCard;
 
   /**
-   * Makes an account with given name and generates account number
+   * Creates a new spendingsaccount
    * 
-   * @param name takes inn the name of the account
+   * @param name    The name of the account
+   * @param profile The profile to make an account for
    */
   public SpendingsAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
     super(name, profile);
@@ -43,6 +42,16 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     return bankCard;
   }
 
+  /**
+   * Method for paying to someone. The account paid to must be an account that you
+   * don't own yourself
+   * 
+   * @param account The account paid to
+   * @param amount  The amount paid
+   * @throws IllegalArgumentException throws if you try to pay yourself, or if the
+   *                                  account trying to pay doesn't have enough
+   *                                  money
+   */
   public void pay(SpendingsAccount account, int amount) {
     if ((account.getProfile().equals(this.getProfile()))) {
       throw new IllegalArgumentException("Can not pay yourself");
