@@ -1,6 +1,5 @@
 package core.Accounts;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
     @JsonSubTypes.Type(value = SavingsAccount.class, name = "SavingsAccount"),
     @JsonSubTypes.Type(value = SpendingsAccount.class, name = "SpendingsAccount")
 })
+/**
+ * A general class for the different account types. Implements methods common to
+ * every account
+ */
 public abstract class AbstractAccount implements Serializable {
   private Profile profile;
   private String name;
@@ -155,7 +158,6 @@ public abstract class AbstractAccount implements Serializable {
    * 
    * @param account - the account we are transferring from
    * @param amount  - amount to transfer
-   * @throws IOException
    */
   public void transferFrom(AbstractAccount account, int amount) {
     if (account == null) {
