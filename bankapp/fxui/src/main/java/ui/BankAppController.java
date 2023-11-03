@@ -237,7 +237,7 @@ public class BankAppController {
       selectAccountType.setValue("Checking account");
     }
     if(transferFromChoiceBox != null){
-      getInputsChoiceBox(payFromChoiceBox);
+      getInputsChoiceBox(transferFromChoiceBox);
     }
     if(transferToChoiceBox != null){
       getInputsChoiceBox(transferToChoiceBox);
