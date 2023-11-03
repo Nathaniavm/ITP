@@ -49,9 +49,19 @@ public class Bill implements Serializable {
       @JsonProperty("payerAccount") SpendingsAccount payerAccount,
       @JsonProperty("profile") Profile payer) throws StreamReadException, DatabindException, IOException {
 
-    if (amount == 0 || billName == null || sellerName == null || sellerAccount == null || payerAccount == null
-        || payer == null) {
-      throw new IllegalArgumentException("All of the fields should be filled");
+    if (billName == null) {
+      throw new IllegalArgumentException("Please fill in bill name");
+    }
+    if(sellerName == null){
+      throw new IllegalArgumentException("Cannot find seller");
+    }
+
+    if(payer == null){
+      throw new IllegalArgumentException("Cannot find payer");
+    }
+
+    if(sellerAccount == null || payerAccount == null){
+      throw new IllegalArgumentException("One of the accounts can't be found");
     }
 
     if (amount < 0) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -35,7 +36,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="payFrom" layoutX="30.0" layoutY="230.0" />
                   <TextField fx:id="payTo" layoutX="226.0" layoutY="230.0" />
                   <AnchorPane layoutX="92.0" layoutY="20.0" prefHeight="112.0" prefWidth="236.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
@@ -65,6 +65,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
+                  <ChoiceBox fx:id="payFromChoiceBox" layoutX="30.0" layoutY="230.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
