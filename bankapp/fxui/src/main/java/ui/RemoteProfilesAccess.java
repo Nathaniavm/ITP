@@ -22,11 +22,6 @@ public class RemoteProfilesAccess {
 
   private static final String APPLICATION_JSON = "application/json";
 
-  // private static final String APPLICATION_FORM_URLENCODED =
-  // "application/x-www-form-urlencoded";
-
-  // private static final String ACCEPT_HEADER = "Accept";
-
   private static final String CONTENT_TYPE_HEADER = "Content-Type";
 
   private ObjectMapper objectMapper;
@@ -84,7 +79,6 @@ public class RemoteProfilesAccess {
   public boolean deleteProfile(Profile profile) {
     try {
       HttpRequest request = HttpRequest.newBuilder(profileUri(profile.getEmail()))
-          .header(CONTENT_TYPE_HEADER, APPLICATION_JSON)
           .DELETE().build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
@@ -109,6 +103,7 @@ public class RemoteProfilesAccess {
     return transactions;
   }
 
+  
   public boolean writeTransaction(Transaction transaction) {
     try {
       String json = objectMapper.writeValueAsString(transaction);

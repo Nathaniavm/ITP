@@ -1,6 +1,7 @@
 package core.Accounts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -172,10 +173,10 @@ public abstract class AbstractAccount implements Serializable {
   /**
    * Gets the full list of transactions done by this account.
    * 
-   * @return A list of transactions
+  * @return A list of transactions
    * 
    */
-  public List<Transaction> getTransactions() {
+  public List<Transaction> getTransaction() {
     return new ArrayList<>(transactions);
   }
 

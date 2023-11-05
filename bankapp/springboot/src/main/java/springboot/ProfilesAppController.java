@@ -52,7 +52,7 @@ public class ProfilesAppController {
   }
 
   @DeleteMapping("/{email}")
-  public void deleteProfile(String email){
+  public void deleteProfile(@PathVariable String email){
     profilesService.deleteProfile(profilesService.getProfile(email));
   }
 }
