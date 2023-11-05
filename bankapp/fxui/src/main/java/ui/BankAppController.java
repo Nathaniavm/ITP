@@ -1,10 +1,12 @@
 package ui;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.List;
 
 import core.Bill;
 import core.Profile;
+import core.Transaction;
 import core.Accounts.AbstractAccount;
 import core.Accounts.BSUAccount;
 import core.Accounts.SavingsAccount;
@@ -35,6 +37,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import json.ProfileInformationManagement;
+import json.TransactionsPersistence;
 import javafx.scene.image.ImageView;
 
 public class BankAppController {
@@ -142,6 +145,10 @@ public class BankAppController {
   @FXML
   private AnchorPane overview;
 
+  // spending fxml 
+  @FXML 
+  private GridPane transactionTable;
+
   // new bill fxml
   @FXML
   private TextField billName, billAmount, sellerAccount; 
@@ -207,6 +214,8 @@ public class BankAppController {
   private static String currentDir = System.getProperty("user.dir");
   private static final String path = currentDir.substring(0, currentDir.length() - 5)
   + "/core/src/main/java/json/ProfileInformation.json";
+  private static final String transactionPath = currentDir.substring(0, currentDir.length() - 5)
+  + "/core/src/main/java/json/TransactionsOverview.json";
   
   private static final String curr = System.getProperty("user.dir");
   private static final String file = curr + "/src/test/java/json/ProfileInformationTest.json";
@@ -221,6 +230,19 @@ public class BankAppController {
       updateAccounts();
     } else if (accountsTable != null) {
       updateAccounts();
+    }
+    if(transactionTable != null && profile == null){
+      try {
+        updateTransaction();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }else if(transactionTable != null){
+      try {
+        updateTransaction();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
     if (profileName != null) {
       profileName.setText(profile.getName() + "'s Profile");
@@ -331,6 +353,70 @@ public class BankAppController {
         count += 1;
     }
 
+  }
+
+  /**
+   * updates the transaction-table in spending page when the profile transfers or pays
+   * 
+   * @throws IOException
+   */
+  @FXML 
+  public void updateTransaction() throws IOException{
+    Transaction[] original = TransactionsPersistence.getProfilesTransaction(profile, transactionPath).toArray(new Transaction[TransactionsPersistence.getProfilesTransaction(profile, transactionPath).size()]);
+    Transaction[] reversed = new Transaction[5];
+    int count0 = 0;
+    for (int index = -1; index > -6; index--) {
+      reversed[count0] = original[original.length + index];
+      count0 ++;
+    }
+
+    int count = 1;
+    for(Transaction transaction: reversed){
+      boolean fromTransfer = false;
+      
+      AbstractAccount acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
+      .findFirst()
+      .orElse(null);
+      if(profile.ownsAccount(acc1)){
+        fromTransfer = true;
+        AnchorPane accountAnchorPane2 = new AnchorPane();
+        AnchorPane amountAnchorPane2 = new AnchorPane();
+        Label accountLabel2 = new Label(transaction.getTransactionTo());
+        Label amountLabel2 = new Label("+ " + String.valueOf(Math.abs(transaction.getAmount())) + " (from Transfer)");
+        accountLabel2.setLayoutX(10);
+        accountLabel2.setLayoutY(8);
+        amountLabel2.setLayoutX(20);
+        amountLabel2.setLayoutY(8);
+        accountAnchorPane2.getChildren().add(accountLabel2);
+        amountAnchorPane2.getChildren().add(amountLabel2);
+        transactionTable.add(accountAnchorPane2, 0,count);
+        transactionTable.add(amountAnchorPane2, 1,count);
+        
+        count ++;
+      }
+      AnchorPane accountAnchorPane = new AnchorPane();
+      AnchorPane amountAnchorPane = new AnchorPane();
+      Label accountLabel = new Label(transaction.getTransactionFrom());
+      Label amountLabel;
+      String message;
+      if(fromTransfer){
+        message = " (from Transfer)";
+      }
+      else{
+        message = " (from Payment)";
+      }
+      amountLabel = new Label("- " + String.valueOf(Math.abs(transaction.getAmount())) + message);
+      accountLabel.setLayoutX(10);
+      accountLabel.setLayoutY(8);
+      amountLabel.setLayoutX(20);
+      amountLabel.setLayoutY(8);
+      accountAnchorPane.getChildren().add(accountLabel);
+      amountAnchorPane.getChildren().add(amountLabel);
+      transactionTable.add(accountAnchorPane, 0,count);
+      transactionTable.add(amountAnchorPane, 1,count);
+  
+      count ++;
+    }
   }
 
   /**
@@ -588,6 +674,10 @@ public class BankAppController {
         payTo.clear();
         payAmount.clear();
         writeInfo();
+
+        Transaction transaction = new Transaction(profile.getEmail(), accPersonToPay, acc2.getProfile().getName(), payFrom, amount);
+        TransactionsPersistence.writeTransactions(transaction, transactionPath);
+
       } catch (Exception e) {
         feedbackInPay.setText(e.getMessage());
         feedbackInPay.setFill(Color.RED);
@@ -629,6 +719,10 @@ public class BankAppController {
           feedbackInTransfer.setFill(Color.RED);
         }
         writeInfo();
+
+        Transaction transaction = new Transaction(profile.getEmail(), toAccountChoiceBox, profile.getName(), fromAccountChoiceBox, amount);
+        TransactionsPersistence.writeTransactions(transaction, transactionPath);
+
         transferAmount.setText("");
         transferFromChoiceBox.setValue("");
         transferToChoiceBox.setValue("");
@@ -759,13 +853,11 @@ public class BankAppController {
       profile = profiles.stream()
           .filter(profile -> profile.getPassword().equals(password) && profile.getEmail().equals(email))
           .findFirst().orElseThrow(() -> new Exception("Invalid email or password"));
+      buttonGoTo(event, "Overview", loginButton);
     } catch (Exception e) {
       loginError.setText(e.getMessage());
       e.printStackTrace();
     }
-
-    buttonGoTo(event, "Overview", loginButton);
-
   }
 
   /**

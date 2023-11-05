@@ -175,7 +175,7 @@ public abstract class AbstractAccount implements Serializable {
    * @return A list of transactions
    * 
    */
-  public List<Transaction> getTransactions() {
+  public List<Transaction> getTransaction() {
     return new ArrayList<>(transactions);
   }
 
