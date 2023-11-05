@@ -29,6 +29,10 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
@@ -377,7 +381,9 @@ public class BankAppController {
       AbstractAccount acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
       .findFirst()
       .orElse(null);
-      if(profile.ownsAccount(acc1)){
+
+      if(acc1 != null){
+        if(profile.ownsAccount(acc1)){
         fromTransfer = true;
         AnchorPane accountAnchorPane2 = new AnchorPane();
         AnchorPane amountAnchorPane2 = new AnchorPane();
@@ -393,7 +399,8 @@ public class BankAppController {
         transactionTable.add(amountAnchorPane2, 1,count);
         
         count ++;
-      }
+        }
+      } 
       AnchorPane accountAnchorPane = new AnchorPane();
       AnchorPane amountAnchorPane = new AnchorPane();
       Label accountLabel = new Label(transaction.getTransactionFrom());
@@ -414,6 +421,10 @@ public class BankAppController {
       amountAnchorPane.getChildren().add(amountLabel);
       transactionTable.add(accountAnchorPane, 0,count);
       transactionTable.add(amountAnchorPane, 1,count);
+      BorderStroke borderStroke = new BorderStroke(
+      Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1));
+      Border tableBorder = new Border(borderStroke);
+      transactionTable.setBorder(tableBorder);
   
       count ++;
     }
