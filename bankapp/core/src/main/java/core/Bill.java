@@ -21,9 +21,9 @@ public class Bill implements Serializable {
   private int amount;
   private String billName;
   private String sellerName;
-  private AbstractAccount sellerAccount;
+  private SpendingsAccount sellerAccount;
   private Profile payer;
-  private AbstractAccount payerAccount;
+  private SpendingsAccount payerAccount;
   private boolean paid = false;
 
   public static final String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
@@ -45,13 +45,23 @@ public class Bill implements Serializable {
   public Bill(@JsonProperty("amount") int amount,
       @JsonProperty("billName") String billName,
       @JsonProperty("sellerName") String sellerName,
-      @JsonProperty("sellerAccount") AbstractAccount sellerAccount,
-      @JsonProperty("payerAccount") AbstractAccount payerAccount,
+      @JsonProperty("sellerAccount") SpendingsAccount sellerAccount,
+      @JsonProperty("payerAccount") SpendingsAccount payerAccount,
       @JsonProperty("profile") Profile payer) throws StreamReadException, DatabindException, IOException {
 
-    if (amount == 0 || billName == null || sellerName == null || sellerAccount == null || payerAccount == null
-        || payer == null) {
-      throw new IllegalArgumentException("All of the fields should be filled");
+    if (billName == null) {
+      throw new IllegalArgumentException("Please fill in bill name");
+    }
+    if(sellerName == null){
+      throw new IllegalArgumentException("Cannot find seller");
+    }
+
+    if(payer == null){
+      throw new IllegalArgumentException("Cannot find payer");
+    }
+
+    if(sellerAccount == null || payerAccount == null){
+      throw new IllegalArgumentException("One of the accounts can't be found");
     }
 
     if (amount < 0) {
@@ -76,10 +86,9 @@ public class Bill implements Serializable {
    * Pays the bill by transfering the amount from the seller's account to the
    * payer's account
    * 
-   * @throws IOException
    */
-  public void pay(String filename) throws IOException {
-    sellerAccount.transferTo(payerAccount, amount, filename);
+  public void pay() {
+    payerAccount.pay(sellerAccount, amount);
     paid = true;
     payer.removeBill(this);
   }

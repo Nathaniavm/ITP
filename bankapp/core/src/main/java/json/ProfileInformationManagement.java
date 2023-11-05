@@ -18,8 +18,9 @@ import core.Profile;
 import core.Accounts.SpendingsAccount;
 
 /**
- * Class that provides methods for mamaging profile information including
- * writing profiles to file, updating profiles and reading profiles from a file
+ * Class that provides methods for managing profile information including
+ * writing profiles to file, updating profiles and reading profiles from a file,
+ * deleting a specific profile from file, and clearing the file
  */
 public class ProfileInformationManagement {
 
@@ -134,8 +135,7 @@ public class ProfileInformationManagement {
   /**
    * Clears the JSON-file
    * 
-   * @param filename The name of the file where the profile information will be
-   *                 stored
+   * @param filename The name of the file to be cleared
    * @throws StreamReadException If an error occurs while writing to the file
    * @throws DatabindException   If there is an issue with data binding during the
    *                             serialization
@@ -143,7 +143,7 @@ public class ProfileInformationManagement {
    *                             handling
    */
 
-  public static void deleteContent(String filename) throws StreamWriteException, DatabindException, IOException {
+  public static void clearFile(String filename) throws StreamWriteException, DatabindException, IOException {
     File file = new File(filename);
     file.setWritable(true);
     BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import core.Accounts.AbstractAccount;
+import core.Accounts.SpendingsAccount;
 
 /**
  * Class that makes a profile
@@ -24,6 +25,7 @@ public class Profile implements Serializable {
     private String password;
     private List<AbstractAccount> accounts = new ArrayList<>();
     private List<Bill> bills = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
     private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList("ad", "ae", "af", "ag", "ai", "al", "am", "ao",
             "aq", "ar", "as", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl",
             "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cc", "cd", "cf", "cg", "ch", "ci",
@@ -39,11 +41,6 @@ public class Profile implements Serializable {
             "sr", "ss", "st", "sv", "sx", "sy", "sz", "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to",
             "tr", "tt", "tv", "tw", "tz", "ua", "ug", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu",
             "wf", "ws", "ye", "yt", "za", "zm", "zw", "com"));
-
-    /**
-     * Empty constructor used by the ProfileInformationManagement-class in order to
-     * read from file
-     */
 
     /**
      * Creates a new profile
@@ -184,7 +181,21 @@ public class Profile implements Serializable {
         } else if (account.getProfile() != this) {
             throw new IllegalArgumentException("Account is connected to different profile");
         }
+
+        for (AbstractAccount absAcc : this.accounts) {
+            if (account.getName().equals(absAcc.getName())) {
+                throw new IllegalArgumentException("Another account has this name");
+            }
+        }
         accounts.add(account);
+    }
+
+    public void removeAccount(AbstractAccount account) {
+        for (AbstractAccount absAcc : getAccounts()) {
+            if (absAcc.getName().equals(account.getName())) {
+                accounts.remove(absAcc);
+            }
+        }
     }
 
     /**
@@ -263,12 +274,12 @@ public class Profile implements Serializable {
     }
 
     /**
-     * Changes the email if email is valid 
+     * Changes the email if email is valid
      * 
      * @param email The new email
      */
-    public void changeEmail(String email){
-        if(!validEmail(email))
+    public void changeEmail(String email) {
+        if (!validEmail(email))
             throw new IllegalArgumentException("Not valid email");
         this.email = email;
     }
@@ -327,13 +338,29 @@ public class Profile implements Serializable {
         return new ArrayList<>(bills);
     }
 
-    public boolean ownsAccount(AbstractAccount account){
+    public boolean ownsAccount(AbstractAccount account) {
         System.out.println(accounts);
         System.out.println(account);
         return accounts.stream().anyMatch(a -> a.getAccNr().equals(account.getAccNr()));
     }
 
-    public static void main(String[] args) {
+    public void setTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
 
+    @JsonIgnore
+    public List<Transaction> getTransactions() {
+        return new ArrayList<>(transactions);
+    }
+
+    public static void main(String[] args) {
+        Profile pro = new Profile("Nath Mul", "nath@gmail.com", "40897346", "yeyeyeyeye1");
+        SpendingsAccount acc = new SpendingsAccount("nameAcc", pro);
+        pro.addAccount(acc);
+        SpendingsAccount acc2 = new SpendingsAccount("nameAcc2", pro);
+        pro.addAccount(acc2);
+        System.out.println(pro.getAccounts());
+        pro.removeAccount(acc2);
+        System.out.println(pro.getAccounts());
     }
 }

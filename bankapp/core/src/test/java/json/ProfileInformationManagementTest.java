@@ -38,6 +38,8 @@ public class ProfileInformationManagementTest {
     @BeforeEach
     @DisplayName("Setting up the different profiles")
     public void setUp() throws StreamReadException, DatabindException, IOException {
+        ProfileInformationManagement.clearFile(file);
+        TransactionsPersistence.clearFile(filename2);
         System.out.println(file);
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
         profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
@@ -115,7 +117,7 @@ public class ProfileInformationManagementTest {
     public void testBills() throws StreamWriteException, DatabindException, IOException {
         acc1.add(200); // seller
         acc2.add(150); // payer
-        bill1.pay(filename2); //bill1 costs 150
+        bill1.pay(); // bill1 costs 150
 
         ProfileInformationManagement.writeInformationToFile(profile1, file);
         ProfileInformationManagement.writeInformationToFile(profile2, file);
@@ -136,7 +138,7 @@ public class ProfileInformationManagementTest {
         ProfileInformationManagement.writeInformationToFile(profile2, file);
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
 
-        assertThrows(IllegalArgumentException.class, () -> bill1.pay(filename2));
+        assertThrows(IllegalArgumentException.class, () -> bill1.pay());
     }
 
     @Test

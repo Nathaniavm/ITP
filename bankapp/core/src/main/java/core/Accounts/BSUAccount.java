@@ -1,6 +1,5 @@
 package core.Accounts;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -9,17 +8,20 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import core.Profile;
 
+/**
+ * Creates a new BSU-Account to the given profile, with a given name
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class BSUAccount extends AbstractAccount implements Serializable {
-  public static final String file = "bankapp/core/src/main/java/json/TransactionsOverview.json";
 
+  /**
+   * Creates a new BSU-Account
+   * 
+   * @param name    The name of the account
+   * @param profile The profile to make an account for
+   */
   public BSUAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
     super(name, profile);
-  }
-
-  @Override
-  public void transferTo(AbstractAccount account, int amount, String file) throws IOException {
-    throw new IllegalArgumentException("You can't take money out of a BSU account");
   }
 
 }
