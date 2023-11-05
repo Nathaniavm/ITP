@@ -1,17 +1,22 @@
 package springboot;
 
+import core.Profile;
+import core.Transaction;
+import java.io.IOException;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import core.Profile;
-
+/**
+ * Controller for Springboot server.
+ */
 @RestController
 @RequestMapping(ProfilesAppController.PROFILES_SERVICE_PATH)
 public class ProfilesAppController {
@@ -36,4 +41,18 @@ public class ProfilesAppController {
     profilesService.updateProfile(profile);
   }
 
+  @GetMapping("/{email}/transactions")
+  public List<Transaction> getMethodName(@PathVariable String email) throws IOException {
+    return profilesService.getTransactions(profilesService.getProfile(email));
+  }
+
+  @PostMapping("transaction")
+  public void postMethodName(@RequestBody Transaction transaction) {
+    profilesService.writeTransaction(transaction);
+  }
+
+  @DeleteMapping("/{email}")
+  public void deleteProfile(String email){
+    profilesService.deleteProfile(profilesService.getProfile(email));
+  }
 }

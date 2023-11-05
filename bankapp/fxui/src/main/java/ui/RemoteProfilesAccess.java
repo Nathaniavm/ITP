@@ -13,8 +13,8 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.util.List;
 
-import core.Bill;
 import core.Profile;
+import core.Transaction;
 import core.Accounts.SpendingsAccount;
 
 public class RemoteProfilesAccess {
@@ -22,9 +22,10 @@ public class RemoteProfilesAccess {
 
   private static final String APPLICATION_JSON = "application/json";
 
-  private static final String APPLICATION_FORM_URLENCODED = "application/x-www-form-urlencoded";
+  // private static final String APPLICATION_FORM_URLENCODED =
+  // "application/x-www-form-urlencoded";
 
-  private static final String ACCEPT_HEADER = "Accept";
+  // private static final String ACCEPT_HEADER = "Accept";
 
   private static final String CONTENT_TYPE_HEADER = "Content-Type";
 
@@ -74,20 +75,51 @@ public class RemoteProfilesAccess {
           .PUT(BodyPublishers.ofString(json)).build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
-      Boolean added = objectMapper.readValue(response.body(), Boolean.class);
       return response.body() != null;
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);
     }
   }
 
-  public static void main(String[] args)
-      throws StreamReadException, DatabindException, IOException, URISyntaxException {
-    RemoteProfilesAccess remote = new RemoteProfilesAccess(new URI("http://localhost:8080/profiles/"));
-    Profile profile = new Profile("Dhillon Touch", "dhillon@gmail.com", "71717171", "Lucky0504");
-    System.out.println(remote.getProfiles());
-    System.out.println(remote.getProfile("Philip@gmail.com"));
-    remote.updateProfilesInfo(profile);
+  public boolean deleteProfile(Profile profile) {
+    try {
+      HttpRequest request = HttpRequest.newBuilder(profileUri(profile.getEmail()))
+          .header(CONTENT_TYPE_HEADER, APPLICATION_JSON)
+          .DELETE().build();
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
+          HttpResponse.BodyHandlers.ofString());
+      return response.body() != null;
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
+  public List<Transaction> getTransactions(String email) {
+    List<Transaction> transactions = null;
+    final HttpRequest request = HttpRequest.newBuilder(profileUri(email + "/transactions")).GET().build();
+    try {
+      System.out.println(endpointBaseUri.resolve(profileUri(email + "/transactions")));
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
+          HttpResponse.BodyHandlers.ofString());
+      transactions = objectMapper.readValue(response.body(), new TypeReference<List<Transaction>>() {
+      });
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+    return transactions;
+  }
+
+  public boolean writeTransaction(Transaction transaction) {
+    try {
+      String json = objectMapper.writeValueAsString(transaction);
+      HttpRequest request = HttpRequest.newBuilder(endpointBaseUri.resolve("transaction"))
+          .header(CONTENT_TYPE_HEADER, APPLICATION_JSON)
+          .POST(BodyPublishers.ofString(json)).build();
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
+          HttpResponse.BodyHandlers.ofString());
+      return response.body() != null;
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
