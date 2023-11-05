@@ -87,83 +87,40 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <GridPane layoutX="54.0" layoutY="121.0" prefHeight="205.0" prefWidth="320.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <GridPane fx:id="transactionTable" layoutX="51.0" layoutY="83.0" prefHeight="32.0" prefWidth="317.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label prefHeight="23.0" prefWidth="160.0" text="Total spending" textAlignment="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="157.0" text="Groceries" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Transport and travel" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="159.0" text="Home and garden" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Sparetime" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Health" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Other" GridPane.rowIndex="6">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="totalSpending" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="groceries" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="transportAndTravel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="homeAndGarden" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="sparetime" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="health" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="other" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <AnchorPane prefHeight="0.0" prefWidth="45.0" style="-fx-background-color: #214C69;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="1.0" text="Account" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #214C69;" GridPane.columnIndex="1">
+                           <children>
+                              <Label layoutX="8.0" layoutY="1.0" text="Amount (in/out)" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </GridPane>
-                  <AnchorPane fx:id="yearButton" layoutX="31.0" layoutY="30.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
-                     <children>
-                        <Text fill="WHITE" layoutX="55.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="monthButton" layoutX="227.0" layoutY="30.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
-                     <children>
-                        <Text fill="WHITE" layoutX="42.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Month">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </AnchorPane>
+                  <Text layoutX="30.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest transactions" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">
