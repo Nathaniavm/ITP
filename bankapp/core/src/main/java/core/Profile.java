@@ -43,11 +43,6 @@ public class Profile implements Serializable {
             "wf", "ws", "ye", "yt", "za", "zm", "zw", "com"));
 
     /**
-     * Empty constructor used by the ProfileInformationManagement-class in order to
-     * read from file
-     */
-
-    /**
      * Creates a new profile
      *
      * @param name     The profile name
@@ -186,12 +181,18 @@ public class Profile implements Serializable {
         } else if (account.getProfile() != this) {
             throw new IllegalArgumentException("Account is connected to different profile");
         }
+
+        for (AbstractAccount absAcc : this.accounts) {
+            if (account.getName().equals(absAcc.getName())) {
+                throw new IllegalArgumentException("Another account has this name");
+            }
+        }
         accounts.add(account);
     }
 
-    public void removeAccount(AbstractAccount account){
-        for(AbstractAccount absAcc : getAccounts()){
-            if(absAcc.getName().equals(account.getName())){
+    public void removeAccount(AbstractAccount account) {
+        for (AbstractAccount absAcc : getAccounts()) {
+            if (absAcc.getName().equals(account.getName())) {
                 accounts.remove(absAcc);
             }
         }

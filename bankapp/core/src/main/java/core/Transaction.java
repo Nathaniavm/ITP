@@ -10,8 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
  * Class that creates a transaction based on the "transferTo"-method in the
  * AbstractAccount-classes. It contains information about the email and
  * accountnumber of the
- * transferer, and the accountnumber and name of profile that gets the money.
- * Also contains information about amount
+ * transferer, the accountnumber of the reciever and the amount. It also
+ * contains information about name, depending on if the transaction describes a
+ * transfer or a receive
  */
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
@@ -25,14 +26,19 @@ public class Transaction implements Serializable {
 
   /**
    * Makes a new Transaction object with the specified properties
-   * 
+   *
    * @param email           The transferer's email
-   * @param transactionTo   The accountnumber to the account that recieves money
+   * @param transactionTo   The accountnumber to the account that receives money
    * @param name            The name of the person owning the account that
-   *                        recieves money, or the name of the person sending
-   *                        money
+   *                        receives money (if transaction describes the
+   *                        transferer), or the name of the person sending
+   *                        money (if transaction describes the receiver)
    * @param transactionFrom The accountnumber to the account that transfers money
    * @param amount          The amount transfered
+   * 
+   * @throws IllegalArgumentException Throws if you try to make a transaction
+   *                                  between an account, to the same account
+   * 
    */
   public Transaction(@JsonProperty("email") String email,
       @JsonProperty("transactionTo") String transactionTo,

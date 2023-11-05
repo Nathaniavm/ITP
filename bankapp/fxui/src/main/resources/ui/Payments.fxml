@@ -87,7 +87,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <AnchorPane layoutX="37.0" layoutY="155.0" prefHeight="160.0" prefWidth="321.0" style="-fx-background-color: #DDDDDD;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="61.0" />
+                  <AnchorPane fx:id="incomingBills" layoutX="37.0" layoutY="155.0" prefHeight="160.0" prefWidth="321.0" style="-fx-background-color: #DDDDDD;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="61.0" />
                   <AnchorPane fx:id="goToTransferButton" layoutX="31.0" layoutY="30.0" onMouseClicked="#goToTransfer" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="34.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transfer">

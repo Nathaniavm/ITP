@@ -2,8 +2,6 @@ package json;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -21,7 +19,7 @@ import core.Profile;
 import core.Transaction;
 import core.Accounts.SpendingsAccount;
 
-public class TransactionsTest {
+public class TransactionsPersistenceTest {
 
     private static final String currentDir = System.getProperty("user.dir");
     private final static String filename = currentDir + "/src/test/java/json/TransactionsOverviewTest.json";
@@ -52,16 +50,6 @@ public class TransactionsTest {
     }
 
     @Test
-    @DisplayName("Tests if constructor constructs object correct")
-    public void testConstructor() {
-        Transaction transaction2 = new Transaction(profile2.getEmail(), account1.getAccNr(),
-                account1.getProfile().getName(), account2.getAccNr(), 300);
-        assertEquals(transaction2.getEmail(), profile2.getEmail());
-        assertEquals(transaction2.getTransactionTo(), account1.getAccNr());
-        assertTrue(transaction2.getAmount() == 300);
-    }
-
-    @Test
     @DisplayName("Testing if application throws IOException if path does not exist")
     public void testFakeFile() {
         assertThrows(IOException.class, () -> TransactionsPersistence.writeTransactions(transaction1, fakefile));
@@ -71,37 +59,44 @@ public class TransactionsTest {
     @Test
     @DisplayName("Tests if written to file")
     public void testWriteTransactions() throws IOException {
-        System.out.println(transaction1);
         TransactionsPersistence.writeTransactions(transaction1, filename);
         List<Transaction> transactionsList = TransactionsPersistence.readTransactions(filename);
-        System.out.println(transactionsList);
         assertEquals(profile1.getEmail(), transactionsList.get(0).getEmail());
     }
 
     @Test
     @DisplayName("Tests if read correctly")
     public void testReadTransactions() throws IOException {
+        TransactionsPersistence.writeTransactions(transaction1, filename);
+        List<Transaction> transactionsList = TransactionsPersistence.readTransactions(filename);
+        assertEquals(profile1.getEmail(), transactionsList.get(0).getEmail());
+        assertEquals(account2.getAccNr(), transactionsList.get(0).getTransactionTo());
+        assertEquals(account2.getProfile().getName(), transactionsList.get(0).getName());
+        assertEquals(account1.getAccNr(), transactionsList.get(0).getTransactionFrom());
+        assertTrue(100 == transaction1.getAmount());
     }
 
     @Test
-    @DisplayName("Test getter for the account paid to")
-    public void testGetTransferTo() {
-        assertEquals(transaction1.getTransactionTo(), account2.getAccNr());
-        assertNotEquals(transaction1.getTransactionTo(), account1.getAccNr());
-    }
+    @DisplayName("Tests if it finds the proper profile's transactions")
+    public void testGetProfilesTransaction() throws IOException {
+        Transaction transaction2 = new Transaction(profile2.getEmail(), account1.getAccNr(),
+                account1.getProfile().getName(),
+                account2.getAccNr(), 100);
+        Transaction transaction3 = new Transaction(profile1.getEmail(), account2.getAccNr(),
+                account2.getProfile().getName(),
+                account1.getAccNr(), 455);
+        TransactionsPersistence.writeTransactions(transaction1, filename);
+        TransactionsPersistence.writeTransactions(transaction2, filename);
+        TransactionsPersistence.writeTransactions(transaction3, filename);
 
-    @Test
-    @DisplayName("Test getter for the payer")
-    public void testGetProfile() {
-        assertEquals(transaction1.getEmail(), profile1.getEmail());
-        assertNotEquals(transaction1.getEmail(), profile2.getEmail());
-    }
+        List<Transaction> profile1sTransactions;
 
-    @Test
-    @DisplayName("Test getter for the amount")
-    public void testGetAmount() {
-        assertTrue(transaction1.getAmount() == 100);
-        assertFalse(transaction1.getAmount() == 300);
+        profile1sTransactions = TransactionsPersistence.getProfilesTransaction(profile1, filename);
+
+        assertTrue(2 == profile1sTransactions.size());
+        assertEquals(profile1.getEmail(), profile1sTransactions.get(0).getEmail());
+        assertEquals(profile1.getEmail(), profile1sTransactions.get(1).getEmail());
+
     }
 
 }

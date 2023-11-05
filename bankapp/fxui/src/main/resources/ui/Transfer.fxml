@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -35,8 +36,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="transferFromAccount" layoutX="30.0" layoutY="230.0" />
-                  <TextField fx:id="transferToAccount" layoutX="226.0" layoutY="230.0" />
                   <AnchorPane layoutX="92.0" layoutY="20.0" prefHeight="112.0" prefWidth="236.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="97.0" prefWidth="222.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
@@ -65,6 +64,8 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
+                  <ChoiceBox fx:id="transferFromChoiceBox" layoutX="28.0" layoutY="230.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="transferToChoiceBox" layoutX="226.0" layoutY="230.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
