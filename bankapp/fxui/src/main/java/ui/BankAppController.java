@@ -38,87 +38,116 @@ import javafx.scene.image.ImageView;
 
 public class BankAppController {
   // almost all fxmls
+  // almost all fxmls
   @FXML
   private Label profileName;
 
   @FXML
   private AnchorPane spendingTab;
 
+
   @FXML
   private AnchorPane paymentsTab;
+
 
   @FXML
   private AnchorPane homeTab;
 
+
   @FXML
   private AnchorPane savingsTab;
+
 
   @FXML
   private AnchorPane profileTab;
 
+
   // register fxml
+
 
   @FXML
   private ImageView backArrow;
 
+
   @FXML
   private TextField fullName;
+
 
   @FXML
   private TextField email;
 
+
   @FXML
   private TextField phoneNr;
+
 
   @FXML
   private PasswordField password;
 
+
   @FXML
   private PasswordField passwordConfirm;
+
 
   @FXML
   private Button registerButton;
 
+
   @FXML
   private Label registerError;
+
 
   // login FXML
   @FXML
   private Button loginButton;
 
+
   @FXML
   private TextField emailInput;
+
 
   @FXML
   private PasswordField passwordInput;
 
+
   @FXML
+  private Label loginError, signUpButton;
+
   private Label loginError, signUpButton;
 
   // pay FXML
   @FXML
+  @FXML
   private ChoiceBox<String> payFromChoiceBox;
+
 
   @FXML
   private TextField payTo, payAmount;
 
+
   @FXML
   private AnchorPane payButton;
 
+
   @FXML
   private Text feedbackInPay;
+
 
   // payments FXML
   @FXML
   private AnchorPane goToPayButton, goToTransferButton, newBillButton, incomingBills;
 
+
   // transfer FXML
+
 
   @FXML
   private TextField transferAmount;
 
+
   @FXML
   private AnchorPane transferButton;
+
 
   @FXML
   private Text feedbackInTransfer;
@@ -126,9 +155,14 @@ public class BankAppController {
   @FXML
   private ChoiceBox<String> transferFromChoiceBox, transferToChoiceBox;
 
+
+  @FXML
+  private ChoiceBox<String> transferFromChoiceBox, transferToChoiceBox;
+
   // savings fxml
   @FXML
   private Label transferSavingsButton, newSavingAccountButton, totalBalance;
+
 
   // overview fxml
   @FXML
@@ -155,54 +189,73 @@ public class BankAppController {
   private Text feedbackInNewBill;
 
   @FXML
+  @FXML
   private ChoiceBox<String> payerAccountChoiceBox;
 
+
   // newAccount fxml
+
 
   @FXML
   private ChoiceBox<String> selectAccountType;
 
+
   @FXML
   private TextField giveAccountName;
+
 
   @FXML
   private AnchorPane createAccountButton;
 
+
   @FXML
   private Text feedbackInNewAccount;
 
+
   // settings fxml
+
 
   @FXML
   private TextField changeNumberTo, changeEmailTo, changePasswordTo, confirmChangePassword;
 
+
   @FXML
   private AnchorPane updateSettings;
+
 
   @FXML
   private Text feedbackInSettings;
 
   @FXML
+  @FXML
   private Label deleteProfileButton;
 
+
   // profile fxml
+
 
   @FXML
   private AnchorPane settingsButton, cardsButton, logOutButton;
 
+
   // deleteAccount fxml
+
 
   @FXML
   private TextField deleteAccountName;
 
+
   @FXML
   private Button deleteAccountNow;
+
 
   @FXML
   private AnchorPane deleteAccount;
 
+
   @FXML
   private Text feedbackInDeleteAccount;
+
 
   private static Profile profile;
 
@@ -253,18 +306,26 @@ public class BankAppController {
       selectAccountType.setValue("Checking account");
     }
     if (transferFromChoiceBox != null) {
+    if (transferFromChoiceBox != null) {
       getInputsChoiceBox(transferFromChoiceBox);
     }
+    if (transferToChoiceBox != null) {
     if (transferToChoiceBox != null) {
       getInputsChoiceBox(transferToChoiceBox);
     }
     if (payFromChoiceBox != null) {
+    if (payFromChoiceBox != null) {
       getInputsChoiceBox(payFromChoiceBox);
     }
+    if (payerAccountChoiceBox != null) {
     if (payerAccountChoiceBox != null) {
       getInputsChoiceBox(payerAccountChoiceBox);
     }
 
+  }
+
+  public Profile getProfile() {
+    return profile;
   }
 
   private void getInputsChoiceBox(ChoiceBox<String> choiceBox) {
@@ -319,14 +380,18 @@ public class BankAppController {
    */
   @FXML
   public void updateAccounts() {
+  @FXML
+  public void updateAccounts() {
     AnchorPane accountLabelAnchorPane = new AnchorPane();
     AnchorPane balanceLabelAnchorPane = new AnchorPane();
     accountLabelAnchorPane.setStyle("-fx-background-color: #214C69;");
     balanceLabelAnchorPane.setStyle("-fx-background-color: #214C69;");
     accountsTable.add(accountLabelAnchorPane, 0, 0);
+    accountsTable.add(accountLabelAnchorPane, 0, 0);
     accountsTable.add(balanceLabelAnchorPane, 1, 0);
 
     int count = 1;
+
 
     for (AbstractAccount account : profile.getAccounts()) {
       AnchorPane accountAnchorPane = new AnchorPane();
@@ -336,7 +401,22 @@ public class BankAppController {
       accountAnchorPane.getChildren().add(accountName);
       accountAnchorPane.setPrefSize(100, 50);
       accountsTable.add(accountAnchorPane, 0, count);
+      AnchorPane accountAnchorPane = new AnchorPane();
+      Label accountName = new Label(account.getName() + "\n" + account.getAccNr());
+      accountName.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
+      accountName.setLayoutX(10);
+      accountAnchorPane.getChildren().add(accountName);
+      accountAnchorPane.setPrefSize(100, 50);
+      accountsTable.add(accountAnchorPane, 0, count);
 
+      AnchorPane balanceAnchorPane = new AnchorPane();
+      Label accountBalance = new Label(String.valueOf(account.getBalance()));
+      accountBalance.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
+      accountBalance.setLayoutX(10);
+      balanceAnchorPane.getChildren().add(accountBalance);
+      balanceAnchorPane.setPrefSize(100, 50);
+      accountsTable.add(balanceAnchorPane, 1, count);
+      count += 1;
       AnchorPane balanceAnchorPane = new AnchorPane();
       Label accountBalance = new Label(String.valueOf(account.getBalance()));
       accountBalance.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
@@ -454,7 +534,7 @@ public class BankAppController {
   }
 
   /**
-   * handles mouse click of a Label to a specific fxml
+   * Handles mouseclick to log out
    * 
    * @param event
    * @param source the name of the fxml (without ".fxml")
@@ -475,10 +555,11 @@ public class BankAppController {
   }
 
   /**
+  /**
    * handles mouse click of an AnchorPane to a specific fxml
    * 
    * @param event
-   * @param source     the name of the fxml (without ".fxml")
+   * @param source        the name of the fxml (without ".fxml")
    * @param anchorPane the fx-id of the AnchorPane that leads to source
    */
   private void AnchorPaneGoTo(MouseEvent event, String source, AnchorPane anchorPane) {
@@ -634,6 +715,7 @@ public class BankAppController {
       feedbackInNewBill.setText(e.getMessage());
     }
 
+
   }
 
   /**
@@ -680,6 +762,7 @@ public class BankAppController {
         feedbackInPay.setFill(Color.RED);
       }
     }
+    }
   }
 
   /**
@@ -695,12 +778,19 @@ public class BankAppController {
     String toAccountChoiceBox = transferToChoiceBox.getValue();
     if (transferAmount.getText().isEmpty())
       feedbackInTransfer.setText("Fill in amount");
+    if (transferAmount.getText().isEmpty())
+      feedbackInTransfer.setText("Fill in amount");
     int amount = Integer.parseInt(transferAmount.getText());
 
     AbstractAccount acc1 = null;
     AbstractAccount acc2 = null;
 
     try {
+      acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccountChoiceBox)) // fromAccount
+          .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
+      acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccountChoiceBox)) // toAccount
+          .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
+      acc2.transferFrom(acc1, amount);
       acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccountChoiceBox)) // fromAccount
           .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
       acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccountChoiceBox)) // toAccount
@@ -742,7 +832,11 @@ public class BankAppController {
 
     else {
       String[] validTypes = { "BSU", "Checking account", "Savings account" };
+      String[] validTypes = { "BSU", "Checking account", "Savings account" };
 
+      if (type.equals(validTypes[0])) {
+        account = new BSUAccount(name, profile);
+      }
       if (type.equals(validTypes[0])) {
         account = new BSUAccount(name, profile);
       }
@@ -750,7 +844,14 @@ public class BankAppController {
       else if (type.equals(validTypes[1])) {
         account = new SpendingsAccount(name, profile);
       }
+      else if (type.equals(validTypes[1])) {
+        account = new SpendingsAccount(name, profile);
+      }
 
+      else if (type.equals(validTypes[2])) {
+        account = new SavingsAccount(name, profile);
+      }
+      try {
       else if (type.equals(validTypes[2])) {
         account = new SavingsAccount(name, profile);
       }
@@ -760,10 +861,20 @@ public class BankAppController {
         feedbackInNewAccount.setText(e.getMessage());
         feedbackInNewAccount.setFill(Color.RED);
       }
+      } catch (IllegalArgumentException e) {
+        feedbackInNewAccount.setText(e.getMessage());
+        feedbackInNewAccount.setFill(Color.RED);
+      }
 
       if (numAccounts + 1 == profile.getAccounts().size()) {
         feedbackInNewAccount.setText("New account created!");
       }
+      if (numAccounts + 1 == profile.getAccounts().size()) {
+        feedbackInNewAccount.setText("New account created!");
+      }
+
+      giveAccountName.setText("");
+      writeInfo();
 
       giveAccountName.setText("");
       writeInfo();
@@ -796,7 +907,14 @@ public class BankAppController {
    */
   @FXML
   public void handleDeleteAccountStage2(MouseEvent event) {
+  @FXML
+  public void handleDeleteAccountStage2(MouseEvent event) {
     String accountToBeDeleted = deleteAccountName.getText();
+    AbstractAccount acc = null;
+    acc = profile.getAccounts().stream().filter(account -> account.getName().equals(accountToBeDeleted))
+        .findFirst()
+        .orElse(null);
+    try {
     AbstractAccount acc = null;
     acc = profile.getAccounts().stream().filter(account -> account.getName().equals(accountToBeDeleted))
         .findFirst()
@@ -806,6 +924,7 @@ public class BankAppController {
       writeInfo();
       Stage stage = (Stage) deleteAccount.getScene().getWindow();
       stage.close();
+    } catch (Exception e) {
     } catch (Exception e) {
       feedbackInDeleteAccount.setText("Cannot find account");
       feedbackInDeleteAccount.setFill(Color.RED);
