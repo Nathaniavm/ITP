@@ -40,7 +40,6 @@ public class ProfileInformationManagementTest {
     public void setUp() throws StreamReadException, DatabindException, IOException {
         ProfileInformationManagement.clearFile(file);
         TransactionsPersistence.clearFile(filename2);
-        System.out.println(file);
         profile1 = new Profile("Ola Nordmann", "Ola@ntnu.no", "40123456", "Passord1");
         profile2 = new Profile("Kari Nordmann", "Kari@ntnu.no", "40654321", "Passord2");
         acc1 = new SpendingsAccount("James", profile1);
@@ -49,20 +48,19 @@ public class ProfileInformationManagementTest {
         profile2.addAccount(acc2);
         bill1 = new Bill(150, "Groceries", "Kari Nordmann", acc2, acc1, profile1);
         profile1.addBill(bill1);
-        System.out.println(bill1);
-
     }
 
     @Test
     @DisplayName("Testing if application throws IOException if path does not exist")
     public void testFakeFile() {
         assertThrows(IOException.class, () -> ProfileInformationManagement.writeInformationToFile(profile1, fakeFile));
+        assertThrows(IOException.class, () -> ProfileInformationManagement.readFromFile(fakeFile));
+
     }
 
     @Test
     @DisplayName("Tests if correct information is written to file")
     public void testCorrectInformationWrittenToFile() throws StreamWriteException, DatabindException, IOException {
-        System.out.println(System.getProperty("user.dir"));
         ProfileInformationManagement.writeInformationToFile(profile1, file);
         profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
 
@@ -72,6 +70,12 @@ public class ProfileInformationManagementTest {
         assertEquals("Passord1", profiles.get(0).getPassword());
         assertEquals(acc1.getAccNr(), profiles.get(0).getAccounts().get(0).getAccNr());
         assertEquals(bill1.getAmount(), profiles.get(0).getBills().get(0).getAmount());
+
+        profile1.changePassword("NyttPassord123");
+        ProfileInformationManagement.writeInformationToFile(profile1, file);
+        profiles = new ArrayList<>(ProfileInformationManagement.readFromFile(file));
+
+        assertEquals("NyttPassord123", profiles.get(0).getPassword());
     }
 
     @Test
@@ -151,6 +155,16 @@ public class ProfileInformationManagementTest {
 
         assertEquals(acc1.getBankCard().getCardholder(),
                 ((SpendingsAccount) profiles.get(0).getAccounts().get(0)).getBankCard().getCardholder());
+    }
+
+    @Test
+    @DisplayName("Test if profile gets deleted. Should throw IOException if file does not exists")
+    public void testDeleteProfile() throws StreamReadException, DatabindException, IOException {
+        ProfileInformationManagement.writeInformationToFile(profile1, file);
+        ProfileInformationManagement.deleteProfile(file, profile1);
+        assertTrue(ProfileInformationManagement.readFromFile(file).size() == 0);
+
+        assertThrows(IOException.class, () -> ProfileInformationManagement.deleteProfile(fakeFile, profile1));
     }
 
 }

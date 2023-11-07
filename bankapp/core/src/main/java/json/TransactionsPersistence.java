@@ -110,7 +110,7 @@ public class TransactionsPersistence implements Serializable {
    * 
    */
   public static void clearFile(String filename) throws StreamWriteException, DatabindException, IOException {
-    byte bytes[] = "".getBytes(StandardCharsets.UTF_8);
+    byte[] bytes = "".getBytes(StandardCharsets.UTF_8);
     File file = new File(filename);
     file.setWritable(true);
     BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
