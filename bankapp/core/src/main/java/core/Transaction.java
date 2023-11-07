@@ -1,10 +1,9 @@
 package core;
 
-import java.io.Serializable;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import java.io.Serializable;
 
 /**
  * Class that creates a transaction based on the "transferTo"-method in the
@@ -12,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
  * accountnumber of the
  * transferer, the accountnumber of the reciever and the amount. It also
  * contains information about name, depending on if the transaction describes a
- * transfer or a receive
+ * transfer or a receive.
  */
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
@@ -25,7 +24,7 @@ public class Transaction implements Serializable {
   private int amount;
 
   /**
-   * Makes a new Transaction object with the specified properties
+   * Makes a new Transaction object with the specified properties.
    *
    * @param email           The transferer's email
    * @param transactionTo   The accountnumber to the account that receives money
@@ -56,7 +55,7 @@ public class Transaction implements Serializable {
   }
 
   /**
-   * Getter for the email
+   * Getter for the email.
    * 
    * @return The transferer's email
    */
@@ -65,7 +64,7 @@ public class Transaction implements Serializable {
   }
 
   /**
-   * Getter for transactionTo
+   * Getter for transactionTo.
    * 
    * @return The accountnumber to the account that recieves money
    */
@@ -74,7 +73,7 @@ public class Transaction implements Serializable {
   }
 
   /**
-   * Getter for name
+   * Getter for name.
    * 
    * @return The name of the person owning the account that recieves money, or
    *         sending the money
@@ -84,7 +83,7 @@ public class Transaction implements Serializable {
   }
 
   /**
-   * Getter for transactionFrom
+   * Getter for transactionFrom.
    * 
    * @return The accountnumber to the account that transfers money
    */
@@ -93,7 +92,7 @@ public class Transaction implements Serializable {
   }
 
   /**
-   * Getter for the amount
+   * Getter for the amount.
    * 
    * @return The amount transfered
    */

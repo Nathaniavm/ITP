@@ -1,20 +1,22 @@
 package core.Accounts;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import core.Balance;
-import core.Profile;
-import core.Transaction;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import core.Balance;
+import core.Profile;
+import core.Transaction;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+/**
+ * A general class for the different account types. Implements methods common to
+ * every account.
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "accountType")
 @JsonSubTypes({
@@ -22,10 +24,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
     @JsonSubTypes.Type(value = SavingsAccount.class, name = "SavingsAccount"),
     @JsonSubTypes.Type(value = SpendingsAccount.class, name = "SpendingsAccount")
 })
-/**
- * A general class for the different account types. Implements methods common to
- * every account
- */
 public abstract class AbstractAccount implements Serializable {
   private Profile profile;
   private String name;
@@ -36,6 +34,13 @@ public abstract class AbstractAccount implements Serializable {
   private boolean showInPreview = false;
   private static final Random RANDOM = new Random();
 
+  /**
+   * Create a new abstract account.
+   * 
+   * @param name    The name of the account
+   * @param profile The profile owning the account
+   * 
+   */
   public AbstractAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
     balance = new Balance(0);
     this.profile = profile;
@@ -48,15 +53,17 @@ public abstract class AbstractAccount implements Serializable {
   }
 
   /**
+   * Gets the name of the account.
    * 
    * @return name of the account
+   * 
    */
   public String getName() {
     return name;
   }
 
   /**
-   * increase balance by given amount
+   * Increase balance by given amount.
    * 
    * @param amount
    * 
@@ -66,24 +73,28 @@ public abstract class AbstractAccount implements Serializable {
   }
 
   /**
+   * Gets the balance of an account.
    * 
-   * @return balance of the account
+   * @return Balance of the account
+   * 
    */
   public int getBalance() {
     return balance.getBalance();
   }
 
   /**
-   * reduce balance by given amount
+   * Reduce balance by given amount.
    * 
-   * @param amount
+   * @param amount The amount to remove
+   * 
    */
   public void remove(int amount) {
     balance.decrease(amount);
   }
 
   /**
-   * sets account number to random number
+   * Sets account number to random number.
+   * 
    */
   public void setAccNr() {
     accNr = "1234 ";
@@ -96,24 +107,30 @@ public abstract class AbstractAccount implements Serializable {
   }
 
   /**
+   * Gets the account's accountnumber.
    * 
-   * @return accountnumber
+   * @return The account's accountnumber
+   * 
    */
   public String getAccNr() {
     return accNr;
   }
 
   /**
+   * Method for renaming an account.
    * 
-   * @param name to change the account name to
+   * @param name To change the account name to
+   * 
    */
   public void renameAccount(String name) {
     this.name = name;
   }
 
   /**
+   * Gets the profile corresponding to this account.
    * 
-   * @return corresponding profile object
+   * @return Corresponding profile object
+   * 
    */
 
   public Profile getProfile() {
@@ -121,24 +138,27 @@ public abstract class AbstractAccount implements Serializable {
   }
 
   /**
-   * change whether you want this account to be counted when previewing remaining
-   * balance
+   * Change whether you want this account to be counted when previewing remaining
+   * balance.
+   * 
    */
   public void changePreview() {
     showInPreview = !showInPreview;
   }
 
   /**
-   * return whether showInPreview is true or false
+   * Return whether showInPreview is true or false.
+   * 
    */
   public boolean showInPreview() {
     return showInPreview;
   }
 
   /**
-   * Add a transaction to the account's transaction-list
+   * Add a transaction to the account's transaction-list.
    * 
    * @param transaction The transaction to be added
+   * 
    */
   public void addTransaction(Transaction transaction) {
     if (!(transaction.getTransactionFrom().equals(getAccNr()))
@@ -149,15 +169,22 @@ public abstract class AbstractAccount implements Serializable {
     transactions.add(transaction);
   }
 
+  /**
+   * Gets the full list of transactions done by this account.
+   * 
+   * @return A list of transactions
+   * 
+   */
   public List<Transaction> getTransaction() {
     return new ArrayList<>(transactions);
   }
 
   /**
-   * Transfer money from given account to this account
+   * Transfer money from given account to this account.
    * 
-   * @param account - the account we are transferring from
-   * @param amount  - amount to transfer
+   * @param account The account we are transferring from
+   * @param amount  Amount to transfer
+   * 
    */
   public void transferFrom(AbstractAccount account, int amount) {
     if (account == null) {

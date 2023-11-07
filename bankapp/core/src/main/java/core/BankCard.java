@@ -1,19 +1,18 @@
 package core;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import core.Accounts.SpendingsAccount;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import core.Accounts.SpendingsAccount;
-
 /**
  * Class that creates a bankcard and connects the bankcard with a certain
- * account
+ * account.
+ * 
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class BankCard implements Serializable {
@@ -25,9 +24,10 @@ public class BankCard implements Serializable {
   private static final Random RANDOM = new Random();
 
   /**
-   * Sets the owner of the card and generates a cardNr
+   * Sets the owner of the card and generates a cardnumber.
    * 
-   * @param cardholder - name of the owner of the card
+   * @param cardholder Name of the owner of the card
+   * 
    */
   public BankCard(@JsonProperty("cardholder") String cardholder, @JsonProperty("account") SpendingsAccount account) {
     this.cardholder = cardholder;
@@ -41,7 +41,8 @@ public class BankCard implements Serializable {
   }
 
   /**
-   * Generates a cardnumber
+   * Generates a cardnumber.
+   * 
    */
   private void setCardNr() {
     cardNr = "1248 1632 ";
@@ -54,6 +55,7 @@ public class BankCard implements Serializable {
   }
 
   /**
+   * Gets the cardholder.
    * 
    * @return name of the cardholder
    */
@@ -62,25 +64,36 @@ public class BankCard implements Serializable {
   }
 
   /**
+   * Gets the account corresponding to this bankcard.
    * 
    * @return this bankcards corresponding account
+   * 
    */
   public SpendingsAccount getAccount() {
     return account;
   }
 
   /**
+   * Gets the cardnumber.
    * 
-   * @return the card number
+   * @return the cardnumber
    */
   public String getCardNr() {
     return cardNr;
   }
 
+  /**
+   * Method for blocking a card.
+   * 
+   */
   public void blockCard() {
     cardBlocked = true;
   }
 
+  /**
+   * Method for unblocking a card.
+   * 
+   */
   public void unblockCard() {
     cardBlocked = false;
   }

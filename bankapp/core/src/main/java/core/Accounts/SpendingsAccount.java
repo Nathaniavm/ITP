@@ -1,42 +1,44 @@
 package core.Accounts;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import core.BankCard;
 import core.Profile;
 import core.Transaction;
+import java.io.Serializable;
 
 /**
- * Creates a new spendingsaccount to the given profile, with a given name
+ * Creates a new spendingsaccount to the given profile, with a given name.
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class SpendingsAccount extends AbstractAccount implements Serializable {
   private BankCard bankCard;
 
   /**
-   * Creates a new spendingsaccount
+   * Creates a new spendingsaccount.
    * 
    * @param name    The name of the account
    * @param profile The profile to make an account for
+   * 
    */
   public SpendingsAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
     super(name, profile);
   }
 
   /**
-   * Creates bankcard for the account
+   * Creates bankcard for the account.
+   * 
    */
   public void createBankCard() {
     bankCard = new BankCard(this.getProfile().getName(), this);
   }
 
   /**
+   * Gets the account's bankcard.
    * 
    * @return corresponding bankcard object
+   * 
    */
   public BankCard getBankCard() {
     return bankCard;
@@ -44,13 +46,14 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
 
   /**
    * Method for paying to someone. The account paid to must be an account that you
-   * don't own yourself
+   * don't own yourself.
    * 
    * @param account The account paid to
    * @param amount  The amount paid
    * @throws IllegalArgumentException throws if you try to pay yourself, or if the
    *                                  account trying to pay doesn't have enough
    *                                  money
+   * 
    */
   public void pay(SpendingsAccount account, int amount) {
     if ((account.getProfile().equals(this.getProfile()))) {

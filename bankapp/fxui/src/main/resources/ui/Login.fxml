@@ -60,7 +60,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="loginError" layoutX="49.0" layoutY="410.0" maxWidth="258.0" prefHeight="18.0" prefWidth="258.0" textFill="RED" />
+      <Label fx:id="loginError" layoutX="49.0" layoutY="410.0" maxWidth="258.0" prefHeight="25.0" prefWidth="258.0" textFill="RED" />
       <Label fx:id="signUpButton" layoutX="189.0" layoutY="584.0" onMouseClicked="#handleSignUpClick" text="Sign Up" textFill="#214c69" underline="true">
          <font>
             <Font size="14.0" />
