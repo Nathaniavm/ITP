@@ -3,6 +3,7 @@ package core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
@@ -35,7 +36,11 @@ public class BSUAccountTest {
 
   @Test
   @DisplayName("Tests if the transaction instructions works. Should throw an IllegalArgumentException if user tries to transfer from BSU-Account")
-  public void testTransferTo() throws IOException {
+  public void testTransferFrom() throws IOException {
+    Profile profile2 = new Profile("Hailey Bieber", "Hailey@gmail.com", "42375690", "passord123");
+    SpendingsAccount spendings = new SpendingsAccount("My spending", profile2);
+    profile2.addAccount(spendings);
+    spendings.add(500);
     SpendingsAccount spendingsAccount = new SpendingsAccount("Spendingsaccount", profile);
     profile.addAccount(spendingsAccount);
     spendingsAccount.add(4000);
@@ -44,6 +49,9 @@ public class BSUAccountTest {
     assertEquals(100, bsuAccount.getBalance());
 
     assertThrows(IllegalArgumentException.class, () -> spendingsAccount.transferFrom(bsuAccount, 50));
+
+    assertThrows(IllegalArgumentException.class, () -> spendingsAccount.transferFrom(spendings, 50));
+    assertThrows(IllegalArgumentException.class, () -> spendings.transferFrom(spendingsAccount, 50));
   }
 
   @Test
@@ -64,6 +72,38 @@ public class BSUAccountTest {
     assertFalse(acc3.getAccNr() == acc4.getAccNr());
 
     assertEquals(acc1.getAccNr().length(), 13);
+  }
+
+  @Test
+  @DisplayName("Test adding transaction")
+  public void addTransaction() {
+    SpendingsAccount spendingsAccount = new SpendingsAccount("Spendingsaccount", profile);
+    profile.addAccount(spendingsAccount);
+    spendingsAccount.add(4000);
+
+    Profile profile2 = new Profile("Hailey Bieber", "Hailey@gmail.com", "42375690", "passord123");
+    SpendingsAccount spendings = new SpendingsAccount("My spending", profile2);
+    profile2.addAccount(spendings);
+    spendings.add(500);
+
+    Transaction transaction = new Transaction("Justin@gmail.com", bsuAccount.getAccNr(), "Justin Bieber",
+        spendingsAccount.getAccNr(), 10);
+    spendingsAccount.addTransaction(transaction);
+
+    Transaction transaction2 = new Transaction("Hailey@gmail.com", bsuAccount.getAccNr(), "Justin Bieber",
+        spendings.getAccNr(), 10);
+
+    assertEquals(spendingsAccount.getAccNr(), spendingsAccount.getTransaction().get(0).getTransactionFrom());
+    assertEquals(bsuAccount.getAccNr(), spendingsAccount.getTransaction().get(0).getTransactionTo());
+
+    assertThrows(IllegalArgumentException.class, () -> spendingsAccount.addTransaction(transaction2));
+  }
+
+  @Test
+  @DisplayName("Test change preview")
+  public void testChangePreview() {
+    bsuAccount.changePreview();
+    assertTrue(bsuAccount.showInPreview());
   }
 
 }

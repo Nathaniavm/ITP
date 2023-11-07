@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-
 import core.Accounts.AbstractAccount;
 import core.Accounts.SpendingsAccount;
 
@@ -23,8 +20,8 @@ public class BillTest {
     @BeforeEach
     @DisplayName("setting up the different profiles")
     public void setUp() {
-        profile1 = new Profile("jayan tayan", "jayantayan@ntnu.no", "98765432", "passord111");
-        profile2 = new Profile("klein ken", "kleinken@ntnu.no", "99997722", "idioteple6");
+        profile1 = new Profile("Lise Hansen", "lise@ntnu.no", "98765432", "passord111");
+        profile2 = new Profile("Thomas Hansen", "thomas@ntnu.no", "99997722", "idioteple6");
         acc1 = new SpendingsAccount("Payer", profile1);
         acc2 = new SpendingsAccount("Seller", profile2);
         profile1.addAccount(acc1);
@@ -32,11 +29,13 @@ public class BillTest {
     }
 
     @Test
-    @DisplayName("Testing the constructor")
-    public void testConstructor() throws StreamReadException, DatabindException, IOException {
+    @DisplayName("Testing the constructor. Should throw an IllegalArgumentException if billname, sellername, seller, payer or one of the accounts are null. Should also throw if selleraccount is payeraccount, or if payer owns selleraccount")
+    public void testConstructor() {
         Bill bill = new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0),
                 (SpendingsAccount) profile1.getAccounts().get(0),
                 profile1);
+        SpendingsAccount acc3 = new SpendingsAccount("Payer2", profile1);
+        profile1.addAccount(acc3);
         assertNotNull(bill);
         assertThrows(IllegalArgumentException.class,
                 () -> new Bill(-100, "Leie", "Sit", (SpendingsAccount) profile1.getAccounts().get(0),
@@ -48,6 +47,36 @@ public class BillTest {
         assertEquals(bill.getSellerAccount(), acc2);
         assertEquals(bill.getPayerAccount(), acc1);
         assertFalse(bill.isPaid());
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, null, "Sit", (SpendingsAccount) profile2.getAccounts().get(0),
+                        (SpendingsAccount) profile1.getAccounts().get(0),
+                        profile1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, "Leie", null, (SpendingsAccount) profile2.getAccounts().get(0),
+                        (SpendingsAccount) profile1.getAccounts().get(0),
+                        profile1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0),
+                        (SpendingsAccount) profile1.getAccounts().get(0),
+                        null));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, "Leie", "Sit", null,
+                        (SpendingsAccount) profile1.getAccounts().get(0),
+                        profile1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, "Leie", "Sit", (SpendingsAccount) profile2.getAccounts().get(0),
+                        null,
+                        profile1));
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, "Leie", "Sit", (SpendingsAccount) profile1.getAccounts().get(0),
+                        (SpendingsAccount) profile1.getAccounts().get(0),
+                        profile1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Bill(100, "Leie", "Sit", (SpendingsAccount) profile1.getAccounts().get(0),
+                        (SpendingsAccount) profile1.getAccounts().get(1),
+                        profile1));
     }
 
     @Test

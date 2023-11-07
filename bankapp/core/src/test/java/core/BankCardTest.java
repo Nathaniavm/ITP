@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +28,7 @@ public class BankCardTest {
         profile2 = new Profile("John Doe", "jane@gmail.com", "12345678", "passord12");
         profile3 = new Profile("Jayan Tayana", "jane@gmail.com", "12345678", "passord12");
         account1 = new SpendingsAccount("test account", profile1);
-        account2 = new SpendingsAccount("test account", profile2); 
+        account2 = new SpendingsAccount("test account", profile2);
         account3 = new SpendingsAccount("test account", profile3);
         account1.createBankCard();
         account2.createBankCard();
@@ -62,12 +61,24 @@ public class BankCardTest {
         Set<String> cardNumberSet = new HashSet<>();
 
         for (int i = 0; i < numberOfCards; i++) {
-            BankCard bankCard = new BankCard("Cardholder" + i,account1);
+            BankCard bankCard = new BankCard("Cardholder" + i, account1);
             String cardNr = bankCard.getCardNr();
             assertFalse(cardNumberSet.contains(cardNr));
             cardNumberSet.add(cardNr);
         }
 
         assertTrue(numberOfCards == cardNumberSet.size());
+    }
+
+    @Test
+    @DisplayName("Test blocking card")
+    public void testBlockCard() {
+        bankCard1.blockCard();
+    }
+
+    @Test
+    @DisplayName("Test unblocking card")
+    public void testUnBlockCard() {
+        bankCard1.unblockCard();
     }
 }
