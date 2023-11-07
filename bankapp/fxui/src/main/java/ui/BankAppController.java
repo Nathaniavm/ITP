@@ -1,7 +1,8 @@
 package ui;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import core.Bill;
@@ -13,10 +14,6 @@ import core.Accounts.SavingsAccount;
 import core.Accounts.SpendingsAccount;
 
 import javafx.fxml.FXML;
-
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.exc.StreamWriteException;
-import com.fasterxml.jackson.databind.DatabindException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,111 +31,105 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import json.ProfileInformationManagement;
-import json.TransactionsPersistence;
 import javafx.scene.image.ImageView;
 
 public class BankAppController {
-  //almost all fxmls 
+  // almost all fxmls
   @FXML
   private Label profileName;
 
   @FXML
   private AnchorPane spendingTab;
-  
+
   @FXML
   private AnchorPane paymentsTab;
-  
+
   @FXML
   private AnchorPane homeTab;
-  
+
   @FXML
   private AnchorPane savingsTab;
-  
+
   @FXML
   private AnchorPane profileTab;
-  
+
   // register fxml
-  
+
   @FXML
   private ImageView backArrow;
-  
+
   @FXML
   private TextField fullName;
-  
+
   @FXML
   private TextField email;
-  
+
   @FXML
   private TextField phoneNr;
-  
+
   @FXML
   private PasswordField password;
-  
+
   @FXML
   private PasswordField passwordConfirm;
-  
+
   @FXML
   private Button registerButton;
-  
+
   @FXML
   private Label registerError;
-  
-  
+
   // login FXML
   @FXML
   private Button loginButton;
-  
+
   @FXML
   private TextField emailInput;
-  
+
   @FXML
   private PasswordField passwordInput;
-  
+
   @FXML
-  private Label loginError, signUpButton; 
-  
+  private Label loginError, signUpButton;
+
   // pay FXML
-  @FXML 
+  @FXML
   private ChoiceBox<String> payFromChoiceBox;
-  
+
   @FXML
   private TextField payTo, payAmount;
-  
+
   @FXML
   private AnchorPane payButton;
-  
+
   @FXML
   private Text feedbackInPay;
-  
+
   // payments FXML
   @FXML
   private AnchorPane goToPayButton, goToTransferButton, newBillButton, incomingBills;
-  
+
   // transfer FXML
-  
+
   @FXML
   private TextField transferAmount;
-  
+
   @FXML
   private AnchorPane transferButton;
-  
+
   @FXML
   private Text feedbackInTransfer;
-  
-  @FXML 
-  private ChoiceBox<String> transferFromChoiceBox , transferToChoiceBox; 
-  
+
+  @FXML
+  private ChoiceBox<String> transferFromChoiceBox, transferToChoiceBox;
+
   // savings fxml
   @FXML
   private Label transferSavingsButton, newSavingAccountButton, totalBalance;
-  
+
   // overview fxml
   @FXML
   private Label spendingAccountBalance, newAccountButton, deleteAccountButton;
@@ -149,13 +140,13 @@ public class BankAppController {
   @FXML
   private AnchorPane overview;
 
-  // spending fxml 
-  @FXML 
+  // spending fxml
+  @FXML
   private GridPane transactionTable;
 
   // new bill fxml
   @FXML
-  private TextField billName, billAmount, sellerAccount; 
+  private TextField billName, billAmount, sellerAccount;
 
   @FXML
   private AnchorPane setNewBillButton;
@@ -163,66 +154,60 @@ public class BankAppController {
   @FXML
   private Text feedbackInNewBill;
 
-  @FXML 
+  @FXML
   private ChoiceBox<String> payerAccountChoiceBox;
 
-  
   // newAccount fxml
-  
+
   @FXML
   private ChoiceBox<String> selectAccountType;
-  
+
   @FXML
   private TextField giveAccountName;
-  
+
   @FXML
   private AnchorPane createAccountButton;
-  
+
   @FXML
   private Text feedbackInNewAccount;
-  
+
   // settings fxml
-  
+
   @FXML
   private TextField changeNumberTo, changeEmailTo, changePasswordTo, confirmChangePassword;
-  
+
   @FXML
   private AnchorPane updateSettings;
-  
+
   @FXML
   private Text feedbackInSettings;
 
-  @FXML 
+  @FXML
   private Label deleteProfileButton;
-  
+
   // profile fxml
-  
+
   @FXML
   private AnchorPane settingsButton, cardsButton, logOutButton;
-  
+
   // deleteAccount fxml
-  
+
   @FXML
   private TextField deleteAccountName;
-  
+
   @FXML
   private Button deleteAccountNow;
-  
+
   @FXML
   private AnchorPane deleteAccount;
-  
+
   @FXML
   private Text feedbackInDeleteAccount;
-  
+
   private static Profile profile;
-  private static String currentDir = System.getProperty("user.dir");
-  private static final String path = currentDir.substring(0, currentDir.length() - 5)
-  + "/core/src/main/java/json/ProfileInformation.json";
-  private static final String transactionPath = currentDir.substring(0, currentDir.length() - 5)
-  + "/core/src/main/java/json/TransactionsOverview.json";
-  
-  private static final String curr = System.getProperty("user.dir");
-  private static final String file = curr + "/src/test/java/json/ProfileInformationTest.json";
+
+  private static final String endpointBaseUri = "http://localhost:8080/profiles/";
+  private static RemoteProfilesAccess profilesAccess;
 
   /**
    * Initializes fields based on current page
@@ -230,18 +215,23 @@ public class BankAppController {
    */
 
   public void initialize() {
+    try {
+      profilesAccess = new RemoteProfilesAccess(new URI(endpointBaseUri));
+    } catch (URISyntaxException e) {
+      System.out.println(e);
+    }
     if (accountsTable != null && profile == null) {
       updateAccounts();
     } else if (accountsTable != null) {
       updateAccounts();
     }
-    if(transactionTable != null && profile == null){
+    if (transactionTable != null && profile == null) {
       try {
         updateTransaction();
       } catch (IOException e) {
         e.printStackTrace();
       }
-    }else if(transactionTable != null){
+    } else if (transactionTable != null) {
       try {
         updateTransaction();
       } catch (IOException e) {
@@ -262,26 +252,26 @@ public class BankAppController {
           "BSU");
       selectAccountType.setValue("Checking account");
     }
-    if(transferFromChoiceBox != null){
+    if (transferFromChoiceBox != null) {
       getInputsChoiceBox(transferFromChoiceBox);
     }
-    if(transferToChoiceBox != null){
+    if (transferToChoiceBox != null) {
       getInputsChoiceBox(transferToChoiceBox);
     }
-    if(payFromChoiceBox != null){
+    if (payFromChoiceBox != null) {
       getInputsChoiceBox(payFromChoiceBox);
     }
-    if(payerAccountChoiceBox != null){
+    if (payerAccountChoiceBox != null) {
       getInputsChoiceBox(payerAccountChoiceBox);
     }
 
   }
 
-  private void getInputsChoiceBox(ChoiceBox<String> choiceBox){
+  private void getInputsChoiceBox(ChoiceBox<String> choiceBox) {
     List<AbstractAccount> accs = profile.getAccounts();
-      for(AbstractAccount absAcc : accs){
-        choiceBox.getItems().add(absAcc.getAccNr());
-      }
+    for (AbstractAccount absAcc : accs) {
+      choiceBox.getItems().add(absAcc.getAccNr());
+    }
   }
 
   /**
@@ -327,89 +317,91 @@ public class BankAppController {
    * profile
    * 
    */
-  @FXML 
-  public void updateAccounts(){
+  @FXML
+  public void updateAccounts() {
     AnchorPane accountLabelAnchorPane = new AnchorPane();
     AnchorPane balanceLabelAnchorPane = new AnchorPane();
     accountLabelAnchorPane.setStyle("-fx-background-color: #214C69;");
     balanceLabelAnchorPane.setStyle("-fx-background-color: #214C69;");
-    accountsTable.add(accountLabelAnchorPane, 0, 0); 
+    accountsTable.add(accountLabelAnchorPane, 0, 0);
     accountsTable.add(balanceLabelAnchorPane, 1, 0);
 
     int count = 1;
-    
-    for (AbstractAccount account : profile.getAccounts()) {
-        AnchorPane accountAnchorPane = new AnchorPane();
-        Label accountName = new Label(account.getName() + "\n" + account.getAccNr());
-        accountName.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
-        accountName.setLayoutX(10); 
-        accountAnchorPane.getChildren().add(accountName);
-        accountAnchorPane.setPrefSize(100,50);
-        accountsTable.add(accountAnchorPane,0, count);
 
-        AnchorPane balanceAnchorPane = new AnchorPane();
-        Label accountBalance = new Label(String.valueOf(account.getBalance()));
-        accountBalance.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
-        accountBalance.setLayoutX(10);
-        balanceAnchorPane.getChildren().add(accountBalance);
-        balanceAnchorPane.setPrefSize(100,50);
-        accountsTable.add(balanceAnchorPane, 1, count);
-        count += 1;
+    for (AbstractAccount account : profile.getAccounts()) {
+      AnchorPane accountAnchorPane = new AnchorPane();
+      Label accountName = new Label(account.getName() + "\n" + account.getAccNr());
+      accountName.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
+      accountName.setLayoutX(10);
+      accountAnchorPane.getChildren().add(accountName);
+      accountAnchorPane.setPrefSize(100, 50);
+      accountsTable.add(accountAnchorPane, 0, count);
+
+      AnchorPane balanceAnchorPane = new AnchorPane();
+      Label accountBalance = new Label(String.valueOf(account.getBalance()));
+      accountBalance.setStyle("-fx-font-size: 10px; -fx-min-width: 100px; -fx-min-height: 20px;");
+      accountBalance.setLayoutX(10);
+      balanceAnchorPane.getChildren().add(accountBalance);
+      balanceAnchorPane.setPrefSize(100, 50);
+      accountsTable.add(balanceAnchorPane, 1, count);
+      count += 1;
     }
 
   }
 
   /**
-   * updates the transaction-table in spending page when the profile transfers or pays
+   * updates the transaction-table in spending page when the profile transfers or
+   * pays
    * 
    * @throws IOException
    */
-  @FXML 
-  public void updateTransaction() throws IOException{
-    Transaction[] original = TransactionsPersistence.getProfilesTransaction(profile, transactionPath).toArray(new Transaction[TransactionsPersistence.getProfilesTransaction(profile, transactionPath).size()]);
+  @FXML
+  public void updateTransaction() throws IOException {
+    Transaction[] original = profilesAccess.getTransactions(profile.getEmail())
+        .toArray(new Transaction[profilesAccess.getTransactions(profile.getEmail()).size()]);
     Transaction[] reversed = new Transaction[5];
     int count0 = 0;
     for (int index = -1; index > -6; index--) {
       reversed[count0] = original[original.length + index];
-      count0 ++;
+      count0++;
     }
 
     int count = 1;
-    for(Transaction transaction: reversed){
+    for (Transaction transaction : reversed) {
       boolean fromTransfer = false;
-      
-      AbstractAccount acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
-      .findFirst()
-      .orElse(null);
 
-      if(acc1 != null){
-        if(profile.ownsAccount(acc1)){
-        fromTransfer = true;
-        AnchorPane accountAnchorPane2 = new AnchorPane();
-        AnchorPane amountAnchorPane2 = new AnchorPane();
-        Label accountLabel2 = new Label(transaction.getTransactionTo());
-        Label amountLabel2 = new Label("+ " + String.valueOf(Math.abs(transaction.getAmount())) + " (from Transfer)");
-        accountLabel2.setLayoutX(10);
-        accountLabel2.setLayoutY(8);
-        amountLabel2.setLayoutX(20);
-        amountLabel2.setLayoutY(8);
-        accountAnchorPane2.getChildren().add(accountLabel2);
-        amountAnchorPane2.getChildren().add(amountLabel2);
-        transactionTable.add(accountAnchorPane2, 0,count);
-        transactionTable.add(amountAnchorPane2, 1,count);
-        
-        count ++;
+      AbstractAccount acc1 = profile.getAccounts().stream()
+          .filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
+          .findFirst()
+          .orElse(null);
+
+      if (acc1 != null) {
+        if (profile.ownsAccount(acc1)) {
+          fromTransfer = true;
+          AnchorPane accountAnchorPane2 = new AnchorPane();
+          AnchorPane amountAnchorPane2 = new AnchorPane();
+          Label accountLabel2 = new Label(transaction.getTransactionTo());
+          Label amountLabel2 = new Label("+ " + String.valueOf(Math.abs(transaction.getAmount())) + " (from Transfer)");
+          accountLabel2.setLayoutX(10);
+          accountLabel2.setLayoutY(8);
+          amountLabel2.setLayoutX(20);
+          amountLabel2.setLayoutY(8);
+          accountAnchorPane2.getChildren().add(accountLabel2);
+          amountAnchorPane2.getChildren().add(amountLabel2);
+          transactionTable.add(accountAnchorPane2, 0, count);
+          transactionTable.add(amountAnchorPane2, 1, count);
+
+          count++;
         }
-      } 
+      }
       AnchorPane accountAnchorPane = new AnchorPane();
       AnchorPane amountAnchorPane = new AnchorPane();
       Label accountLabel = new Label(transaction.getTransactionFrom());
       Label amountLabel;
       String message;
-      if(fromTransfer){
+      if (fromTransfer) {
         message = " (from Transfer)";
-      }
-      else{
+      } else {
         message = " (from Payment)";
       }
       amountLabel = new Label("- " + String.valueOf(Math.abs(transaction.getAmount())) + message);
@@ -419,14 +411,14 @@ public class BankAppController {
       amountLabel.setLayoutY(8);
       accountAnchorPane.getChildren().add(accountLabel);
       amountAnchorPane.getChildren().add(amountLabel);
-      transactionTable.add(accountAnchorPane, 0,count);
-      transactionTable.add(amountAnchorPane, 1,count);
+      transactionTable.add(accountAnchorPane, 0, count);
+      transactionTable.add(amountAnchorPane, 1, count);
       BorderStroke borderStroke = new BorderStroke(
-      Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1));
+          Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1));
       Border tableBorder = new Border(borderStroke);
       transactionTable.setBorder(tableBorder);
-  
-      count ++;
+
+      count++;
     }
   }
 
@@ -482,11 +474,11 @@ public class BankAppController {
 
   }
 
-    /**
+  /**
    * handles mouse click of an AnchorPane to a specific fxml
    * 
    * @param event
-   * @param source  the name of the fxml (without ".fxml")
+   * @param source     the name of the fxml (without ".fxml")
    * @param anchorPane the fx-id of the AnchorPane that leads to source
    */
   private void AnchorPaneGoTo(MouseEvent event, String source, AnchorPane anchorPane) {
@@ -597,12 +589,9 @@ public class BankAppController {
    * Handles mouseclick on new bill, creates a new bill and saves the information
    * 
    * @param event
-   * @throws StreamReadException
-   * @throws DatabindException
-   * @throws IOException
    */
   @FXML
-  public void handleNewBill(MouseEvent event) throws StreamReadException, DatabindException, IOException {
+  public void handleNewBill(MouseEvent event) {
     String bName = billName.getText();
     String bAmount = billAmount.getText();
     String sAccount = sellerAccount.getText();
@@ -617,20 +606,21 @@ public class BankAppController {
       feedbackInNewBill.setFill(Color.RED);
     }
 
-    sAcc = (SpendingsAccount) ProfileInformationManagement.readFromFile(path)
+    sAcc = (SpendingsAccount) profilesAccess.getProfiles()
         .stream()
         .flatMap(profile -> profile.getAccounts().stream())
         .filter(account -> account.getAccNr().equals(sAccount))
         .findFirst().orElse(null);
 
-    pAcc = (SpendingsAccount) ProfileInformationManagement.readFromFile(path)
+    pAcc = (SpendingsAccount) profilesAccess.getProfiles()
         .stream()
         .flatMap(profile -> profile.getAccounts().stream())
         .filter(account -> account.getAccNr().equals(pAccount2))
         .findFirst().orElse(null);
 
-    for (Profile profile2 : ProfileInformationManagement.readFromFile(path)) {
-      if (profile2.ownsAccount(sAcc)) seller = profile2;
+    for (Profile profile2 : profilesAccess.getProfiles()) {
+      if (profile2.ownsAccount(sAcc))
+        seller = profile2;
     }
     try {
       Bill bill = new Bill(Integer.parseInt(bAmount), bName, seller.getName(), sAcc, pAcc, profile);
@@ -643,7 +633,7 @@ public class BankAppController {
     } catch (Exception e) {
       feedbackInNewBill.setText(e.getMessage());
     }
-  
+
   }
 
   /**
@@ -651,29 +641,24 @@ public class BankAppController {
    * information
    * 
    * @param event
-   * @throws StreamWriteException
-   * @throws IOException
-   * @throws DatabindException
-   * @throws StreamReadException
    */
-  @FXML 
-  public void handlePayment(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+  @FXML
+  public void handlePayment(MouseEvent event) {
     String payFrom = payFromChoiceBox.getValue();
     String accPersonToPay = payTo.getText();
     int amount = Integer.parseInt(payAmount.getText());
-    SpendingsAccount acc1 = null; //account paying (this.profile)
-    SpendingsAccount acc2 = null; //person payed to
+    SpendingsAccount acc1 = null; // account paying (this.profile)
+    SpendingsAccount acc2 = null; // person payed to
 
-    if(payFrom.isEmpty() || accPersonToPay.isEmpty() || payAmount.getText().isEmpty()){
+    if (payFrom.isEmpty() || accPersonToPay.isEmpty() || payAmount.getText().isEmpty()) {
       feedbackInPay.setText("Please fill in the fields");
-    }
-    else{
-      try{
+    } else {
+      try {
         acc1 = (SpendingsAccount) profile.getAccounts().stream().filter(account -> account.getAccNr().equals(payFrom))
             .filter(account -> account instanceof SpendingsAccount).findFirst()
             .orElse(null);
 
-        acc2 = (SpendingsAccount) ProfileInformationManagement.readFromFile(path)
+        acc2 = (SpendingsAccount) profilesAccess.getProfiles()
             .stream()
             .flatMap(profile -> profile.getAccounts().stream())
             .filter(account -> account.getAccNr().equals(accPersonToPay))
@@ -686,70 +671,65 @@ public class BankAppController {
         payAmount.clear();
         writeInfo();
 
-        Transaction transaction = new Transaction(profile.getEmail(), accPersonToPay, acc2.getProfile().getName(), payFrom, amount);
-        TransactionsPersistence.writeTransactions(transaction, transactionPath);
+        Transaction transaction = new Transaction(profile.getEmail(), accPersonToPay, acc2.getProfile().getName(),
+            payFrom, amount);
+        profilesAccess.writeTransaction(transaction);
 
       } catch (Exception e) {
         feedbackInPay.setText(e.getMessage());
         feedbackInPay.setFill(Color.RED);
       }
-      }
+    }
   }
-    
-  
 
   /**
    * handles the tranfering process when transfer button is clicked, and saves the
    * new information
    * 
    * @param event
-   * @throws StreamWriteException
-   * @throws DatabindException
-   * @throws IOException
    */
-  
-  @FXML 
-  public void handleTransfer(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+
+  @FXML
+  public void handleTransfer(MouseEvent event){
     String fromAccountChoiceBox = transferFromChoiceBox.getValue();
     String toAccountChoiceBox = transferToChoiceBox.getValue();
-    if(transferAmount.getText().isEmpty()) feedbackInTransfer.setText("Fill in amount");
+    if (transferAmount.getText().isEmpty())
+      feedbackInTransfer.setText("Fill in amount");
     int amount = Integer.parseInt(transferAmount.getText());
 
     AbstractAccount acc1 = null;
     AbstractAccount acc2 = null;
 
     try {
-          acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccountChoiceBox)) //fromAccount
-              .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
-          acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccountChoiceBox))  //toAccount
-              .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
-          acc2.transferFrom(acc1, amount);
+      acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccountChoiceBox)) // fromAccount
+          .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
+      acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccountChoiceBox)) // toAccount
+          .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
+      acc2.transferFrom(acc1, amount);
 
-        } catch (IllegalArgumentException e) {
-          feedbackInTransfer.setText(e.getMessage());
-          feedbackInTransfer.setFill(Color.RED);
-        }
-        writeInfo();
+    } catch (IllegalArgumentException e) {
+      feedbackInTransfer.setText(e.getMessage());
+      feedbackInTransfer.setFill(Color.RED);
+    }
+    writeInfo();
 
-        Transaction transaction = new Transaction(profile.getEmail(), toAccountChoiceBox, profile.getName(), fromAccountChoiceBox, amount);
-        TransactionsPersistence.writeTransactions(transaction, transactionPath);
+    Transaction transaction = new Transaction(profile.getEmail(), toAccountChoiceBox, profile.getName(),
+        fromAccountChoiceBox, amount);
+    profilesAccess.writeTransaction(transaction);
 
-        transferAmount.setText("");
-        transferFromChoiceBox.setValue("");
-        transferToChoiceBox.setValue("");
-        feedbackInTransfer.setText("Transfer completed!");
-      }
+    transferAmount.setText("");
+    transferFromChoiceBox.setValue("");
+    transferToChoiceBox.setValue("");
+    feedbackInTransfer.setText("Transfer completed!");
+  }
 
   /**
    * creates new account when a given mouse event happens
    * 
    * @param event
-   * @throws StreamWriteException
-   * @throws DatabindException
-   * @throws IOException
    */
   @FXML
-  public void createNewAccount(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
+  public void createNewAccount(MouseEvent event) {
     String type = selectAccountType.getValue();
     String name = giveAccountName.getText();
     int numAccounts = profile.getAccounts().size();
@@ -761,33 +741,33 @@ public class BankAppController {
     }
 
     else {
-        String[] validTypes = { "BSU", "Checking account", "Savings account" };
+      String[] validTypes = { "BSU", "Checking account", "Savings account" };
 
-        if (type.equals(validTypes[0])) {
-          account = new BSUAccount(name, profile);
-        }
+      if (type.equals(validTypes[0])) {
+        account = new BSUAccount(name, profile);
+      }
 
-        else if (type.equals(validTypes[1])) {
-          account = new SpendingsAccount(name, profile);
-        }
+      else if (type.equals(validTypes[1])) {
+        account = new SpendingsAccount(name, profile);
+      }
 
-        else if (type.equals(validTypes[2])) {
-          account = new SavingsAccount(name, profile);
-        }
-        try{
+      else if (type.equals(validTypes[2])) {
+        account = new SavingsAccount(name, profile);
+      }
+      try {
         profile.addAccount(account);
-        }catch(IllegalArgumentException e){
-          feedbackInNewAccount.setText(e.getMessage());
-          feedbackInNewAccount.setFill(Color.RED);
-        }
+      } catch (IllegalArgumentException e) {
+        feedbackInNewAccount.setText(e.getMessage());
+        feedbackInNewAccount.setFill(Color.RED);
+      }
 
-        if (numAccounts + 1 == profile.getAccounts().size()) {
-          feedbackInNewAccount.setText("New account created!");
-        }
+      if (numAccounts + 1 == profile.getAccounts().size()) {
+        feedbackInNewAccount.setText("New account created!");
+      }
 
-        giveAccountName.setText("");
-        writeInfo();
-      
+      giveAccountName.setText("");
+      writeInfo();
+
     }
   }
 
@@ -813,39 +793,31 @@ public class BankAppController {
    * deletes the account with the written name in the text field
    *
    * @param event
-   * @throws StreamWriteException
-   * @throws DatabindException
-   * @throws IOException          If it can't find the account written in the text
-   *                              field
    */
-  @FXML 
-  public void handleDeleteAccountStage2(MouseEvent event ){
+  @FXML
+  public void handleDeleteAccountStage2(MouseEvent event) {
     String accountToBeDeleted = deleteAccountName.getText();
-      AbstractAccount acc = null;
-      acc = profile.getAccounts().stream().filter(account -> account.getName().equals(accountToBeDeleted))
-          .findFirst()
-          .orElse(null);
-    try{
+    AbstractAccount acc = null;
+    acc = profile.getAccounts().stream().filter(account -> account.getName().equals(accountToBeDeleted))
+        .findFirst()
+        .orElse(null);
+    try {
       profile.removeAccount(acc);
       writeInfo();
       Stage stage = (Stage) deleteAccount.getScene().getWindow();
       stage.close();
-    }catch(Exception e){
+    } catch (Exception e) {
       feedbackInDeleteAccount.setText("Cannot find account");
       feedbackInDeleteAccount.setFill(Color.RED);
     }
   }
 
-
   /**
    * Saves new information
    * 
-   * @throws StreamWriteException
-   * @throws DatabindException
-   * @throws IOException
    */
-  private void writeInfo() throws StreamWriteException, DatabindException, IOException {
-    ProfileInformationManagement.writeInformationToFile(profile, path);
+  private void writeInfo() {
+    profilesAccess.updateProfilesInfo(profile);
   }
 
   /**
@@ -860,12 +832,13 @@ public class BankAppController {
     try {
       String email = emailInput.getText();
       String password = passwordInput.getText();
-      List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
+      List<Profile> profiles = profilesAccess.getProfiles();
       profile = profiles.stream()
           .filter(profile -> profile.getPassword().equals(password) && profile.getEmail().equals(email))
           .findFirst().orElseThrow(() -> new Exception("Invalid email or password"));
       buttonGoTo(event, "Overview", loginButton);
     } catch (Exception e) {
+      System.out.println(e.getMessage());
       loginError.setText(e.getMessage());
       e.printStackTrace();
     }
@@ -875,13 +848,10 @@ public class BankAppController {
    * Deletes this profile
    * 
    * @param event
-   * @throws StreamReadException
-   * @throws DatabindException
-   * @throws IOException
    */
   @FXML
-  public void handleDeleteProfile(MouseEvent event) throws StreamReadException, DatabindException, IOException {
-    ProfileInformationManagement.deleteProfile(path, profile);
+  public void handleDeleteProfile(MouseEvent event) {
+    profilesAccess.deleteProfile(profile);
     labelGoTo(event, "Login", deleteProfileButton);
   }
 
@@ -889,12 +859,9 @@ public class BankAppController {
    * handles the changes in profile and saves it
    * 
    * @param event
-   * @throws StreamWriteException
-   * @throws DatabindException
-   * @throws IOException
    */
   @FXML
-  public void handleUpdateSettings(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
+  public void handleUpdateSettings(MouseEvent event) {
     String newNum = changeNumberTo.getText();
     String newEmail = changeEmailTo.getText();
     String newPassword = changePasswordTo.getText();
@@ -958,13 +925,14 @@ public class BankAppController {
 
   private boolean alreadyRegistered() {
     try {
-      List<Profile> profiles = ProfileInformationManagement.readFromFile(path);
+      List<Profile> profiles = profilesAccess.getProfiles();
       for (Profile profile : profiles) {
-        if (profile.getEmail().equals(email.getText()) || profile.getTlf().equals(phoneNr.getText())) return true;
+        if (profile.getEmail().equals(email.getText()) || profile.getTlf().equals(phoneNr.getText()))
+          return true;
       }
       return false;
     } catch (Exception e) {
-      return false;
+      throw new RuntimeException();
     }
   }
 }

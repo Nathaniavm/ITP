@@ -9,9 +9,6 @@ import json.TransactionsPersistence;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-
 /**
  * Service class for Springboot controller.
  */

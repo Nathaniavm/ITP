@@ -117,4 +117,7 @@ public class RemoteProfilesAccess {
       throw new RuntimeException(e);
     }
   }
+  public static void main(String[] args) throws URISyntaxException {
+    RemoteProfilesAccess remote = new RemoteProfilesAccess(new URI("localhost:8080/profiles/"));
+  }
 }
