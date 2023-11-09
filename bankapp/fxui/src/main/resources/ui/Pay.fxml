@@ -12,7 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
+<AnchorPane fx:id="pay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+   minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
       <GridPane layoutX="3.0" layoutY="3.0" prefHeight="650.0" prefWidth="419.0">
          <columnConstraints>
@@ -20,8 +22,10 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="421.5008544921875" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625" prefHeight="75.4991455078125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="421.5008544921875"
+               vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.7252197265625" minHeight="7.21881103515625"
+               prefHeight="75.4991455078125" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <AnchorPane fx:id="body" prefHeight="408.0" prefWidth="419.0" GridPane.rowIndex="1">
@@ -37,9 +41,11 @@
                      </font>
                   </Label>
                   <TextField fx:id="payTo" layoutX="226.0" layoutY="230.0" />
-                  <AnchorPane layoutX="92.0" layoutY="20.0" prefHeight="112.0" prefWidth="236.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane layoutX="92.0" layoutY="20.0" prefHeight="112.0" prefWidth="236.0"
+                     style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
-                        <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="97.0" prefWidth="222.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                        <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="97.0" prefWidth="222.0"
+                           style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                            <children>
                               <TextField fx:id="payAmount" layoutX="38.0" layoutY="49.0" />
                               <Label layoutX="68.0" layoutY="7.0" text="Amount" underline="true">
@@ -51,38 +57,51 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="payButton" layoutX="30.0" layoutY="330.0" onMouseClicked="#handlePayment" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="payButton" layoutX="30.0" layoutY="330.0"
+                     onMouseClicked="#handlePayment" prefHeight="47.0" prefWidth="160.0"
+                     style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
-                        <Text fill="WHITE" layoutX="60.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay" textAlignment="CENTER">
+                        <Text fill="WHITE" layoutX="60.0" layoutY="33.0" strokeType="OUTSIDE"
+                           strokeWidth="0.0" text="Pay" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
                      </children>
                   </AnchorPane>
-                  <Text fx:id="feedbackInPay" fill="#214c69" layoutX="226.0" layoutY="369.0" onMouseClicked="#handleSignUpClick" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill in the fields">
+                  <Text fx:id="feedbackInPay" fill="#214c69" layoutX="226.0" layoutY="369.0"
+                     onMouseClicked="#handleSignUpClick" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Please fill in the fields">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="payFromChoiceBox" layoutX="30.0" layoutY="230.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="payFromChoiceBox" layoutX="30.0" layoutY="230.0"
+                     prefWidth="150.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="423.0" GridPane.rowIndex="2">
                <children>
-                  <GridPane gridLinesVisible="true" layoutX="-3.0" layoutY="1.0" prefHeight="74.0" prefWidth="426.0">
+                  <GridPane gridLinesVisible="true" layoutX="-3.0" layoutY="1.0" prefHeight="74.0"
+                     prefWidth="426.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.33303833007812" minWidth="10.0" prefWidth="87.33303833007812" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="91.16696166992188" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0" prefWidth="79.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.33303833007812"
+                           minWidth="10.0" prefWidth="87.33303833007812" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0"
+                           prefWidth="91.16696166992188" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0"
+                           prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0"
+                           prefWidth="79.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0"
+                           prefWidth="80.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <AnchorPane fx:id="spendingTab" onMouseClicked="#initializeTab" prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="spendingTab" onMouseClicked="#initializeTab"
+                           prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Label layoutX="8.0" layoutY="42.0" text="Spending">
                                  <font>
@@ -91,7 +110,9 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0" style="-fx-background-color: #214C69;" GridPane.columnIndex="1">
+                        <AnchorPane fx:id="paymentsTab" onMouseClicked="#initializeTab"
+                           prefHeight="62.0" prefWidth="84.0" style="-fx-background-color: #214C69;"
+                           GridPane.columnIndex="1">
                            <children>
                               <Label layoutX="10.0" layoutY="43.0" text="Payments" textFill="WHITE">
                                  <font>
@@ -100,7 +121,8 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="savingsTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="3">
+                        <AnchorPane fx:id="savingsTab" onMouseClicked="#initializeTab"
+                           prefHeight="62.0" prefWidth="84.0" GridPane.columnIndex="3">
                            <children>
                               <Label layoutX="10.0" layoutY="42.0" text="Savings">
                                  <font>
@@ -109,7 +131,8 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="75.0" GridPane.columnIndex="4">
+                        <AnchorPane fx:id="profileTab" onMouseClicked="#initializeTab"
+                           prefHeight="62.0" prefWidth="75.0" GridPane.columnIndex="4">
                            <children>
                               <Label layoutX="14.0" layoutY="43.0" text="Profile">
                                  <font>
@@ -118,7 +141,8 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeTab" onMouseClicked="#initializeTab" prefHeight="62.0" prefWidth="83.0" GridPane.columnIndex="2">
+                        <AnchorPane fx:id="homeTab" onMouseClicked="#initializeTab"
+                           prefHeight="62.0" prefWidth="83.0" GridPane.columnIndex="2">
                            <children>
                               <Label layoutX="18.0" layoutY="42.0" text="Home">
                                  <font>
@@ -133,12 +157,14 @@
             </AnchorPane>
             <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">
                <children>
-                  <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="282.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="282.0" layoutY="17.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Logo.png" />
+                        <Image url="@images/Logo.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="profileName" layoutX="21.0" layoutY="112.0" text="Welcome, Name!" textFill="WHITE">
+                  <Label fx:id="profileName" layoutX="21.0" layoutY="112.0" text="Welcome, Name!"
+                     textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
