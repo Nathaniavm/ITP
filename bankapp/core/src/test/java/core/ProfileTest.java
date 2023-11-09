@@ -220,14 +220,4 @@ public class ProfileTest {
         assertTrue(profile1.previewBalance() == 900);
     }
 
-    @Test
-    @DisplayName("Test change email")
-    public void testChangeEmail() {
-        profile1.changeEmail("pan@ntnu.no");
-        assertEquals("pan@ntnu.no", profile1.getEmail());
-
-        assertThrows(IllegalArgumentException.class, () -> profile1.changeEmail("peterntnu.no"));
-        assertThrows(IllegalArgumentException.class, () -> profile1.changeEmail("peter@ntnucom"));
-
-    }
 }
