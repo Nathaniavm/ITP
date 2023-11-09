@@ -87,25 +87,16 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <AnchorPane fx:id="accountsButton" layoutX="120.0" layoutY="130.0" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="settingsButton" layoutX="120.0" layoutY="60.0" onMouseClicked="#goToSettings" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
-                        <Text fill="WHITE" layoutX="40.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts">
+                        <Text fill="WHITE" layoutX="46.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="settingsButton" layoutX="120.0" layoutY="60.0" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
-                     <children>
-                        <Text fill="WHITE" layoutX="42.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="cardsButton" layoutX="120.0" layoutY="200.0" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="cardsButton" layoutX="120.0" layoutY="145.0" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="61.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cards">
                            <font>
@@ -114,7 +105,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="logOutButton" layoutX="120.0" layoutY="270.0" onMouseClicked="#handleBackArrow" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="logOutButton" layoutX="120.0" layoutY="230.0" onMouseClicked="#switchTabToLoginPage" prefHeight="47.0" prefWidth="184.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="47.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out">
                            <font>
@@ -132,7 +123,7 @@
                         <Image url="@Logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" visible="false" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@BackArrow.png" />
                      </image>

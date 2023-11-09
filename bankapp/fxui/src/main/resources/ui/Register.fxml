@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
+<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
       <Text layoutX="63.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create       your profile" wrappingWidth="271.55621337890625">
          <font>
@@ -22,9 +22,9 @@
       <Text layoutX="63.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" />
       <Text layoutX="62.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password" />
       <Text layoutX="62.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password" />
-      <TextField fx:id="fullName" layoutX="189.0" layoutY="315.0" text="philip lam" />
-      <TextField fx:id="email" layoutX="189.0" layoutY="355.0" text="phil@gmail.com" />
-      <TextField fx:id="phoneNr" layoutX="189.0" layoutY="395.0" text="12345678" />
+      <TextField fx:id="fullName" layoutX="189.0" layoutY="315.0" />
+      <TextField fx:id="email" layoutX="189.0" layoutY="355.0" />
+      <TextField fx:id="phoneNr" layoutX="189.0" layoutY="395.0" />
       <Button fx:id="registerButton" layoutX="279.0" layoutY="542.0" mnemonicParsing="false" onAction="#register" text="Register" />
       <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">
          <children>
@@ -33,7 +33,7 @@
                   <Image url="@Logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#handleBackArrow" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#switchTabToLoginPage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@BackArrow.png" />
                </image>
@@ -41,7 +41,7 @@
          </children>
       </AnchorPane>
       <Label fx:id="registerError" layoutX="63.0" layoutY="516.0" textFill="RED" />
-      <PasswordField fx:id="password" layoutX="189.0" layoutY="435.0" text="passord12" />
-      <PasswordField fx:id="passwordConfirm" layoutX="189.0" layoutY="475.0" text="passord12" />
+      <PasswordField fx:id="password" layoutX="189.0" layoutY="435.0" />
+      <PasswordField fx:id="passwordConfirm" layoutX="189.0" layoutY="475.0" />
    </children>
 </AnchorPane>

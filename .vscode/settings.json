@@ -1,3 +1,10 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "todolist/config/checkstyle/eclipse-java-google-style.xml",
+    "[java]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "java.compile.nullAnalysis.mode": "automatic",
+    "liveServer.settings.port": 5501
 }

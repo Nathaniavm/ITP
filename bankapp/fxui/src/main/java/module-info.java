@@ -4,7 +4,9 @@ module bankapp.fxui {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-    requires junit;
+    requires com.fasterxml.jackson.databind;
+    
+    requires java.net.http;
 
-    opens ui to javafx.graphics, javafx.fxml;
+    opens ui to javafx.graphics, javafx.fxml, com.fasterxml.jackson.databind;
 }

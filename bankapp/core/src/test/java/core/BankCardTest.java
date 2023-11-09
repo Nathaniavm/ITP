@@ -1,36 +1,35 @@
 package core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+
+import core.Accounts.SpendingsAccount;
 
 public class BankCardTest {
     private BankCard bankCard1;
     private BankCard bankCard2;
     private BankCard bankCard3;
-    private Account account1;
-    private Account account2;
-    private Account account3;
+    private SpendingsAccount account1;
+    private SpendingsAccount account2;
+    private SpendingsAccount account3;
     private Profile profile1;
     private Profile profile2;
     private Profile profile3;
 
-    @Before
+    @BeforeEach
     @DisplayName("setting up the different bankcards")
     public void setUp() {
         profile1 = new Profile("Jane Smith", "jane@gmail.com", "12345678", "passord12");
         profile2 = new Profile("John Doe", "jane@gmail.com", "12345678", "passord12");
         profile3 = new Profile("Jayan Tayana", "jane@gmail.com", "12345678", "passord12");
-        account1 = new Account("test account", profile1);
-        account2 = new Account("test account", profile2); 
-        account3 = new Account("test account", profile3);
+        account1 = new SpendingsAccount("test account", profile1);
+        account2 = new SpendingsAccount("test account", profile2);
+        account3 = new SpendingsAccount("test account", profile3);
         account1.createBankCard();
         account2.createBankCard();
         account3.createBankCard();
@@ -62,12 +61,24 @@ public class BankCardTest {
         Set<String> cardNumberSet = new HashSet<>();
 
         for (int i = 0; i < numberOfCards; i++) {
-            BankCard bankCard = new BankCard("Cardholder" + i,account1);
+            BankCard bankCard = new BankCard("Cardholder" + i, account1);
             String cardNr = bankCard.getCardNr();
             assertFalse(cardNumberSet.contains(cardNr));
             cardNumberSet.add(cardNr);
         }
 
         assertTrue(numberOfCards == cardNumberSet.size());
+    }
+
+    @Test
+    @DisplayName("Test blocking card")
+    public void testBlockCard() {
+        bankCard1.blockCard();
+    }
+
+    @Test
+    @DisplayName("Test unblocking card")
+    public void testUnBlockCard() {
+        bankCard1.unblockCard();
     }
 }

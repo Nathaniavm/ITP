@@ -87,8 +87,8 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <AnchorPane layoutX="37.0" layoutY="155.0" prefHeight="160.0" prefWidth="321.0" style="-fx-background-color: #DDDDDD;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="61.0" />
-                  <AnchorPane fx:id="transferButton" layoutX="31.0" layoutY="30.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="incomingBills" layoutX="37.0" layoutY="155.0" prefHeight="160.0" prefWidth="321.0" style="-fx-background-color: #DDDDDD;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="61.0" />
+                  <AnchorPane fx:id="goToTransferButton" layoutX="31.0" layoutY="30.0" onMouseClicked="#goToTransfer" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="34.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transfer">
                            <font>
@@ -97,7 +97,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="payButton" layoutX="227.0" layoutY="30.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="goToPayButton" layoutX="227.0" layoutY="30.0" onMouseClicked="#goToPay" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="60.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay" textAlignment="CENTER">
                            <font>
@@ -106,12 +106,12 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="37.0" layoutY="104.0" text="Incoming Bills" underline="true">
+                  <Label layoutX="30.0" layoutY="104.0" text="Incoming Bills" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="newBillButton" layoutX="37.0" layoutY="338.0" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
+                  <AnchorPane fx:id="newBillButton" layoutX="37.0" layoutY="338.0" onMouseClicked="#goToNewBill" prefHeight="47.0" prefWidth="160.0" style="-fx-background-color: #214C69; -fx-background-radius: 30;">
                      <children>
                         <Text fill="WHITE" layoutX="33.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Bill" textAlignment="CENTER">
                            <font>

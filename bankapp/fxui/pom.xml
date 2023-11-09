@@ -28,6 +28,13 @@
   <dependencies>
 
     <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+
+
+    <dependency>
       <groupId>group15.bank</groupId>
       <artifactId>core</artifactId>
       <version>1.0</version>
@@ -50,14 +57,10 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.0</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.10.0</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -85,31 +88,52 @@
       <version>2.2</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.7.2.1</version>
-        <dependencies>
-          <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-          <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs</artifactId>
-            <version>4.7.3</version>
-          </dependency>
-        </dependencies>
-      </plugin>
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.8</version>
         <configuration>
           <mainClass>ui.BankApp</mainClass>
-          <verbose>true</verbose>
+          <version>0.0.8</version>
+          <!-- rest of options are for jlink -->
+          <compress>2</compress>
+          <noHeaderFiles>true</noHeaderFiles>
+          <stripDebug>true</stripDebug>
+          <noManPages>true</noManPages>
+          <launcher>bankappfx</launcher>
+          <jlinkImageName>bankappfx</jlinkImageName>
+          <jlinkZipName>bankappfx</jlinkZipName>
+        </configuration>
+      </plugin>
+
+      <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+      <plugin>
+        <groupId>org.panteleyev</groupId>
+        <artifactId>jpackage-maven-plugin</artifactId>
+        <version>1.4.0</version>
+        <configuration>
+          <name>BankAppFX</name>
+          <appVersion>1.0.0</appVersion>
+          <vendor>gr2315</vendor>
+          <destination>target/dist</destination>
+          <module>bankapp.fxui/ui.BankApp</module>
+          <runtimeImage>target/bankappfx</runtimeImage>
+          <javaOptions>
+            <option>-Dfile.encoding=UTF-8</option>
+          </javaOptions>
+          <!-- linux options -->
+          <linuxShortcut>true</linuxShortcut>
+          <linuxMenuGroup>BankAppFX</linuxMenuGroup>
+
+          <!-- windows options -->
+          <winDirChooser>true</winDirChooser>
+          <winShortcut>true</winShortcut>
+          <winMenu>true</winMenu>
+          <winMenuGroup>BankAppFX</winMenuGroup>
         </configuration>
       </plugin>
       <!-- clean lifecycle, see
@@ -176,25 +200,9 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <configuration>
-            <propertyName>jaCoCoArgLine</propertyName>
+          <propertyName>jaCoCoArgLine</propertyName>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.3.0</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>checkstyle</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
 </project>
