@@ -9,6 +9,9 @@ bankapp.core ..> bankapp.json
 component jackson {
 }
 
+component springboot {
+    package java.springboot
+}
 
 component fxui {
     package java.ui
@@ -24,6 +27,9 @@ component javafx {
 
 fxui ..> javafx
 fxui ..> fxml
+
+java.springboot ..> bankapp.core
+java.springboot ..> bankapp.json
 
 
 @enduml

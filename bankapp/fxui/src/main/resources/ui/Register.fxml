@@ -10,32 +10,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
+<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+   minWidth="-Infinity" prefHeight="652.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BankAppController">
    <children>
-      <Text layoutX="63.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create       your profile" wrappingWidth="271.55621337890625">
+      <Text layoutX="63.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Create       your profile" wrappingWidth="271.55621337890625">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
       </Text>
       <Text layoutX="63.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
       <Text layoutX="63.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-      <Text layoutX="63.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" />
-      <Text layoutX="62.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password" />
-      <Text layoutX="62.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password" />
+      <Text layoutX="63.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Phone number" />
+      <Text layoutX="62.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Enter password" />
+      <Text layoutX="62.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Confirm password" />
       <TextField fx:id="fullName" layoutX="189.0" layoutY="315.0" />
       <TextField fx:id="email" layoutX="189.0" layoutY="355.0" />
       <TextField fx:id="phoneNr" layoutX="189.0" layoutY="395.0" />
-      <Button fx:id="registerButton" layoutX="279.0" layoutY="542.0" mnemonicParsing="false" onAction="#register" text="Register" />
+      <Button fx:id="registerButton" layoutX="279.0" layoutY="542.0" mnemonicParsing="false"
+         onAction="#register" text="Register" />
       <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">
          <children>
-            <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="282.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="282.0" layoutY="17.0"
+               pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Logo.png" />
+                  <Image url="@images/Logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#switchTabToLoginPage" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backArrow" fitHeight="45.0" fitWidth="40.0" layoutX="8.0"
+               layoutY="7.0" onMouseClicked="#switchTabToLoginPage" pickOnBounds="true"
+               preserveRatio="true">
                <image>
-                  <Image url="@BackArrow.png" />
+                  <Image url="@images/BackArrow.png" />
                </image>
             </ImageView>
          </children>
