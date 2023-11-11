@@ -1,1 +1,52 @@
-[{"@id":"2179305f-d9c0-4bdd-8ca9-eea62d5311f7","name":"Ola Nordmann","email":"Ola@ntnu.no","tlf":"40123456","password":"NyttPassord123","accounts":[{"accountType":"SpendingsAccount","@id":"e1f2584b-0072-4921-9d91-f196e78b2d78","name":"James","profile":"2179305f-d9c0-4bdd-8ca9-eea62d5311f7","balance":0,"accNr":"1234 99 36953","bankCard":null,"transaction":[]}],"bills":[{"@id":"8054ecf5-be1d-49f2-b43f-bffd6f637ba8","amount":150,"billName":"Groceries","sellerName":"Kari Nordmann","sellerAccount":{"accountType":"SpendingsAccount","@id":"a642a5d4-1599-4330-a6b4-c8a937ae38b9","name":"Heui","profile":{"@id":"75ddc287-d477-49c6-a6ef-741fb324c1dd","name":"Kari Nordmann","email":"Kari@ntnu.no","tlf":"40654321","password":"Passord2","accounts":["a642a5d4-1599-4330-a6b4-c8a937ae38b9"],"bills":[]},"balance":0,"accNr":"1234 48 05196","bankCard":null,"transaction":[]},"payerAccount":"e1f2584b-0072-4921-9d91-f196e78b2d78","profile":"2179305f-d9c0-4bdd-8ca9-eea62d5311f7","paid":false}]}]
+[
+    {
+        "@id": "2179305f-d9c0-4bdd-8ca9-eea62d5311f7",
+        "name": "Ola Nordmann",
+        "email": "Ola@ntnu.no",
+        "tlf": "40123456",
+        "password": "NyttPassord123",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "e1f2584b-0072-4921-9d91-f196e78b2d78",
+                "name": "James",
+                "profile": "2179305f-d9c0-4bdd-8ca9-eea62d5311f7",
+                "balance": 0,
+                "accNr": "1234 99 36953",
+                "bankCard": null,
+                "transaction": []
+            }
+        ],
+        "bills": [
+            {
+                "@id": "8054ecf5-be1d-49f2-b43f-bffd6f637ba8",
+                "amount": 150,
+                "billName": "Groceries",
+                "sellerName": "Kari Nordmann",
+                "sellerAccount": {
+                    "accountType": "SpendingsAccount",
+                    "@id": "a642a5d4-1599-4330-a6b4-c8a937ae38b9",
+                    "name": "Heui",
+                    "profile": {
+                        "@id": "75ddc287-d477-49c6-a6ef-741fb324c1dd",
+                        "name": "Kari Nordmann",
+                        "email": "Kari@ntnu.no",
+                        "tlf": "40654321",
+                        "password": "Passord2",
+                        "accounts": [
+                            "a642a5d4-1599-4330-a6b4-c8a937ae38b9"
+                        ],
+                        "bills": []
+                    },
+                    "balance": 0,
+                    "accNr": "1234 48 05196",
+                    "bankCard": null,
+                    "transaction": []
+                },
+                "payerAccount": "e1f2584b-0072-4921-9d91-f196e78b2d78",
+                "profile": "2179305f-d9c0-4bdd-8ca9-eea62d5311f7",
+                "paid": false
+            }
+        ]
+    }
+]
