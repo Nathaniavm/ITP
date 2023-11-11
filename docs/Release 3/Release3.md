@@ -15,4 +15,16 @@ Alle gruppemedlemmer nådde opp til de forventningene beskrevet i gruppekontrakt
 ## Arbeidsvaner
 Mellom release 2 og 3 fortsatte gruppen med praksisen der man byttet mellom hvem man jobbet sammen med (begrunnelse ligger i release 2). Dette fortsatte å fungere fint. 
 
-Arbeid ble fordelt ut ifra hvilke <em>issues</em> som måtte løses, og hva som trengtes å jobbes med med tanke på tidsfrister. Når det kommer til tidsfrister, ble det ikke satt noen tydelige frister for flere <em>issues</em>. Hvor stor en <em>issue</em> var, kunne være veldig varierende. Noen var større enn andre. I tillegg hastet ikke nødvendigvis alle <em>issues</em> å få løst raskt. En annen faktor som også spilte inn var ting som skjedde ellers i livene våre. På grunn av dette var det igjen ikke enkelt for gruppen å se for seg tidsfrister. Tidsfrister ble derfor bae lagt inn for <em>issues</em> der gruppen var sikre på at de måtte løses innen en viss tid. 
+Arbeid ble fordelt ut ifra hvilke <em>issues</em> som måtte løses, og hva som trengtes å jobbes med med tanke på tidsfrister. Når det kommer til tidsfrister, ble det ikke satt noen tydelige frister for flere <em>issues</em>. Hvor stor en <em>issue</em> var, kunne være veldig varierende. Noen var større enn andre. I tillegg hastet ikke nødvendigvis alle <em>issues</em> å få løst raskt. En annen faktor som også spilte inn var ting som skjedde ellers i livene våre. På grunn av dette var det igjen ikke enkelt for gruppen å se for seg tidsfrister. Tidsfrister ble derfor bare lagt inn for <em>issues</em> der gruppen var sikre på at de måtte løses innen en viss tid.
+
+Utviklingsoppgaver ble lagt inn på Git i form av <em>issues</em> for alle større endringer eller implementasjoner. 
+## Implementeringer ved release 3
+### Funksjonalitet 
+
+Applikasjonen har fått en rekke nye funksjonaliteter siden release 2. Det er nå mulig å se transaksjoner i applikasjonen, se hvor mye man har i kontoen sin, opprette ulike kontotyper og slette disse, slette profilen, opprette og betale regninger og se disse i applikasjonen, og å overføre penger mellom egne kontoer og andre profilers kontoer. Alt dette er i henhold til brukerhistorien. 
+
+Applikasjonen har blitt satt opp med et REST-API. REST-API-et ble satt opp med <em>springboot</em>. Gruppen valgte å fortsette med å utvide javafx-applikasjonen, fremfor å benytte seg av mobil-klient, react eller lignende. Grunnen til at gruppen valgte å fortsette med å utvide javafx-applikasjonen var fordi gruppen ikke hadde så store erfaringer med de andre metodene, og derfor ikke ønsket å forsøke å våge seg ut på ukjent farvann. Gruppen følte seg mer derfor mer komfortabel med javafx. 
+
+
+
+
