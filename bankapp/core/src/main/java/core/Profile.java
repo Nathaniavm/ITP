@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import core.Accounts.AbstractAccount;
+import core.accounts.AbstractAccount;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,29 +23,37 @@ public class Profile implements Serializable {
   private List<AbstractAccount> accounts = new ArrayList<>();
   private List<Bill> bills = new ArrayList<>();
   private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList(
-      "ad", "ae", "af", "ag", "ai", "al", "am", "ao", "aq", "ar", "as", "at", "au", "aw", "ax", "az",
-      "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl", "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw",
+      "ad", "ae", "af", "ag", "ai", "al", "am", "ao",
+       "aq", "ar", "as", "at", "au", "aw", "ax", "az",
+      "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl",
+       "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw",
       "by", "bz",
-      "ca", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz",
+      "ca", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm",
+       "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz",
       "de", "dj", "dk", "dm", "do", "dz",
       "ec", "ee", "eg", "eh", "er", "es", "et",
       "fi", "fj", "fk", "fm", "fo", "fr",
-      "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy",
+      "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm",
+       "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy",
       "hk", "hm", "hn", "hr", "ht", "hu",
       "id", "ie", "il", "im", "in", "io", "iq", "ir", "is", "it",
       "je", "jm", "jo", "jp",
       "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz",
       "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly",
-      "ma", "mc", "md", "me", "mf", "mg", "mh", "mk", "ml", "mm", "mn", "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv",
+      "ma", "mc", "md", "me", "mf", "mg", "mh", "mk", "ml", "mm", "mn",
+       "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv",
       "mw", "mx", "my", "mz",
       "na", "nc", "ne", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz",
       "om",
-      "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "ps", "pt", "pw", "py",
+      "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "ps",
+       "pt", "pw", "py",
       "qa",
       "re", "ro", "rs", "ru", "rw",
-      "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "ss", "st", "sv", "sx",
+      "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl",
+       "sm", "sn", "so", "sr", "ss", "st", "sv", "sx",
       "sy", "sz",
-      "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tr", "tt", "tv", "tw", "tz",
+      "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to",
+       "tr", "tt", "tv", "tw", "tz",
       "ua", "ug", "um", "us", "uy", "uz",
       "va", "vc", "ve", "vg", "vi", "vn", "vu",
       "wf", "ws",
@@ -88,11 +96,11 @@ public class Profile implements Serializable {
 
   /**
    * Checks if an email is valid.
-   * 
+   *
    * @param email Valid email is with format mailname@mail.landcode
    *              and the landcode must be a valid landcode (from the arraylist
    *              called landcodes)
-   * 
+   *
    * @return Whether an email is valid or not
    * 
    */
@@ -117,11 +125,11 @@ public class Profile implements Serializable {
 
   /**
    * Checks if password is valid.
-   * 
+   *
    * @param password A password is valid if it contains at least 8 characters,
    *                 where at least 1 of the characters are a number
    *                 and at least 1 of the characters are a letter
-   * 
+   *
    * @return Whether a password is valid or not
    * 
    */
@@ -148,9 +156,9 @@ public class Profile implements Serializable {
 
   /**
    * Checks if telephone number is valid.
-   * 
+   *
    * @param tlf Valid tlf contains 8 numbers
-   * 
+   *
    * @return Whether a telephone number is valid or not
    * 
    */
@@ -160,10 +168,10 @@ public class Profile implements Serializable {
 
   /**
    * Checks if a name is valid.
-   * 
+   *
    * @param name A name is valid if it contains of a surname and a lastname, and
    *             all of the characters are letters
-   * 
+   *
    * @return Whether a name is valid or not
    * 
    */
@@ -186,9 +194,9 @@ public class Profile implements Serializable {
 
   /**
    * Checks if the text is numeric.
-   * 
+   *
    * @param test The text that's gonne be checked
-   * 
+   *
    * @return The boolean value true if the text is numeric, and false if not
    * 
    */
@@ -203,9 +211,9 @@ public class Profile implements Serializable {
 
   /**
    * Add premade account to profile.
-   * 
+   *
    * @param account The account to be added
-   * 
+   *
    * @throws IllegalArgumentException Throw exception if account already exists
    * 
    */
@@ -226,7 +234,7 @@ public class Profile implements Serializable {
 
   /**
    * Removes an account form this profile.
-   * 
+   *
    * @param account The account to be removen
    */
   public void removeAccount(AbstractAccount account) {
@@ -239,7 +247,7 @@ public class Profile implements Serializable {
 
   /**
    * Add a specific bill to this profiles list of bills.
-   * 
+   *
    * @param bill Bill to be paid
    * 
    */
@@ -255,7 +263,7 @@ public class Profile implements Serializable {
 
   /**
    * Remove given bill from list if it has been paid.
-   * 
+   *
    * @param bill Bill to be removed
    * 
    */
@@ -269,7 +277,7 @@ public class Profile implements Serializable {
 
   /**
    * Get the total balance among all accounts owned by this profile.
-   * 
+   *
    * @return The total balance among all accounts
    * 
    */
@@ -300,7 +308,7 @@ public class Profile implements Serializable {
 
   /**
    * Changes the password if the new password is valid.
-   * 
+   *
    * @param password The new password
    * 
    */
@@ -313,7 +321,7 @@ public class Profile implements Serializable {
 
   /**
    * Changes the telephone number if number is valid.
-   * 
+   *
    * @param tlf The new telephone number
    * 
    */
@@ -327,7 +335,7 @@ public class Profile implements Serializable {
 
   /**
    * Returns the email connected to this profile.
-   * 
+   *
    * @return The email connected to this profile
    * 
    */
@@ -337,7 +345,7 @@ public class Profile implements Serializable {
 
   /**
    * Returns the name connected to this account.
-   * 
+   *
    * @return The name connected to this account
    * 
    */
@@ -347,7 +355,7 @@ public class Profile implements Serializable {
 
   /**
    * Returns the phone number connected to this account.
-   * 
+   *
    * @return The phone number connected to this account
    * 
    */
@@ -357,7 +365,7 @@ public class Profile implements Serializable {
 
   /**
    * Returns the account password.
-   * 
+   *
    * @return The account password
    * 
    */
@@ -367,7 +375,7 @@ public class Profile implements Serializable {
 
   /**
    * Returns list of all accounts.
-   * 
+   *
    * @return List of all accounts
    * 
    */
@@ -377,7 +385,7 @@ public class Profile implements Serializable {
 
   /**
    * Returns list of all bills.
-   * 
+   *
    * @return List of all bills
    * 
    */
@@ -387,9 +395,9 @@ public class Profile implements Serializable {
 
   /**
    * Checks whether this profile owns this account.
-   * 
+   *
    * @param account The account to check
-   * 
+   *
    * @return True if this profile owns the provided account. False otherwise
    * 
    */

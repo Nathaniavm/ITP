@@ -3,7 +3,7 @@ package core;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import core.Accounts.SpendingsAccount;
+import core.accounts.SpendingsAccount;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +25,12 @@ public class BankCard implements Serializable {
 
   /**
    * Sets the owner of the card and generates a cardnumber.
-   * 
+   *
    * @param cardholder Name of the owner of the card
    * 
    */
-  public BankCard(@JsonProperty("cardholder") String cardholder, @JsonProperty("account") SpendingsAccount account) {
+  public BankCard(@JsonProperty("cardholder") String cardholder,
+      @JsonProperty("account") SpendingsAccount account) {
     this.cardholder = cardholder;
     setCardNr();
     while (cardNrs.contains(cardNr)) {
@@ -56,7 +57,7 @@ public class BankCard implements Serializable {
 
   /**
    * Gets the cardholder.
-   * 
+   *
    * @return name of the cardholder
    */
   public String getCardholder() {
@@ -65,7 +66,7 @@ public class BankCard implements Serializable {
 
   /**
    * Gets the account corresponding to this bankcard.
-   * 
+   *
    * @return this bankcards corresponding account
    * 
    */
@@ -75,7 +76,7 @@ public class BankCard implements Serializable {
 
   /**
    * Gets the cardnumber.
-   * 
+   *
    * @return the cardnumber
    */
   public String getCardNr() {

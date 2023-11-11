@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+
+import core.accounts.AbstractAccount;
+import core.accounts.SpendingsAccount;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-
-import core.Accounts.AbstractAccount;
-import core.Accounts.SpendingsAccount;
 
 public class BillTest {
     private Profile profile1;

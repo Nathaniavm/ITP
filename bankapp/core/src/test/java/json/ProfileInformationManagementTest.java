@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.DatabindException;
 
 import core.Bill;
 import core.Profile;
-import core.Accounts.SpendingsAccount;
+import core.accounts.SpendingsAccount;
 
 public class ProfileInformationManagementTest {
 

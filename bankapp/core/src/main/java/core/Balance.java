@@ -15,7 +15,7 @@ public class Balance implements Serializable {
 
   /**
    * Method for increasing money.
-   * 
+   *
    * @param amount To increase balance by
    * @throws IllegalArgumentException If amount less than 1
    * 
@@ -29,7 +29,7 @@ public class Balance implements Serializable {
 
   /**
    * Method for decreasing money.
-   * 
+   *
    * @param amount To decrease balance by
    * @throws IllegalArgumentException If balance drops below 0 or amount is less
    *                                  than 1
@@ -44,7 +44,7 @@ public class Balance implements Serializable {
 
   /**
    * Gets the current balance of this account.
-   * 
+   *
    * @return The balance
    * 
    */

@@ -1,4 +1,4 @@
-package core.Accounts;
+package core.accounts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,12 +15,13 @@ public class SavingsAccount extends AbstractAccount implements Serializable {
 
   /**
    * Creates a new savingsaccount.
-   * 
+   *
    * @param name    The name of the account
    * @param profile The profile to make an account for
    * 
    */
-  public SavingsAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
+  public SavingsAccount(@JsonProperty("name") String name,
+      @JsonProperty("profile") Profile profile) {
     super(name, profile);
   }
 
