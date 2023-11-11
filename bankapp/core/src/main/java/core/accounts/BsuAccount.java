@@ -23,4 +23,4 @@ public class BsuAccount extends AbstractAccount implements Serializable {
     super(name, profile);
   }
 
-}
+} 

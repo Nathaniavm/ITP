@@ -5,6 +5,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+
+import core.BankCard;
 import core.Bill;
 import core.Profile;
 import core.Transaction;
@@ -204,16 +208,233 @@ public class BankAppController {
   @FXML
   private Text feedbackInDeleteAccount;
 
+  // cards fxml 
+  @FXML 
+  private Label noCardsLabel, orderCardButton, blockCardButton;
+
+  @FXML 
+  private GridPane cardsTable;
+
+  // orderOrBlock fxml 
+  @FXML 
+  private Text orderOrBlockTitle, feedbackInOrderOrBlock;
+
+  @FXML
+  private ChoiceBox<String> orderOrBlockChoiceBox;
+
+  @FXML 
+  private Button orderOrBlockButton; 
+
   private static Profile profile;
 
   private static final String endpointBaseUri = "http://localhost:8080/profiles/";
   private static RemoteProfilesAccess profilesAccess;
 
+
+  @FXML 
+  public void updateCards(){
+    if(profile.getBankCards().size() != 0){
+      noCardsLabel.setVisible(false);
+      int count = 0;
+      for(BankCard bankCard : profile.getBankCards()){
+        Label label = new Label("" + bankCard.getCardNr());
+        label.setLayoutX(10);
+        AnchorPane anchorPane = new AnchorPane(); 
+        anchorPane.getChildren().add(label);
+        cardsTable.add(anchorPane, 0, count);
+        count ++;
+      }
+    }
+  }
+
+  /**
+   * sets the stage for ordering a card
+   * 
+   * @param event
+   * @throws IOException
+   */
+  @FXML 
+  public void handleOrderANewCardStage1(MouseEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
+    AnchorPane orderOrBlockCard = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(orderOrBlockCard));
+    stage.setTitle("Order A new Card");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+    Parent root = stage.getScene().getRoot();
+    Text orderOrBlockTitle = (Text) root.lookup("#orderOrBlockTitle");
+    Button orderOrBlockButton = (Button) root.lookup("#orderOrBlockButton");
+    ChoiceBox<String> orderOrBlockChoiceBox = (ChoiceBox<String>) root.lookup("#orderOrBlockChoiceBox");
+    Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
+
+    if (orderOrBlockTitle != null) {
+        orderOrBlockTitle.setText("Order Card");
+    }
+    if (orderOrBlockButton != null) {
+        orderOrBlockButton.setText("Order");
+    }
+    
+    if(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard().size()== 0){
+      feedbackInOrderOrBlock.setText("No accounts that \n can be bankcards"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+    
+    else if(profile.getAccounts().size() != 0 && orderOrBlockChoiceBox != null){
+        orderOrBlockChoiceBox.getItems().addAll(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard());
+    } 
+
+  }
+
+  /**
+   * sets the stage for blocking a card
+   * @param event
+   * @throws IOException
+   */
+  @FXML 
+  public void handleBlockCardStage1(MouseEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
+    AnchorPane orderOrBlockCard = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(orderOrBlockCard));
+    stage.setTitle("Block Card");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+
+    Parent root = stage.getScene().getRoot();
+    Text orderOrBlockTitle = (Text) root.lookup("#orderOrBlockTitle");
+    Button orderOrBlockButton = (Button) root.lookup("#orderOrBlockButton");
+    ChoiceBox<String> orderOrBlockChoiceBox = (ChoiceBox<String>) root.lookup("#orderOrBlockChoiceBox");
+    Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
+
+    if (orderOrBlockTitle != null) {
+        orderOrBlockTitle.setText("Block Card");
+    }
+    if (orderOrBlockButton != null) {
+        orderOrBlockButton.setText("Block");
+    }
+    
+    if(profile.getBankCards().size() == 0){ //noe galt her
+      System.out.println("HER");
+      feedbackInOrderOrBlock.setText("You have no bankcards \n to block"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+    try{
+      orderOrBlockChoiceBox.getItems().addAll(profile.getListOfNotBlockedAccNrBankCards());
+
+    }catch(Exception e){
+      feedbackInOrderOrBlock.setText("Something went wrong"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+  }
+
+  /**
+   * sets the stage for unblocking a card 
+   * 
+   * @param event
+   * @throws IOException
+   */
+  @FXML 
+  public void handleUnblockCardStage1(MouseEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
+    AnchorPane unblockCardAnchorPane = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(unblockCardAnchorPane));
+    stage.setTitle("Unblock Card");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+
+    Parent root = stage.getScene().getRoot();
+    Text orderOrBlockTitle = (Text) root.lookup("#orderOrBlockTitle");
+    Button orderOrBlockButton = (Button) root.lookup("#orderOrBlockButton");
+    ChoiceBox<String> orderOrBlockChoiceBox = (ChoiceBox<String>) root.lookup("#orderOrBlockChoiceBox");
+    Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
+
+    if (orderOrBlockTitle != null) {
+        orderOrBlockTitle.setText("Unblock Card");
+    }
+    if (orderOrBlockButton != null) {
+        orderOrBlockButton.setText("Unblock");
+    }
+
+    if(profile.getListOfBlockedAccNrBankCards().size() == 0){
+      feedbackInOrderOrBlock.setText("You have no bankcards \n to unblock"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+    
+    try{
+      orderOrBlockChoiceBox.getItems().addAll(profile.getListOfBlockedAccNrBankCards());
+    }catch(Exception e){
+      feedbackInOrderOrBlock.setText("Something went wrong"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+  }
+
+  /**
+   * handling the actual process of ordering or blocking or unblocking 
+   * 
+   * @param event
+   * @throws StreamWriteException
+   * @throws DatabindException
+   * @throws IOException
+   */
+  @FXML
+  public void handleOrderOrBlockStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+    String accNr = orderOrBlockChoiceBox.getValue();
+    
+    //createBankCard
+    if(orderOrBlockTitle.getText().equals("Order Card")){
+      SpendingsAccount spendingsAccount = null;
+      spendingsAccount = profile.findSpendingsAccount(accNr);
+
+      try{
+      spendingsAccount.createBankCard();
+      orderOrBlockChoiceBox.setValue("");
+      feedbackInOrderOrBlock.setText("Order completed!");
+      writeInfo();
+      }catch(Exception e){
+        feedbackInOrderOrBlock.setText("Something went wrong");
+        feedbackInOrderOrBlock.setFill(Color.RED);
+      }
+
+    }
+    else if(orderOrBlockTitle.getText().equals("Block Card")){
+      //do block stuff
+      try{
+      profile.getBankCard(accNr).blockCard();
+      orderOrBlockChoiceBox.setValue("");
+      feedbackInOrderOrBlock.setText("Block completed!");
+      writeInfo();
+      //updateCards();
+      }catch(Exception e){
+        e.printStackTrace();
+        feedbackInOrderOrBlock.setText(e.getMessage());
+        feedbackInOrderOrBlock.setFill(Color.RED);
+      }
+
+    }
+
+    else if(orderOrBlockTitle.getText().equals("Unblock Card")){
+      //do unblock stuff 
+        
+      try{
+      BankCard bankCard = profile.getBankCard(accNr);
+      bankCard.unblockCard();
+      orderOrBlockChoiceBox.setValue("");
+      feedbackInOrderOrBlock.setText("Unblock completed!");
+      writeInfo();
+      }catch(Exception e){
+        feedbackInOrderOrBlock.setText(e.getMessage());
+        feedbackInOrderOrBlock.setFill(Color.RED);
+      }
+
+    }
+  }
+
   /**
    * Initializes fields based on current page
    * 
    */
-
   public void initialize() {
     try {
       profilesAccess = new RemoteProfilesAccess(new URI(endpointBaseUri));
@@ -269,7 +490,6 @@ public class BankAppController {
       getInputsChoiceBox(payerAccountChoiceBox);
     }
   }
-
   public Profile getProfile() {
     return profile;
   }
@@ -382,9 +602,12 @@ public class BankAppController {
       if (transaction == null) {
         break;
       }
-      boolean fromTransfer = false;
       AbstractAccount acc1 = profile.getAccounts().stream()
           .filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
+          .findFirst()
+          .orElse(null);
+      AbstractAccount acc2 = profile.getAccounts().stream()
+          .filter(account -> account.getAccNr().equals(transaction.getTransactionFrom()))
           .findFirst()
           .orElse(null);
 
@@ -393,7 +616,7 @@ public class BankAppController {
       Label accountLabel = new Label(transaction.getTransactionFrom());
       Label amountLabel;
       String message;
-      if (acc1 != null) {
+      if (acc1 != null && acc2 != null) {
         message = " (from Transfer)";
       } else {
         message = " (from Payment)";
@@ -584,6 +807,11 @@ public class BankAppController {
     AnchorPaneGoTo(event, "Settings", settingsButton);
   }
 
+  @FXML 
+  public void goToCards(MouseEvent event){
+    AnchorPaneGoTo(event, "Cards", cardsButton);
+  }
+
   /**
    * Handles mouseclick on new bill, creates a new bill and saves the information
    * 
@@ -669,6 +897,7 @@ public class BankAppController {
         payTo.clear();
         payAmount.clear();
         writeInfo();
+        profilesAccess.updateProfilesInfo(acc2.getProfile());
 
         profilesAccess.writeTransactions(acc1, acc2);
 
@@ -928,3 +1157,4 @@ public class BankAppController {
     }
   }
 }
+
