@@ -17,7 +17,7 @@ import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class Profile implements Serializable {
   private String name;
-  private String email;
+  private final String email;
   private String tlf;
   private String password;
   private List<AbstractAccount> accounts = new ArrayList<>();
@@ -323,19 +323,6 @@ public class Profile implements Serializable {
     }
     this.tlf = tlf;
 
-  }
-
-  /**
-   * Changes the email if email is valid.
-   * 
-   * @param email The new email
-   * 
-   */
-  public void changeEmail(String email) {
-    if (!validEmail(email)) {
-      throw new IllegalArgumentException("Not valid email");
-    }
-    this.email = email;
   }
 
   /**

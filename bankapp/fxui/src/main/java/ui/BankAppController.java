@@ -175,7 +175,7 @@ public class BankAppController {
   // settings fxml
 
   @FXML
-  private TextField changeNumberTo, changeEmailTo, changePasswordTo, confirmChangePassword;
+  private TextField changeNumberTo, changePasswordTo, confirmChangePassword;
 
   @FXML
   private AnchorPane updateSettings;
@@ -646,6 +646,7 @@ public class BankAppController {
     } catch (Exception e) {
       feedbackInNewBill.setText(e.getMessage());
     }
+
   }
 
   /**
@@ -875,15 +876,12 @@ public class BankAppController {
   @FXML
   public void handleUpdateSettings(MouseEvent event) {
     String newNum = changeNumberTo.getText();
-    String newEmail = changeEmailTo.getText();
     String newPassword = changePasswordTo.getText();
     String newPassword2 = confirmChangePassword.getText();
 
     try {
       if (!newNum.isEmpty())
         profile.changeTlf(newNum);
-      if (!newEmail.isEmpty())
-        profile.changeEmail(newEmail);
       if (!(newPassword.isEmpty()) && !(newPassword2.isEmpty()) && newPassword.equals(newPassword2))
         profile.changePassword(newPassword2);
     } catch (IllegalArgumentException e) {
