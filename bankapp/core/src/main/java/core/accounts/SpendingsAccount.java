@@ -7,6 +7,8 @@ import core.BankCard;
 import core.Profile;
 import core.Transaction;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Creates a new spendingsaccount to the given profile, with a given name.
@@ -33,6 +35,11 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
    */
   public void createBankCard() {
     bankCard = new BankCard(this.getProfile().getName(), this);
+    this.getProfile().addBankCard(bankCard);
+  }
+
+  public boolean hasBankCard(){
+    return bankCard != null;
   }
 
   /**
@@ -68,8 +75,8 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     addTransaction(new Transaction(this.getProfile().getEmail(),
         account.getAccNr(), account.getProfile().getName(), this.getAccNr(), -amount));
     account.addTransaction(
-        new Transaction(account.getProfile().getEmail(), account.getAccNr(),
-            this.getProfile().getName(), this.getAccNr(), amount));
+        new Transaction(account.getProfile().getEmail(), this.getAccNr(),
+            this.getProfile().getName(), account.getAccNr(), amount));
 
   }
 

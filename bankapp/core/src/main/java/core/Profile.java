@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import core.accounts.AbstractAccount;
+import core.accounts.SpendingsAccount;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,7 @@ public class Profile implements Serializable {
   private String tlf;
   private String password;
   private List<AbstractAccount> accounts = new ArrayList<>();
+  private List<BankCard> bankCards = new ArrayList<>();
   private List<Bill> bills = new ArrayList<>();
   private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList(
       "ad", "ae", "af", "ag", "ai", "al", "am", "ao",
@@ -404,4 +407,105 @@ public class Profile implements Serializable {
   public boolean ownsAccount(AbstractAccount account) {
     return accounts.stream().anyMatch(a -> a.getAccNr().equals(account.getAccNr()));
   }
+
+  
+  /**
+   * Get all the spendingsaccount of the profile with bankcards
+ * @return
+ */
+    public List<BankCard> getBankCards(){
+    return this.bankCards;
+  }
+
+  public void addBankCard(BankCard bankCard){
+    bankCards.add(bankCard);
+  }
+
+  public void removeBankCard(BankCard bankCard){
+    bankCards.remove(bankCard);
+  }
+
+  @JsonIgnore
+  public List<String> getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard(){
+    List<String> lst = new ArrayList<>(); 
+    if(getAccounts().size() != 0){
+        for(AbstractAccount absAcc : getAccounts()){
+            if(absAcc instanceof SpendingsAccount){
+                SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc; 
+                if(!spendingsAccount.hasBankCard()){
+                    lst.add(spendingsAccount.getAccNr());
+                }
+            }
+        }
+    }
+    return lst;
+  }
+
+  //not blocked
+  @JsonIgnore
+  public List<String> getListOfNotBlockedAccNrBankCards(){
+    List<String> lst = new ArrayList<>(); 
+    if(getAccounts().size() != 0){
+        for(AbstractAccount absAcc : getAccounts()){
+            if(absAcc instanceof SpendingsAccount){
+                SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc; 
+                if(spendingsAccount.hasBankCard() && !spendingsAccount.getBankCard().isCardBlocked()){
+                    lst.add(spendingsAccount.getAccNr());
+                }
+            }
+        }
+    }
+    return lst;
+  }
+
+
+
+
+  @JsonIgnore
+  public List<String>  getListOfBlockedAccNrBankCards(){
+    List<String> lst = new ArrayList<>(); 
+    if(getAccounts().size() != 0){
+        for(AbstractAccount absAcc : getAccounts()){
+            if(absAcc instanceof SpendingsAccount){
+                SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc; 
+                if(spendingsAccount.getBankCard().isCardBlocked()){
+                    lst.add(spendingsAccount.getAccNr());
+                }
+            }
+        }
+    }
+    return lst;
+  }
+
+  /**
+   * Finds the bankcard of a given spendingsaccount as string
+   * 
+   * @param spendingsAccountAsString string of an account number
+   * @return
+   */
+  @JsonIgnore
+  public BankCard getBankCard(String spendingsAccountAsString){
+    BankCard bankCard = null; 
+    System.out.println(getBankCards());
+    bankCard = this.getBankCards().stream().filter(bankCard2 -> bankCard2.getAccount().getAccNr().equals(spendingsAccountAsString))
+                .findFirst()
+                .orElse(null);
+    if(bankCard == null){
+      throw new IllegalArgumentException("Bankcard is null");
+    }
+    return bankCard;
+  }
+
+  public SpendingsAccount findSpendingsAccount(String spendingsAccountName){
+    AbstractAccount abstractAccount = null;
+    abstractAccount = this.getAccounts().stream().filter(account -> account.getAccNr().equals(spendingsAccountName))
+          .findFirst()
+          .orElse(null);
+    if(abstractAccount == null){
+      throw new IllegalArgumentException("There is no such spendingsaccount");
+    }
+    SpendingsAccount spendingsAccount = (SpendingsAccount) abstractAccount;
+    return spendingsAccount;
+  }
+
 }

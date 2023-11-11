@@ -89,6 +89,7 @@ public class BankCard implements Serializable {
    */
   public void blockCard() {
     cardBlocked = true;
+    
   }
 
   /**
@@ -97,5 +98,9 @@ public class BankCard implements Serializable {
    */
   public void unblockCard() {
     cardBlocked = false;
+  }
+
+  public boolean isCardBlocked(){
+    return cardBlocked;
   }
 }
