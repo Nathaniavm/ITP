@@ -11,25 +11,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import core.Accounts.BSUAccount;
-import core.Accounts.SpendingsAccount;
+import core.accounts.BsuAccount;
+import core.accounts.SpendingsAccount;
 
-public class BSUAccountTest {
+public class BsuAccountTest {
   private Profile profile;
-  private BSUAccount bsuAccount;
+  private BsuAccount bsuAccount;
 
   @BeforeEach
   @DisplayName("Setting up the profile and account")
   public void setUp() {
     profile = new Profile("Justin Bieber", "Justin@gmail.com", "42375690", "passord123");
-    bsuAccount = new BSUAccount("My BSU-account", profile);
+    bsuAccount = new BsuAccount("My BSU-account", profile);
     profile.addAccount(bsuAccount);
   }
 
   @Test
   @DisplayName("Tests if the constructor makes an account with name equal to the input")
   public void testConstructor() {
-    BSUAccount newAcc = new BSUAccount("BSU1", profile);
+    BsuAccount newAcc = new BsuAccount("BSU1", profile);
     String name = newAcc.getName();
     assertEquals("BSU1", name);
   }
@@ -57,10 +57,10 @@ public class BSUAccountTest {
   @Test
   @DisplayName("Tests if account number is generated correctly")
   public void testAccountNr() {
-    BSUAccount acc1 = new BSUAccount("acc1", profile);
-    BSUAccount acc2 = new BSUAccount("acc2", profile);
-    BSUAccount acc3 = new BSUAccount("acc3", profile);
-    BSUAccount acc4 = new BSUAccount("acc4", profile);
+    BsuAccount acc1 = new BsuAccount("acc1", profile);
+    BsuAccount acc2 = new BsuAccount("acc2", profile);
+    BsuAccount acc3 = new BsuAccount("acc3", profile);
+    BsuAccount acc4 = new BsuAccount("acc4", profile);
 
     assertFalse(acc1.getAccNr() == acc2.getAccNr());
     assertFalse(acc1.getAccNr() == acc3.getAccNr());

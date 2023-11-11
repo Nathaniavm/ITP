@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
+import core.accounts.SpendingsAccount;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-
-import core.Accounts.SpendingsAccount;
 
 public class BankCardTest {
     private BankCard bankCard1;

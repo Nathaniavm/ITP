@@ -27,15 +27,16 @@ public class TransactionsPersistence implements Serializable {
 
   /**
    * Writes transactions to a file.
-   * 
+   *
    * @param transaction The transaction that is going to be written to file
    * @param filename    The file written to
-   * 
+   *
    * @throws IOException If there are genereal I/O errors during file
    *                     handling
    * 
    */
-  public static void writeTransactions(Transaction transaction, String filename) throws IOException {
+  public static void writeTransactions(Transaction transaction, String filename)
+      throws IOException {
     File file = new File(filename);
     if (!(file.exists())) {
       throw new IOException("File does not exists");
@@ -56,7 +57,7 @@ public class TransactionsPersistence implements Serializable {
 
   /**
    * Reads transactions from a file.
-   * 
+   *
    * @param filename The file read from
    * 
    * @return Returns a list of the transactions in the given file
@@ -79,7 +80,7 @@ public class TransactionsPersistence implements Serializable {
 
   /**
    * Finds transactions associated with provided profile.
-   * 
+   *
    * @param profile  The profile you want to find the associated transactions to
    * @param filename The file read from
    * 
@@ -90,7 +91,8 @@ public class TransactionsPersistence implements Serializable {
    *                     handling
    * 
    */
-  public static List<Transaction> getProfilesTransaction(Profile profile, String filename) throws IOException {
+  public static List<Transaction> getProfilesTransaction(Profile profile,
+      String filename) throws IOException {
     List<Transaction> profileTransaction;
     List<Transaction> transactions = readTransactions(filename);
     profileTransaction = transactions.stream().filter(t -> t.getEmail().equals(profile.getEmail()))
@@ -100,7 +102,7 @@ public class TransactionsPersistence implements Serializable {
 
   /**
    * Clears the JSON-file.
-   * 
+   *
    * @param filename The name of the file to be cleared
    * @throws StreamReadException If an error occurs while writing to the file
    * @throws DatabindException   If there is an issue with data binding during the
@@ -109,7 +111,8 @@ public class TransactionsPersistence implements Serializable {
    *                             handling
    * 
    */
-  public static void clearFile(String filename) throws StreamWriteException, DatabindException, IOException {
+  public static void clearFile(String filename)
+      throws StreamWriteException, DatabindException, IOException {
     byte[] bytes = "".getBytes(StandardCharsets.UTF_8);
     File file = new File(filename);
     file.setWritable(true);

@@ -3,8 +3,8 @@ package core;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import core.Accounts.AbstractAccount;
-import core.Accounts.SpendingsAccount;
+import core.accounts.AbstractAccount;
+import core.accounts.SpendingsAccount;
 import java.io.Serializable;
 
 /**
@@ -28,7 +28,7 @@ public class Bill implements Serializable {
 
   /**
    * Makes a new bill object with specified properties.
-   * 
+   *
    * @param amount        The amount of the bill
    * @param billName      The name of the bill
    * @param sellerName    The name of the seller
@@ -92,7 +92,7 @@ public class Bill implements Serializable {
 
   /**
    * Checks if the bill has been paid.
-   * 
+   *
    * @return true if the bill has been paid; otherwise, false
    * 
    */
@@ -102,7 +102,7 @@ public class Bill implements Serializable {
 
   /**
    * Gets the amount of the bill.
-   * 
+   *
    * @return The bill amount
    * 
    */
@@ -112,7 +112,7 @@ public class Bill implements Serializable {
 
   /**
    * Gets the name of the bill.
-   * 
+   *
    * @return The bill name
    * 
    */
@@ -122,7 +122,7 @@ public class Bill implements Serializable {
 
   /**
    * Gets the name of the selller.
-   * 
+   *
    * @return The seller's name
    * 
    */
@@ -132,7 +132,7 @@ public class Bill implements Serializable {
 
   /**
    * Gets the account of the selller.
-   * 
+   *
    * @return The seller's account
    * 
    */
@@ -142,7 +142,7 @@ public class Bill implements Serializable {
 
   /**
    * Gets the account of the payer.
-   * 
+   *
    * @return The payer's account
    * 
    */
@@ -152,7 +152,7 @@ public class Bill implements Serializable {
 
   /**
    * Gets the profile of the payer.
-   * 
+   *
    * @return The payer's profile
    * 
    */

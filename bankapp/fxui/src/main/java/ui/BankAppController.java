@@ -8,11 +8,10 @@ import java.util.List;
 import core.Bill;
 import core.Profile;
 import core.Transaction;
-import core.Accounts.AbstractAccount;
-import core.Accounts.BSUAccount;
-import core.Accounts.SavingsAccount;
-import core.Accounts.SpendingsAccount;
-
+import core.accounts.AbstractAccount;
+import core.accounts.BsuAccount;
+import core.accounts.SavingsAccount;
+import core.accounts.SpendingsAccount;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -365,54 +364,41 @@ public class BankAppController {
    */
   @FXML
   public void updateTransaction() throws IOException {
+    int size = profilesAccess.getTransactions(profile.getEmail()).size();
+    if (size == 0) {
+      return;
+    }
     Transaction[] original = profilesAccess.getTransactions(profile.getEmail())
-        .toArray(new Transaction[profilesAccess.getTransactions(profile.getEmail()).size()]);
-    Transaction[] reversed = new Transaction[5];
+        .toArray(new Transaction[size]);
+    Transaction[] reversed = new Transaction[10];
     int count0 = 0;
-    for (int index = -1; index > -6; index--) {
-      reversed[count0] = original[original.length + index];
+    while (count0 < reversed.length && count0 < original.length) {
+      reversed[count0] = original[original.length - (count0 + 1)];
       count0++;
     }
 
     int count = 1;
     for (Transaction transaction : reversed) {
+      if (transaction == null) {
+        break;
+      }
       boolean fromTransfer = false;
-
       AbstractAccount acc1 = profile.getAccounts().stream()
           .filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
           .findFirst()
           .orElse(null);
 
-      if (acc1 != null) {
-        if (profile.ownsAccount(acc1)) {
-          fromTransfer = true;
-          AnchorPane accountAnchorPane2 = new AnchorPane();
-          AnchorPane amountAnchorPane2 = new AnchorPane();
-          Label accountLabel2 = new Label(transaction.getTransactionTo());
-          Label amountLabel2 = new Label("+ " + String.valueOf(Math.abs(transaction.getAmount())) + " (from Transfer)");
-          accountLabel2.setLayoutX(10);
-          accountLabel2.setLayoutY(8);
-          amountLabel2.setLayoutX(20);
-          amountLabel2.setLayoutY(8);
-          accountAnchorPane2.getChildren().add(accountLabel2);
-          amountAnchorPane2.getChildren().add(amountLabel2);
-          transactionTable.add(accountAnchorPane2, 0, count);
-          transactionTable.add(amountAnchorPane2, 1, count);
-
-          count++;
-        }
-      }
       AnchorPane accountAnchorPane = new AnchorPane();
       AnchorPane amountAnchorPane = new AnchorPane();
       Label accountLabel = new Label(transaction.getTransactionFrom());
       Label amountLabel;
       String message;
-      if (fromTransfer) {
+      if (acc1 != null) {
         message = " (from Transfer)";
       } else {
         message = " (from Payment)";
       }
-      amountLabel = new Label("- " + String.valueOf(Math.abs(transaction.getAmount())) + message);
+      amountLabel = new Label(String.valueOf((transaction.getAmount())) + message);
       accountLabel.setLayoutX(10);
       accountLabel.setLayoutY(8);
       amountLabel.setLayoutX(20);
@@ -684,9 +670,7 @@ public class BankAppController {
         payAmount.clear();
         writeInfo();
 
-        Transaction transaction = new Transaction(profile.getEmail(), accPersonToPay, acc2.getProfile().getName(),
-            payFrom, amount);
-        profilesAccess.writeTransaction(transaction);
+        profilesAccess.writeTransactions(acc1, acc2);
 
       } catch (Exception e) {
         feedbackInPay.setText(e.getMessage());
@@ -727,9 +711,7 @@ public class BankAppController {
     }
     writeInfo();
 
-    Transaction transaction = new Transaction(profile.getEmail(), toAccountChoiceBox, profile.getName(),
-        fromAccountChoiceBox, amount);
-    profilesAccess.writeTransaction(transaction);
+    profilesAccess.writeTransactions(acc1, acc2);
 
     transferAmount.setText("");
     transferFromChoiceBox.setValue("");
@@ -758,7 +740,7 @@ public class BankAppController {
       String[] validTypes = { "BSU", "Checking account", "Savings account" };
 
       if (type.equals(validTypes[0])) {
-        account = new BSUAccount(name, profile);
+        account = new BsuAccount(name, profile);
       }
 
       else if (type.equals(validTypes[1])) {

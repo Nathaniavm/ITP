@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.List;
 import json.ProfileInformationManagement;
 import json.TransactionsPersistence;
-
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,8 +16,10 @@ public class ProfilesService {
 
   private static final String currentDir = System.getProperty("user.dir").substring(0,
       System.getProperty("user.dir").length() - 11);
-  private static final String profInfo = currentDir + "/springboot/src/main/resources/ProfileInformation.json";
-  private static final String transInfo = currentDir + "/springboot/src/main/resources/TransactionsOverview.json";
+  private static final String profInfo = currentDir
+      + "/springboot/src/main/resources/ProfileInformation.json";
+  private static final String transInfo = currentDir
+      + "/springboot/src/main/resources/TransactionsOverview.json";
 
   /**
    * Fetches profile from json file.
@@ -53,10 +54,10 @@ public class ProfilesService {
       e.printStackTrace();
     }
   }
-  
+
   /**
-   * Delete specific profile
-   * 
+   * Delete specific profile.
+   *
    * @param profile to be deleted
    */
   public void deleteProfile(Profile profile) {
@@ -64,7 +65,7 @@ public class ProfilesService {
       ProfileInformationManagement.deleteProfile(profInfo, profile);
     } catch (IOException e) {
       e.printStackTrace();
-    } 
+    }
   }
 
   public List<Transaction> getTransactions(Profile profile) throws IOException {
@@ -83,6 +84,5 @@ public class ProfilesService {
       e.printStackTrace();
     }
   }
-
 
 }
