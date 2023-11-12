@@ -267,6 +267,7 @@ public class BankAppController {
         payLabel.setOnMouseClicked(event -> {
           try {
             handlePayBill(event, bill.getBillName());
+            writeInfo();
           } catch (IOException e) {
             e.printStackTrace();
           }
@@ -285,9 +286,13 @@ public class BankAppController {
   private void handlePayBill(MouseEvent event, String billName) throws IOException{
     System.out.println("Kom inn");
     Bill bill = profile.findBill(billName);
+    System.out.println(bill.getPayerAccount().getBalance());
+    System.out.println(profile.getAccounts().get(0).getBalance());
     bill.pay();
+    System.out.println(bill.getPayerAccount().getBalance());
+    System.out.println(profile.getAccounts().get(0).getBalance());
+
     profilesAccess.writeTransactions(bill.getPayerAccount(), bill.getSellerAccount());
-    updateBills();
   }
 
   @FXML
@@ -926,11 +931,8 @@ public class BankAppController {
         .filter(account -> account.getAccNr().equals(sAccount))
         .findFirst().orElse(null);
 
-    pAcc = (SpendingsAccount) profilesAccess.getProfiles()
-        .stream()
-        .flatMap(profile -> profile.getAccounts().stream())
-        .filter(account -> account.getAccNr().equals(pAccount2))
-        .findFirst().orElse(null);
+    pAcc = profile.findSpendingsAccount(pAccount2);
+    
 
     for (Profile profile2 : profilesAccess.getProfiles()) {
       if (profile2.ownsAccount(sAcc))
