@@ -498,7 +498,7 @@ public class Profile implements Serializable {
       for (AbstractAccount absAcc : getAccounts()) {
         if (absAcc instanceof SpendingsAccount) {
           SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc;
-          if (spendingsAccount.getBankCard().isCardBlocked()) {
+          if (spendingsAccount.hasBankCard() && spendingsAccount.getBankCard().isCardBlocked()) {
             lst.add(spendingsAccount.getAccNr());
           }
         }
@@ -542,7 +542,7 @@ public class Profile implements Serializable {
     AbstractAccount abstractAccount = null;
     abstractAccount = this.getAccounts()
         .stream()
-        .filter(account -> account.getAccNr().equals(spendingsAccountNr))
+        .filter(account -> account.getAccNr().equals(spendingsAccountNr) && account instanceof SpendingsAccount)
         .findFirst()
         .orElse(null);
     if (abstractAccount == null) {
