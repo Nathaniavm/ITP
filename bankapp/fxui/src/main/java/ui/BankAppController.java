@@ -210,7 +210,7 @@ public class BankAppController {
 
   // cards fxml
   @FXML
-  private Label noCardsLabel, orderCardButton, blockCardButton;
+  private Label noCardsLabel, orderCardButton, blockCardButton, unBlockCardButton, accountsWithBankcardLabel;
 
   @FXML
   private GridPane cardsTable;
@@ -234,15 +234,33 @@ public class BankAppController {
   public void updateCards() {
     if (profile.getBankCards().size() != 0) {
       noCardsLabel.setVisible(false);
+      accountsWithBankcardLabel.setVisible(true);
       int count = 0;
+      String cardBlocked = "   (Card is blocked)"; 
       for (BankCard bankCard : profile.getBankCards()) {
-        Label label = new Label("" + bankCard.getCardNr());
-        label.setLayoutX(10);
+        String message;
+        if(bankCard.isCardBlocked()){
+          message = cardBlocked;
+        }
+        else{
+          message = "";
+        }
+        Label label = new Label("AccNr: " + bankCard.getAccount().getAccNr()+ "  CardNr: " + bankCard.getCardNr() + message );
+        label.setLayoutX(-20);
+        label.setStyle("-fx-font-size: 12px; -fx-min-width: 100px; -fx-min-height: 30px;");
         AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setPrefWidth(400.0);
+        anchorPane.setPrefHeight(300.0);
         anchorPane.getChildren().add(label);
+        AnchorPane.setTopAnchor(anchorPane, count*(30.0));
         cardsTable.add(anchorPane, 0, count);
+        AnchorPane.setTopAnchor(cardsTable, 100.0);
         count++;
       }
+    }
+    else{
+      noCardsLabel.setVisible(true);
+      accountsWithBankcardLabel.setVisible(false);
     }
   }
 
@@ -269,8 +287,10 @@ public class BankAppController {
 
     if (orderOrBlockTitle != null) {
       orderOrBlockTitle.setText("Order Card");
+      orderOrBlockTitle.setText("Order Card");
     }
     if (orderOrBlockButton != null) {
+      orderOrBlockButton.setText("Order");
       orderOrBlockButton.setText("Order");
     }
 
@@ -470,7 +490,7 @@ public class BankAppController {
     if (selectAccountType != null) {
       selectAccountType.getItems().addAll("Checking account", "Savings account",
           "BSU");
-      selectAccountType.setValue("Checking account");
+      selectAccountType.setValue("Savings account");
     }
 
     if (transferFromChoiceBox != null) {
@@ -487,6 +507,9 @@ public class BankAppController {
 
     if (payerAccountChoiceBox != null) {
       getInputsChoiceBox(payerAccountChoiceBox);
+    }
+    if(noCardsLabel != null){
+      updateCards();
     }
   }
 
