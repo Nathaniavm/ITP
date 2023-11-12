@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -114,7 +115,13 @@ public class BankAppController {
 
   // payments FXML
   @FXML
-  private AnchorPane goToPayButton, goToTransferButton, newBillButton, incomingBills;
+  private AnchorPane goToPayButton, goToTransferButton, newBillButton;
+
+  @FXML
+  private GridPane incomingBillsTable;
+
+  @FXML
+  private Label noBillsLabel;
 
   // transfer FXML
 
@@ -231,34 +238,86 @@ public class BankAppController {
   private static RemoteProfilesAccess profilesAccess;
 
   @FXML
+  public void updateBills() {
+    List<Bill> billLst = profile.getBills();
+    if (billLst.size() == 0) {
+      noBillsLabel.setVisible(true);
+    } else {
+      System.out.println(billLst);
+      noBillsLabel.setVisible(false);
+      int count = 0;
+      Bill[] original = billLst.toArray(new Bill[billLst.size()]);
+      Bill[] reversed = new Bill[5];
+
+      while (count < reversed.length && count < original.length) {
+        if(!original[original.length - (count + 1)].isPaid()){
+          reversed[count] = original[original.length - (count + 1)];
+          count++;
+        }
+      }
+      count = 0;
+      for (Bill bill : reversed) {
+        if (bill == null) {
+          break;
+        }
+        Label label = new Label("Bill name: " + bill.getBillName() + "   To: " + bill.getSellerName() + "   Amount: " + bill.getAmount());
+        Label payLabel = new Label("Pay " + bill.getBillName());
+        payLabel.setLayoutX(250);
+        payLabel.setStyle("-fx-underline: true;");
+        payLabel.setOnMouseClicked(event -> {
+          try {
+            handlePayBill(event, bill.getBillName());
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        });
+        AnchorPane labelAnchorPane = new AnchorPane();
+        AnchorPane payAnchorPane = new AnchorPane();
+        labelAnchorPane.getChildren().add(label);
+        payAnchorPane.getChildren().add(payLabel);
+        incomingBillsTable.add(labelAnchorPane, 0, count);
+        incomingBillsTable.add(payAnchorPane, 1, count);
+        count++;
+      }
+    }
+  }
+
+  private void handlePayBill(MouseEvent event, String billName) throws IOException{
+    System.out.println("Kom inn");
+    Bill bill = profile.findBill(billName);
+    bill.pay();
+    profilesAccess.writeTransactions(bill.getPayerAccount(), bill.getSellerAccount());
+    updateBills();
+  }
+
+  @FXML
   public void updateCards() {
     if (profile.getBankCards().size() != 0) {
       noCardsLabel.setVisible(false);
       accountsWithBankcardLabel.setVisible(true);
       int count = 0;
-      String cardBlocked = "   (Card is blocked)"; 
+      String cardBlocked = "   (Card is blocked)";
       for (BankCard bankCard : profile.getBankCards()) {
         String message;
-        if(bankCard.isCardBlocked()){
+        if (bankCard.isCardBlocked()) {
           message = cardBlocked;
-        }
-        else{
+        } else {
           message = "";
         }
-        Label label = new Label("AccNr: " + bankCard.getAccount().getAccNr()+ "  CardNr: " + bankCard.getCardNr() + message );
+        Label label = new Label(
+            "AccNr: " + bankCard.getAccount().getAccNr() + "  CardNr: " + bankCard.getCardNr() + message);
         label.setLayoutX(-20);
         label.setStyle("-fx-font-size: 12px; -fx-min-width: 100px; -fx-min-height: 30px;");
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(400.0);
         anchorPane.setPrefHeight(300.0);
         anchorPane.getChildren().add(label);
-        AnchorPane.setTopAnchor(anchorPane, count*(30.0));
+        AnchorPane.setTopAnchor(anchorPane, count * (30.0));
         cardsTable.add(anchorPane, 0, count);
         AnchorPane.setTopAnchor(cardsTable, 100.0);
         count++;
       }
-    }
-    else{
+    } else {
       noCardsLabel.setVisible(true);
       accountsWithBankcardLabel.setVisible(false);
     }
@@ -508,8 +567,11 @@ public class BankAppController {
     if (payerAccountChoiceBox != null) {
       getInputsChoiceBox(payerAccountChoiceBox);
     }
-    if(noCardsLabel != null){
+    if (noCardsLabel != null) {
       updateCards();
+    }
+    if (noBillsLabel != null) {
+      updateBills();
     }
   }
 
@@ -651,8 +713,10 @@ public class BankAppController {
       amountLabel.setLayoutY(8);
       accountAnchorPane.getChildren().add(accountLabel);
       amountAnchorPane.getChildren().add(amountLabel);
+      System.out.println("kommer frem til trasactiontable");
       transactionTable.add(accountAnchorPane, 0, count);
       transactionTable.add(amountAnchorPane, 1, count);
+      System.out.println("kom gjennom");
       BorderStroke borderStroke = new BorderStroke(
           Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1));
       Border tableBorder = new Border(borderStroke);
@@ -1065,7 +1129,10 @@ public class BankAppController {
    * 
    */
   private void writeInfo() {
-    profilesAccess.updateProfilesInfo(profile);
+    if (profilesAccess.updateProfilesInfo(profile)){
+      System.out.println(987);
+    }
+    
   }
 
   /**

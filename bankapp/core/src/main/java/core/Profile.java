@@ -552,4 +552,13 @@ public class Profile implements Serializable {
     return spendingsAccount;
   }
 
+  public Bill findBill(String billName){
+    Bill bill = null; 
+    bill = getBills().stream().filter(bill2 -> bill2.getBillName().equals(billName)).findFirst().orElse(null);
+    if(bill == null){
+      throw new IllegalArgumentException("Cannot find bill with this name");
+    }
+    return bill;
+  }
+
 }
