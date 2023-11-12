@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import core.accounts.AbstractAccount;
 import core.accounts.SpendingsAccount;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,36 +26,36 @@ public class Profile implements Serializable {
   private List<Bill> bills = new ArrayList<>();
   private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList(
       "ad", "ae", "af", "ag", "ai", "al", "am", "ao",
-       "aq", "ar", "as", "at", "au", "aw", "ax", "az",
+      "aq", "ar", "as", "at", "au", "aw", "ax", "az",
       "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl",
-       "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw",
+      "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw",
       "by", "bz",
       "ca", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm",
-       "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz",
+      "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz",
       "de", "dj", "dk", "dm", "do", "dz",
       "ec", "ee", "eg", "eh", "er", "es", "et",
       "fi", "fj", "fk", "fm", "fo", "fr",
       "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm",
-       "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy",
+      "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy",
       "hk", "hm", "hn", "hr", "ht", "hu",
       "id", "ie", "il", "im", "in", "io", "iq", "ir", "is", "it",
       "je", "jm", "jo", "jp",
       "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz",
       "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly",
       "ma", "mc", "md", "me", "mf", "mg", "mh", "mk", "ml", "mm", "mn",
-       "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv",
+      "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv",
       "mw", "mx", "my", "mz",
       "na", "nc", "ne", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz",
       "om",
       "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "ps",
-       "pt", "pw", "py",
+      "pt", "pw", "py",
       "qa",
       "re", "ro", "rs", "ru", "rw",
       "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl",
-       "sm", "sn", "so", "sr", "ss", "st", "sv", "sx",
+      "sm", "sn", "so", "sr", "ss", "st", "sv", "sx",
       "sy", "sz",
       "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to",
-       "tr", "tt", "tv", "tw", "tz",
+      "tr", "tt", "tv", "tw", "tz",
       "ua", "ug", "um", "us", "uy", "uz",
       "va", "vc", "ve", "vg", "vi", "vn", "vu",
       "wf", "ws",
@@ -402,106 +401,151 @@ public class Profile implements Serializable {
    * @param account The account to check
    *
    * @return True if this profile owns the provided account. False otherwise
-   * 
+   *
    */
   public boolean ownsAccount(AbstractAccount account) {
     return accounts.stream().anyMatch(a -> a.getAccNr().equals(account.getAccNr()));
   }
 
-  
   /**
-   * Get all the spendingsaccount of the profile with bankcards
- * @return
- */
-    public List<BankCard> getBankCards(){
-    return this.bankCards;
+   * Get all the spendingsaccount of the profile with bankcards.
+   *
+   * @return A list of this profile's bankcards
+   * 
+   */
+  public List<BankCard> getBankCards() {
+    return new ArrayList<>(bankCards);
   }
 
-  public void addBankCard(BankCard bankCard){
+  /**
+   * Adds a bankcard to this profile's list of bankcards.
+   *
+   * @param bankCard The bankcard to be added
+   * 
+   */
+  public void addBankCard(BankCard bankCard) {
     bankCards.add(bankCard);
   }
 
-  public void removeBankCard(BankCard bankCard){
+  /**
+   * Removes a bankcard from this profile's list of bankcards.
+   *
+   * @param bankCard The bankcard to be removed
+   * 
+   */
+  public void removeBankCard(BankCard bankCard) {
     bankCards.remove(bankCard);
   }
 
+  /**
+   * Gets a list of accounts withount bankcards.
+   *
+   * @return A list of spendingsaccounts without bankcards
+   * 
+   */
   @JsonIgnore
-  public List<String> getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard(){
-    List<String> lst = new ArrayList<>(); 
-    if(getAccounts().size() != 0){
-        for(AbstractAccount absAcc : getAccounts()){
-            if(absAcc instanceof SpendingsAccount){
-                SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc; 
-                if(!spendingsAccount.hasBankCard()){
-                    lst.add(spendingsAccount.getAccNr());
-                }
-            }
+  public List<String> accountsWithoutBankcards() {
+    List<String> lst = new ArrayList<>();
+    if (getAccounts().size() != 0) {
+      for (AbstractAccount absAcc : getAccounts()) {
+        if (absAcc instanceof SpendingsAccount) {
+          SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc;
+          if (!spendingsAccount.hasBankCard()) {
+            lst.add(spendingsAccount.getAccNr());
+          }
         }
+      }
     }
-    return lst;
-  }
-
-  //not blocked
-  @JsonIgnore
-  public List<String> getListOfNotBlockedAccNrBankCards(){
-    List<String> lst = new ArrayList<>(); 
-    if(getAccounts().size() != 0){
-        for(AbstractAccount absAcc : getAccounts()){
-            if(absAcc instanceof SpendingsAccount){
-                SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc; 
-                if(spendingsAccount.hasBankCard() && !spendingsAccount.getBankCard().isCardBlocked()){
-                    lst.add(spendingsAccount.getAccNr());
-                }
-            }
-        }
-    }
-    return lst;
-  }
-
-
-
-
-  @JsonIgnore
-  public List<String>  getListOfBlockedAccNrBankCards(){
-    List<String> lst = new ArrayList<>(); 
-    if(getAccounts().size() != 0){
-        for(AbstractAccount absAcc : getAccounts()){
-            if(absAcc instanceof SpendingsAccount){
-                SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc; 
-                if(spendingsAccount.getBankCard().isCardBlocked()){
-                    lst.add(spendingsAccount.getAccNr());
-                }
-            }
-        }
-    }
-    return lst;
+    return new ArrayList<>(lst);
   }
 
   /**
-   * Finds the bankcard of a given spendingsaccount as string
-   * 
-   * @param spendingsAccountAsString string of an account number
-   * @return
+   * Finds accounts without a blocked card, if they have a bankcard, and makes a
+   * list containing those accounts' accountnumbers.
+   *
+   * @return A list containing the accountnumbers of the accounts without a
+   *         blocked card
+   *
    */
   @JsonIgnore
-  public BankCard getBankCard(String spendingsAccountAsString){
-    BankCard bankCard = null; 
+  public List<String> getListOfNotBlockedAccNrBankCards() {
+    List<String> lst = new ArrayList<>();
+    if (getAccounts().size() != 0) {
+      for (AbstractAccount absAcc : getAccounts()) {
+        if (absAcc instanceof SpendingsAccount) {
+          SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc;
+          if (spendingsAccount.hasBankCard() && !spendingsAccount.getBankCard().isCardBlocked()) {
+            lst.add(spendingsAccount.getAccNr());
+          }
+        }
+      }
+    }
+    return new ArrayList<>(lst);
+  }
+
+  /**
+   * Finds accounts with a blocked card, if they have a bankcard, and makes a list
+   * containing those accounts' accountnumbers.
+   *
+   * @return A list containing the accountnumbers of the accounts with a blocked
+   *         card
+   * 
+   */
+  @JsonIgnore
+  public List<String> getListOfBlockedAccNrBankCards() {
+    List<String> lst = new ArrayList<>();
+    if (getAccounts().size() != 0) {
+      for (AbstractAccount absAcc : getAccounts()) {
+        if (absAcc instanceof SpendingsAccount) {
+          SpendingsAccount spendingsAccount = (SpendingsAccount) absAcc;
+          if (spendingsAccount.getBankCard().isCardBlocked()) {
+            lst.add(spendingsAccount.getAccNr());
+          }
+        }
+      }
+    }
+    return new ArrayList<>(lst);
+  }
+
+  /**
+   * Finds the bankcard of a given spendingsaccount's accountnumber.
+   *
+   * @param spendingsAccountNr An accountnumber of a spendingsaccount
+   *
+   * @return A bankcard
+   * 
+   */
+  @JsonIgnore
+  public BankCard getBankCard(String spendingsAccountNr) {
+    BankCard bankCard = null;
     System.out.println(getBankCards());
-    bankCard = this.getBankCards().stream().filter(bankCard2 -> bankCard2.getAccount().getAccNr().equals(spendingsAccountAsString))
-                .findFirst()
-                .orElse(null);
-    if(bankCard == null){
+    bankCard = this.getBankCards().stream()
+        .filter(bankCard2 -> bankCard2.getAccount().getAccNr().equals(spendingsAccountNr))
+        .findFirst()
+        .orElse(null);
+    if (bankCard == null) {
       throw new IllegalArgumentException("Bankcard is null");
     }
     return bankCard;
   }
 
-  public SpendingsAccount findSpendingsAccount(String spendingsAccountName){
+  /**
+   * Finds a spendingsaccount with a given accountnumber.
+   *
+   * @param spendingsAccountNr The spendingsaccount's accountnumber to search for
+   *
+   * @return The spendingsaccount
+   *
+   * @throws IllegalArgumentException Throws if spendingsaccount does not exist
+   */
+  public SpendingsAccount findSpendingsAccount(String spendingsAccountNr) {
     AbstractAccount abstractAccount = null;
-    abstractAccount = this.getAccounts().stream().filter(account -> account.getAccNr().equals(spendingsAccountName))
-          .findFirst()
-          .orElse(null);
-    if(abstractAccount == null){
+    abstractAccount = this.getAccounts()
+        .stream()
+        .filter(account -> account.getAccNr().equals(spendingsAccountNr))
+        .findFirst()
+        .orElse(null);
+    if (abstractAccount == null) {
       throw new IllegalArgumentException("There is no such spendingsaccount");
     }
     SpendingsAccount spendingsAccount = (SpendingsAccount) abstractAccount;

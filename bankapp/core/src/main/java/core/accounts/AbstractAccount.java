@@ -1,7 +1,6 @@
 package core.accounts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -19,8 +18,7 @@ import java.util.Random;
  * every account.
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,
-    property = "accountType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "accountType")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = BsuAccount.class, name = "BSUAccount"),
     @JsonSubTypes.Type(value = SavingsAccount.class, name = "SavingsAccount"),

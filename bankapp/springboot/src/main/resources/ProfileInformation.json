@@ -1,1 +1,250 @@
-[{"@id":"93e2cf29-4607-45de-b9dd-6bbce1e70b44","name":"Klein Nordmann","email":"klein@gmail.com","tlf":"98989811","password":"passord1","accounts":[{"accountType":"SpendingsAccount","@id":"55828220-ccc5-42bf-a4b8-9dbc605ac45b","name":"Spendings account","profile":"93e2cf29-4607-45de-b9dd-6bbce1e70b44","balance":41,"accNr":"1234 77 99570","bankCard":{"@id":"5954456e-1266-44e0-9cde-ae939f4126ad","cardholder":"Klein Nordmann","account":"55828220-ccc5-42bf-a4b8-9dbc605ac45b","cardNr":"1248 1632 9163 9706","cardBlocked":false},"transaction":[]},{"accountType":"SavingsAccount","@id":"f123f3db-15d3-4ca6-8282-2ebf6eb86070","name":"Savings","profile":"93e2cf29-4607-45de-b9dd-6bbce1e70b44","balance":80,"accNr":"1234 27 70978","transaction":[]}],"bankCards":["5954456e-1266-44e0-9cde-ae939f4126ad"],"bills":[{"@id":"ae8874b5-c1b0-47ee-84c0-1b7859bba5ee","amount":10,"billName":"leie","sellerName":"Ada Lovelace","sellerAccount":{"accountType":"SpendingsAccount","@id":"7168475d-94c7-4c06-97f1-cf0212787fa1","name":"Spendings account","profile":{"@id":"b88a0e0a-3429-43b1-a22a-56db3e6a6368","name":"Ada Lovelace","email":"al@gmail.no","tlf":"45456677","password":"koding4321","accounts":["7168475d-94c7-4c06-97f1-cf0212787fa1",{"accountType":"SpendingsAccount","@id":"3499f2af-2e5f-425d-ba6c-f92ccf9091ed","name":"Brukerkonto2","profile":"b88a0e0a-3429-43b1-a22a-56db3e6a6368","balance":0,"accNr":"1234 47 43253","bankCard":null,"transaction":[]},{"accountType":"SavingsAccount","@id":"6d501407-91e9-4dcb-a709-a24a4f6d005d","name":"Savings","profile":"b88a0e0a-3429-43b1-a22a-56db3e6a6368","balance":0,"accNr":"1234 41 51419","transaction":[]},{"accountType":"BSUAccount","@id":"dbfe4754-eeee-419b-86ea-2e124f99c0e2","name":"BSU","profile":"b88a0e0a-3429-43b1-a22a-56db3e6a6368","balance":50,"accNr":"1234 42 67151","transaction":[]}],"bankCards":[],"bills":[{"@id":"8a55b758-0424-475d-890a-e9107ea39cf1","amount":10,"billName":"leie","sellerName":"Klein Nordmann","sellerAccount":{"accountType":"SpendingsAccount","@id":"34d4a5e8-b9ee-4ed3-b9b7-4b8e7ad91769","name":"Spendings account","profile":{"@id":"b7ba95e9-d6c3-4d79-9364-c130fdd0b810","name":"Klein Nordmann","email":"klein@gmail.com","tlf":"98989811","password":"passord1","accounts":["34d4a5e8-b9ee-4ed3-b9b7-4b8e7ad91769"],"bankCards":[],"bills":[]},"balance":100,"accNr":"1234 77 99570","bankCard":null,"transaction":[]},"payerAccount":{"accountType":"SpendingsAccount","@id":"52e55696-18bc-4cc7-a1be-1b4e5446ef76","name":"Spendings account","profile":{"@id":"32f5f4fd-5fd0-49a6-ac43-d811de5130f8","name":"Ada Lovelace","email":"adalovelace@gmail.no","tlf":"98987765","password":"koding1234","accounts":["52e55696-18bc-4cc7-a1be-1b4e5446ef76",{"accountType":"SpendingsAccount","@id":"d72dffc8-6b57-4f4e-956a-eeb86577b34f","name":"Brukerkonto2","profile":"32f5f4fd-5fd0-49a6-ac43-d811de5130f8","balance":0,"accNr":"1234 47 43253","bankCard":null,"transaction":[]},{"accountType":"SavingsAccount","@id":"22ffd4c4-6e29-45c5-9f49-62c49523d85b","name":"Savings","profile":"32f5f4fd-5fd0-49a6-ac43-d811de5130f8","balance":0,"accNr":"1234 41 51419","transaction":[]},{"accountType":"BSUAccount","@id":"cff4670e-a2d9-4b39-b251-e89d63a1519a","name":"BSU","profile":"32f5f4fd-5fd0-49a6-ac43-d811de5130f8","balance":50,"accNr":"1234 42 67151","transaction":[]}],"bankCards":[],"bills":[]},"balance":30,"accNr":"1234 96 44990","bankCard":null,"transaction":[]},"profile":"b88a0e0a-3429-43b1-a22a-56db3e6a6368","paid":false}]},"balance":30,"accNr":"1234 96 44990","bankCard":null,"transaction":[]},"payerAccount":{"accountType":"SpendingsAccount","@id":"5b8630ed-b1ec-486d-9693-f6b7b154d02d","name":"Spendings account","profile":{"@id":"2b06b8f8-4f0c-48c6-9305-2cb7c9b4f757","name":"Klein Nordmann","email":"klein@gmail.com","tlf":"98989811","password":"passord1","accounts":["5b8630ed-b1ec-486d-9693-f6b7b154d02d"],"bankCards":[],"bills":[]},"balance":100,"accNr":"1234 77 99570","bankCard":null,"transaction":[]},"profile":"93e2cf29-4607-45de-b9dd-6bbce1e70b44","paid":false}]},{"@id":"d4fddc3a-02b0-4d8b-a136-ad3111a7b7c3","name":"jam man","email":"jam@gmail.com","tlf":"12312312","password":"passord1","accounts":[{"accountType":"SpendingsAccount","@id":"44371bce-006d-4141-a412-ec964ae1a5a0","name":"Spendings account","profile":"d4fddc3a-02b0-4d8b-a136-ad3111a7b7c3","balance":21,"accNr":"1234 19 95152","bankCard":null,"transaction":[]},{"accountType":"SpendingsAccount","@id":"c227e9f2-bc4d-49f9-aaf2-b3418924a408","name":"account1","profile":"d4fddc3a-02b0-4d8b-a136-ad3111a7b7c3","balance":23,"accNr":"1234 92 95686","bankCard":null,"transaction":[]}],"bankCards":[],"bills":[]}]
+[
+    {
+        "@id": "11b7d6f6-34be-470f-a7ba-38a7ecbb7a17",
+        "name": "Klein Nordmann",
+        "email": "klein@gmail.com",
+        "tlf": "98989811",
+        "password": "passord1",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "5badc271-e1ed-4984-b14c-b8b9318aa2e7",
+                "name": "Spendings account",
+                "profile": "11b7d6f6-34be-470f-a7ba-38a7ecbb7a17",
+                "balance": 61,
+                "accNr": "1234 77 99570",
+                "bankCard": {
+                    "@id": "94c48a5d-ca2e-4670-bf7b-bde8cf03208c",
+                    "cardholder": "Klein Nordmann",
+                    "account": "5badc271-e1ed-4984-b14c-b8b9318aa2e7",
+                    "cardNr": "1248 1632 9163 9706",
+                    "cardBlocked": false
+                },
+                "transaction": []
+            },
+            {
+                "accountType": "SavingsAccount",
+                "@id": "797912aa-414c-47f0-a107-daaf98622520",
+                "name": "Savings",
+                "profile": "11b7d6f6-34be-470f-a7ba-38a7ecbb7a17",
+                "balance": 80,
+                "accNr": "1234 27 70978",
+                "transaction": []
+            }
+        ],
+        "bankCards": [
+            "94c48a5d-ca2e-4670-bf7b-bde8cf03208c"
+        ],
+        "bills": [
+            {
+                "@id": "5e7bbe80-5025-4957-9f34-e9e5218c32bd",
+                "amount": 10,
+                "billName": "leie",
+                "sellerName": "Ada Lovelace",
+                "sellerAccount": {
+                    "accountType": "SpendingsAccount",
+                    "@id": "8b5c1532-8817-474e-849c-450b903bbe93",
+                    "name": "Spendings account",
+                    "profile": {
+                        "@id": "d568a812-0a6c-40b2-8346-82c29df5615a",
+                        "name": "Ada Lovelace",
+                        "email": "al@gmail.no",
+                        "tlf": "45456677",
+                        "password": "koding4321",
+                        "accounts": [
+                            "8b5c1532-8817-474e-849c-450b903bbe93",
+                            {
+                                "accountType": "SpendingsAccount",
+                                "@id": "52dd5fa0-320d-40ab-a4ec-4ada1b8905f5",
+                                "name": "Brukerkonto2",
+                                "profile": "d568a812-0a6c-40b2-8346-82c29df5615a",
+                                "balance": 0,
+                                "accNr": "1234 47 43253",
+                                "bankCard": null,
+                                "transaction": []
+                            },
+                            {
+                                "accountType": "SavingsAccount",
+                                "@id": "78d2c6c7-69d9-4e06-a276-e5a1261709db",
+                                "name": "Savings",
+                                "profile": "d568a812-0a6c-40b2-8346-82c29df5615a",
+                                "balance": 0,
+                                "accNr": "1234 41 51419",
+                                "transaction": []
+                            },
+                            {
+                                "accountType": "BSUAccount",
+                                "@id": "3b165eb2-460b-4401-b07a-19712738d9a3",
+                                "name": "BSU",
+                                "profile": "d568a812-0a6c-40b2-8346-82c29df5615a",
+                                "balance": 50,
+                                "accNr": "1234 42 67151",
+                                "transaction": []
+                            }
+                        ],
+                        "bankCards": [],
+                        "bills": [
+                            {
+                                "@id": "d6af214f-efd2-43ee-8154-86b24856d394",
+                                "amount": 10,
+                                "billName": "leie",
+                                "sellerName": "Klein Nordmann",
+                                "sellerAccount": {
+                                    "accountType": "SpendingsAccount",
+                                    "@id": "b61d4c3c-293a-4782-893b-f42855b14432",
+                                    "name": "Spendings account",
+                                    "profile": {
+                                        "@id": "ff4d7dc2-e79e-4bbc-84d5-89525f8ff0a6",
+                                        "name": "Klein Nordmann",
+                                        "email": "klein@gmail.com",
+                                        "tlf": "98989811",
+                                        "password": "passord1",
+                                        "accounts": [
+                                            "b61d4c3c-293a-4782-893b-f42855b14432"
+                                        ],
+                                        "bankCards": [],
+                                        "bills": []
+                                    },
+                                    "balance": 100,
+                                    "accNr": "1234 77 99570",
+                                    "bankCard": null,
+                                    "transaction": []
+                                },
+                                "payerAccount": {
+                                    "accountType": "SpendingsAccount",
+                                    "@id": "8c876d8c-1641-44e8-9c8d-26ab81855b5d",
+                                    "name": "Spendings account",
+                                    "profile": {
+                                        "@id": "6a2d1984-8973-4891-852b-b3fb4e128f2b",
+                                        "name": "Ada Lovelace",
+                                        "email": "adalovelace@gmail.no",
+                                        "tlf": "98987765",
+                                        "password": "koding1234",
+                                        "accounts": [
+                                            "8c876d8c-1641-44e8-9c8d-26ab81855b5d",
+                                            {
+                                                "accountType": "SpendingsAccount",
+                                                "@id": "375c859a-c42a-4bcb-9c24-2abb8c670059",
+                                                "name": "Brukerkonto2",
+                                                "profile": "6a2d1984-8973-4891-852b-b3fb4e128f2b",
+                                                "balance": 0,
+                                                "accNr": "1234 47 43253",
+                                                "bankCard": null,
+                                                "transaction": []
+                                            },
+                                            {
+                                                "accountType": "SavingsAccount",
+                                                "@id": "cf957d6b-3d05-4197-bf45-a7874f8abdc9",
+                                                "name": "Savings",
+                                                "profile": "6a2d1984-8973-4891-852b-b3fb4e128f2b",
+                                                "balance": 0,
+                                                "accNr": "1234 41 51419",
+                                                "transaction": []
+                                            },
+                                            {
+                                                "accountType": "BSUAccount",
+                                                "@id": "0ca2b50f-884d-4e14-94db-59ec425af181",
+                                                "name": "BSU",
+                                                "profile": "6a2d1984-8973-4891-852b-b3fb4e128f2b",
+                                                "balance": 50,
+                                                "accNr": "1234 42 67151",
+                                                "transaction": []
+                                            }
+                                        ],
+                                        "bankCards": [],
+                                        "bills": []
+                                    },
+                                    "balance": 30,
+                                    "accNr": "1234 96 44990",
+                                    "bankCard": null,
+                                    "transaction": []
+                                },
+                                "profile": "d568a812-0a6c-40b2-8346-82c29df5615a",
+                                "paid": false
+                            }
+                        ]
+                    },
+                    "balance": 30,
+                    "accNr": "1234 96 44990",
+                    "bankCard": null,
+                    "transaction": []
+                },
+                "payerAccount": {
+                    "accountType": "SpendingsAccount",
+                    "@id": "248849e1-4d88-4660-b3fb-3cce7555c1db",
+                    "name": "Spendings account",
+                    "profile": {
+                        "@id": "2cb61c4e-3e99-4fc4-b3e1-36c20f55321a",
+                        "name": "Klein Nordmann",
+                        "email": "klein@gmail.com",
+                        "tlf": "98989811",
+                        "password": "passord1",
+                        "accounts": [
+                            "248849e1-4d88-4660-b3fb-3cce7555c1db"
+                        ],
+                        "bankCards": [],
+                        "bills": []
+                    },
+                    "balance": 100,
+                    "accNr": "1234 77 99570",
+                    "bankCard": null,
+                    "transaction": []
+                },
+                "profile": "11b7d6f6-34be-470f-a7ba-38a7ecbb7a17",
+                "paid": false
+            }
+        ]
+    },
+    {
+        "@id": "bba6142e-8980-44c7-a747-ae8dfe96908e",
+        "name": "jam man",
+        "email": "jam@gmail.com",
+        "tlf": "12312312",
+        "password": "passord1",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "9757a037-6ce0-4b82-b504-d24a7f9ea2c8",
+                "name": "Spendings account",
+                "profile": "bba6142e-8980-44c7-a747-ae8dfe96908e",
+                "balance": 21,
+                "accNr": "1234 19 95152",
+                "bankCard": null,
+                "transaction": []
+            },
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "605cfc1c-7c92-48d4-81a9-c9572decdeb3",
+                "name": "account1",
+                "profile": "bba6142e-8980-44c7-a747-ae8dfe96908e",
+                "balance": 23,
+                "accNr": "1234 92 95686",
+                "bankCard": null,
+                "transaction": []
+            }
+        ],
+        "bankCards": [],
+        "bills": []
+    },
+    {
+        "@id": "d1e67f2a-681c-4807-b67f-a09e0307585c",
+        "name": "Ada Lovelace",
+        "email": "adalovelace@gmail.no",
+        "tlf": "98987765",
+        "password": "koding1234",
+        "accounts": [
+            {
+                "accountType": "SpendingsAccount",
+                "@id": "c347a15e-1753-47f1-b254-ac1226bf6050",
+                "name": "Spendings account",
+                "profile": "d1e67f2a-681c-4807-b67f-a09e0307585c",
+                "balance": 100,
+                "accNr": "1234 93 66437",
+                "bankCard": null,
+                "transaction": []
+            }
+        ],
+        "bankCards": [],
+        "bills": []
+    }
+]

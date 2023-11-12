@@ -208,41 +208,40 @@ public class BankAppController {
   @FXML
   private Text feedbackInDeleteAccount;
 
-  // cards fxml 
-  @FXML 
+  // cards fxml
+  @FXML
   private Label noCardsLabel, orderCardButton, blockCardButton;
 
-  @FXML 
+  @FXML
   private GridPane cardsTable;
 
-  // orderOrBlock fxml 
-  @FXML 
+  // orderOrBlock fxml
+  @FXML
   private Text orderOrBlockTitle, feedbackInOrderOrBlock;
 
   @FXML
   private ChoiceBox<String> orderOrBlockChoiceBox;
 
-  @FXML 
-  private Button orderOrBlockButton; 
+  @FXML
+  private Button orderOrBlockButton;
 
   private static Profile profile;
 
   private static final String endpointBaseUri = "http://localhost:8080/profiles/";
   private static RemoteProfilesAccess profilesAccess;
 
-
-  @FXML 
-  public void updateCards(){
-    if(profile.getBankCards().size() != 0){
+  @FXML
+  public void updateCards() {
+    if (profile.getBankCards().size() != 0) {
       noCardsLabel.setVisible(false);
       int count = 0;
-      for(BankCard bankCard : profile.getBankCards()){
+      for (BankCard bankCard : profile.getBankCards()) {
         Label label = new Label("" + bankCard.getCardNr());
         label.setLayoutX(10);
-        AnchorPane anchorPane = new AnchorPane(); 
+        AnchorPane anchorPane = new AnchorPane();
         anchorPane.getChildren().add(label);
         cardsTable.add(anchorPane, 0, count);
-        count ++;
+        count++;
       }
     }
   }
@@ -253,8 +252,8 @@ public class BankAppController {
    * @param event
    * @throws IOException
    */
-  @FXML 
-  public void handleOrderANewCardStage1(MouseEvent event) throws IOException{
+  @FXML
+  public void handleOrderANewCardStage1(MouseEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
     AnchorPane orderOrBlockCard = loader.load();
     Stage stage = new Stage();
@@ -269,30 +268,31 @@ public class BankAppController {
     Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
 
     if (orderOrBlockTitle != null) {
-        orderOrBlockTitle.setText("Order Card");
+      orderOrBlockTitle.setText("Order Card");
     }
     if (orderOrBlockButton != null) {
-        orderOrBlockButton.setText("Order");
+      orderOrBlockButton.setText("Order");
     }
-    
-    if(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard().size()== 0){
-      feedbackInOrderOrBlock.setText("No accounts that \n can be bankcards"); 
+
+    if (profile.accountsWithoutBankcards().size() == 0) {
+      feedbackInOrderOrBlock.setText("No accounts that \n can be bankcards");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
-    
-    else if(profile.getAccounts().size() != 0 && orderOrBlockChoiceBox != null){
-        orderOrBlockChoiceBox.getItems().addAll(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard());
-    } 
+
+    else if (profile.getAccounts().size() != 0 && orderOrBlockChoiceBox != null) {
+      orderOrBlockChoiceBox.getItems().addAll(profile.accountsWithoutBankcards());
+    }
 
   }
 
   /**
    * sets the stage for blocking a card
+   * 
    * @param event
    * @throws IOException
    */
-  @FXML 
-  public void handleBlockCardStage1(MouseEvent event) throws IOException{
+  @FXML
+  public void handleBlockCardStage1(MouseEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
     AnchorPane orderOrBlockCard = loader.load();
     Stage stage = new Stage();
@@ -308,34 +308,34 @@ public class BankAppController {
     Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
 
     if (orderOrBlockTitle != null) {
-        orderOrBlockTitle.setText("Block Card");
+      orderOrBlockTitle.setText("Block Card");
     }
     if (orderOrBlockButton != null) {
-        orderOrBlockButton.setText("Block");
+      orderOrBlockButton.setText("Block");
     }
-    
-    if(profile.getBankCards().size() == 0){ //noe galt her
+
+    if (profile.getBankCards().size() == 0) { // noe galt her
       System.out.println("HER");
-      feedbackInOrderOrBlock.setText("You have no bankcards \n to block"); 
+      feedbackInOrderOrBlock.setText("You have no bankcards \n to block");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
-    try{
+    try {
       orderOrBlockChoiceBox.getItems().addAll(profile.getListOfNotBlockedAccNrBankCards());
 
-    }catch(Exception e){
-      feedbackInOrderOrBlock.setText("Something went wrong"); 
+    } catch (Exception e) {
+      feedbackInOrderOrBlock.setText("Something went wrong");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
   }
 
   /**
-   * sets the stage for unblocking a card 
+   * sets the stage for unblocking a card
    * 
    * @param event
    * @throws IOException
    */
-  @FXML 
-  public void handleUnblockCardStage1(MouseEvent event) throws IOException{
+  @FXML
+  public void handleUnblockCardStage1(MouseEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
     AnchorPane unblockCardAnchorPane = loader.load();
     Stage stage = new Stage();
@@ -351,27 +351,27 @@ public class BankAppController {
     Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
 
     if (orderOrBlockTitle != null) {
-        orderOrBlockTitle.setText("Unblock Card");
+      orderOrBlockTitle.setText("Unblock Card");
     }
     if (orderOrBlockButton != null) {
-        orderOrBlockButton.setText("Unblock");
+      orderOrBlockButton.setText("Unblock");
     }
 
-    if(profile.getListOfBlockedAccNrBankCards().size() == 0){
-      feedbackInOrderOrBlock.setText("You have no bankcards \n to unblock"); 
+    if (profile.getListOfBlockedAccNrBankCards().size() == 0) {
+      feedbackInOrderOrBlock.setText("You have no bankcards \n to unblock");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
-    
-    try{
+
+    try {
       orderOrBlockChoiceBox.getItems().addAll(profile.getListOfBlockedAccNrBankCards());
-    }catch(Exception e){
-      feedbackInOrderOrBlock.setText("Something went wrong"); 
+    } catch (Exception e) {
+      feedbackInOrderOrBlock.setText("Something went wrong");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
   }
 
   /**
-   * handling the actual process of ordering or blocking or unblocking 
+   * handling the actual process of ordering or blocking or unblocking
    * 
    * @param event
    * @throws StreamWriteException
@@ -379,34 +379,33 @@ public class BankAppController {
    * @throws IOException
    */
   @FXML
-  public void handleOrderOrBlockStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+  public void handleOrderOrBlockStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
     String accNr = orderOrBlockChoiceBox.getValue();
-    
-    //createBankCard
-    if(orderOrBlockTitle.getText().equals("Order Card")){
+
+    // createBankCard
+    if (orderOrBlockTitle.getText().equals("Order Card")) {
       SpendingsAccount spendingsAccount = null;
       spendingsAccount = profile.findSpendingsAccount(accNr);
 
-      try{
-      spendingsAccount.createBankCard();
-      orderOrBlockChoiceBox.setValue("");
-      feedbackInOrderOrBlock.setText("Order completed!");
-      writeInfo();
-      }catch(Exception e){
+      try {
+        spendingsAccount.createBankCard();
+        orderOrBlockChoiceBox.setValue("");
+        feedbackInOrderOrBlock.setText("Order completed!");
+        writeInfo();
+      } catch (Exception e) {
         feedbackInOrderOrBlock.setText("Something went wrong");
         feedbackInOrderOrBlock.setFill(Color.RED);
       }
 
-    }
-    else if(orderOrBlockTitle.getText().equals("Block Card")){
-      //do block stuff
-      try{
-      profile.getBankCard(accNr).blockCard();
-      orderOrBlockChoiceBox.setValue("");
-      feedbackInOrderOrBlock.setText("Block completed!");
-      writeInfo();
-      //updateCards();
-      }catch(Exception e){
+    } else if (orderOrBlockTitle.getText().equals("Block Card")) {
+      // do block stuff
+      try {
+        profile.getBankCard(accNr).blockCard();
+        orderOrBlockChoiceBox.setValue("");
+        feedbackInOrderOrBlock.setText("Block completed!");
+        writeInfo();
+        // updateCards();
+      } catch (Exception e) {
         e.printStackTrace();
         feedbackInOrderOrBlock.setText(e.getMessage());
         feedbackInOrderOrBlock.setFill(Color.RED);
@@ -414,16 +413,16 @@ public class BankAppController {
 
     }
 
-    else if(orderOrBlockTitle.getText().equals("Unblock Card")){
-      //do unblock stuff 
-        
-      try{
-      BankCard bankCard = profile.getBankCard(accNr);
-      bankCard.unblockCard();
-      orderOrBlockChoiceBox.setValue("");
-      feedbackInOrderOrBlock.setText("Unblock completed!");
-      writeInfo();
-      }catch(Exception e){
+    else if (orderOrBlockTitle.getText().equals("Unblock Card")) {
+      // do unblock stuff
+
+      try {
+        BankCard bankCard = profile.getBankCard(accNr);
+        bankCard.unblockCard();
+        orderOrBlockChoiceBox.setValue("");
+        feedbackInOrderOrBlock.setText("Unblock completed!");
+        writeInfo();
+      } catch (Exception e) {
         feedbackInOrderOrBlock.setText(e.getMessage());
         feedbackInOrderOrBlock.setFill(Color.RED);
       }
@@ -490,6 +489,7 @@ public class BankAppController {
       getInputsChoiceBox(payerAccountChoiceBox);
     }
   }
+
   public Profile getProfile() {
     return profile;
   }
@@ -807,8 +807,8 @@ public class BankAppController {
     AnchorPaneGoTo(event, "Settings", settingsButton);
   }
 
-  @FXML 
-  public void goToCards(MouseEvent event){
+  @FXML
+  public void goToCards(MouseEvent event) {
     AnchorPaneGoTo(event, "Cards", cardsButton);
   }
 
@@ -1157,4 +1157,3 @@ public class BankAppController {
     }
   }
 }
-
