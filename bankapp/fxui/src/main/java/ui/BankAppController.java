@@ -287,18 +287,20 @@ public class BankAppController {
 
     if (orderOrBlockTitle != null) {
       orderOrBlockTitle.setText("Order Card");
+      orderOrBlockTitle.setText("Order Card");
     }
     if (orderOrBlockButton != null) {
       orderOrBlockButton.setText("Order");
+      orderOrBlockButton.setText("Order");
     }
 
-    if (profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard().size() == 0) {
+    if (profile.accountsWithoutBankcards().size() == 0) {
       feedbackInOrderOrBlock.setText("No accounts that \n can be bankcards");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
 
     else if (profile.getAccounts().size() != 0 && orderOrBlockChoiceBox != null) {
-      orderOrBlockChoiceBox.getItems().addAll(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard());
+      orderOrBlockChoiceBox.getItems().addAll(profile.accountsWithoutBankcards());
     }
 
   }
