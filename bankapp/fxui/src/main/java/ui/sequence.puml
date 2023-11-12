@@ -1,0 +1,4 @@
+actor User
+User -> "~#handleLoginButton: Button" as handleLoginButton: click
+User -> "~#handleSignUpClick: Button" as handleSignUpClick: click
+handleSignUpClick -> register: handleSignUpClick

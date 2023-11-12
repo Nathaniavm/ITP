@@ -1,0 +1,165 @@
+@startuml
+class Profile {
+    -String name
+    -String email
+    -String tlf
+    -String password
+    -List<AbstractAccount> accounts
+    -List<BankCard> bankcards
+    -List<Bill> bills
+
+    -boolean validEmail(String email)
+    -boolean validPassword(String password)
+    -boolean validTlf(String tlf)
+    -boolean validName(String name)
+    -boolean isNumeric(String test)
+    +void addAccount(AbstractAccount account)
+    +void removeAccount(AbstractAccount account)
+    +void addBill(Bill bill)
+    +void removeBIll(Bill bill)
+    +int getTotalBalance() 
+    +int previevBalance() 
+    +void changePassword(String password)
+    +void changeTlf(String tlf)
+    +String getEmail()
+    +String getName()
+    +String getTlf()
+    +String getPassword()
+    +List<AbstractAccount> getAccounts() 
+    +List<Bill> getBills()
+    +boolean ownsAccount(AbstractAccount account)
+    +List<BankCard> getBankCards()
+    +void addBankCard(BankCard bankCard)
+    +void removeBankCard(BankCard bankCard)
+    +List<String> getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard()
+    +List<String> getListOfNotBlockedAccNrBankCards()
+    +List<String>  getListOfBlockedAccNrBankCards()
+    +BankCard getBankCard(String spendingsAccountAsString)
+    +SpendingsAccount findSpendingsAccount(String spendingsAccountName)
+}
+
+abstract class AbstractAccount {
+    -Profile profile;
+    -String name;
+    -Balance balance;
+    -List<String> accNrs 
+    -List<Transaction> transactions 
+    -String accNr;
+    -boolean showInPreview = false;
+    -Random RANDOM = new Random()
+
+    +String getName()
+    void add(int amount)
+    +int getBalance()
+    void remove(int amount)
+    void setAccNr()
+    +String getAccNr()
+    void renameAccount(String name)
+    +Profile getProfile()
+    void changePreview()
+    boolean showInPreview()
+    void addTransaction(Transaction transaction)
+    +List<Transaction> getTransaction()
+    void transferFrom(AbstractAccount account, int amount)
+}
+
+class BsuAccount 
+class SavingsAccount
+
+class SpendingsAccount {
+    -BankCard bankCard
+    
+    void createBankCard()
+    boolean hasBankCard()
+    +BankCard getBankCard()
+    void pay(SpendingsAccount account, int amount)
+}
+
+class Balance {
+    -int balance
+
+    void increase(int amount)
+    void decrease(int amount)
+    +int getBalance()
+}
+
+class BankCard {
+    -String cardholder;
+    -List<String> cardNrs = new ArrayList<>();
+    -String cardNr;
+    -SpendingsAccount account;
+    -boolean cardBlocked;
+    -Random RANDOM = new Random();
+
+    void setCardNr()
+    +String getCardholder()
+    +SpendingsAccount getAccount()
+    +String getCardNr()
+    void blockCard()
+    void unblockCard()
+    boolean isCardBlocked()
+}
+
+class Bill {
+    -int amount;
+    -String billName;
+    -String sellerName;
+    -SpendingsAccount sellerAccount;
+    -Profile payer;
+    -SpendingsAccount payerAccount;
+    -boolean paid = false;
+
+    void pay()
+    boolean isPaid()
+    +int getAmount()
+    +String getBillName()
+    +String getSellerName()
+    +AbstractAccount getSellerAccount()
+    +AbstractAccount getPayerAccount()
+    +Profile getProfile()
+}
+
+class Transaction {
+    -String email;
+    -String transactionTo;
+    -String name;
+    -String transactionFrom;
+    -int amount;
+
+    +String getEmail()
+    +String getTransactionTo()
+    +String getName()
+    +String getTransactionFrom()
+    +int getAmount()
+}
+
+class ProfileInformationManagement{
+    +{static}void writeInformationToFile(Profile profile, String filename)
+    +{static}List<Profile> readFromFile(String filename)
+    +{static}void deleteProfile(String filename, Profile profile)
+    +{static} void clearFile(String filename)
+}
+
+class TransactionsPersistence{
+    +{static}void writeTransactions(Transaction transaction, String filename)
+    +{static}List<Transaction> readTransactions(String filename)
+    +{static}List<Transaction> getProfilesTransaction(Profile profile, String filename)
+    +{static}void clearFile(String filename)
+}
+
+
+Profile "1" -- "*" AbstractAccount
+AbstractAccount <|-- BsuAccount
+AbstractAccount <|-- SpendingsAccount
+AbstractAccount <|-- SavingsAccount
+AbstractAccount "1" --> "*" Transaction
+AbstractAccount --> Balance
+SpendingsAccount -- BankCard
+Profile "1" --> "*" BankCard
+Profile "1" -- "*" Bill
+Bill "1" --> "2" SpendingsAccount
+
+TransactionsPersistence "1" --> "*" Transaction
+ProfileInformationManagement "1" --> "*" Profile
+
+@enduml
