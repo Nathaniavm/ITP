@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,11 +15,14 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.testfx.api.FxAssert;
+import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 
 import core.Profile;
 import core.accounts.SpendingsAccount;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,19 +35,12 @@ import javafx.stage.Stage;
 public class BankAppControllerTest extends ApplicationTest {
   private BankAppController controller;
   private Parent root;
-  Profile NTNU;
-
-  private void setUp() {
-    NTNU = new Profile("NTNU Gløshaugen", "NTNU@ntnu.no", "98989898", "Administrator59");
-    NTNU.addAccount(new SpendingsAccount("NTNU", NTNU));
-  }
 
   @Order(1)
   @Override
   @DisplayName("Loading the stage")
   public void start(Stage stage) throws IOException {
     controller = new BankAppController();
-    setUp();
     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Login.fxml"));
     root = fxmlLoader.load();
     stage.setScene(new Scene(root));
@@ -247,6 +244,59 @@ public class BankAppControllerTest extends ApplicationTest {
     }
 
     @Nested
+    @DisplayName("Test the different card functions")
+    public class testCards {
+      @BeforeEach
+      @DisplayName("Loads the page where one can make and blaock cards")
+      public void cardSetUp() {
+        clickOn("#profileTab");
+        clickOn("#cardsButton");
+      }
+
+      @Order(12)
+      @Test
+      @DisplayName("Testing if a card can be made")
+      public void testMakeCard() {
+        FxAssert.verifyThat("#settings", NodeMatchers.isVisible());
+
+        clickOn("#orderCardButton");
+        FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+        clickOn("#orderOrBlockChoiceBox");
+        clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
+            .findAny().get().getAccNr());
+        clickOn("#orderOrBlockButton");
+        assertTrue(controller.getProfile().getBankCards().size() > 0);
+      }
+
+      @Order(13)
+      @Test
+      @DisplayName("Testing if a card can be blocked")
+      public void testBlockCard() {
+        clickOn("#blockCardButton");
+        FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+        clickOn("#orderOrBlockChoiceBox");
+        clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
+            .findAny().get().getAccNr());
+        clickOn("#orderOrBlockButton");
+        assertTrue(!controller.getProfile().getBankCards().stream().filter(c -> c.isCardBlocked()).findAny().isEmpty());
+      }
+
+      @Order(14)
+      @Test
+      @DisplayName("Testing if a card can be unblocked")
+      public void testUnblockCard() {
+        clickOn("#unblockCardButton");
+        System.out.println("har vært inne i unblock card");
+        FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+        // clickOn("#orderOrBlockChoiceBox");
+        // clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
+        //     .findAny().get().getAccNr());
+        // clickOn("#orderOrBlockButton");
+        // assertTrue(controller.getProfile().getBankCards().stream().filter(c -> c.isCardBlocked()).findAny().isEmpty());
+      }
+    }
+
+    @Nested
     @DisplayName("Test the different bill functions")
     public class testBill {
       @BeforeEach
@@ -255,7 +305,7 @@ public class BankAppControllerTest extends ApplicationTest {
         clickOn("#paymentsTab");
       }
 
-      @Order(12)
+      @Order(15)
       @Test
       @DisplayName("Testing if a bill is made corecctly")
       public void testMakeBill() {
@@ -295,7 +345,7 @@ public class BankAppControllerTest extends ApplicationTest {
         clickOn("#settingsButton");
       }
 
-      @Order(13)
+      @Order(16)
       @Test
       @DisplayName("Testing if the profile updates accordingly to valid and unvalid inputs")
       public void testProfileChange() {
@@ -324,7 +374,7 @@ public class BankAppControllerTest extends ApplicationTest {
         clickOn("#updateSettings");
       }
 
-      @Order(14)
+      @Order(17)
       @Test
       @DisplayName("Testing if a profile is deleted")
       public void testDeleteProfile() {
@@ -343,7 +393,7 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#signUpButton");
     }
 
-    @Order(15)
+    @Order(18)
     @Test
     @DisplayName("Testing if a profile gets made accordingly")
     public void testHandleSignUpClick() {
@@ -361,7 +411,7 @@ public class BankAppControllerTest extends ApplicationTest {
       assertTrue(controller.getProfile().getPassword().equals("koding1234"));
     }
 
-    @Order(16)
+    @Order(19)
     @Test
     @DisplayName("Testing if the back arrow works")
     public void testHandleBackArrow() {
