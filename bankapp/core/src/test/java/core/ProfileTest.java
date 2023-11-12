@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-
 import core.accounts.SavingsAccount;
 import core.accounts.SpendingsAccount;
 
@@ -18,6 +15,7 @@ public class ProfileTest {
     private Profile profile1;
     private Profile profile2;
     private Profile profile3;
+    private SpendingsAccount acc1;
 
     @BeforeEach
     @DisplayName("setting up the different profiles")
@@ -25,6 +23,9 @@ public class ProfileTest {
         profile1 = new Profile("Petter Pan", "peter@ntnu.no", "98765432", "passord111");
         profile2 = new Profile("Charles Darwin", "charles@ntnu.no", "99997722", "JegElskerITP123");
         profile3 = new Profile("Muhammed Ali", "ali@ntnu.no", "92457233", "loneyku9");
+
+        acc1 = new SpendingsAccount("Spending1", profile1);
+        profile1.addAccount(acc1);
     }
 
     @Test
@@ -117,18 +118,16 @@ public class ProfileTest {
     @Test
     @DisplayName("Testing if an account gets created correctly")
     public void testCreateAccount() {
-        assertEquals(0, profile1.getAccounts().size());
-        SpendingsAccount acc = new SpendingsAccount("Savings", profile1);
-        profile1.addAccount(acc);
         assertEquals(1, profile1.getAccounts().size());
-        assertEquals("Savings", acc.getName());
+        SpendingsAccount acc = new SpendingsAccount("SavingsTestCreate", profile1);
+        profile1.addAccount(acc);
+        assertEquals(2, profile1.getAccounts().size());
+        assertEquals("SavingsTestCreate", acc.getName());
     }
 
     @Test
     @DisplayName("Test adding of bills to profile. Should throw if profile does not own the bill, or if bill is already added")
-    public void testAddBill() throws StreamReadException, DatabindException, IOException {
-        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
-        profile1.addAccount(acc1);
+    public void testAddBill() {
         profile1.getAccounts().get(0).add(1000);
         SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
 
@@ -146,8 +145,6 @@ public class ProfileTest {
     @Test
     @DisplayName("Test removal of bills from profile")
     public void testRemoveBill() throws IOException {
-        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
-        profile1.addAccount(acc1);
         profile1.getAccounts().get(0).add(1000);
         SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
         profile2.addAccount(acc2);
@@ -164,11 +161,9 @@ public class ProfileTest {
     @DisplayName("Test getting of total balance")
     public void testTotalBalance() {
         assertEquals(0, profile1.getTotalBalance());
-        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
         SpendingsAccount acc2 = new SpendingsAccount("Savings", profile1);
         acc1.add(1000);
         acc2.add(1);
-        profile1.addAccount(acc1);
         profile1.addAccount(acc2);
         assertEquals(1001, profile1.getTotalBalance());
     }
@@ -181,7 +176,7 @@ public class ProfileTest {
         SavingsAccount testAccount2 = new SavingsAccount("TestAccount2", profile2);
 
         profile1.addAccount(testAccount);
-        assertEquals(testAccount, profile1.getAccounts().get(0));
+        assertEquals(testAccount, profile1.getAccounts().get(1));
 
         assertThrows(IllegalArgumentException.class, () -> profile1.addAccount(testAccount));
 
@@ -199,15 +194,13 @@ public class ProfileTest {
         profile1.addAccount(testAccount2);
 
         profile1.removeAccount(testAccount2);
-        assertTrue(profile1.getAccounts().size() == 1);
+        assertTrue(profile1.getAccounts().size() == 2);
 
     }
 
     @Test
     @DisplayName("Test preview in balance")
     public void testPreviewInBalance() {
-        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
-        profile1.addAccount(acc1);
         profile1.getAccounts().get(0).add(1000);
         SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
         acc1.changePreview();
@@ -218,6 +211,101 @@ public class ProfileTest {
         profile1.addBill(bill);
 
         assertTrue(profile1.previewBalance() == 900);
+    }
+
+    @Test
+    @DisplayName("Test adding a bankcard")
+    public void testAddBankcard() {
+        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
+        profile1.addAccount(acc1);
+        BankCard bankCard = new BankCard("Petter Pan", acc1);
+
+        profile1.addBankCard(bankCard);
+        assertEquals(bankCard, profile1.getBankCards().get(0));
+    }
+
+    @Test
+    @DisplayName("Test removing a bankcard")
+    public void testRemoveBankcard() {
+        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
+        profile1.addAccount(acc1);
+        BankCard bankCard = new BankCard("Petter Pan", acc1);
+
+        profile1.addBankCard(bankCard);
+        assertEquals(bankCard, profile1.getBankCards().get(0));
+
+        profile1.removeBankCard(bankCard);
+        assertTrue(profile1.getBankCards().size() == 0);
+    }
+
+    @Test
+    @DisplayName("Test finding accounts without a bankcard")
+    public void testAccountsWithoutBankcards() {
+        SpendingsAccount acc2 = new SpendingsAccount("Spending2", profile1);
+        SpendingsAccount acc3 = new SpendingsAccount("Spending3", profile1);
+        profile1.addAccount(acc2);
+        profile1.addAccount(acc3);
+
+        assertTrue(profile1.accountsWithoutBankcards().size() == 3);
+
+        acc1.createBankCard();
+
+        assertTrue(profile1.accountsWithoutBankcards().size() == 2);
+        assertEquals(acc2.getAccNr(), profile1.accountsWithoutBankcards().get(0));
+    }
+
+    @Test
+    @DisplayName("Test finding accounts without a blocked bankcard")
+    public void testGetListOfNotBlockedAccNrBankCards() {
+        SpendingsAccount acc2 = new SpendingsAccount("Spending2", profile1);
+        SpendingsAccount acc3 = new SpendingsAccount("Spending3", profile1);
+        profile1.addAccount(acc2);
+        profile1.addAccount(acc3);
+
+        assertTrue(profile1.getListOfNotBlockedAccNrBankCards().size() == 0);
+
+        acc1.createBankCard();
+
+        assertTrue(profile1.getListOfNotBlockedAccNrBankCards().size() == 1);
+        assertEquals(acc1.getAccNr(), profile1.getListOfNotBlockedAccNrBankCards().get(0));
+    }
+
+    @Test
+    @DisplayName("Test finding accounts with a blocked bankcard")
+    public void testGetListOfBlockedAccNrBankCards() {
+        SpendingsAccount acc2 = new SpendingsAccount("Spending2", profile1);
+        SpendingsAccount acc3 = new SpendingsAccount("Spending3", profile1);
+        profile1.addAccount(acc2);
+        profile1.addAccount(acc3);
+
+        assertTrue(profile1.getListOfBlockedAccNrBankCards().size() == 0);
+
+        acc1.createBankCard();
+        assertTrue(profile1.getListOfNotBlockedAccNrBankCards().size() == 1);
+
+        acc1.getBankCard().blockCard();
+        assertTrue(profile1.getListOfBlockedAccNrBankCards().size() == 1);
+        assertEquals(acc1.getAccNr(), profile1.getListOfBlockedAccNrBankCards().get(0));
+    }
+
+    @Test
+    @DisplayName("Test getting a bankcard")
+    public void testGetBankcard() {
+        assertThrows(IllegalArgumentException.class, () -> profile1.getBankCard(acc1.getAccNr()));
+
+        acc1.createBankCard();
+        assertEquals(acc1.getBankCard(), profile1.getBankCard(acc1.getAccNr()));
+    }
+
+    @Test
+    @DisplayName("Test finding a spendingsaccount")
+    public void testFindSpendingsAccount() {
+        SavingsAccount acc2 = new SavingsAccount("Spending2", profile1);
+        profile1.addAccount(acc2);
+
+        assertThrows(IllegalArgumentException.class, () -> profile1.findSpendingsAccount(acc2.getAccNr()));
+
+        assertEquals(acc1, profile1.findSpendingsAccount(acc1.getAccNr()));
     }
 
 }

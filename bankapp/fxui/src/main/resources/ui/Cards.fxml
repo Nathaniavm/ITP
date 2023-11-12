@@ -114,6 +114,11 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="accountsWithBankcardLabel" layoutX="30.0" layoutY="26.0" text="Accounts with bankcard" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="145.0" prefWidth="426.0" style="-fx-background-color: #214C69;">

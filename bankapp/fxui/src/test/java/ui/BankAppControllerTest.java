@@ -45,6 +45,9 @@ public class BankAppControllerTest extends ApplicationTest {
     root = fxmlLoader.load();
     stage.setScene(new Scene(root));
     stage.show();
+    ;
+    ;
+    ;
   }
 
   @Nested
