@@ -24,8 +24,6 @@ public class Bill implements Serializable {
   private SpendingsAccount payerAccount;
   private boolean paid = false;
 
-  public static final String filename = "bankapp/core/src/main/java/json/TransactionsOverview.json";
-
   /**
    * Makes a new bill object with specified properties.
    *

@@ -102,6 +102,7 @@ public class SpendingsAccountTest {
     @Test
     @DisplayName("Test change preview")
     public void testChangePreview() {
+        assertFalse(spendingsAcc.showInPreview());
         spendingsAcc.changePreview();
         assertTrue(spendingsAcc.showInPreview());
     }
