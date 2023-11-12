@@ -490,7 +490,7 @@ public class BankAppController {
     if (selectAccountType != null) {
       selectAccountType.getItems().addAll("Checking account", "Savings account",
           "BSU");
-      selectAccountType.setValue("Checking account");
+      selectAccountType.setValue("Savings account");
     }
 
     if (transferFromChoiceBox != null) {
