@@ -5,14 +5,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+
+import core.BankCard;
 import core.Bill;
 import core.Profile;
 import core.Transaction;
-import core.Accounts.AbstractAccount;
-import core.Accounts.BSUAccount;
-import core.Accounts.SavingsAccount;
-import core.Accounts.SpendingsAccount;
-
+import core.accounts.AbstractAccount;
+import core.accounts.BsuAccount;
+import core.accounts.SavingsAccount;
+import core.accounts.SpendingsAccount;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -205,16 +208,233 @@ public class BankAppController {
   @FXML
   private Text feedbackInDeleteAccount;
 
+  // cards fxml 
+  @FXML 
+  private Label noCardsLabel, orderCardButton, blockCardButton;
+
+  @FXML 
+  private GridPane cardsTable;
+
+  // orderOrBlock fxml 
+  @FXML 
+  private Text orderOrBlockTitle, feedbackInOrderOrBlock;
+
+  @FXML
+  private ChoiceBox<String> orderOrBlockChoiceBox;
+
+  @FXML 
+  private Button orderOrBlockButton; 
+
   private static Profile profile;
 
   private static final String endpointBaseUri = "http://localhost:8080/profiles/";
   private static RemoteProfilesAccess profilesAccess;
 
+
+  @FXML 
+  public void updateCards(){
+    if(profile.getBankCards().size() != 0){
+      noCardsLabel.setVisible(false);
+      int count = 0;
+      for(BankCard bankCard : profile.getBankCards()){
+        Label label = new Label("" + bankCard.getCardNr());
+        label.setLayoutX(10);
+        AnchorPane anchorPane = new AnchorPane(); 
+        anchorPane.getChildren().add(label);
+        cardsTable.add(anchorPane, 0, count);
+        count ++;
+      }
+    }
+  }
+
+  /**
+   * sets the stage for ordering a card
+   * 
+   * @param event
+   * @throws IOException
+   */
+  @FXML 
+  public void handleOrderANewCardStage1(MouseEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
+    AnchorPane orderOrBlockCard = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(orderOrBlockCard));
+    stage.setTitle("Order A new Card");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+    Parent root = stage.getScene().getRoot();
+    Text orderOrBlockTitle = (Text) root.lookup("#orderOrBlockTitle");
+    Button orderOrBlockButton = (Button) root.lookup("#orderOrBlockButton");
+    ChoiceBox<String> orderOrBlockChoiceBox = (ChoiceBox<String>) root.lookup("#orderOrBlockChoiceBox");
+    Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
+
+    if (orderOrBlockTitle != null) {
+        orderOrBlockTitle.setText("Order Card");
+    }
+    if (orderOrBlockButton != null) {
+        orderOrBlockButton.setText("Order");
+    }
+    
+    if(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard().size()== 0){
+      feedbackInOrderOrBlock.setText("No accounts that \n can be bankcards"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+    
+    else if(profile.getAccounts().size() != 0 && orderOrBlockChoiceBox != null){
+        orderOrBlockChoiceBox.getItems().addAll(profile.getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard());
+    } 
+
+  }
+
+  /**
+   * sets the stage for blocking a card
+   * @param event
+   * @throws IOException
+   */
+  @FXML 
+  public void handleBlockCardStage1(MouseEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
+    AnchorPane orderOrBlockCard = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(orderOrBlockCard));
+    stage.setTitle("Block Card");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+
+    Parent root = stage.getScene().getRoot();
+    Text orderOrBlockTitle = (Text) root.lookup("#orderOrBlockTitle");
+    Button orderOrBlockButton = (Button) root.lookup("#orderOrBlockButton");
+    ChoiceBox<String> orderOrBlockChoiceBox = (ChoiceBox<String>) root.lookup("#orderOrBlockChoiceBox");
+    Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
+
+    if (orderOrBlockTitle != null) {
+        orderOrBlockTitle.setText("Block Card");
+    }
+    if (orderOrBlockButton != null) {
+        orderOrBlockButton.setText("Block");
+    }
+    
+    if(profile.getBankCards().size() == 0){ //noe galt her
+      System.out.println("HER");
+      feedbackInOrderOrBlock.setText("You have no bankcards \n to block"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+    try{
+      orderOrBlockChoiceBox.getItems().addAll(profile.getListOfNotBlockedAccNrBankCards());
+
+    }catch(Exception e){
+      feedbackInOrderOrBlock.setText("Something went wrong"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+  }
+
+  /**
+   * sets the stage for unblocking a card 
+   * 
+   * @param event
+   * @throws IOException
+   */
+  @FXML 
+  public void handleUnblockCardStage1(MouseEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderOrBlockCard.fxml"));
+    AnchorPane unblockCardAnchorPane = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(unblockCardAnchorPane));
+    stage.setTitle("Unblock Card");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.show();
+
+    Parent root = stage.getScene().getRoot();
+    Text orderOrBlockTitle = (Text) root.lookup("#orderOrBlockTitle");
+    Button orderOrBlockButton = (Button) root.lookup("#orderOrBlockButton");
+    ChoiceBox<String> orderOrBlockChoiceBox = (ChoiceBox<String>) root.lookup("#orderOrBlockChoiceBox");
+    Text feedbackInOrderOrBlock = (Text) root.lookup("#feedbackInOrderOrBlock");
+
+    if (orderOrBlockTitle != null) {
+        orderOrBlockTitle.setText("Unblock Card");
+    }
+    if (orderOrBlockButton != null) {
+        orderOrBlockButton.setText("Unblock");
+    }
+
+    if(profile.getListOfBlockedAccNrBankCards().size() == 0){
+      feedbackInOrderOrBlock.setText("You have no bankcards \n to unblock"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+    
+    try{
+      orderOrBlockChoiceBox.getItems().addAll(profile.getListOfBlockedAccNrBankCards());
+    }catch(Exception e){
+      feedbackInOrderOrBlock.setText("Something went wrong"); 
+      feedbackInOrderOrBlock.setFill(Color.RED);
+    }
+  }
+
+  /**
+   * handling the actual process of ordering or blocking or unblocking 
+   * 
+   * @param event
+   * @throws StreamWriteException
+   * @throws DatabindException
+   * @throws IOException
+   */
+  @FXML
+  public void handleOrderOrBlockStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException{
+    String accNr = orderOrBlockChoiceBox.getValue();
+    
+    //createBankCard
+    if(orderOrBlockTitle.getText().equals("Order Card")){
+      SpendingsAccount spendingsAccount = null;
+      spendingsAccount = profile.findSpendingsAccount(accNr);
+
+      try{
+      spendingsAccount.createBankCard();
+      orderOrBlockChoiceBox.setValue("");
+      feedbackInOrderOrBlock.setText("Order completed!");
+      writeInfo();
+      }catch(Exception e){
+        feedbackInOrderOrBlock.setText("Something went wrong");
+        feedbackInOrderOrBlock.setFill(Color.RED);
+      }
+
+    }
+    else if(orderOrBlockTitle.getText().equals("Block Card")){
+      //do block stuff
+      try{
+      profile.getBankCard(accNr).blockCard();
+      orderOrBlockChoiceBox.setValue("");
+      feedbackInOrderOrBlock.setText("Block completed!");
+      writeInfo();
+      //updateCards();
+      }catch(Exception e){
+        e.printStackTrace();
+        feedbackInOrderOrBlock.setText(e.getMessage());
+        feedbackInOrderOrBlock.setFill(Color.RED);
+      }
+
+    }
+
+    else if(orderOrBlockTitle.getText().equals("Unblock Card")){
+      //do unblock stuff 
+        
+      try{
+      BankCard bankCard = profile.getBankCard(accNr);
+      bankCard.unblockCard();
+      orderOrBlockChoiceBox.setValue("");
+      feedbackInOrderOrBlock.setText("Unblock completed!");
+      writeInfo();
+      }catch(Exception e){
+        feedbackInOrderOrBlock.setText(e.getMessage());
+        feedbackInOrderOrBlock.setFill(Color.RED);
+      }
+
+    }
+  }
+
   /**
    * Initializes fields based on current page
    * 
    */
-
   public void initialize() {
     try {
       profilesAccess = new RemoteProfilesAccess(new URI(endpointBaseUri));
@@ -270,7 +490,6 @@ public class BankAppController {
       getInputsChoiceBox(payerAccountChoiceBox);
     }
   }
-
   public Profile getProfile() {
     return profile;
   }
@@ -365,54 +584,44 @@ public class BankAppController {
    */
   @FXML
   public void updateTransaction() throws IOException {
+    int size = profilesAccess.getTransactions(profile.getEmail()).size();
+    if (size == 0) {
+      return;
+    }
     Transaction[] original = profilesAccess.getTransactions(profile.getEmail())
-        .toArray(new Transaction[profilesAccess.getTransactions(profile.getEmail()).size()]);
-    Transaction[] reversed = new Transaction[5];
+        .toArray(new Transaction[size]);
+    Transaction[] reversed = new Transaction[10];
     int count0 = 0;
-    for (int index = -1; index > -6; index--) {
-      reversed[count0] = original[original.length + index];
+    while (count0 < reversed.length && count0 < original.length) {
+      reversed[count0] = original[original.length - (count0 + 1)];
       count0++;
     }
 
     int count = 1;
     for (Transaction transaction : reversed) {
-      boolean fromTransfer = false;
-
+      if (transaction == null) {
+        break;
+      }
       AbstractAccount acc1 = profile.getAccounts().stream()
           .filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
           .findFirst()
           .orElse(null);
+      AbstractAccount acc2 = profile.getAccounts().stream()
+          .filter(account -> account.getAccNr().equals(transaction.getTransactionFrom()))
+          .findFirst()
+          .orElse(null);
 
-      if (acc1 != null) {
-        if (profile.ownsAccount(acc1)) {
-          fromTransfer = true;
-          AnchorPane accountAnchorPane2 = new AnchorPane();
-          AnchorPane amountAnchorPane2 = new AnchorPane();
-          Label accountLabel2 = new Label(transaction.getTransactionTo());
-          Label amountLabel2 = new Label("+ " + String.valueOf(Math.abs(transaction.getAmount())) + " (from Transfer)");
-          accountLabel2.setLayoutX(10);
-          accountLabel2.setLayoutY(8);
-          amountLabel2.setLayoutX(20);
-          amountLabel2.setLayoutY(8);
-          accountAnchorPane2.getChildren().add(accountLabel2);
-          amountAnchorPane2.getChildren().add(amountLabel2);
-          transactionTable.add(accountAnchorPane2, 0, count);
-          transactionTable.add(amountAnchorPane2, 1, count);
-
-          count++;
-        }
-      }
       AnchorPane accountAnchorPane = new AnchorPane();
       AnchorPane amountAnchorPane = new AnchorPane();
       Label accountLabel = new Label(transaction.getTransactionFrom());
       Label amountLabel;
       String message;
-      if (fromTransfer) {
+      if (acc1 != null && acc2 != null) {
         message = " (from Transfer)";
       } else {
         message = " (from Payment)";
       }
-      amountLabel = new Label("- " + String.valueOf(Math.abs(transaction.getAmount())) + message);
+      amountLabel = new Label(String.valueOf((transaction.getAmount())) + message);
       accountLabel.setLayoutX(10);
       accountLabel.setLayoutY(8);
       amountLabel.setLayoutX(20);
@@ -598,6 +807,11 @@ public class BankAppController {
     AnchorPaneGoTo(event, "Settings", settingsButton);
   }
 
+  @FXML 
+  public void goToCards(MouseEvent event){
+    AnchorPaneGoTo(event, "Cards", cardsButton);
+  }
+
   /**
    * Handles mouseclick on new bill, creates a new bill and saves the information
    * 
@@ -683,10 +897,9 @@ public class BankAppController {
         payTo.clear();
         payAmount.clear();
         writeInfo();
+        profilesAccess.updateProfilesInfo(acc2.getProfile());
 
-        Transaction transaction = new Transaction(profile.getEmail(), accPersonToPay, acc2.getProfile().getName(),
-            payFrom, amount);
-        profilesAccess.writeTransaction(transaction);
+        profilesAccess.writeTransactions(acc1, acc2);
 
       } catch (Exception e) {
         feedbackInPay.setText(e.getMessage());
@@ -727,9 +940,7 @@ public class BankAppController {
     }
     writeInfo();
 
-    Transaction transaction = new Transaction(profile.getEmail(), toAccountChoiceBox, profile.getName(),
-        fromAccountChoiceBox, amount);
-    profilesAccess.writeTransaction(transaction);
+    profilesAccess.writeTransactions(acc1, acc2);
 
     transferAmount.setText("");
     transferFromChoiceBox.setValue("");
@@ -758,7 +969,7 @@ public class BankAppController {
       String[] validTypes = { "BSU", "Checking account", "Savings account" };
 
       if (type.equals(validTypes[0])) {
-        account = new BSUAccount(name, profile);
+        account = new BsuAccount(name, profile);
       }
 
       else if (type.equals(validTypes[1])) {
@@ -946,3 +1157,4 @@ public class BankAppController {
     }
   }
 }
+

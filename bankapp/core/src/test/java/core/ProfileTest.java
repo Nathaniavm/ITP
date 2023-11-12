@@ -11,8 +11,8 @@ import org.junit.jupiter.api.DisplayName;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
-import core.Accounts.SavingsAccount;
-import core.Accounts.SpendingsAccount;
+import core.accounts.SavingsAccount;
+import core.accounts.SpendingsAccount;
 
 public class ProfileTest {
     private Profile profile1;

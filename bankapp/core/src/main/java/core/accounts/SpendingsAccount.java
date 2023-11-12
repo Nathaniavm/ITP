@@ -1,4 +1,4 @@
-package core.Accounts;
+package core.accounts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,6 +7,8 @@ import core.BankCard;
 import core.Profile;
 import core.Transaction;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Creates a new spendingsaccount to the given profile, with a given name.
@@ -17,12 +19,13 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
 
   /**
    * Creates a new spendingsaccount.
-   * 
+   *
    * @param name    The name of the account
    * @param profile The profile to make an account for
    * 
    */
-  public SpendingsAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
+  public SpendingsAccount(@JsonProperty("name") String name,
+      @JsonProperty("profile") Profile profile) {
     super(name, profile);
   }
 
@@ -32,11 +35,16 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
    */
   public void createBankCard() {
     bankCard = new BankCard(this.getProfile().getName(), this);
+    this.getProfile().addBankCard(bankCard);
+  }
+
+  public boolean hasBankCard(){
+    return bankCard != null;
   }
 
   /**
    * Gets the account's bankcard.
-   * 
+   *
    * @return corresponding bankcard object
    * 
    */
@@ -47,7 +55,7 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
   /**
    * Method for paying to someone. The account paid to must be an account that you
    * don't own yourself.
-   * 
+   *
    * @param account The account paid to
    * @param amount  The amount paid
    * @throws IllegalArgumentException throws if you try to pay yourself, or if the
@@ -64,11 +72,11 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     }
     this.remove(amount);
     account.add(amount);
-    addTransaction(new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
-        this.getAccNr(), -amount));
+    addTransaction(new Transaction(this.getProfile().getEmail(),
+        account.getAccNr(), account.getProfile().getName(), this.getAccNr(), -amount));
     account.addTransaction(
-        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
-            this.getAccNr(), amount));
+        new Transaction(account.getProfile().getEmail(), this.getAccNr(),
+            this.getProfile().getName(), account.getAccNr(), amount));
 
   }
 

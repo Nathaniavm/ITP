@@ -33,7 +33,7 @@ public class Transaction implements Serializable {
    *                        transferer), or the name of the person sending
    *                        money (if transaction describes the receiver)
    * @param transactionFrom The accountnumber to the account that transfers money
-   * @param amount          The amount transfered
+   * @param amount          The amount lost/gained
    * 
    * @throws IllegalArgumentException Throws if you try to make a transaction
    *                                  between an account, to the same account
@@ -44,7 +44,7 @@ public class Transaction implements Serializable {
       @JsonProperty("name") String name,
       @JsonProperty("transactionFrom") String transactionFrom, @JsonProperty("amount") int amount) {
     if (transactionFrom.equals(transactionTo)) {
-      throw new IllegalArgumentException("Can not make a transaction from one account to the same account");
+      throw new IllegalArgumentException("Can't make transaction from account to the same account");
     }
 
     this.email = email;
@@ -56,7 +56,7 @@ public class Transaction implements Serializable {
 
   /**
    * Getter for the email.
-   * 
+   *
    * @return The transferer's email
    */
   public String getEmail() {
@@ -65,7 +65,7 @@ public class Transaction implements Serializable {
 
   /**
    * Getter for transactionTo.
-   * 
+   *
    * @return The accountnumber to the account that recieves money
    */
   public String getTransactionTo() {
@@ -74,7 +74,7 @@ public class Transaction implements Serializable {
 
   /**
    * Getter for name.
-   * 
+   *
    * @return The name of the person owning the account that recieves money, or
    *         sending the money
    */
@@ -84,7 +84,7 @@ public class Transaction implements Serializable {
 
   /**
    * Getter for transactionFrom.
-   * 
+   *
    * @return The accountnumber to the account that transfers money
    */
   public String getTransactionFrom() {
@@ -93,7 +93,7 @@ public class Transaction implements Serializable {
 
   /**
    * Getter for the amount.
-   * 
+   *
    * @return The amount transfered
    */
   public int getAmount() {

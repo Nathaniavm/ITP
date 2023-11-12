@@ -1,9 +1,12 @@
 package ui;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import core.Profile;
+import core.Transaction;
+import core.accounts.AbstractAccount;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,10 +15,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.util.List;
-
-import core.Profile;
-import core.Transaction;
-import core.Accounts.SpendingsAccount;
 
 public class RemoteProfilesAccess {
   private final URI endpointBaseUri;
@@ -103,7 +102,6 @@ public class RemoteProfilesAccess {
     return transactions;
   }
 
-  
   public boolean writeTransaction(Transaction transaction) {
     try {
       String json = objectMapper.writeValueAsString(transaction);
@@ -117,7 +115,9 @@ public class RemoteProfilesAccess {
       throw new RuntimeException(e);
     }
   }
-  public static void main(String[] args) throws URISyntaxException {
-    RemoteProfilesAccess remote = new RemoteProfilesAccess(new URI("localhost:8080/profiles/"));
+
+  public void writeTransactions(AbstractAccount acc1, AbstractAccount acc2) {
+    writeTransaction(acc1.getTransaction().get(acc1.getTransaction().size() - 1));
+    writeTransaction(acc2.getTransaction().get(acc2.getTransaction().size() - 1));
   }
 }

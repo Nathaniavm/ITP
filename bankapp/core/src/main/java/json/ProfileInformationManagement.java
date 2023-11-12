@@ -24,7 +24,7 @@ public class ProfileInformationManagement {
 
   /**
    * Writes the new information of a profile to a file.
-   * 
+   *
    * @param profile  The profile to be written to the file
    * @param filename The name of the file where the profile information will be
    *                 stored
@@ -62,7 +62,7 @@ public class ProfileInformationManagement {
 
   /**
    * Reads and returns a list of profiles from a file.
-   * 
+   *
    * @param filename The name of the file containing profiles informations that
    *                 one wants to read from
    * 
@@ -90,7 +90,7 @@ public class ProfileInformationManagement {
 
   /**
    * Deletes a certain profile from the JSON-file.
-   * 
+   *
    * @param filename The name of the file where the profile information will be
    *                 stored
    * @param profile  The profile to be deleted
@@ -125,7 +125,7 @@ public class ProfileInformationManagement {
 
   /**
    * Clears the JSON-file.
-   * 
+   *
    * @param filename The name of the file to be cleared
    * 
    * @throws StreamReadException If an error occurs while writing to the file
@@ -135,8 +135,9 @@ public class ProfileInformationManagement {
    *                             handling
    */
 
-  public static void clearFile(String filename) throws StreamWriteException, DatabindException, IOException {
-    byte bytes[] = "".getBytes(StandardCharsets.UTF_8);
+  public static void clearFile(String filename)
+      throws StreamWriteException, DatabindException, IOException {
+    byte[] bytes = "".getBytes(StandardCharsets.UTF_8);
     File file = new File(filename);
 
     file.setWritable(true);

@@ -1,4 +1,4 @@
-package core.Accounts;
+package core.accounts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,9 +19,10 @@ import java.util.Random;
  * every account.
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "accountType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,
+    property = "accountType")
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = BSUAccount.class, name = "BSUAccount"),
+    @JsonSubTypes.Type(value = BsuAccount.class, name = "BSUAccount"),
     @JsonSubTypes.Type(value = SavingsAccount.class, name = "SavingsAccount"),
     @JsonSubTypes.Type(value = SpendingsAccount.class, name = "SpendingsAccount")
 })
@@ -37,12 +38,13 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Create a new abstract account.
-   * 
+   *
    * @param name    The name of the account
    * @param profile The profile owning the account
    * 
    */
-  public AbstractAccount(@JsonProperty("name") String name, @JsonProperty("profile") Profile profile) {
+  public AbstractAccount(@JsonProperty("name") String name,
+      @JsonProperty("profile") Profile profile) {
     balance = new Balance(0);
     this.profile = profile;
     this.name = name;
@@ -55,7 +57,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Gets the name of the account.
-   * 
+   *
    * @return name of the account
    * 
    */
@@ -65,7 +67,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Increase balance by given amount.
-   * 
+   *
    * @param amount
    * 
    */
@@ -75,7 +77,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Gets the balance of an account.
-   * 
+   *
    * @return Balance of the account
    * 
    */
@@ -85,7 +87,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Reduce balance by given amount.
-   * 
+   *
    * @param amount The amount to remove
    * 
    */
@@ -109,7 +111,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Gets the account's accountnumber.
-   * 
+   *
    * @return The account's accountnumber
    * 
    */
@@ -119,7 +121,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Method for renaming an account.
-   * 
+   *
    * @param name To change the account name to
    * 
    */
@@ -129,7 +131,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Gets the profile corresponding to this account.
-   * 
+   *
    * @return Corresponding profile object
    * 
    */
@@ -157,7 +159,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Add a transaction to the account's transaction-list.
-   * 
+   *
    * @param transaction The transaction to be added
    * 
    */
@@ -172,8 +174,8 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Gets the full list of transactions done by this account.
-   * 
-  * @return A list of transactions
+   *
+   * @return A list of transactions
    * 
    */
   public List<Transaction> getTransaction() {
@@ -182,7 +184,7 @@ public abstract class AbstractAccount implements Serializable {
 
   /**
    * Transfer money from given account to this account.
-   * 
+   *
    * @param account The account we are transferring from
    * @param amount  Amount to transfer
    * 
@@ -194,7 +196,7 @@ public abstract class AbstractAccount implements Serializable {
     if (!(account.getProfile().equals(this.getProfile()))) {
       throw new IllegalArgumentException("Can not transfer between account you don't own");
     }
-    if (account instanceof BSUAccount) {
+    if (account instanceof BsuAccount) {
       throw new IllegalArgumentException("You can't take money out of a BSU account");
     }
     if (account.equals(this)) {
@@ -205,11 +207,11 @@ public abstract class AbstractAccount implements Serializable {
     }
     account.remove(amount);
     this.add(amount);
-    addTransaction(new Transaction(this.getProfile().getEmail(), account.getAccNr(), account.getProfile().getName(),
-        this.getAccNr(), amount));
+    addTransaction(new Transaction(this.getProfile().getEmail(),
+        this.getAccNr(), account.getProfile().getName(), account.getAccNr(), -amount));
     account.addTransaction(
-        new Transaction(account.getProfile().getEmail(), account.getAccNr(), this.getProfile().getName(),
-            this.getAccNr(), -amount));
+        new Transaction(account.getProfile().getEmail(), account.getAccNr(),
+            this.getProfile().getName(), this.getAccNr(), amount));
   }
 
 }

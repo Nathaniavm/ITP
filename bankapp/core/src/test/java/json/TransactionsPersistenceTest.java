@@ -17,7 +17,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import core.Profile;
 import core.Transaction;
-import core.Accounts.SpendingsAccount;
+import core.accounts.SpendingsAccount;
 
 public class TransactionsPersistenceTest {
 

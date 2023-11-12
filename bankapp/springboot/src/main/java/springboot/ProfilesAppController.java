@@ -42,17 +42,17 @@ public class ProfilesAppController {
   }
 
   @GetMapping("/{email}/transactions")
-  public List<Transaction> getMethodName(@PathVariable String email) throws IOException {
+  public List<Transaction> getProfileTransactions(@PathVariable String email) throws IOException {
     return profilesService.getTransactions(profilesService.getProfile(email));
   }
 
   @PostMapping("transaction")
-  public void postMethodName(@RequestBody Transaction transaction) {
+  public void writeTransaction(@RequestBody Transaction transaction) {
     profilesService.writeTransaction(transaction);
   }
 
   @DeleteMapping("/{email}")
-  public void deleteProfile(@PathVariable String email){
+  public void deleteProfile(@PathVariable String email) {
     profilesService.deleteProfile(profilesService.getProfile(email));
   }
 }
