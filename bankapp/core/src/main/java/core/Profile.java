@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class that makes a profile.
@@ -22,8 +23,6 @@ public class Profile implements Serializable {
   private String tlf;
   private String password;
   private List<AbstractAccount> accounts = new ArrayList<>();
-  private List<BankCard> bankCards = new ArrayList<>();
-  private List<Bill> bills = new ArrayList<>();
   private ArrayList<String> landcodes = new ArrayList<>(Arrays.asList(
       "ad", "ae", "af", "ag", "ai", "al", "am", "ao",
       "aq", "ar", "as", "at", "au", "aw", "ax", "az",
@@ -248,36 +247,6 @@ public class Profile implements Serializable {
   }
 
   /**
-   * Add a specific bill to this profiles list of bills.
-   *
-   * @param bill Bill to be paid
-   * 
-   */
-  public void addBill(Bill bill) {
-    if (bills.contains(bill)) {
-      throw new IllegalArgumentException("Bill already exists");
-    }
-    if (bill.getProfile() != this) {
-      throw new IllegalArgumentException("Bill does not belong to this profile");
-    }
-    bills.add(bill);
-  }
-
-  /**
-   * Remove given bill from list if it has been paid.
-   *
-   * @param bill Bill to be removed
-   * 
-   */
-  public void removeBill(Bill bill) {
-    if (bill.isPaid() && bills.contains(bill)) {
-      bills.remove(bill);
-    } else {
-      throw new IllegalArgumentException("cannot remove bill");
-    }
-  }
-
-  /**
    * Get the total balance among all accounts owned by this profile.
    *
    * @return The total balance among all accounts
@@ -289,24 +258,6 @@ public class Profile implements Serializable {
     return accounts.stream().mapToInt(account -> account.getBalance()).sum();
   }
 
-  /**
-   * Show preview of total balance after paid bills.
-   * 
-   */
-  public int previewBalance() {
-    int balance = 0;
-    int billAmount = 0;
-    for (Bill bill : bills) {
-      billAmount += bill.getAmount();
-    }
-    for (AbstractAccount account : accounts) {
-      if (account.showInPreview()) {
-        balance += account.getBalance();
-      }
-
-    }
-    return balance - billAmount;
-  }
 
   /**
    * Changes the password if the new password is valid.
@@ -386,16 +337,6 @@ public class Profile implements Serializable {
   }
 
   /**
-   * Returns list of all bills.
-   *
-   * @return List of all bills
-   * 
-   */
-  public List<Bill> getBills() {
-    return new ArrayList<>(bills);
-  }
-
-  /**
    * Checks whether this profile owns this account.
    *
    * @param account The account to check
@@ -413,28 +354,13 @@ public class Profile implements Serializable {
    * @return A list of this profile's bankcards
    * 
    */
+  @JsonIgnore
   public List<BankCard> getBankCards() {
-    return new ArrayList<>(bankCards);
-  }
-
-  /**
-   * Adds a bankcard to this profile's list of bankcards.
-   *
-   * @param bankCard The bankcard to be added
-   * 
-   */
-  public void addBankCard(BankCard bankCard) {
-    bankCards.add(bankCard);
-  }
-
-  /**
-   * Removes a bankcard from this profile's list of bankcards.
-   *
-   * @param bankCard The bankcard to be removed
-   * 
-   */
-  public void removeBankCard(BankCard bankCard) {
-    bankCards.remove(bankCard);
+    return getAccounts().stream()
+        .filter(account -> account instanceof SpendingsAccount)
+        .map(account -> ((SpendingsAccount) account).getBankCard())
+        .filter(card -> card != null)
+        .collect(Collectors.toList());
   }
 
   /**
@@ -517,14 +443,16 @@ public class Profile implements Serializable {
    */
   @JsonIgnore
   public BankCard getBankCard(String spendingsAccountNr) {
+    if (getBankCards().isEmpty()) {
+      throw new NullPointerException();
+    }
     BankCard bankCard = null;
-    System.out.println(getBankCards());
     bankCard = this.getBankCards().stream()
         .filter(bankCard2 -> bankCard2.getAccount().getAccNr().equals(spendingsAccountNr))
         .findFirst()
         .orElse(null);
     if (bankCard == null) {
-      throw new IllegalArgumentException("Bankcard is null");
+      throw new IllegalArgumentException("Account does not have bankcard");
     }
     return bankCard;
   }
@@ -552,4 +480,19 @@ public class Profile implements Serializable {
     return spendingsAccount;
   }
 
+
+  /**
+   * Used in transfer operation to find the
+   * 
+   * @param profile
+   * @param accountNr
+   * @return
+   */
+  public AbstractAccount findAbstractAccountOfAProfile(String accountNr) {
+    AbstractAccount acc1 = this.getAccounts().stream()
+        .filter(account -> account.getAccNr().equals(accountNr))
+        .findFirst()
+        .orElse(null);
+    return acc1;
+  }
 }

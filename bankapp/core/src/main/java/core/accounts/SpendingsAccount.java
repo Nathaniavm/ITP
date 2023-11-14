@@ -33,7 +33,6 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
    */
   public void createBankCard() {
     bankCard = new BankCard(this.getProfile().getName(), this);
-    this.getProfile().addBankCard(bankCard);
   }
 
   public boolean hasBankCard() {

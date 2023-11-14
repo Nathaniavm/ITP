@@ -327,9 +327,6 @@ public class BankAppControllerTest extends ApplicationTest {
         FxAssert.verifyThat("#spendingAccountBalance", hasText("30"));
         clickOn("#savingsTab");
         FxAssert.verifyThat("#totalBalance", hasText("80"));
-
-        assertTrue(controller.getProfile().getBills().stream().filter(a -> a.getBillName().equals("leie"))
-            .findAny().get().getAmount() == 10);
       }
 
       // @Test

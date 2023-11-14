@@ -21,7 +21,7 @@ import java.util.List;
  * 
  */
 public class ProfileInformationManagement {
-
+  private static final ObjectMapper objectMapper = new ObjectMapper();
   /**
    * Writes the new information of a profile to a file.
    *
@@ -40,7 +40,6 @@ public class ProfileInformationManagement {
     if (!(file.exists())) {
       throw new IOException("File does not exists");
     }
-    ObjectMapper objectMapper = new ObjectMapper();
     List<Profile> profiles;
 
     try {
@@ -56,7 +55,6 @@ public class ProfileInformationManagement {
           .findFirst().orElse(null);
       profiles.set(profiles.indexOf(oldProfile), profile);
     }
-
     objectMapper.writeValue(file, profiles);
   }
 
@@ -81,7 +79,7 @@ public class ProfileInformationManagement {
     if (!(file.exists())) {
       throw new IOException("File does not exists");
     }
-    ObjectMapper objectMapper = new ObjectMapper();
+    
     List<Profile> profiles = objectMapper.readValue(file, new TypeReference<List<Profile>>() {
     });
     System.err.println();
@@ -117,8 +115,6 @@ public class ProfileInformationManagement {
     if (!(file.exists())) {
       throw new IOException("File does not exists");
     }
-
-    ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.writeValue(file, profiles);
 
   }
@@ -147,4 +143,21 @@ public class ProfileInformationManagement {
     outputStream.close();
   }
 
+  public static void main(String[] args) throws StreamWriteException, DatabindException, IOException {
+    String currentDir = System.getProperty("user.dir").substring(0,
+        System.getProperty("user.dir").length() - 11);
+    String profInfo = "C:/Natha Uni/gr2315/bankapp/springboot/src/main/resources/ProfileInformation.json";
+    String transInfo = currentDir
+        + "/springboot/src/main/resources/TransactionsOverview.json";
+
+    Profile profile1 = new Profile("N M", "N@gmail.com", "78901278", "password123");
+    Profile profile2 = new Profile("M R", "M@gmail.com", "78901298", "password123");
+    // SpendingsAccount spend = new SpendingsAccount("spend", profile1);
+    // profile1.addAccount(spend);
+    // spend.add(100);
+    // SpendingsAccount spend2 = new SpendingsAccount("Ye", profile2);
+    // profile2.addAccount(spend2);
+    ProfileInformationManagement.writeInformationToFile(profile1, profInfo);
+    ProfileInformationManagement.writeInformationToFile(profile2, profInfo);
+  }
 }
