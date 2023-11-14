@@ -23,4 +23,9 @@ public class BsuAccount extends AbstractAccount implements Serializable {
     super(name, profile);
   }
 
-} 
+  @Override
+  public String toString() {
+    return "BSU account";
+  }
+
+}

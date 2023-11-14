@@ -165,6 +165,7 @@ public class BankAppControllerTest extends ApplicationTest {
     @DisplayName("Testing if an account is deleted correctly for already exsisting account, and that you get an error if you try to delete an account that doesn't exist")
     public void testDeleteAccount() {
       clickOn("#newAccountButton");
+      clickOn("#selectAccountType");
       clickOn("Savings account");
       clickOn("#giveAccountName").write("Delete TestAccount");
       clickOn("#createAccountButton");
@@ -268,7 +269,7 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#payFromChoiceBox");
       clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
           .findAny().get().getAccNr());
-      clickOn("#payTo").write("1234 82 68764"); // bruker en profile (Taylor Swift profilen) som er lagret i filen
+      clickOn("#payTo").write("1234 53 02035"); // bruker en profile (Taylor Swift profilen) som er lagret i filen
       clickOn("#payButton");
       FxAssert.verifyThat("#pay", NodeMatchers.isVisible());
       assertTrue(controller.getProfile().getAccounts().stream()

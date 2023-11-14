@@ -2,12 +2,11 @@ package core;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
+import core.accounts.BsuAccount;
 import core.accounts.SavingsAccount;
 import core.accounts.SpendingsAccount;
 
@@ -219,10 +218,14 @@ public class ProfileTest {
     @Test
     @DisplayName("Test getting a bankcard")
     public void testGetBankcard() {
+        SpendingsAccount spendingsAccount2 = new SpendingsAccount("Spendings2", profile1);
+        profile1.addAccount(spendingsAccount2);
+
         assertThrows(NullPointerException.class, () -> profile1.getBankCard(acc1.getAccNr()));
 
         acc1.createBankCard();
         assertEquals(acc1.getBankCard(), profile1.getBankCard(acc1.getAccNr()));
+        assertThrows(IllegalArgumentException.class, () -> profile1.getBankCard(spendingsAccount2.getAccNr()));
     }
 
     @Test
@@ -234,6 +237,30 @@ public class ProfileTest {
         assertThrows(IllegalArgumentException.class, () -> profile1.findSpendingsAccount(acc2.getAccNr()));
 
         assertEquals(acc1, profile1.findSpendingsAccount(acc1.getAccNr()));
+    }
+
+    @Test
+    @DisplayName("Test boolean method for owning an account")
+    public void testOwnsAccount() {
+        BsuAccount bsuAcc = new BsuAccount("SavingsTestCreate", profile2);
+        profile2.addAccount(bsuAcc);
+
+        assertTrue(profile1.ownsAccount(acc1));
+        assertTrue(profile2.ownsAccount(bsuAcc));
+        assertFalse(profile1.ownsAccount(bsuAcc));
+
+    }
+
+    @Test
+    @DisplayName("Test finding an account with acccountnumber")
+    public void testFindAbstractAccountByAccNr() {
+        assertEquals(acc1, profile1.findAbstractAccountByAccNr(acc1.getAccNr()));
+    }
+
+    @Test
+    @DisplayName("Test finding an account with name")
+    public void testFindAbstractAccountByName() {
+        assertEquals(acc1, profile1.findAbstractAccountByName("Spending1"));
     }
 
 }

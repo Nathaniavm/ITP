@@ -92,7 +92,6 @@ public class Profile implements Serializable {
     this.email = email;
     this.tlf = tlf;
     this.password = password;
-    System.out.println("Your profile was made successfully!");
   }
 
   /**
@@ -257,7 +256,6 @@ public class Profile implements Serializable {
   public int getTotalBalance() {
     return accounts.stream().mapToInt(account -> account.getBalance()).sum();
   }
-
 
   /**
    * Changes the password if the new password is valid.
@@ -444,7 +442,7 @@ public class Profile implements Serializable {
   @JsonIgnore
   public BankCard getBankCard(String spendingsAccountNr) {
     if (getBankCards().isEmpty()) {
-      throw new NullPointerException();
+      throw new NullPointerException("This profile does not have any bankcards");
     }
     BankCard bankCard = null;
     bankCard = this.getBankCards().stream()
@@ -480,7 +478,6 @@ public class Profile implements Serializable {
     return spendingsAccount;
   }
 
-
   /**
    * Used in transfer operation to find the
    * 
@@ -488,11 +485,25 @@ public class Profile implements Serializable {
    * @param accountNr
    * @return
    */
-  public AbstractAccount findAbstractAccountOfAProfile(String accountNr) {
+  public AbstractAccount findAbstractAccountByAccNr(String accountNr) {
     AbstractAccount acc1 = this.getAccounts().stream()
         .filter(account -> account.getAccNr().equals(accountNr))
         .findFirst()
         .orElse(null);
     return acc1;
   }
+
+  public AbstractAccount findAbstractAccountByName(String name) {
+    AbstractAccount acc1 = this.getAccounts().stream()
+        .filter(account -> account.getName().equals(name))
+        .findFirst()
+        .orElse(null);
+    return acc1;
+  }
+
+  public List<SpendingsAccount> getSpendingsAccounts() {
+    return getAccounts().stream().filter(account -> (account instanceof SpendingsAccount))
+        .map(account -> (SpendingsAccount) account).collect(Collectors.toList());
+  }
+
 }
