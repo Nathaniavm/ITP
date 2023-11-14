@@ -3,13 +3,14 @@ package ui;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 
 import core.BankCard;
-import core.Bill;
+import core.Logics;
 import core.Profile;
 import core.Transaction;
 import core.accounts.AbstractAccount;
@@ -114,7 +115,7 @@ public class BankAppController {
 
   // payments FXML
   @FXML
-  private AnchorPane goToPayButton, goToTransferButton, newBillButton, incomingBills;
+  private AnchorPane goToPayButton, goToTransferButton;
 
   // transfer FXML
 
@@ -147,19 +148,6 @@ public class BankAppController {
   // spending fxml
   @FXML
   private GridPane transactionTable;
-
-  // new bill fxml
-  @FXML
-  private TextField billName, billAmount, sellerAccount;
-
-  @FXML
-  private AnchorPane setNewBillButton;
-
-  @FXML
-  private Text feedbackInNewBill;
-
-  @FXML
-  private ChoiceBox<String> payerAccountChoiceBox;
 
   // newAccount fxml
 
@@ -232,33 +220,33 @@ public class BankAppController {
 
   @FXML
   public void updateCards() {
-    if (profile.getBankCards().size() != 0) {
+    if (!profile.getBankCards().isEmpty()) {
+      System.out.println(profile.getBankCards());
       noCardsLabel.setVisible(false);
       accountsWithBankcardLabel.setVisible(true);
       int count = 0;
-      String cardBlocked = "   (Card is blocked)"; 
+      String cardBlocked = "   (Card is blocked)";
       for (BankCard bankCard : profile.getBankCards()) {
         String message;
-        if(bankCard.isCardBlocked()){
+        if (bankCard.isCardBlocked()) {
           message = cardBlocked;
-        }
-        else{
+        } else {
           message = "";
         }
-        Label label = new Label("AccNr: " + bankCard.getAccount().getAccNr()+ "  CardNr: " + bankCard.getCardNr() + message );
+        Label label = new Label(
+            "AccNr: " + bankCard.getAccount().getAccNr() + "  CardNr: " + bankCard.getCardNr() + message);
         label.setLayoutX(-20);
         label.setStyle("-fx-font-size: 12px; -fx-min-width: 100px; -fx-min-height: 30px;");
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(400.0);
         anchorPane.setPrefHeight(300.0);
         anchorPane.getChildren().add(label);
-        AnchorPane.setTopAnchor(anchorPane, count*(30.0));
+        AnchorPane.setTopAnchor(anchorPane, count * (30.0));
         cardsTable.add(anchorPane, 0, count);
         AnchorPane.setTopAnchor(cardsTable, 100.0);
         count++;
       }
-    }
-    else{
+    } else {
       noCardsLabel.setVisible(true);
       accountsWithBankcardLabel.setVisible(false);
     }
@@ -334,8 +322,7 @@ public class BankAppController {
       orderOrBlockButton.setText("Block");
     }
 
-    if (profile.getBankCards().size() == 0) { // noe galt her
-      System.out.println("HER");
+    if (profile.getBankCards().isEmpty()) {
       feedbackInOrderOrBlock.setText("You have no bankcards \n to block");
       feedbackInOrderOrBlock.setFill(Color.RED);
     }
@@ -418,15 +405,12 @@ public class BankAppController {
       }
 
     } else if (orderOrBlockTitle.getText().equals("Block Card")) {
-      // do block stuff
       try {
         profile.getBankCard(accNr).blockCard();
         orderOrBlockChoiceBox.setValue("");
         feedbackInOrderOrBlock.setText("Block completed!");
         writeInfo();
-        // updateCards();
       } catch (Exception e) {
-        e.printStackTrace();
         feedbackInOrderOrBlock.setText(e.getMessage());
         feedbackInOrderOrBlock.setFill(Color.RED);
       }
@@ -484,7 +468,7 @@ public class BankAppController {
     if (totalBalance != null) {
       totalBalance.setText(String.valueOf(profile.getTotalBalance()));
     }
-    if (spendingAccountBalance != null) {
+    if (spendingAccountBalance != null && !profile.getAccounts().isEmpty()) {
       spendingAccountBalance.setText(String.valueOf(profile.getAccounts().get(0).getBalance()));
     }
     if (selectAccountType != null) {
@@ -505,10 +489,7 @@ public class BankAppController {
       getInputsChoiceBox(payFromChoiceBox);
     }
 
-    if (payerAccountChoiceBox != null) {
-      getInputsChoiceBox(payerAccountChoiceBox);
-    }
-    if(noCardsLabel != null){
+    if (noCardsLabel != null) {
       updateCards();
     }
   }
@@ -577,7 +558,9 @@ public class BankAppController {
     accountsTable.add(balanceLabelAnchorPane, 1, 0);
 
     int count = 1;
-
+    if (profile.getAccounts().isEmpty()) {
+      return;
+    }
     for (AbstractAccount account : profile.getAccounts()) {
       AnchorPane accountAnchorPane = new AnchorPane();
       Label accountName = new Label(account.getName() + "\n" + account.getAccNr());
@@ -611,6 +594,8 @@ public class BankAppController {
     if (size == 0) {
       return;
     }
+
+    // logikk
     Transaction[] original = profilesAccess.getTransactions(profile.getEmail())
         .toArray(new Transaction[size]);
     Transaction[] reversed = new Transaction[10];
@@ -619,20 +604,26 @@ public class BankAppController {
       reversed[count0] = original[original.length - (count0 + 1)];
       count0++;
     }
+    //
 
     int count = 1;
     for (Transaction transaction : reversed) {
       if (transaction == null) {
         break;
       }
+
+      // logikk
       AbstractAccount acc1 = profile.getAccounts().stream()
           .filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
           .findFirst()
           .orElse(null);
+      // profile.findAbstractAccountOfAProfile(transaction.getTransferTo());
       AbstractAccount acc2 = profile.getAccounts().stream()
           .filter(account -> account.getAccNr().equals(transaction.getTransactionFrom()))
           .findFirst()
           .orElse(null);
+      // profile.findAbstractAccountOfAProfile(transaction.getTransferFrom());
+      //
 
       AnchorPane accountAnchorPane = new AnchorPane();
       AnchorPane amountAnchorPane = new AnchorPane();
@@ -651,8 +642,10 @@ public class BankAppController {
       amountLabel.setLayoutY(8);
       accountAnchorPane.getChildren().add(accountLabel);
       amountAnchorPane.getChildren().add(amountLabel);
+      System.out.println("kommer frem til trasactiontable");
       transactionTable.add(accountAnchorPane, 0, count);
       transactionTable.add(amountAnchorPane, 1, count);
+      System.out.println("kom gjennom");
       BorderStroke borderStroke = new BorderStroke(
           Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1));
       Border tableBorder = new Border(borderStroke);
@@ -811,16 +804,6 @@ public class BankAppController {
   }
 
   /**
-   * handles New Bill button in Payment
-   * 
-   * @param event
-   */
-  @FXML
-  public void goToNewBill(MouseEvent event) {
-    AnchorPaneGoTo(event, "NewBill", newBillButton);
-  }
-
-  /**
    * handles Settings button in Profile
    * 
    * @param event
@@ -833,57 +816,6 @@ public class BankAppController {
   @FXML
   public void goToCards(MouseEvent event) {
     AnchorPaneGoTo(event, "Cards", cardsButton);
-  }
-
-  /**
-   * Handles mouseclick on new bill, creates a new bill and saves the information
-   * 
-   * @param event
-   */
-  @FXML
-  public void handleNewBill(MouseEvent event) {
-    String bName = billName.getText();
-    String bAmount = billAmount.getText();
-    String sAccount = sellerAccount.getText();
-    String pAccount2 = payerAccountChoiceBox.getValue();
-
-    SpendingsAccount sAcc = null;
-    SpendingsAccount pAcc = null;
-    Profile seller = null;
-
-    if (bName.isBlank() || bAmount.isBlank() || sAccount.isBlank() || pAccount2.isBlank()) {
-      feedbackInNewBill.setText("Please fill in all the fields");
-      feedbackInNewBill.setFill(Color.RED);
-    }
-
-    sAcc = (SpendingsAccount) profilesAccess.getProfiles()
-        .stream()
-        .flatMap(profile -> profile.getAccounts().stream())
-        .filter(account -> account.getAccNr().equals(sAccount))
-        .findFirst().orElse(null);
-
-    pAcc = (SpendingsAccount) profilesAccess.getProfiles()
-        .stream()
-        .flatMap(profile -> profile.getAccounts().stream())
-        .filter(account -> account.getAccNr().equals(pAccount2))
-        .findFirst().orElse(null);
-
-    for (Profile profile2 : profilesAccess.getProfiles()) {
-      if (profile2.ownsAccount(sAcc))
-        seller = profile2;
-    }
-    try {
-      Bill bill = new Bill(Integer.parseInt(bAmount), bName, seller.getName(), sAcc, pAcc, profile);
-      profile.addBill(bill);
-      writeInfo();
-      feedbackInNewBill.setText("New Bill Created!");
-      billName.setText("");
-      billAmount.setText("");
-      sellerAccount.setText("");
-    } catch (Exception e) {
-      feedbackInNewBill.setText(e.getMessage());
-    }
-
   }
 
   /**
@@ -907,7 +839,7 @@ public class BankAppController {
         acc1 = (SpendingsAccount) profile.getAccounts().stream().filter(account -> account.getAccNr().equals(payFrom))
             .filter(account -> account instanceof SpendingsAccount).findFirst()
             .orElse(null);
-
+        // acc1 = profile.findSpendingsAccount(payFrom);
         acc2 = (SpendingsAccount) profilesAccess.getProfiles()
             .stream()
             .flatMap(profile -> profile.getAccounts().stream())
@@ -925,7 +857,7 @@ public class BankAppController {
         profilesAccess.writeTransactions(acc1, acc2);
 
       } catch (Exception e) {
-        feedbackInPay.setText(e.getMessage());
+        feedbackInPay.setText("Something went wrong");
         feedbackInPay.setFill(Color.RED);
       }
     }
@@ -954,21 +886,23 @@ public class BankAppController {
     try {
       acc1 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(fromAccountChoiceBox)) // fromAccount
           .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 1"));
+
+      // acc1 = profile.findAbstractAccountOfAProfile(fromAccountChoiceBox);
       acc2 = profile.getAccounts().stream().filter(account -> account.getAccNr().equals(toAccountChoiceBox)) // toAccount
           .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find account 2"));
       acc2.transferFrom(acc1, amount);
+      profilesAccess.writeTransactions(acc1, acc2);
+      writeInfo();
+
+      transferAmount.setText("");
+      transferFromChoiceBox.setValue("");
+      transferToChoiceBox.setValue("");
+      feedbackInTransfer.setFill(Color.BLACK);
+      feedbackInTransfer.setText("Transfer completed!");
     } catch (IllegalArgumentException e) {
-      feedbackInTransfer.setText(e.getMessage());
+      feedbackInTransfer.setText("Something went wrong");
       feedbackInTransfer.setFill(Color.RED);
     }
-    writeInfo();
-
-    profilesAccess.writeTransactions(acc1, acc2);
-
-    transferAmount.setText("");
-    transferFromChoiceBox.setValue("");
-    transferToChoiceBox.setValue("");
-    feedbackInTransfer.setText("Transfer completed!");
   }
 
   /**
@@ -1065,7 +999,10 @@ public class BankAppController {
    * 
    */
   private void writeInfo() {
-    profilesAccess.updateProfilesInfo(profile);
+    if (profilesAccess.updateProfilesInfo(profile)) {
+      System.out.println(987);
+    }
+
   }
 
   /**

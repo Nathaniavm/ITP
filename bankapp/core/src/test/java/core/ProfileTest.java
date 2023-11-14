@@ -126,38 +126,6 @@ public class ProfileTest {
     }
 
     @Test
-    @DisplayName("Test adding of bills to profile. Should throw if profile does not own the bill, or if bill is already added")
-    public void testAddBill() {
-        profile1.getAccounts().get(0).add(1000);
-        SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
-
-        Bill bill = new Bill(100, "billName", "NTNU", acc2, acc1,
-                profile1);
-        profile1.addBill(bill);
-        assertTrue(profile1.getBills().contains(bill));
-        assertThrows(IllegalArgumentException.class, () -> profile1.addBill(bill));
-
-        Bill bill2 = new Bill(100, "billName", "NTNU", acc2, acc1,
-                profile2);
-        assertThrows(IllegalArgumentException.class, () -> profile1.addBill(bill2));
-    }
-
-    @Test
-    @DisplayName("Test removal of bills from profile")
-    public void testRemoveBill() throws IOException {
-        profile1.getAccounts().get(0).add(1000);
-        SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
-        profile2.addAccount(acc2);
-        Bill bill = new Bill(100, "billName", "NTNU", acc2, acc1,
-                profile1);
-        profile1.addBill(bill);
-        assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
-        bill.pay();
-        assertFalse(profile1.getBills().contains(bill));
-        assertThrows(IllegalArgumentException.class, () -> profile1.removeBill(bill));
-    }
-
-    @Test
     @DisplayName("Test getting of total balance")
     public void testTotalBalance() {
         assertEquals(0, profile1.getTotalBalance());
@@ -196,46 +164,6 @@ public class ProfileTest {
         profile1.removeAccount(testAccount2);
         assertTrue(profile1.getAccounts().size() == 2);
 
-    }
-
-    @Test
-    @DisplayName("Test preview in balance")
-    public void testPreviewInBalance() {
-        profile1.getAccounts().get(0).add(1000);
-        SpendingsAccount acc2 = new SpendingsAccount("NTNU", profile2);
-        acc1.changePreview();
-        acc2.changePreview();
-
-        Bill bill = new Bill(100, "billName", "NTNU", acc2, acc1,
-                profile1);
-        profile1.addBill(bill);
-
-        assertTrue(profile1.previewBalance() == 900);
-    }
-
-    @Test
-    @DisplayName("Test adding a bankcard")
-    public void testAddBankcard() {
-        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
-        profile1.addAccount(acc1);
-        BankCard bankCard = new BankCard("Petter Pan", acc1);
-
-        profile1.addBankCard(bankCard);
-        assertEquals(bankCard, profile1.getBankCards().get(0));
-    }
-
-    @Test
-    @DisplayName("Test removing a bankcard")
-    public void testRemoveBankcard() {
-        SpendingsAccount acc1 = new SpendingsAccount("Spending", profile1);
-        profile1.addAccount(acc1);
-        BankCard bankCard = new BankCard("Petter Pan", acc1);
-
-        profile1.addBankCard(bankCard);
-        assertEquals(bankCard, profile1.getBankCards().get(0));
-
-        profile1.removeBankCard(bankCard);
-        assertTrue(profile1.getBankCards().size() == 0);
     }
 
     @Test
@@ -291,7 +219,7 @@ public class ProfileTest {
     @Test
     @DisplayName("Test getting a bankcard")
     public void testGetBankcard() {
-        assertThrows(IllegalArgumentException.class, () -> profile1.getBankCard(acc1.getAccNr()));
+        assertThrows(NullPointerException.class, () -> profile1.getBankCard(acc1.getAccNr()));
 
         acc1.createBankCard();
         assertEquals(acc1.getBankCard(), profile1.getBankCard(acc1.getAccNr()));

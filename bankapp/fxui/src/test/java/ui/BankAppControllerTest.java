@@ -3,9 +3,7 @@ package ui;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
-
 import java.io.IOException;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,15 +12,11 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
-
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import org.junit.jupiter.api.TestInstance;
 
@@ -61,60 +55,6 @@ public class BankAppControllerTest extends ApplicationTest {
     stage.setScene(new Scene(root));
     stage.show();
   }
-
-  // private boolean setupRun = false;
-
-  // @BeforeEach
-  // void setup() {
-  // if (!setupRun) {
-
-  // clickOn("#newAccountButton");
-  // // Assuming #selectAccountType is a ChoiceBox
-  // ChoiceBox<String> choiceBox = lookup("#selectAccountType").query();
-
-  // // Interact with the ChoiceBox to open the dropdown
-  // clickOn(choiceBox);
-
-  // // Select the desired item (e.g., "Checking account")
-  // clickOn("Checking account");
-  // clickOn("#giveAccountName").write("BlockCard TestAccount");
-  // clickOn("#createAccountButton");
-
-  // // Assuming #selectAccountType is a ChoiceBox
-  // ChoiceBox<String> choiceBox1 = lookup("#selectAccountType").query();
-
-  // // Interact with the ChoiceBox to open the dropdown
-  // clickOn(choiceBox1);
-
-  // // Select the desired item (e.g., "Checking account")
-  // clickOn("Checking account");
-  // clickOn("#giveAccountName").write("Transfer TestSpendingAccount");
-  // clickOn("#createAccountButton");
-
-  // clickOn("#selectAccountType");
-  // clickOn("Savings account");
-  // clickOn("#giveAccountName").write("Transfer TestSavingsAccount");
-  // clickOn("#createAccountButton");
-
-  // clickOn("#giveAccountName").write("Delete TestAccount");
-  // clickOn("#createAccountButton");
-
-  // clickOn("#selectAccountType");
-  // clickOn("BSU");
-  // clickOn("#giveAccountName").write("Transfer TestBSUAccount");
-  // clickOn("#createAccountButton");
-
-  // clickOn("#profileTab");
-  // clickOn("#cardsButton");
-  // clickOn("#orderCardButton");
-  // clickOn("#orderOrBlockChoiceBox");
-  // clickOn(controller.getProfile().getAccounts().stream().filter(a ->
-  // a.getName().equals("BlockCard TestAccount"))
-  // .findAny().get().getAccNr());
-  // clickOn("#orderOrBlockButton");
-  // setupRun = true;
-  // }
-  // }
 
   @Nested
   public class testMainPages {
@@ -174,7 +114,6 @@ public class BankAppControllerTest extends ApplicationTest {
     public void testMakeAccount() {
       clickOn("#newAccountButton");
       FxAssert.verifyThat("#newAccount", NodeMatchers.isVisible());
-      // Assuming #selectAccountType is a ChoiceBox
       ChoiceBox<String> choiceBox = lookup("#selectAccountType").query();
 
       // Interact with the ChoiceBox to open the dropdown
@@ -236,24 +175,14 @@ public class BankAppControllerTest extends ApplicationTest {
     @DisplayName("Testing if the transfers transfers money correctly between different accounts")
     public void testTransferMoney() {
       clickOn("#newAccountButton");
-      // Assuming #selectAccountType is a ChoiceBox
       ChoiceBox<String> choiceBox = lookup("#selectAccountType").query();
-
-      // Interact with the ChoiceBox to open the dropdown
       clickOn(choiceBox);
-
-      // Select the desired item (e.g., "Checking account")
       clickOn("Checking account");
       clickOn("#giveAccountName").write("BlockCard TestAccount");
       clickOn("#createAccountButton");
 
-      // Assuming #selectAccountType is a ChoiceBox
       ChoiceBox<String> choiceBox1 = lookup("#selectAccountType").query();
-
-      // Interact with the ChoiceBox to open the dropdown
       clickOn(choiceBox1);
-
-      // Select the desired item (e.g., "Checking account")
       clickOn("Checking account");
       clickOn("#giveAccountName").write("Transfer TestSpendingAccount");
       clickOn("#createAccountButton");
@@ -331,7 +260,7 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#payFromChoiceBox");
       clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
           .findAny().get().getAccNr());
-      clickOn("#payTo").write("1234 77 99570"); // bruker en profile som allerede er lagret i filen
+      clickOn("#payTo").write("1234 26 59693"); // bruker en profile som allerede er lagret i filen
       clickOn("#payButton");
       FxAssert.verifyThat("#pay", NodeMatchers.isVisible());
       assertTrue(controller.getProfile().getAccounts().stream()
