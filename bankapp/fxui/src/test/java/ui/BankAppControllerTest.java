@@ -57,17 +57,31 @@ public class BankAppControllerTest extends ApplicationTest {
   }
 
   @Nested
+  @DisplayName("Testing if the main pages of the app works like it is supposed to")
   public class testMainPages {
     @BeforeEach
-    @DisplayName("Logging in to the Ada Lovelace profile")
-    private void loginSetUp() {
+    @DisplayName("Making the Ada Lovelace profile that is tested on")
+    private void signupSetUp() {
       makeTestProfile();
     }
 
     @AfterEach
-    @DisplayName("Deletes the profile one is testing with")
+    @DisplayName("Deletes the Ada Lovelace profile that was used to testing")
     private void deleteSetUp() {
       deleteTestProfile();
+    }
+
+    @Test
+    @DisplayName("Testing if the login work like it is supposed to")
+    public void testLoginAndLogout() {
+      clickOn("#profileTab");
+      clickOn("#logOutButton");
+      FxAssert.verifyThat("#login", NodeMatchers.isVisible());
+
+      clickOn("#emailInput").write("adalovelace@gmail.no");
+      clickOn("#passwordInput").write("koding1234");
+      clickOn("#loginButton");
+      FxAssert.verifyThat("#overview", NodeMatchers.isVisible());
     }
 
     @Test
@@ -163,12 +177,6 @@ public class BankAppControllerTest extends ApplicationTest {
       assertFalse(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Delete TestAccount"))
           .findAny().isPresent());
       FxAssert.verifyThat("#overview", NodeMatchers.isVisible());
-
-      // clickOn("#deleteAccountButton");
-      // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
-      // clickOn("#deleteAccountName").write("Delete TestAccount");
-      // clickOn("#deleteAccountNow");
-      // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
     }
 
     @Test
@@ -260,7 +268,7 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#payFromChoiceBox");
       clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
           .findAny().get().getAccNr());
-      clickOn("#payTo").write("1234 26 59693"); // bruker en profile som allerede er lagret i filen
+      clickOn("#payTo").write("1234 82 68764"); // bruker en profile (Taylor Swift profilen) som er lagret i filen
       clickOn("#payButton");
       FxAssert.verifyThat("#pay", NodeMatchers.isVisible());
       assertTrue(controller.getProfile().getAccounts().stream()
@@ -270,16 +278,6 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#savingsTab");
       FxAssert.verifyThat("#totalBalance", hasText("80"));
     }
-
-    // @Nested
-    // @DisplayName("Test the different card functions")
-    // public class testCards {
-    // @BeforeEach
-    // @DisplayName("Loads the page where one can make and blaock cards")
-    // public void cardSetUp() {
-    // clickOn("#profileTab");
-    // clickOn("#cardsButton");
-    // }
 
     // @Test
     // @DisplayName("Testing if a card can be made")
@@ -336,8 +334,6 @@ public class BankAppControllerTest extends ApplicationTest {
     // .findAny().isEmpty());
     // }
 
-    // }
-
     @Test
     @DisplayName("Testing if the profile updates accordingly to valid and unvalid inputs")
     public void testProfileChange() {
@@ -367,6 +363,20 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#confirmChangePassword").write("koding1234");
       clickOn("#updateSettings");
     }
+  }
+
+  @Test
+  @DisplayName("Testing if a profile can be deleted")
+  public void testDeleteProfile() {
+    clickOn("#signUpButton");
+    clickOn("#fullName").write("Mikke Mus");
+    clickOn("#email").write("mikke@gmail.no");
+    clickOn("#phoneNr").write("92287765");
+    clickOn("#password").write("disney1234");
+    clickOn("#passwordConfirm").write("disney1234");
+    clickOn("#registerButton");
+    deleteTestProfile();
+    FxAssert.verifyThat("#login", NodeMatchers.isVisible());
   }
 
   @Test
