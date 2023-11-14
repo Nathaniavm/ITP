@@ -26,7 +26,6 @@ public class ProfileInformationManagementTest {
     private SpendingsAccount acc1;
     private SpendingsAccount acc2;
 
-
     private static final String currentDir = System.getProperty("user.dir");
     private static final String file = currentDir + "/src/test/java/json/ProfileInformationTest.json";
     private static final String fakeFile = "fakeFile.json";
@@ -51,6 +50,7 @@ public class ProfileInformationManagementTest {
     public void testFakeFile() {
         assertThrows(IOException.class, () -> ProfileInformationManagement.writeInformationToFile(profile1, fakeFile));
         assertThrows(IOException.class, () -> ProfileInformationManagement.readFromFile(fakeFile));
+        assertThrows(IOException.class, () -> ProfileInformationManagement.deleteProfile(fakeFile, profile1));
 
     }
 
@@ -129,7 +129,6 @@ public class ProfileInformationManagementTest {
         ProfileInformationManagement.deleteProfile(file, profile1);
         assertTrue(ProfileInformationManagement.readFromFile(file).size() == 0);
 
-        assertThrows(IOException.class, () -> ProfileInformationManagement.deleteProfile(fakeFile, profile1));
     }
 
 }

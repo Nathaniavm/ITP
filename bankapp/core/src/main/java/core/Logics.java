@@ -1,13 +1,9 @@
 package core;
 
-import java.util.ArrayList;
+import core.accounts.SpendingsAccount;
 import java.util.List;
 
-import core.accounts.AbstractAccount;
-import core.accounts.SpendingsAccount;
-
 public class Logics {
-  // private static RemoteProfilesAccess profilesAccess;
   private static final String endpointBaseUri = "http://localhost:8080/profiles/";
 
   public static Transaction[] getReveredTransactionsArray(List<Transaction> transactions) {
@@ -46,6 +42,4 @@ public class Logics {
     }
   }
 
-  public static void main(String[] args) {
-  }
 }
