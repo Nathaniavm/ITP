@@ -30,7 +30,7 @@ public class TransactionTest {
     account1.add(500);
     account2.add(1000);
     transaction1 = new Transaction(profile1.getEmail(), account2.getAccNr(), account2.getProfile().getName(),
-        account1.getAccNr(), 100);
+        account1.getAccNr(), 100,"(From transfer)");
 
   }
 
@@ -39,11 +39,11 @@ public class TransactionTest {
   public void testConstructor() {
     Transaction transactionConstructed = new Transaction(profile2.getEmail(), account1.getAccNr(),
         account1.getProfile().getName(),
-        account2.getAccNr(), 100);
+        account2.getAccNr(), 100,"(From transfer)");
     assertEquals(profile2.getEmail(), transactionConstructed.getEmail());
 
     assertThrows(IllegalArgumentException.class, () -> new Transaction(profile2.getEmail(), account1.getAccNr(),
-        account1.getProfile().getName(), account1.getAccNr(), 100));
+        account1.getProfile().getName(), account1.getAccNr(), 100,"(From transfer)"));
 
   }
 
@@ -76,5 +76,9 @@ public class TransactionTest {
   public void testGetAmount() {
     assertTrue(100 == transaction1.getAmount());
   }
-
+ @Test
+  @DisplayName("Test getter for message")
+  public void testGetMessage() {
+    assertEquals("(From transfer)", transaction1.getMessage());
+  }
 }

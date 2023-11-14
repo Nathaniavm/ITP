@@ -1,8 +1,6 @@
 package json;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,7 +43,7 @@ public class TransactionsPersistenceTest {
         account1.add(500);
         account2.add(1000);
         transaction1 = new Transaction(profile1.getEmail(), account2.getAccNr(), account2.getProfile().getName(),
-                account1.getAccNr(), 100);
+                account1.getAccNr(), 100,"(From transfer)");
 
     }
 
@@ -81,10 +79,10 @@ public class TransactionsPersistenceTest {
     public void testGetProfilesTransaction() throws IOException {
         Transaction transaction2 = new Transaction(profile2.getEmail(), account1.getAccNr(),
                 account1.getProfile().getName(),
-                account2.getAccNr(), 100);
+                account2.getAccNr(), 100,"(From transfer)");
         Transaction transaction3 = new Transaction(profile1.getEmail(), account2.getAccNr(),
                 account2.getProfile().getName(),
-                account1.getAccNr(), 455);
+                account1.getAccNr(), 455,"(From transfer)");
         TransactionsPersistence.writeTransactions(transaction1, filename);
         TransactionsPersistence.writeTransactions(transaction2, filename);
         TransactionsPersistence.writeTransactions(transaction3, filename);

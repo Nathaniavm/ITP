@@ -142,22 +142,4 @@ public class ProfileInformationManagement {
     outputStream.flush();
     outputStream.close();
   }
-
-  public static void main(String[] args) throws StreamWriteException, DatabindException, IOException {
-    String currentDir = System.getProperty("user.dir").substring(0,
-        System.getProperty("user.dir").length() - 11);
-    String profInfo = "C:/Natha Uni/gr2315/bankapp/springboot/src/main/resources/ProfileInformation.json";
-    String transInfo = currentDir
-        + "/springboot/src/main/resources/TransactionsOverview.json";
-
-    Profile profile1 = new Profile("N M", "N@gmail.com", "78901278", "password123");
-    Profile profile2 = new Profile("M R", "M@gmail.com", "78901298", "password123");
-    // SpendingsAccount spend = new SpendingsAccount("spend", profile1);
-    // profile1.addAccount(spend);
-    // spend.add(100);
-    // SpendingsAccount spend2 = new SpendingsAccount("Ye", profile2);
-    // profile2.addAccount(spend2);
-    ProfileInformationManagement.writeInformationToFile(profile1, profInfo);
-    ProfileInformationManagement.writeInformationToFile(profile2, profInfo);
-  }
 }

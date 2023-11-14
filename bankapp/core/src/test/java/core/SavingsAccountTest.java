@@ -116,11 +116,11 @@ public class SavingsAccountTest {
     savings.add(500);
 
     Transaction transaction = new Transaction("Justin@gmail.com", sAccount.getAccNr(), "Justin Bieber",
-        savingsAccount.getAccNr(), 10);
+        savingsAccount.getAccNr(), 10,"(From transfer)");
     savingsAccount.addTransaction(transaction);
 
     Transaction transaction2 = new Transaction("Hailey@gmail.com", sAccount.getAccNr(), "Justin Bieber",
-        savings.getAccNr(), 10);
+        savings.getAccNr(), 10,"(From transfer)");
 
     assertEquals(savingsAccount.getAccNr(), savingsAccount.getTransaction().get(0).getTransactionFrom());
     assertEquals(sAccount.getAccNr(), savingsAccount.getTransaction().get(0).getTransactionTo());

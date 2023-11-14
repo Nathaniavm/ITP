@@ -70,11 +70,15 @@ public class SpendingsAccount extends AbstractAccount implements Serializable {
     this.remove(amount);
     account.add(amount);
     addTransaction(new Transaction(this.getProfile().getEmail(),
-        account.getAccNr(), account.getProfile().getName(), this.getAccNr(), -amount));
+        account.getAccNr(), account.getProfile().getName(), this.getAccNr(), -amount, "(From payment)"));
     account.addTransaction(
         new Transaction(account.getProfile().getEmail(), this.getAccNr(),
-            this.getProfile().getName(), account.getAccNr(), amount));
+            this.getProfile().getName(), account.getAccNr(), amount, "(From payment)"));
 
   }
 
+  @Override
+  public String toString() {
+    return "Checking account";
+  }
 }
