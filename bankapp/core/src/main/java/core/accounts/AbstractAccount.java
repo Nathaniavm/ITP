@@ -205,11 +205,11 @@ public abstract class AbstractAccount implements Serializable {
     }
     account.remove(amount);
     this.add(amount);
-    addTransaction(new Transaction(this.getProfile().getEmail(),
-        this.getAccNr(), account.getProfile().getName(), account.getAccNr(), -amount));
+    addTransaction(new Transaction(this.getProfile().getEmail(),this.getAccNr(),
+     account.getProfile().getName(), account.getAccNr(), -amount,"(From transfer)"));
     account.addTransaction(
         new Transaction(account.getProfile().getEmail(), account.getAccNr(),
-            this.getProfile().getName(), this.getAccNr(), amount));
+            this.getProfile().getName(), this.getAccNr(), amount,"(From transfer)"));
   }
 
 }

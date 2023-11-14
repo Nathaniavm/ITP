@@ -87,11 +87,11 @@ public class BsuAccountTest {
     spendings.add(500);
 
     Transaction transaction = new Transaction("Justin@gmail.com", bsuAccount.getAccNr(), "Justin Bieber",
-        spendingsAccount.getAccNr(), 10);
+        spendingsAccount.getAccNr(), 10,"(From transfer)");
     spendingsAccount.addTransaction(transaction);
 
     Transaction transaction2 = new Transaction("Hailey@gmail.com", bsuAccount.getAccNr(), "Justin Bieber",
-        spendings.getAccNr(), 10);
+        spendings.getAccNr(), 10,"(From transfer)");
 
     assertEquals(spendingsAccount.getAccNr(), spendingsAccount.getTransaction().get(0).getTransactionFrom());
     assertEquals(bsuAccount.getAccNr(), spendingsAccount.getTransaction().get(0).getTransactionTo());

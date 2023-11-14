@@ -488,11 +488,25 @@ public class Profile implements Serializable {
    * @param accountNr
    * @return
    */
-  public AbstractAccount findAbstractAccountOfAProfile(String accountNr) {
+  public AbstractAccount findAbstractAccountByAccNr(String accountNr) {
     AbstractAccount acc1 = this.getAccounts().stream()
         .filter(account -> account.getAccNr().equals(accountNr))
         .findFirst()
         .orElse(null);
     return acc1;
   }
+
+  public AbstractAccount findAbstractAccountByName(String name) {
+    AbstractAccount acc1 = this.getAccounts().stream()
+        .filter(account -> account.getName().equals(name))
+        .findFirst()
+        .orElse(null);
+    return acc1;
+  }
+
+  public List<SpendingsAccount> getSpendingsAccounts(){
+    return getAccounts().stream().filter(account -> (account instanceof SpendingsAccount)).map(account -> (SpendingsAccount) account).collect(Collectors.toList());
+  }
+
+
 }
