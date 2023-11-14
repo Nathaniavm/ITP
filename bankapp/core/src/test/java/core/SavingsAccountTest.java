@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,7 +63,7 @@ public class SavingsAccountTest {
 
   @Test
   @DisplayName("Tests if the transaction instructions works. Should throw an IllegalArgumentException if user tries to transfer from BSU-Account")
-  public void testTransferFrom() throws IOException {
+  public void testTransferFrom() {
     Profile profile2 = new Profile("Ole Hansen", "Ole@gmail.com", "42375690", "passord123");
     SavingsAccount savings = new SavingsAccount("My Savings", profile2);
     profile2.addAccount(savings);
@@ -116,11 +114,11 @@ public class SavingsAccountTest {
     savings.add(500);
 
     Transaction transaction = new Transaction("Justin@gmail.com", sAccount.getAccNr(), "Justin Bieber",
-        savingsAccount.getAccNr(), 10,"(From transfer)");
+        savingsAccount.getAccNr(), 10, "(From transfer)");
     savingsAccount.addTransaction(transaction);
 
     Transaction transaction2 = new Transaction("Hailey@gmail.com", sAccount.getAccNr(), "Justin Bieber",
-        savings.getAccNr(), 10,"(From transfer)");
+        savings.getAccNr(), 10, "(From transfer)");
 
     assertEquals(savingsAccount.getAccNr(), savingsAccount.getTransaction().get(0).getTransactionFrom());
     assertEquals(sAccount.getAccNr(), savingsAccount.getTransaction().get(0).getTransactionTo());
