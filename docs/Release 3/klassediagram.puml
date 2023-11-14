@@ -15,10 +15,7 @@ class Profile {
     -boolean isNumeric(String test)
     +void addAccount(AbstractAccount account)
     +void removeAccount(AbstractAccount account)
-    +void addBill(Bill bill)
-    +void removeBIll(Bill bill)
     +int getTotalBalance() 
-    +int previevBalance() 
     +void changePassword(String password)
     +void changeTlf(String tlf)
     +String getEmail()
@@ -26,16 +23,16 @@ class Profile {
     +String getTlf()
     +String getPassword()
     +List<AbstractAccount> getAccounts() 
-    +List<Bill> getBills()
     +boolean ownsAccount(AbstractAccount account)
     +List<BankCard> getBankCards()
-    +void addBankCard(BankCard bankCard)
-    +void removeBankCard(BankCard bankCard)
-    +List<String> getListOfSpendingsAccountsAccountNumberThatDontHaveBankcard()
+    +List<String> accountsWithoutBankcards()
     +List<String> getListOfNotBlockedAccNrBankCards()
     +List<String>  getListOfBlockedAccNrBankCards()
     +BankCard getBankCard(String spendingsAccountAsString)
     +SpendingsAccount findSpendingsAccount(String spendingsAccountName)
+    +AbstractAccount findAbstractAccountByAccNr(String accountNr) 
+    +AbstractAccount findAbstractAccountByName(String name)
+    +List<SpendingsAccount> getSpendingsAccounts()
 }
 
 abstract class AbstractAccount {
@@ -49,37 +46,43 @@ abstract class AbstractAccount {
     -Random RANDOM = new Random()
 
     +String getName()
-    void add(int amount)
+    +void add(int amount)
     +int getBalance()
-    void remove(int amount)
-    void setAccNr()
+    +void remove(int amount)
+    +void setAccNr()
     +String getAccNr()
-    void renameAccount(String name)
+    +void renameAccount(String name)
     +Profile getProfile()
-    void changePreview()
-    boolean showInPreview()
-    void addTransaction(Transaction transaction)
+    +void changePreview()
+    +boolean showInPreview()
+    +void addTransaction(Transaction transaction)
     +List<Transaction> getTransaction()
-    void transferFrom(AbstractAccount account, int amount)
+    +void transferFrom(AbstractAccount account, int amount)
 }
 
-class BsuAccount 
-class SavingsAccount
+class BsuAccount {
+    +String toString()
+}
+
+class SavingsAccount {
+    +String toString()
+}
 
 class SpendingsAccount {
     -BankCard bankCard
     
-    void createBankCard()
-    boolean hasBankCard()
+    +void createBankCard()
+    +boolean hasBankCard()
     +BankCard getBankCard()
-    void pay(SpendingsAccount account, int amount)
+    +void pay(SpendingsAccount account, int amount)
+    +String toString()
 }
 
 class Balance {
     -int balance
 
-    void increase(int amount)
-    void decrease(int amount)
+    +void increase(int amount)
+    +void decrease(int amount)
     +int getBalance()
 }
 
@@ -91,33 +94,15 @@ class BankCard {
     -boolean cardBlocked;
     -Random RANDOM = new Random();
 
-    void setCardNr()
+    -void setCardNr()
     +String getCardholder()
     +SpendingsAccount getAccount()
     +String getCardNr()
-    void blockCard()
-    void unblockCard()
-    boolean isCardBlocked()
+    +void blockCard()
+    +void unblockCard()
+    +boolean isCardBlocked()
 }
 
-class Bill {
-    -int amount;
-    -String billName;
-    -String sellerName;
-    -SpendingsAccount sellerAccount;
-    -Profile payer;
-    -SpendingsAccount payerAccount;
-    -boolean paid = false;
-
-    void pay()
-    boolean isPaid()
-    +int getAmount()
-    +String getBillName()
-    +String getSellerName()
-    +AbstractAccount getSellerAccount()
-    +AbstractAccount getPayerAccount()
-    +Profile getProfile()
-}
 
 class Transaction {
     -String email;
@@ -134,6 +119,7 @@ class Transaction {
 }
 
 class ProfileInformationManagement{
+    -{static} final ObjectMapper objectMapper;
     +{static}void writeInformationToFile(Profile profile, String filename)
     +{static}List<Profile> readFromFile(String filename)
     +{static}void deleteProfile(String filename, Profile profile)
@@ -147,6 +133,15 @@ class TransactionsPersistence{
     +{static}void clearFile(String filename)
 }
 
+class Logics {
+    -{static} final String endpointBaseUri = "http://localhost:8080/profiles/";
+
+    +{static} Transaction[] getReveredTransactionsArray(List<Transaction> transactions)
+    +{static} SpendingsAccount findOverallSpendingsAccount(String accountNr, List<Profile> profiles)
+    +{static} Profile checkProfile(Profile profile, String password)
+    +{static} void checkAlreadyRegistered(List<Profile> profiles, String email, String phoneNr)
+}
+
 
 Profile "1" -- "*" AbstractAccount
 AbstractAccount <|-- BsuAccount
@@ -156,8 +151,7 @@ AbstractAccount "1" --> "*" Transaction
 AbstractAccount --> Balance
 SpendingsAccount -- BankCard
 Profile "1" --> "*" BankCard
-Profile "1" -- "*" Bill
-Bill "1" --> "2" SpendingsAccount
+
 
 TransactionsPersistence "1" --> "*" Transaction
 ProfileInformationManagement "1" --> "*" Profile
