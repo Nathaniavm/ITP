@@ -3,8 +3,6 @@ package ui;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -41,7 +39,6 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
 public class BankAppController {
-  // almost all fxmls
   // almost all fxmls
   @FXML
   private Label profileName;
@@ -388,7 +385,6 @@ public class BankAppController {
   public void handleOrderOrBlockStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
     String accNr = orderOrBlockChoiceBox.getValue();
 
-    // createBankCard
     if (orderOrBlockTitle.getText().equals("Order Card")) {
       SpendingsAccount spendingsAccount = null;
       spendingsAccount = profile.findSpendingsAccount(accNr);
@@ -417,7 +413,6 @@ public class BankAppController {
     }
 
     else if (orderOrBlockTitle.getText().equals("Unblock Card")) {
-      // do unblock stuff
 
       try {
         BankCard bankCard = profile.getBankCard(accNr);
@@ -461,7 +456,6 @@ public class BankAppController {
     if (selectAccountType != null) {
       selectAccountType.getItems().addAll("Checking account", "Savings account",
           "BSU");
-      // selectAccountType.setValue("Savings account");
     }
 
     if (transferFromChoiceBox != null) {
@@ -583,18 +577,6 @@ public class BankAppController {
       return;
     }
 
-    // logikk
-    /*
-     * Transaction[] original = profilesAccess.getTransactions(profile.getEmail())
-     * .toArray(new Transaction[size]);
-     * Transaction[] reversed = new Transaction[10];
-     * int count0 = 0;
-     * while (count0 < reversed.length && count0 < original.length) {
-     * reversed[count0] = original[original.length - (count0 + 1)];
-     * count0++;
-     * }
-     */
-
     Transaction[] reversedTransaction = Logics
         .getReveredTransactionsArray(profilesAccess.getTransactions(profile.getEmail()));
 
@@ -603,25 +585,8 @@ public class BankAppController {
       if (transaction == null) {
         break;
       }
-
-      // logikk
-      /*
-       * AbstractAccount acc1 = profile.getAccounts().stream()
-       * .filter(account -> account.getAccNr().equals(transaction.getTransactionTo()))
-       * .findFirst()
-       * .orElse(null);
-       */
       AbstractAccount acc1 = profile.findAbstractAccountByAccNr(transaction.getTransactionTo());
-
-      /*
-       * AbstractAccount acc2 = profile.getAccounts().stream()
-       * .filter(account ->
-       * account.getAccNr().equals(transaction.getTransactionFrom()))
-       * .findFirst()
-       * .orElse(null);
-       */
       AbstractAccount acc2 = profile.findAbstractAccountByAccNr(transaction.getTransactionFrom());
-      //
 
       AnchorPane accountAnchorPane = new AnchorPane();
       AnchorPane amountAnchorPane = new AnchorPane();
@@ -636,10 +601,8 @@ public class BankAppController {
       amountLabel.setLayoutY(8);
       accountAnchorPane.getChildren().add(accountLabel);
       amountAnchorPane.getChildren().add(amountLabel);
-      System.out.println("kommer frem til trasactiontable");
       transactionTable.add(accountAnchorPane, 0, count);
       transactionTable.add(amountAnchorPane, 1, count);
-      System.out.println("kom gjennom");
       BorderStroke borderStroke = new BorderStroke(
           Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1));
       Border tableBorder = new Border(borderStroke);
@@ -827,23 +790,7 @@ public class BankAppController {
       feedbackInPay.setText("Please fill in the fields");
     } else {
       try {
-
-        /*
-         * acc1 = (SpendingsAccount) profile.getAccounts().stream().filter(account ->
-         * account.getAccNr().equals(payFrom))
-         * .filter(account -> account instanceof SpendingsAccount).findFirst()
-         * .orElse(null);
-         */
         acc1 = profile.findSpendingsAccount(payFrom);
-
-        /*
-         * acc2 = (SpendingsAccount) profilesAccess.getProfiles()
-         * .stream()
-         * .flatMap(profile -> profile.getAccounts().stream())
-         * .filter(account -> account.getAccNr().equals(accPersonToPay))
-         * .findFirst().orElse(null);
-         */
-
         acc2 = Logics.findOverallSpendingsAccount(accPersonToPay, profilesAccess.getProfiles());
 
         acc1.pay(acc2, amount);
@@ -885,18 +832,7 @@ public class BankAppController {
     AbstractAccount acc2 = null;
 
     try {
-      // acc1 = profile.getAccounts().stream().filter(account ->
-      // account.getAccNr().equals(fromAccountChoiceBox)) // fromAccount
-      // .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find
-      // account 1"));
-
       acc1 = profile.findAbstractAccountByAccNr(fromAccountChoiceBox);
-
-      // acc2 = profile.getAccounts().stream().filter(account ->
-      // account.getAccNr().equals(toAccountChoiceBox)) // toAccount
-      // .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find
-      // account 2"));
-
       acc2 = profile.findAbstractAccountByAccNr(toAccountChoiceBox);
 
       acc2.transferFrom(acc1, amount);
@@ -989,12 +925,6 @@ public class BankAppController {
   public void handleDeleteAccountStage2(MouseEvent event) {
     String accountToBeDeleted = deleteAccountName.getText();
     AbstractAccount acc = null;
-
-    // acc = profile.getAccounts().stream().filter(account ->
-    // account.getName().equals(accountToBeDeleted))
-    // .findFirst()
-    // .orElse(null);
-
     try {
       acc = profile.findAbstractAccountByName(accountToBeDeleted);
       profile.removeAccount(acc);
