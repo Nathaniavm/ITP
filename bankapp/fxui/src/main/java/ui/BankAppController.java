@@ -18,6 +18,7 @@ import core.accounts.SpendingsAccount;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
@@ -384,7 +385,8 @@ public class BankAppController {
   @FXML
   public void handleOrderOrBlockStage2(MouseEvent event) throws StreamWriteException, DatabindException, IOException {
     String accNr = orderOrBlockChoiceBox.getValue();
-
+    Node sourceNode = (Node) event.getSource();
+    Stage stage = (Stage) sourceNode.getScene().getWindow();
     if (orderOrBlockTitle.getText().equals("Order Card")) {
       SpendingsAccount spendingsAccount = null;
       spendingsAccount = profile.findSpendingsAccount(accNr);
@@ -393,6 +395,7 @@ public class BankAppController {
         spendingsAccount.createBankCard();
         orderOrBlockChoiceBox.setValue("");
         feedbackInOrderOrBlock.setText("Order completed!");
+        stage.close();
         writeInfo();
       } catch (Exception e) {
         feedbackInOrderOrBlock.setText("Something went wrong");
@@ -404,6 +407,7 @@ public class BankAppController {
         profile.getBankCard(accNr).blockCard();
         orderOrBlockChoiceBox.setValue("");
         feedbackInOrderOrBlock.setText("Block completed!");
+        stage.close();
         writeInfo();
       } catch (Exception e) {
         feedbackInOrderOrBlock.setText(e.getMessage());
@@ -419,6 +423,7 @@ public class BankAppController {
         bankCard.unblockCard();
         orderOrBlockChoiceBox.setValue("");
         feedbackInOrderOrBlock.setText("Unblock completed!");
+        stage.close();
         writeInfo();
       } catch (Exception e) {
         feedbackInOrderOrBlock.setText(e.getMessage());
