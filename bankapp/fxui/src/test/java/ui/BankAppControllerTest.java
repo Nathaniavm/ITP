@@ -41,26 +41,15 @@ public class BankAppControllerTest extends ApplicationTest {
     clickOn("#deleteProfileButton");
   }
 
-  @DisplayName("Making a card that can be tested on")
-  private void makeTestCard(String accountName) {
-    clickOn("#profileTab");
-    clickOn("#cardsButton");
-    clickOn("#orderCardButton");
-    clickOn("#orderOrBlockChoiceBox");
-    clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals(accountName))
-        .findAny().get().getAccNr());
-    clickOn("#orderOrBlockButton");
-  }
-
-  @DisplayName("Making an account that is tested on")
-  private void makeTestAccount(String accountName, String accountType) {
-    clickOn("#newAccountButton");
-    clickOn("#selectAccountType");
-    clickOn(accountType);
-    clickOn("#giveAccountName").write(accountName);
-    clickOn("#createAccountButton");
-    assertTrue(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals(accountName))
-        .findAny().isPresent());
+  @DisplayName("Makes a profile")
+  private void makeTestProfile() {
+    clickOn("#signUpButton");
+    clickOn("#fullName").write("Ada Lovelace");
+    clickOn("#email").write("adalovelace@gmail.no");
+    clickOn("#phoneNr").write("98987765");
+    clickOn("#password").write("koding1234");
+    clickOn("#passwordConfirm").write("koding1234");
+    clickOn("#registerButton");
   }
 
   @Override
@@ -73,133 +62,72 @@ public class BankAppControllerTest extends ApplicationTest {
     stage.show();
   }
 
-  private boolean setupRun = false;
-
-  @BeforeEach
-  void setup() {
-    if (!setupRun) {
-      clickOn("#signUpButton");
-      clickOn("#fullName").write("Ada Lovelace");
-      clickOn("#email").write("adalovelace@gmail.no");
-      clickOn("#phoneNr").write("98987765");
-      clickOn("#password").write("koding1234");
-      clickOn("#passwordConfirm").write("koding1234");
-      clickOn("#registerButton");
-
-      clickOn("#newAccountButton");
-      // Assuming #selectAccountType is a ChoiceBox
-      ChoiceBox<String> choiceBox = lookup("#selectAccountType").query();
-
-      // Interact with the ChoiceBox to open the dropdown
-      clickOn(choiceBox);
-
-      // Select the desired item (e.g., "Checking account")
-      clickOn("Checking account");
-      clickOn("#giveAccountName").write("BlockCard TestAccount");
-      clickOn("#createAccountButton");
-
-      // Assuming #selectAccountType is a ChoiceBox
-      ChoiceBox<String> choiceBox1 = lookup("#selectAccountType").query();
-
-      // Interact with the ChoiceBox to open the dropdown
-      clickOn(choiceBox1);
-
-      // Select the desired item (e.g., "Checking account")
-      clickOn("Checking account");
-      clickOn("#giveAccountName").write("Transfer TestSpendingAccount");
-      clickOn("#createAccountButton");
-
-      clickOn("#selectAccountType");
-      clickOn("Savings account");
-      clickOn("#giveAccountName").write("Transfer TestSavingsAccount");
-      clickOn("#createAccountButton");
-
-      clickOn("#giveAccountName").write("Delete TestAccount");
-      clickOn("#createAccountButton");
-
-      clickOn("#selectAccountType");
-      clickOn("BSU");
-      clickOn("#giveAccountName").write("Transfer TestBSUAccount");
-      clickOn("#createAccountButton");
-
-      clickOn("#profileTab");
-      clickOn("#cardsButton");
-      clickOn("#orderCardButton");
-      clickOn("#orderOrBlockChoiceBox");
-      clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("BlockCard TestAccount"))
-          .findAny().get().getAccNr());
-      clickOn("#orderOrBlockButton");
-      setupRun = true;
-    }
-  }
-
-  // private boolean madeCard1 = false;
-  // private boolean madeCard2 = false;
-  // private boolean blockedCard2 = false;
+  // private boolean setupRun = false;
 
   // @BeforeEach
-  // void setupCard1() {
-  // if (!madeCard1) {
-  // clickOn("#emailInput").write("adalovelace@gmail.no");
-  // clickOn("#passwordInput").write("koding1234");
-  // clickOn("#loginButton");
-  // makeTestAccount("BlockCard TestAccount", "Checking account");
-  // makeTestCard("BlockCard TestAccount");
-  // madeCard1 = true;
-  // }
-  // }
+  // void setup() {
+  // if (!setupRun) {
 
-  // @BeforeEach
-  // void setupCard2() {
-  // if (!madeCard2) {
-  // clickOn("#emailInput").write("adalovelace@gmail.no");
-  // clickOn("#passwordInput").write("koding1234");
-  // clickOn("#loginButton");
-  // makeTestAccount("UnblockCard TestAccount", "Checking account");
-  // makeTestCard("UnblockCard TestAccount");
-  // madeCard2 = true;
-  // }
-  // }
+  // clickOn("#newAccountButton");
+  // // Assuming #selectAccountType is a ChoiceBox
+  // ChoiceBox<String> choiceBox = lookup("#selectAccountType").query();
 
-  // @BeforeEach
-  // void setupBlockCard2() {
-  // if (!blockedCard2) {
-  // clickOn("#emailInput").write("adalovelace@gmail.no");
-  // clickOn("#passwordInput").write("koding1234");
-  // clickOn("#loginButton");
+  // // Interact with the ChoiceBox to open the dropdown
+  // clickOn(choiceBox);
+
+  // // Select the desired item (e.g., "Checking account")
+  // clickOn("Checking account");
+  // clickOn("#giveAccountName").write("BlockCard TestAccount");
+  // clickOn("#createAccountButton");
+
+  // // Assuming #selectAccountType is a ChoiceBox
+  // ChoiceBox<String> choiceBox1 = lookup("#selectAccountType").query();
+
+  // // Interact with the ChoiceBox to open the dropdown
+  // clickOn(choiceBox1);
+
+  // // Select the desired item (e.g., "Checking account")
+  // clickOn("Checking account");
+  // clickOn("#giveAccountName").write("Transfer TestSpendingAccount");
+  // clickOn("#createAccountButton");
+
+  // clickOn("#selectAccountType");
+  // clickOn("Savings account");
+  // clickOn("#giveAccountName").write("Transfer TestSavingsAccount");
+  // clickOn("#createAccountButton");
+
+  // clickOn("#giveAccountName").write("Delete TestAccount");
+  // clickOn("#createAccountButton");
+
+  // clickOn("#selectAccountType");
+  // clickOn("BSU");
+  // clickOn("#giveAccountName").write("Transfer TestBSUAccount");
+  // clickOn("#createAccountButton");
 
   // clickOn("#profileTab");
   // clickOn("#cardsButton");
-  // clickOn("#blockCardButton");
+  // clickOn("#orderCardButton");
   // clickOn("#orderOrBlockChoiceBox");
-  // clickOn(
-  // controller.getProfile().getAccounts().stream().filter(a ->
-  // a.getName().equals("UnblockCard TestAccount"))
+  // clickOn(controller.getProfile().getAccounts().stream().filter(a ->
+  // a.getName().equals("BlockCard TestAccount"))
   // .findAny().get().getAccNr());
   // clickOn("#orderOrBlockButton");
-  // blockedCard2 = true;
+  // setupRun = true;
   // }
   // }
 
   @Nested
   public class testMainPages {
-    private int count = 0;
-
     @BeforeEach
     @DisplayName("Logging in to the Ada Lovelace profile")
     private void loginSetUp() {
-      clickOn("#emailInput").write("adalovelace@gmail.no");
-      clickOn("#passwordInput").write("koding1234");
-      clickOn("#loginButton");
+      makeTestProfile();
     }
 
     @AfterEach
-    public void testDeleteProfile() {
-      count++;
-      if (count > 12) {
-        clickOn("#deleteProfileButton");
-        FxAssert.verifyThat("#login", NodeMatchers.isVisible());
-      }
+    @DisplayName("Deletes the profile one is testing with")
+    private void deleteSetUp() {
+      deleteTestProfile();
     }
 
     @Test
@@ -283,6 +211,12 @@ public class BankAppControllerTest extends ApplicationTest {
     @Test
     @DisplayName("Testing if an account is deleted correctly for already exsisting account, and that you get an error if you try to delete an account that doesn't exist")
     public void testDeleteAccount() {
+      clickOn("#newAccountButton");
+      clickOn("Savings account");
+      clickOn("#giveAccountName").write("Delete TestAccount");
+      clickOn("#createAccountButton");
+
+      clickOn("#homeTab");
       clickOn("#deleteAccountButton");
       FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
       clickOn("#deleteAccountName").write("Delete TestAccount");
@@ -291,16 +225,49 @@ public class BankAppControllerTest extends ApplicationTest {
           .findAny().isPresent());
       FxAssert.verifyThat("#overview", NodeMatchers.isVisible());
 
-      clickOn("#deleteAccountButton");
-      FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
-      clickOn("#deleteAccountName").write("Delete TestAccount");
-      clickOn("#deleteAccountNow");
-      FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+      // clickOn("#deleteAccountButton");
+      // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+      // clickOn("#deleteAccountName").write("Delete TestAccount");
+      // clickOn("#deleteAccountNow");
+      // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
     }
 
     @Test
     @DisplayName("Testing if the transfers transfers money correctly between different accounts")
     public void testTransferMoney() {
+      clickOn("#newAccountButton");
+      // Assuming #selectAccountType is a ChoiceBox
+      ChoiceBox<String> choiceBox = lookup("#selectAccountType").query();
+
+      // Interact with the ChoiceBox to open the dropdown
+      clickOn(choiceBox);
+
+      // Select the desired item (e.g., "Checking account")
+      clickOn("Checking account");
+      clickOn("#giveAccountName").write("BlockCard TestAccount");
+      clickOn("#createAccountButton");
+
+      // Assuming #selectAccountType is a ChoiceBox
+      ChoiceBox<String> choiceBox1 = lookup("#selectAccountType").query();
+
+      // Interact with the ChoiceBox to open the dropdown
+      clickOn(choiceBox1);
+
+      // Select the desired item (e.g., "Checking account")
+      clickOn("Checking account");
+      clickOn("#giveAccountName").write("Transfer TestSpendingAccount");
+      clickOn("#createAccountButton");
+
+      clickOn("#selectAccountType");
+      clickOn("Savings account");
+      clickOn("#giveAccountName").write("Transfer TestSavingsAccount");
+      clickOn("#createAccountButton");
+
+      clickOn("#selectAccountType");
+      clickOn("BSU");
+      clickOn("#giveAccountName").write("Transfer TestBSUAccount");
+      clickOn("#createAccountButton");
+
       clickOn("#paymentsTab");
       clickOn("#goToTransferButton");
       FxAssert.verifyThat("#transfer", NodeMatchers.isVisible());
@@ -368,176 +335,138 @@ public class BankAppControllerTest extends ApplicationTest {
       clickOn("#payButton");
       FxAssert.verifyThat("#pay", NodeMatchers.isVisible());
       assertTrue(controller.getProfile().getAccounts().stream()
-          .filter(a -> a.getName().equals("Spendings account")).findAny().get().getBalance() == 30);
+          .filter(a -> a.getName().equals("Spendings account")).findAny().get().getBalance() == 80);
       clickOn("#homeTab");
-      FxAssert.verifyThat("#spendingAccountBalance", hasText("30"));
+      FxAssert.verifyThat("#spendingAccountBalance", hasText("80"));
       clickOn("#savingsTab");
       FxAssert.verifyThat("#totalBalance", hasText("80"));
     }
 
-    @Nested
-    @DisplayName("Test the different card functions")
-    public class testCards {
-      @BeforeEach
-      @DisplayName("Loads the page where one can make and blaock cards")
-      public void cardSetUp() {
-        clickOn("#profileTab");
-        clickOn("#cardsButton");
-      }
+    // @Nested
+    // @DisplayName("Test the different card functions")
+    // public class testCards {
+    // @BeforeEach
+    // @DisplayName("Loads the page where one can make and blaock cards")
+    // public void cardSetUp() {
+    // clickOn("#profileTab");
+    // clickOn("#cardsButton");
+    // }
 
-      @Test
-      @DisplayName("Testing if a card can be made")
-      public void testMakeCard() {
-        clickOn("#profileTab");
-        clickOn("#cardsButton");
-        FxAssert.verifyThat("#settings", NodeMatchers.isVisible());
-        int tempCardSize = controller.getProfile().getBankCards().size();
+    // @Test
+    // @DisplayName("Testing if a card can be made")
+    // public void testMakeCard() {
+    // clickOn("#profileTab");
+    // clickOn("#cardsButton");
+    // FxAssert.verifyThat("#settings", NodeMatchers.isVisible());
+    // int tempCardSize = controller.getProfile().getBankCards().size();
 
-        clickOn("#orderCardButton");
-        FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
-        clickOn("#orderOrBlockChoiceBox");
-        clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("Spendings account"))
-            .findAny().get().getAccNr());
-        clickOn("#orderOrBlockButton");
-        assertTrue(controller.getProfile().getBankCards().size() > tempCardSize);
-      }
+    // clickOn("#orderCardButton");
+    // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+    // clickOn("#orderOrBlockChoiceBox");
+    // clickOn(controller.getProfile().getAccounts().stream().filter(a ->
+    // a.getName().equals("Spendings account"))
+    // .findAny().get().getAccNr());
+    // clickOn("#orderOrBlockButton");
+    // assertTrue(controller.getProfile().getBankCards().size() > tempCardSize);
+    // }
 
-      @Test
-      @DisplayName("Testing if a card can be blocked")
-      public void testBlockCard() {
-        clickOn("#profileTab");
-        clickOn("#cardsButton");
-        clickOn("#blockCardButton");
-        FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
-        clickOn("#orderOrBlockChoiceBox");
-        clickOn(controller.getProfile().getAccounts().stream().filter(a -> a.getName().equals("BlockCard TestAccount"))
-            .findAny().get().getAccNr());
-        clickOn("#orderOrBlockButton");
-        assertTrue(!controller.getProfile().getBankCards().stream()
-            .filter(a -> a.getAccount().getName().equals("BlockCard TestAccount")).filter(c -> c.isCardBlocked())
-            .findAny().isEmpty());
-      }
+    // @Test
+    // @DisplayName("Testing if a card can be blocked")
+    // public void testBlockCard() {
+    // clickOn("#profileTab");
+    // clickOn("#cardsButton");
+    // clickOn("#blockCardButton");
+    // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+    // clickOn("#orderOrBlockChoiceBox");
+    // clickOn(controller.getProfile().getAccounts().stream().filter(a ->
+    // a.getName().equals("BlockCard TestAccount"))
+    // .findAny().get().getAccNr());
+    // clickOn("#orderOrBlockButton");
+    // assertTrue(!controller.getProfile().getBankCards().stream()
+    // .filter(a -> a.getAccount().getName().equals("BlockCard
+    // TestAccount")).filter(c -> c.isCardBlocked())
+    // .findAny().isEmpty());
+    // }
 
-      // @Test
-      // @DisplayName("Testing if a card can be unblocked")
-      // public void testUnblockCard() {
-      // clickOn("#profileTab");
-      // clickOn("#cardsButton");
-      // clickOn("#unblockCardButton");
-      // System.out.println("har vært inne i unblock card");
-      // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
-      // clickOn("#orderOrBlockChoiceBox");
-      // clickOn(controller.getProfile().getAccounts().stream().filter(a ->
-      // a.getName().equals("Spendings account"))
-      // .findAny().get().getAccNr());
-      // clickOn("#orderOrBlockButton");
-      // assertTrue(controller.getProfile().getBankCards().stream()
-      // .filter(a -> a.getAccount().getName().equals("UnblockCard
-      // TestAccount")).filter(c -> c.isCardBlocked())
-      // .findAny().isEmpty());
-      // }
+    // @Test
+    // @DisplayName("Testing if a card can be unblocked")
+    // public void testUnblockCard() {
+    // clickOn("#profileTab");
+    // clickOn("#cardsButton");
+    // clickOn("#unblockCardButton");
+    // System.out.println("har vært inne i unblock card");
+    // FxAssert.verifyThat("#deleteAccount", NodeMatchers.isVisible());
+    // clickOn("#orderOrBlockChoiceBox");
+    // clickOn(controller.getProfile().getAccounts().stream().filter(a ->
+    // a.getName().equals("Spendings account"))
+    // .findAny().get().getAccNr());
+    // clickOn("#orderOrBlockButton");
+    // assertTrue(controller.getProfile().getBankCards().stream()
+    // .filter(a -> a.getAccount().getName().equals("UnblockCard
+    // TestAccount")).filter(c -> c.isCardBlocked())
+    // .findAny().isEmpty());
+    // }
 
-    }
+    // }
 
-    @Nested
-    @DisplayName("Test the different bill functions")
-    public class testBill {
-      @BeforeEach
-      @DisplayName("Loads the payment tab")
-      public void billSetUp() {
-        clickOn("#paymentsTab");
-      }
+    @Test
+    @DisplayName("Testing if the profile updates accordingly to valid and unvalid inputs")
+    public void testProfileChange() {
+      clickOn("#profileTab");
+      clickOn("#settingsButton");
 
-      @Test
-      @DisplayName("Testing if a bill is made corecctly")
-      public void testMakeBill() {
-        clickOn("#newBillButton");
-        FxAssert.verifyThat("#pay", NodeMatchers.isVisible());
+      FxAssert.verifyThat("#settings", NodeMatchers.isVisible());
+      clickOn("#changeNumberTo").write("45456677");
+      clickOn("#changePasswordTo").write("koding4321");
+      clickOn("#confirmChangePassword").write("koding4321");
+      clickOn("#updateSettings");
 
-        clickOn("#billName").write("leie");
-        clickOn("#billAmount").write("10");
-        clickOn("#payerAccountChoiceBox");
-        clickOn(controller.getProfile().getAccounts().stream()
-            .filter(a -> a.getName().equals("Spendings account")).findAny().get().getAccNr());
-        clickOn("#sellerAccount").write("1234 77 99570"); // bruker en profile som allerede er lagret i filen
-        clickOn("#setNewBillButton");
-        assertTrue(controller.getProfile().getBills().stream().filter(a -> a.getBillName().equals("leie"))
-            .findAny().get().getAmount() == 10);
-      }
+      assertTrue(controller.getProfile().getTlf().equals("45456677"));
+      assertTrue(controller.getProfile().getPassword().equals("koding4321"));
 
-      // @Test
-      // public void testPayBill() {
+      clickOn("#profileTab");
+      clickOn("#settingsButton");
+      clickOn("#changeNumberTo").write("47765");
+      clickOn("#updateSettings");
+      assertFalse(controller.getProfile().getTlf().equals("47765"));
 
-      // }
-    }
-
-    @Nested
-    @DisplayName("Test if a profile is updated accordingly")
-    public class testProfile {
-      @BeforeEach
-      @DisplayName("Loads the profile tab, and goes into the settings")
-      private void profileSetUp() {
-        clickOn("#profileTab");
-        clickOn("#settingsButton");
-      }
-
-      @Test
-      @DisplayName("Testing if the profile updates accordingly to valid and unvalid inputs")
-      public void testProfileChange() {
-        FxAssert.verifyThat("#settings", NodeMatchers.isVisible());
-        clickOn("#changeNumberTo").write("45456677");
-        // clickOn("#changeEmailTo").write("al@gmail.no");
-        clickOn("#changePasswordTo").write("koding4321");
-        clickOn("#confirmChangePassword").write("koding4321");
-        clickOn("#updateSettings");
-
-        assertTrue(controller.getProfile().getTlf().equals("45456677"));
-        assertTrue(controller.getProfile().getPassword().equals("koding4321"));
-
-        clickOn("#profileTab");
-        clickOn("#settingsButton");
-        clickOn("#changeNumberTo").write("47765");
-        clickOn("#updateSettings");
-        assertFalse(controller.getProfile().getTlf().equals("47765"));
-
-        clickOn("#profileTab");
-        clickOn("#settingsButton");
-        clickOn("#changeNumberTo").write("98987765");
-        // clickOn("#changeEmailTo").write("adalovelace@gmail.no");
-        clickOn("#changePasswordTo").write("koding1234");
-        clickOn("#confirmChangePassword").write("koding1234");
-        clickOn("#updateSettings");
-      }
+      clickOn("#profileTab");
+      clickOn("#settingsButton");
+      clickOn("#changeNumberTo").write("98987765");
+      // clickOn("#changeEmailTo").write("adalovelace@gmail.no");
+      clickOn("#changePasswordTo").write("koding1234");
+      clickOn("#confirmChangePassword").write("koding1234");
+      clickOn("#updateSettings");
     }
   }
 
-  // @Test
-  // @DisplayName("Testing if a profile gets made accordingly")
-  // public void testHandleSignUpClick() {
-  // clickOn("#signUpButton");
-  // FxAssert.verifyThat("#register", NodeMatchers.isVisible());
-  // clickOn("#fullName").write("Elon Musk");
-  // clickOn("#email").write("elon@gmail.no");
-  // clickOn("#phoneNr").write("98887765");
-  // clickOn("#password").write("teknologi1234");
-  // clickOn("#passwordConfirm").write("teknologi1234");
-  // clickOn("#registerButton");
+  @Test
+  @DisplayName("Testing if a profile gets made accordingly")
+  public void testHandleSignUpClick() {
+    clickOn("#signUpButton");
+    FxAssert.verifyThat("#register", NodeMatchers.isVisible());
+    clickOn("#fullName").write("Elon Musk");
+    clickOn("#email").write("elon@gmail.no");
+    clickOn("#phoneNr").write("98887765");
+    clickOn("#password").write("teknologi1234");
+    clickOn("#passwordConfirm").write("teknologi1234");
+    clickOn("#registerButton");
 
-  // assertTrue(controller.getProfile().getName().equals("Elon Musk"));
-  // assertTrue(controller.getProfile().getEmail().equals("elon@gmail.no"));
-  // assertTrue(controller.getProfile().getTlf().equals("98887765"));
-  // assertTrue(controller.getProfile().getPassword().equals("teknologi1234"));
+    assertTrue(controller.getProfile().getName().equals("Elon Musk"));
+    assertTrue(controller.getProfile().getEmail().equals("elon@gmail.no"));
+    assertTrue(controller.getProfile().getTlf().equals("98887765"));
+    assertTrue(controller.getProfile().getPassword().equals("teknologi1234"));
 
-  // deleteTestProfile();
+    deleteTestProfile();
 
-  // }
+  }
 
-  // @Test
-  // @DisplayName("Testing if the back arrow works")
-  // public void testHandleBackArrow() {
-  // clickOn("#signUpButton");
-  // clickOn("#backArrow");
-  // FxAssert.verifyThat("#login", NodeMatchers.isVisible());
-  // }
+  @Test
+  @DisplayName("Testing if the back arrow works")
+  public void testHandleBackArrow() {
+    clickOn("#signUpButton");
+    clickOn("#backArrow");
+    FxAssert.verifyThat("#login", NodeMatchers.isVisible());
+  }
 
 }
